@@ -1,6 +1,6 @@
 # CustomAssets
 
-Welcome to **CustomAssets** – a collection of reusable assets and tools for Unity game development.
+Welcome to this collection of reusable assets and tools for Unity game development.
 
 In this repository, you will find multiple Unity packages designed to accelerate your workflow and improve code quality.  
 The first package available is our comprehensive **Design Patterns** library.
@@ -35,7 +35,7 @@ Click the **+** button (top left), then select **Add package from Git URL...**
 Paste the following URL:
 
 ```
-https://github.com/Sulaiman281/CustomAssets.git?path=Assets/WitShells/Design%20Patterns
+https://github.com/Sulaiman281/CustomAssets.git?path=Assets/WitShells/DesignPatterns
 ```
 
 > **Note:**  
