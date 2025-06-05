@@ -1,0 +1,11 @@
+{
+    "name": "com.witshells.designpatterns",
+    "version": "1.0.0",
+    "displayName": "WitShells Design Patterns",
+    "description": "A collection of reusable design pattern implementations for Unity.",
+    "unity": "6",
+    "author": {
+        "name": "Syed Suleman",
+        "email": "sayedsulaiman607@email.com"
+    }
+}
