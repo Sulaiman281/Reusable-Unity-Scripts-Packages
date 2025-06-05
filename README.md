@@ -35,7 +35,7 @@ Click the **+** button (top left), then select **Add package from Git URL...**
 Paste the following URL:
 
 ```
-https://github.com/Sulaiman281/CustomAssets.git?path=Assets/WitShells/DesignPatterns
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DesignPatterns
 ```
 
 > **Note:**  
