@@ -9,6 +9,6 @@
         "email": "sayedsulaiman607@gmail.com"
     },
     "dependencies": {
-        "com.witshells.designpatterns": "file:"
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
     }
 }

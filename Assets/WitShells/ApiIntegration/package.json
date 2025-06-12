@@ -9,7 +9,6 @@
         "email": "sayedsulaiman607@gmail.com"
     },
     "dependencies": {
-        "com.witshells.apiintegration": "file:",
         "com.unity.nuget.newtonsoft-json": "3.2.1",
         "com.witshells.designpatterns": "https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DesignPatterns"
     }
