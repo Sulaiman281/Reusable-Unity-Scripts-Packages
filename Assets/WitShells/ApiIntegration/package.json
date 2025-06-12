@@ -1,0 +1,16 @@
+{
+    "name": "com.witshells.apiintegration",
+    "version": "1.0.1",
+    "displayName": "Less Code, Api Integration",
+    "description": "A Unity package that simplifies API integration with minimal code.",
+    "unity": "2021.3",
+    "author": {
+        "name": "Syed Suleman",
+        "email": "sayedsulaiman607@gmail.com"
+    },
+    "dependencies": {
+        "com.witshells.apiintegration": "file:",
+        "com.unity.nuget.newtonsoft-json": "3.2.1",
+        "com.witshells.designpatterns": "https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DesignPatterns"
+    }
+}

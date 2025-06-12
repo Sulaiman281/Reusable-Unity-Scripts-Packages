@@ -1,0 +1,16 @@
+{
+    "name": "WitApiIntegration",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ec8dcffcd0a03ff4fa9b67aecf8c0e87"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

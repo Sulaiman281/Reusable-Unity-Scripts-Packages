@@ -19,7 +19,7 @@ namespace WitShells.DesignPatterns.Core
                 _observers.Remove(observer);
         }
 
-        protected void NotifyObservers(T value)
+        public void NotifyObservers(T value)
         {
             foreach (var observer in _observers)
             {
