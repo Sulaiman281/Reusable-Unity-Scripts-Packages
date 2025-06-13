@@ -258,7 +258,18 @@ namespace WitShells.ApiIntegration
             }
 
             var req = endpoints[endpointIndex];
-            var request = req.Build();
+            Execute(req);
+        }
+
+        public void Execute(ApiEndpointRequest endpointRequest)
+        {
+            if (endpointRequest == null)
+            {
+                Debug.LogError("Endpoint request is null.");
+                return;
+            }
+
+            var request = endpointRequest.Build();
 
             if (request == null)
             {
@@ -267,15 +278,15 @@ namespace WitShells.ApiIntegration
             }
 
             StartCoroutine(
-                ApiManager.Instance.SendRequest(request, req.endpoint, response =>
+                ApiManager.Instance.SendRequest(request, endpointRequest.endpoint, response =>
                 {
-                    if (req.endpoint.responseType == ResponseType.Authorize)
+                    if (endpointRequest.endpoint.responseType == ResponseType.Authorize)
                     {
-                        RestApiConfig.Instance.SetAuthorizationData(req.onSuccess.accessTokenKey, req.onSuccess.refreshTokenKey, response as string);
+                        RestApiConfig.Instance.SetAuthorizationData(endpointRequest.onSuccess.accessTokenKey, endpointRequest.onSuccess.refreshTokenKey, response as string);
                         return;
                     }
 
-                    req.onSuccess.Invoke(response, req.endpoint.responseType);
+                    endpointRequest.onSuccess.Invoke(response, endpointRequest.endpoint.responseType);
                 })
             );
         }
