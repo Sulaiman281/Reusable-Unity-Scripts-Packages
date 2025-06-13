@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
-using Newtonsoft.Json;
 using System;
 using WitShells.DesignPatterns.Core;
 
@@ -40,11 +39,14 @@ namespace WitShells.ApiIntegration
     {
         public ExceptionObserver ExceptionObserver { get; private set; } = new ExceptionObserver();
 
+        public UnityEvent<float> ApiInProgress = new UnityEvent<float>();
+        public UnityEvent ApiFinished = new UnityEvent();
+
         /// <summary>
         /// Sends a UnityWebRequest and handles the response.
         /// The endpoint path is extracted from the request.url.
         /// </summary>
-        public IEnumerator SendRequest(UnityWebRequest webRequest, UnityAction<Response> callback)
+        public IEnumerator SendRequest(UnityWebRequest webRequest, ApiEndpoint endpoint, UnityAction<object> callback)
         {
             string endpointPath = GetEndpointPathFromUrl(webRequest.url);
 
@@ -56,7 +58,15 @@ namespace WitShells.ApiIntegration
             }
 
             ApiLogger.Log($"Sending API Request: {webRequest.url} with method {webRequest.method}");
-            yield return webRequest.SendWebRequest();
+            ApiInProgress?.Invoke(0f);
+            var asyncOp = webRequest.SendWebRequest();
+            while (!asyncOp.isDone)
+            {
+                float progress = webRequest.uploadProgress < 1f ? webRequest.uploadProgress : webRequest.downloadProgress;
+                ApiInProgress?.Invoke(progress);
+                yield return null;
+            }
+            ApiInProgress?.Invoke(1f);
 
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
@@ -67,18 +77,32 @@ namespace WitShells.ApiIntegration
                 }
                 else
                 {
-                    HandleException(endpointPath, webRequest.downloadHandler.text);
+                    ApiLogger.LogError($"Error: {webRequest.error} - Response Code: {webRequest.responseCode} - {webRequest.downloadHandler.text}");
+                    HandleException(endpointPath, webRequest.downloadHandler.error ?? webRequest.downloadHandler.text);
                 }
             }
             else
             {
-                ApiLogger.Log($"API Response: {webRequest.downloadHandler.text}");
                 try
                 {
-                    Response responseObj = string.IsNullOrEmpty(webRequest.downloadHandler.text)
-                        ? new Response()
-                        : JsonConvert.DeserializeObject<Response>(webRequest.downloadHandler.text);
-
+                    object responseObj = null;
+                    switch (endpoint.responseType)
+                    {
+                        case ResponseType.Authorize:
+                        case ResponseType.Json:
+                            // Return raw JSON string so user can deserialize as needed
+                            responseObj = webRequest.downloadHandler.text;
+                            ApiLogger.Log($"Response from {endpointPath}: {responseObj}");
+                            break;
+                        case ResponseType.Text:
+                            responseObj = webRequest.downloadHandler.text;
+                            ApiLogger.Log($"Response from {endpointPath}: {responseObj}");
+                            break;
+                        case ResponseType.Bytes:
+                            responseObj = webRequest.downloadHandler.data;
+                            ApiLogger.Log($"Bytes downloaded from {endpointPath}");
+                            break;
+                    }
                     callback?.Invoke(responseObj);
                 }
                 catch (Exception ex)
@@ -86,6 +110,8 @@ namespace WitShells.ApiIntegration
                     ExceptionObserver.NotifyObservers(new ApiException(endpointPath, "Deserialization Error", ex.Message, ex));
                 }
             }
+
+            ApiFinished?.Invoke();
         }
 
         /// <summary>
@@ -108,32 +134,7 @@ namespace WitShells.ApiIntegration
         /// </summary>
         public virtual void HandleException(string endpoint, string responseText)
         {
-            try
-            {
-                var exception = JsonConvert.DeserializeObject<ExceptionResponse>(responseText);
-                ApiLogger.LogWarning($"API Exception at {endpoint}: {exception?.error} - {exception?.details}");
-                ExceptionObserver.NotifyObservers(new ApiException(endpoint, exception?.error, exception?.details));
-            }
-            catch
-            {
-                ExceptionObserver.NotifyObservers(new ApiException(endpoint, "unknown exception", responseText));
-            }
+            ExceptionObserver.NotifyObservers(new ApiException(endpoint, "API Error", responseText));
         }
-    }
-
-    [Serializable]
-    public class Response
-    {
-        public string message;
-        public int code;
-        // Add more fields as needed
-    }
-
-    [Serializable]
-    public class ExceptionResponse
-    {
-        public string error;
-        public string details;
-        // Add more fields as needed
     }
 }

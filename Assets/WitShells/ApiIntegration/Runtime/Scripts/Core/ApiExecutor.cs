@@ -11,7 +11,9 @@ namespace WitShells.ApiIntegration
         String,
         Integer,
         Float,
-        Boolean
+        Boolean,
+        Audio,
+        Image,
     }
 
     [Serializable]
@@ -23,6 +25,7 @@ namespace WitShells.ApiIntegration
         public int intValue;
         public float floatValue;
         public bool boolValue;
+        public string mediaPath;
 
         // This property is for serialization to dictionary
         public object Value
@@ -35,6 +38,8 @@ namespace WitShells.ApiIntegration
                     BodyFieldType.Integer => intValue,
                     BodyFieldType.Float => floatValue,
                     BodyFieldType.Boolean => boolValue,
+                    BodyFieldType.Audio => mediaPath,
+                    BodyFieldType.Image => mediaPath,
                     _ => stringValue,
                 };
             }
@@ -54,7 +59,43 @@ namespace WitShells.ApiIntegration
                     case BodyFieldType.Boolean:
                         boolValue = Convert.ToBoolean(value);
                         break;
+                    case BodyFieldType.Audio:
+                        mediaPath = value as string;
+                        break;
+                    case BodyFieldType.Image:
+                        mediaPath = value as string;
+                        break;
                 }
+            }
+        }
+    }
+
+    [Serializable]
+    public class ApiSuccessResponse
+    {
+        public UnityEvent<string> onJsonData;
+        public UnityEvent<byte[]> onBytesData;
+        public UnityEvent<string> onTextData;
+
+        public string accessTokenKey;
+        public string refreshTokenKey;
+
+        public void Invoke(object response, ResponseType responseType)
+        {
+            switch (responseType)
+            {
+                case ResponseType.Json:
+                    onJsonData?.Invoke(response as string);
+                    break;
+                case ResponseType.Bytes:
+                    onBytesData?.Invoke(response as byte[]);
+                    break;
+                case ResponseType.Text:
+                    onTextData?.Invoke(response as string);
+                    break;
+                default:
+                    Debug.LogWarning($"Unhandled response type: {responseType}");
+                    break;
             }
         }
     }
@@ -72,7 +113,8 @@ namespace WitShells.ApiIntegration
         [Tooltip("Key-value pairs for request body. Used if includeBody is true.")]
         public List<BodyField> bodyFields = new();
 
-        public UnityEvent<Response> onSuccess;
+        // public UnityEvent<object> onSuccess;
+        public ApiSuccessResponse onSuccess = new ApiSuccessResponse();
         public UnityEvent<ApiException> onFail;
 
         /// <summary>
@@ -94,23 +136,30 @@ namespace WitShells.ApiIntegration
             {
                 if (!string.IsNullOrEmpty(h.key))
                 {
-                    if (h.Value is string strValue)
+                    switch (h.type)
                     {
-                        form.AddField(h.key, strValue);
+                        case BodyFieldType.String:
+                            form.AddField(h.key, h.stringValue);
+                            break;
+                        case BodyFieldType.Integer:
+                            form.AddField(h.key, h.intValue);
+                            break;
+                        case BodyFieldType.Float:
+                            form.AddField(h.key, h.floatValue.ToString());
+                            break;
+                        case BodyFieldType.Boolean:
+                            form.AddField(h.key, h.boolValue ? "true" : "false");
+                            break;
+                        case BodyFieldType.Image:
+                        case BodyFieldType.Audio:
+                            if (!string.IsNullOrEmpty(h.mediaPath) && System.IO.File.Exists(h.mediaPath))
+                            {
+                                byte[] fileData = System.IO.File.ReadAllBytes(h.mediaPath);
+                                form.AddField(h.key, Convert.ToBase64String(fileData));
+                                ApiLogger.Log($"Added media field '{h.key}' with size {fileData.Length} bytes.");
+                            }
+                            break;
                     }
-                    else if (h.Value is int intValue)
-                    {
-                        form.AddField(h.key, intValue);
-                    }
-                    else if (h.Value is float floatValue)
-                    {
-                        form.AddField(h.key, floatValue.ToString());
-                    }
-                    else if (h.Value is bool boolValue)
-                    {
-                        form.AddField(h.key, boolValue ? "true" : "false");
-                    }
-                    // Add more types as needed
                 }
             }
             return form;
@@ -135,6 +184,7 @@ namespace WitShells.ApiIntegration
 
             if (includeBody)
             {
+                ApiLogger.Log($"Building request content type: {endpoint.ContentType}");
                 switch (endpoint.ContentType)
                 {
                     case ContentType.JSON:
@@ -147,6 +197,10 @@ namespace WitShells.ApiIntegration
                         break;
                     case ContentType.Query:
                         req = ApiRequestBuilder.Create(endpoint.ToEndpointWithBody(GetQueryString()));
+                        break;
+                    case ContentType.Media:
+                        ApiLogger.Log($"Building request with media body for endpoint: {endpoint.Path}");
+                        req = ApiRequestBuilder.Create(endpoint.ToEndpointWithBody(GetBodyForm()));
                         break;
                     default:
                         throw new InvalidOperationException("Unsupported content type for body.");
@@ -213,10 +267,17 @@ namespace WitShells.ApiIntegration
             }
 
             StartCoroutine(
-                        ApiManager.Instance.SendRequest(request, response =>
-            {
-                req.onSuccess?.Invoke(response);
-            }));
+                ApiManager.Instance.SendRequest(request, req.endpoint, response =>
+                {
+                    if (req.endpoint.responseType == ResponseType.Authorize)
+                    {
+                        RestApiConfig.Instance.SetAuthorizationData(req.onSuccess.accessTokenKey, req.onSuccess.refreshTokenKey, response as string);
+                        return;
+                    }
+
+                    req.onSuccess.Invoke(response, req.endpoint.responseType);
+                })
+            );
         }
 
         /// <summary>

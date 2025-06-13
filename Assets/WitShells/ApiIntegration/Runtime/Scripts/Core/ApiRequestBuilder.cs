@@ -46,6 +46,7 @@ namespace WitShells.ApiIntegration
         /// </summary>
         public static ApiRequestBuilder Create<T>(ApiEndpointWithBody<T> endpoint)
         {
+            ApiLogger.Log($"[ApiRequestBuilder] ContentType: {endpoint.ContentType}, Method: {endpoint.Method}, Path: {endpoint.Path}");
             var url = CombineUrl(RestApiConfig.Instance.BaseUrl, endpoint.Path);
             UnityWebRequest req;
             if (endpoint.Body is string strData)
@@ -128,16 +129,15 @@ namespace WitShells.ApiIntegration
         /// </summary>
         public static string GetContentTypeString(ContentType contentType)
         {
-            switch (contentType)
+            var content = contentType switch
             {
-                case ContentType.Query:
-                case ContentType.JSON:
-                    return "application/json";
-                case ContentType.WWWForm:
-                    return "application/x-www-form-urlencoded";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(contentType), contentType, "Unsupported ContentType");
-            }
+                ContentType.Query or ContentType.JSON => "application/json",
+                ContentType.WWWForm => "application/x-www-form-urlencoded",
+                ContentType.Media => "multipart/form-data",
+                _ => throw new ArgumentOutOfRangeException(nameof(contentType), contentType, "Unsupported ContentType"),
+            };
+            ApiLogger.Log($"[ApiRequestBuilder] Getting Content-Type for: {contentType} - {content}");
+            return content;
         }
 
         /// <summary>

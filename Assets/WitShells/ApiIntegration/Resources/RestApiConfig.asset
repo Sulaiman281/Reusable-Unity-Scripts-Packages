@@ -15,8 +15,11 @@ MonoBehaviour:
   environment: 1
   localUrl: localhost
   localTestUrl: http://54.206.234.157/
-  productionUrl: 
+  productionUrl: https://api.openai.com
   defaultHeaders:
   - key: app-version
-    value: 1.1.0
+    value: 1.1.1
   showLog: 1
+  cacheAuthorizationToken: 1
+  accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNheWVkc3VsYWltYW42MDdAZ21haWwuY29tIiwiSWQiOiI2N2UyNzI0ZWFmNzg3OGQyZDkzNTJlNzIiLCJSb2xlIjoiQWRtaW4iLCJleHAiOjE3NDk4MTU0MzcsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTAwMCJ9.h1uSLlSRmbHelhxzVE9smWVkr6oKoCVBKDfqoZnmrFo
+  refreshToken: 5ahpyGcw9nXnOH9UPzKowH3FCMA4VuvX46qAZoCuMs0=

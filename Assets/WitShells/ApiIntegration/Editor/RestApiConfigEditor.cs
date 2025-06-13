@@ -15,6 +15,7 @@ public class RestApiConfigEditor : EditorWindow
     private bool showLog;
     private string accessToken;
     private List<Header> defaultHeaders = new List<Header>();
+    private Vector2 scrollPos;
 
     [MenuItem("WitShells/API/RestApiConfig")]
     public static void ShowWindow()
@@ -48,6 +49,8 @@ public class RestApiConfigEditor : EditorWindow
             }
             return;
         }
+
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
         EditorGUILayout.LabelField("Environment Settings", EditorStyles.boldLabel);
         environment = (ApiEnvironment)EditorGUILayout.EnumPopup("Environment", environment);
@@ -87,14 +90,25 @@ public class RestApiConfigEditor : EditorWindow
         showLog = EditorGUILayout.Toggle("Show Log", showLog);
 
         EditorGUILayout.Space();
-        EditorGUILayout.LabelField("Access Token (runtime only)", EditorStyles.boldLabel);
-        EditorGUILayout.LabelField(accessToken);
+        EditorGUILayout.LabelField("Bearer Token (runtime only)", EditorStyles.boldLabel);
+        accessToken = EditorGUILayout.TextField("Bearer Token", accessToken);
+        config.accessToken = accessToken;
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Refresh Token (runtime only)", EditorStyles.boldLabel);
+        config.refreshToken = EditorGUILayout.TextField("Refresh Token", config.refreshToken);
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Authorization Caching", EditorStyles.boldLabel);
+        config.cacheAuthorizationToken = EditorGUILayout.Toggle("Cache Authorization Token", config.cacheAuthorizationToken);
 
         EditorGUILayout.Space();
         if (GUILayout.Button("Save"))
         {
             SaveConfig();
         }
+
+        EditorGUILayout.EndScrollView();
     }
 
     private void SaveConfig()

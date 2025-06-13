@@ -62,9 +62,19 @@ public class ApiExecutorEditor : Editor
                     {
                         EditorGUILayout.LabelField("Endpoint Settings", EditorStyles.miniBoldLabel);
                         EditorGUILayout.PropertyField(endpointSettingsProp.FindPropertyRelative("Method"), new GUIContent("HTTP Method"));
-                        EditorGUILayout.PropertyField(endpointSettingsProp.FindPropertyRelative("ContentType"), new GUIContent("Content Type"));
+
+                        // Content Type field with change detection
+                        var contentTypeProp = endpointSettingsProp.FindPropertyRelative("ContentType");
+                        EditorGUI.BeginChangeCheck();
+                        EditorGUILayout.PropertyField(contentTypeProp, new GUIContent("Content Type"));
+                        if (EditorGUI.EndChangeCheck())
+                        {
+                            Debug.Log($"[ApiExecutorEditor] Content Type changed to: {((ContentType)contentTypeProp.enumValueIndex)} for endpoint '{displayName}'");
+                        }
+
                         EditorGUILayout.PropertyField(endpointSettingsProp.FindPropertyRelative("Path"), new GUIContent("Path"));
                         EditorGUILayout.PropertyField(endpointSettingsProp.FindPropertyRelative("IsSecure"), new GUIContent("Is Secure"));
+                        EditorGUILayout.PropertyField(endpointSettingsProp.FindPropertyRelative("responseType"), new GUIContent("Response Type"));
                     }
 
                     // Default Headers
@@ -103,8 +113,8 @@ public class ApiExecutorEditor : Editor
                                 typeProp = bodyFieldProp.FindPropertyRelative("type");
                             }
                             EditorGUILayout.PropertyField(typeProp, GUIContent.none, GUILayout.Width(70));
-                            // add space
                             GUILayout.Space(10);
+
                             // Value field
                             EditorGUILayout.LabelField("Value", GUILayout.Width(40));
                             DrawTypedValueField(typeProp, bodyFieldProp);
@@ -121,9 +131,48 @@ public class ApiExecutorEditor : Editor
                         }
                     }
 
-                    // Unity Events
-                    EditorGUILayout.Space();
-                    EditorGUILayout.PropertyField(endpointProp.FindPropertyRelative("onSuccess"), new GUIContent("On Success"));
+                    // Show only the relevant UnityEvent for the selected response type
+                    var onSuccessProp = endpointProp.FindPropertyRelative("onSuccess");
+                    var responseTypeProp = endpointSettingsProp.FindPropertyRelative("responseType");
+                    if (onSuccessProp != null && responseTypeProp != null)
+                    {
+                        ResponseType responseType = (ResponseType)responseTypeProp.enumValueIndex;
+                        EditorGUILayout.Space();
+                        EditorGUILayout.LabelField("On Success", EditorStyles.boldLabel);
+
+                        if (responseType == ResponseType.Authorize)
+                        {
+                            EditorGUILayout.Space();
+                            EditorGUILayout.LabelField("Authorization Keys", EditorStyles.boldLabel);
+
+                            var accessTokenKeyProp = onSuccessProp.FindPropertyRelative("accessTokenKey");
+                            var refreshTokenKeyProp = onSuccessProp.FindPropertyRelative("refreshTokenKey");
+
+                            EditorGUILayout.PropertyField(accessTokenKeyProp, new GUIContent("Access Token Key"));
+                            EditorGUILayout.PropertyField(refreshTokenKeyProp, new GUIContent("Refresh Token Key (Optional)"));
+                        }
+                        else
+                        {
+
+                            switch (responseType)
+                            {
+                                case ResponseType.Json:
+                                    EditorGUILayout.PropertyField(onSuccessProp.FindPropertyRelative("onJsonData"), new GUIContent("On Json Data"));
+                                    break;
+                                case ResponseType.Bytes:
+                                    EditorGUILayout.PropertyField(onSuccessProp.FindPropertyRelative("onBytesData"), new GUIContent("On Bytes Data"));
+                                    break;
+                                case ResponseType.Text:
+                                    EditorGUILayout.PropertyField(onSuccessProp.FindPropertyRelative("onTextData"), new GUIContent("On Text Data"));
+                                    break;
+                                default:
+                                    EditorGUILayout.HelpBox("Unhandled response type.", MessageType.Warning);
+                                    break;
+                            }
+                        }
+                    }
+
+                    // On Fail Event
                     EditorGUILayout.PropertyField(endpointProp.FindPropertyRelative("onFail"), new GUIContent("On Fail"));
 
                     // Execute Button
@@ -187,7 +236,6 @@ public class ApiExecutorEditor : Editor
                     var pathProp = endpointField.FindPropertyRelative("Path");
                     if (pathProp != null)
                     {
-                        // Remove all leading slashes, then add one
                         string path = pathProp.stringValue ?? "";
                         if (!string.IsNullOrEmpty(path))
                         {
@@ -224,6 +272,25 @@ public class ApiExecutorEditor : Editor
                 break;
             case BodyFieldType.Boolean:
                 EditorGUILayout.PropertyField(bodyFieldProp.FindPropertyRelative("boolValue"), GUIContent.none, GUILayout.Width(120));
+                break;
+            case BodyFieldType.Image:
+            case BodyFieldType.Audio:
+                // Show current file path (if any)
+                var mediaPathProp = bodyFieldProp.FindPropertyRelative("mediaPath");
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.TextField(mediaPathProp.stringValue, GUILayout.Width(180));
+                if (GUILayout.Button("Upload File", GUILayout.Width(90)))
+                {
+                    string filter = type == BodyFieldType.Image
+                        ? "Image files (*.png;*.jpg;*.jpeg;*.gif)|*.png;*.jpg;*.jpeg;*.gif"
+                        : "Audio files (*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg";
+                    string path = EditorUtility.OpenFilePanel("Select File", Application.dataPath, "");
+                    if (!string.IsNullOrEmpty(path))
+                    {
+                        mediaPathProp.stringValue = path;
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
                 break;
         }
     }

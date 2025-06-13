@@ -18,7 +18,16 @@ namespace WitShells.ApiIntegration
     {
         JSON,
         WWWForm,
-        Query
+        Query,
+        Media
+    }
+
+    public enum ResponseType
+    {
+        Json,
+        Text,
+        Bytes,      // For raw bytes
+        Authorize
     }
 
     /// <summary>
@@ -28,9 +37,10 @@ namespace WitShells.ApiIntegration
     public class ApiEndpoint
     {
         public HttpMethod Method;
-        public ContentType ContentType = ContentType.JSON;
+        public ContentType ContentType;
         public string Path;
         public bool IsSecure;
+        public ResponseType responseType;
 
         public ApiEndpoint(HttpMethod method, string path, bool isSecure = false)
         {
@@ -79,7 +89,15 @@ namespace WitShells.ApiIntegration
         // copy apiendpoint to ApiEndpointWithBody<T>
         public static ApiEndpointWithBody<T> ToEndpointWithBody<T>(this ApiEndpoint endpoint, T body)
         {
-            return new ApiEndpointWithBody<T>(endpoint.Method, endpoint.Path, body, endpoint.IsSecure);
+            return new ApiEndpointWithBody<T>
+            {
+                Method = endpoint.Method,
+                ContentType = endpoint.ContentType, // <-- Ensure this is copied!
+                Path = endpoint.Path,
+                IsSecure = endpoint.IsSecure,
+                responseType = endpoint.responseType,
+                Body = body
+            };
         }
     }
 }

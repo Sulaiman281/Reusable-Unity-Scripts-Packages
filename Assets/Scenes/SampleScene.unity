@@ -463,41 +463,49 @@ MonoBehaviour:
       ContentType: 0
       Path: app/show-time-trial-standings
       IsSecure: 0
+      responseType: 0
     includeDefaultHeaders: 0
     customHeaders: []
     includeBody: 0
     bodyFields: []
     onSuccess:
-      m_PersistentCalls:
-        m_Calls: []
+      onJsonData:
+        m_PersistentCalls:
+          m_Calls: []
+      onBytesData:
+        m_PersistentCalls:
+          m_Calls: []
+      onTextData:
+        m_PersistentCalls:
+          m_Calls: []
+      accessTokenKey: 
+      refreshTokenKey: 
     onFail:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 832575517}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   - endpointName: Hello
     endpoint:
       Method: 0
       ContentType: 0
       Path: 
       IsSecure: 0
+      responseType: 0
     includeDefaultHeaders: 0
     customHeaders: []
     includeBody: 0
     bodyFields: []
     onSuccess:
-      m_PersistentCalls:
-        m_Calls: []
+      onJsonData:
+        m_PersistentCalls:
+          m_Calls: []
+      onBytesData:
+        m_PersistentCalls:
+          m_Calls: []
+      onTextData:
+        m_PersistentCalls:
+          m_Calls: []
+      accessTokenKey: 
+      refreshTokenKey: 
     onFail:
       m_PersistentCalls:
         m_Calls: []
@@ -507,6 +515,7 @@ MonoBehaviour:
       ContentType: 0
       Path: auth/login
       IsSecure: 0
+      responseType: 6
     includeDefaultHeaders: 0
     customHeaders: []
     includeBody: 1
@@ -517,15 +526,118 @@ MonoBehaviour:
       intValue: 0
       floatValue: 0
       boolValue: 0
+      mediaPath: 
     - key: password
       type: 0
       stringValue: 12ta442ta1
       intValue: 0
       floatValue: 0
       boolValue: 0
+      mediaPath: 
     onSuccess:
+      onJsonData:
+        m_PersistentCalls:
+          m_Calls: []
+      onBytesData:
+        m_PersistentCalls:
+          m_Calls: []
+      onTextData:
+        m_PersistentCalls:
+          m_Calls: []
+      accessTokenKey: accessToken
+      refreshTokenKey: refreshToken
+    onFail:
       m_PersistentCalls:
         m_Calls: []
+  - endpointName: Profile
+    endpoint:
+      Method: 0
+      ContentType: 0
+      Path: user/profile
+      IsSecure: 1
+      responseType: 0
+    includeDefaultHeaders: 1
+    customHeaders: []
+    includeBody: 1
+    bodyFields: []
+    onSuccess:
+      onJsonData:
+        m_PersistentCalls:
+          m_Calls: []
+      onBytesData:
+        m_PersistentCalls:
+          m_Calls: []
+      onTextData:
+        m_PersistentCalls:
+          m_Calls: []
+      accessTokenKey: accessToken
+      refreshTokenKey: refreshToken
+    onFail:
+      m_PersistentCalls:
+        m_Calls: []
+  - endpointName: Upload Image
+    endpoint:
+      Method: 1
+      ContentType: 3
+      Path: app/upload-image-bytes
+      IsSecure: 1
+      responseType: 0
+    includeDefaultHeaders: 1
+    customHeaders: []
+    includeBody: 1
+    bodyFields:
+    - key: imageData
+      type: 5
+      stringValue: 
+      intValue: 0
+      floatValue: 0
+      boolValue: 0
+      mediaPath: E:/Resume/profile_pic.png
+    onSuccess:
+      onJsonData:
+        m_PersistentCalls:
+          m_Calls: []
+      onBytesData:
+        m_PersistentCalls:
+          m_Calls: []
+      onTextData:
+        m_PersistentCalls:
+          m_Calls: []
+      accessTokenKey: accessToken
+      refreshTokenKey: refreshToken
+    onFail:
+      m_PersistentCalls:
+        m_Calls: []
+  - endpointName: Fetch Image
+    endpoint:
+      Method: 0
+      ContentType: 2
+      Path: app/get-image-bytes-by-id
+      IsSecure: 1
+      responseType: 0
+    includeDefaultHeaders: 1
+    customHeaders: []
+    includeBody: 1
+    bodyFields:
+    - key: id
+      type: 0
+      stringValue: 684c031b8851ef091da54c75
+      intValue: 0
+      floatValue: 0
+      boolValue: 0
+      mediaPath: 
+    onSuccess:
+      onJsonData:
+        m_PersistentCalls:
+          m_Calls: []
+      onBytesData:
+        m_PersistentCalls:
+          m_Calls: []
+      onTextData:
+        m_PersistentCalls:
+          m_Calls: []
+      accessTokenKey: accessToken
+      refreshTokenKey: refreshToken
     onFail:
       m_PersistentCalls:
         m_Calls: []
@@ -542,6 +654,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPersistent: 1
+  ApiInProgress:
+    m_PersistentCalls:
+      m_Calls: []
+  ApiFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1714316691
 Transform:
   m_ObjectHideFlags: 0

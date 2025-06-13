@@ -1,11 +1,11 @@
 {
     "name": "com.witshells.apiintegration",
     "version": "1.0.1",
-    "displayName": "Less Code, Api Integration",
+    "displayName": "Wit Api Integration",
     "description": "A Unity package that simplifies API integration with minimal code.",
     "unity": "2021.3",
     "author": {
-        "name": "Syed Suleman",
+        "name": "WitShells",
         "email": "sayedsulaiman607@gmail.com"
     },
     "dependencies": {
