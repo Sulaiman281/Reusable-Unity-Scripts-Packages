@@ -10,19 +10,11 @@ namespace WitShells.DesignPatterns.Core
 
         private static T _instance;
         private static object _lock = new object();
-        private static bool _applicationIsQuitting = false;
 
         public static T Instance
         {
             get
             {
-                if (_applicationIsQuitting)
-                {
-                    Debug.LogWarning("[MonoSingleton] Instance '" + typeof(T) +
-                        "' already destroyed on application quit. Won't create again - returning null.");
-                    return null;
-                }
-
                 lock (_lock)
                 {
                     if (_instance == null)
@@ -63,7 +55,10 @@ namespace WitShells.DesignPatterns.Core
 
         protected virtual void OnDestroy()
         {
-            _applicationIsQuitting = true;
+            if (_instance != null && _instance == this)
+            {
+                _instance = null;
+            }
         }
     }
 }
