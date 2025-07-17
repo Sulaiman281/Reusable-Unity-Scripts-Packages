@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.thirdpersoncontrol",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "displayName": "WitShells Third Person Control",
     "description": "A Unity package that provides a robust third-person character controller with customizable features.",
     "unity": "2021.3",

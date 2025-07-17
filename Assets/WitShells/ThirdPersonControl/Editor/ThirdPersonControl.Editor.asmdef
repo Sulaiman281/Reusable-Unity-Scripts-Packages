@@ -1,0 +1,20 @@
+{
+    "name": "ThirdPersonControl.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d9802df43937cb04aaf8b26e303332d8",
+        "GUID:ec8dcffcd0a03ff4fa9b67aecf8c0e87",
+        "GUID:4307f53044263cf4b835bd812fc161a4"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

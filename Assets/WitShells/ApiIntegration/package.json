@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.apiintegration",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "displayName": "Wit Api Integration",
     "description": "A Unity package that simplifies API integration with minimal code.",
     "unity": "2021.3",
