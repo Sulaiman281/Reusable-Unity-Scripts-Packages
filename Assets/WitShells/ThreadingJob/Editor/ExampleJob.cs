@@ -1,4 +1,4 @@
-namespace WitShells.ThreadingJob.Editor
+namespace WitShells.ThreadingJob
 {
     public class ExampleJob : ThreadJob<int>
     {
