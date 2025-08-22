@@ -1,12 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Events;
+using WitShells.DesignPatterns.Core;
+
 namespace WitShells.ThreadingJob
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using UnityEngine;
-    using UnityEngine.Events;
-    using WitShells.DesignPatterns.Core;
+
 
     public partial class ThreadManager : MonoSingleton<ThreadManager>
     {

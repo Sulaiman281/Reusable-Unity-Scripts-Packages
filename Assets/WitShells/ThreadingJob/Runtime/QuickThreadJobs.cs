@@ -1,8 +1,10 @@
+using System;
+using System.Threading.Tasks;
+using UnityEngine.Events;
+
 namespace WitShells.ThreadingJob
 {
-    using System;
-    using System.Threading.Tasks;
-    using UnityEngine.Events;
+
 
     // Quick job implementations
     public static class QuickThreadJobs
