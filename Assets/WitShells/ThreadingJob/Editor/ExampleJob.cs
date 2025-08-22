@@ -1,16 +1,17 @@
-using WitShells.ThreadingJob;
-
-public class ExampleJob : ThreadJob<int>
+namespace WitShells.ThreadingJob.Editor
 {
-    private int _input;
-    public ExampleJob(int input)
+    public class ExampleJob : ThreadJob<int>
     {
-        _input = input;
-    }
-    public override int Execute()
-    {
-        // Simulate work
-        System.Threading.Thread.Sleep(1000);
-        return _input * 2;
+        private int _input;
+        public ExampleJob(int input)
+        {
+            _input = input;
+        }
+        public override int Execute()
+        {
+            // Simulate work
+            System.Threading.Thread.Sleep(1000);
+            return _input * 2;
+        }
     }
 }

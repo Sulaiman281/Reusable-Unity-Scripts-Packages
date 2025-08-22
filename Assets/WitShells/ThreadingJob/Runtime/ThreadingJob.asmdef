@@ -1,6 +1,6 @@
 {
     "name": "ThreadingJob",
-    "rootNamespace": "",
+    "rootNamespace": "WitShells",
     "references": [
         "GUID:ec8dcffcd0a03ff4fa9b67aecf8c0e87"
     ],
