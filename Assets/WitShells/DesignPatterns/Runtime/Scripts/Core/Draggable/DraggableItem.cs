@@ -13,6 +13,7 @@ namespace WitShells.DesignPatterns.Core
         void OnDragEnded(bool wasDropped);
         bool CanSwapWith(IDraggable<T> other);
         void SwapWith(IDraggable<T> other);
+        bool CanReturnToOriginalPosition();
     }
 
     public abstract class DraggableItem<T> : MonoBehaviour, IDraggable<T>, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
@@ -29,6 +30,7 @@ namespace WitShells.DesignPatterns.Core
         protected Transform originalParent;
         protected bool isDragging = false;
         protected bool wasDropped = false;
+        protected int orginalSiblingIndex;
 
         // Events
         public UnityAction<T> OnDragStart;
@@ -43,6 +45,8 @@ namespace WitShells.DesignPatterns.Core
             wasDropped = false;
             originalPosition = transform.position;
             originalParent = transform.parent;
+
+            orginalSiblingIndex = transform.GetSiblingIndex();
 
             // Move to top of hierarchy for rendering
             transform.SetParent(dragCanvas.transform, true);
@@ -81,7 +85,7 @@ namespace WitShells.DesignPatterns.Core
             }
 
             // Handle return to original position
-            if (returnToOriginalPosition)
+            if (returnToOriginalPosition && CanReturnToOriginalPosition())
             {
                 ReturnToOriginalPosition();
             }
@@ -113,6 +117,7 @@ namespace WitShells.DesignPatterns.Core
         {
             transform.position = originalPosition;
             transform.SetParent(originalParent, true);
+            transform.SetSiblingIndex(orginalSiblingIndex);
         }
 
         // IDraggable implementation
@@ -123,6 +128,7 @@ namespace WitShells.DesignPatterns.Core
         public virtual void OnDragEnded(bool wasDropped) { }
         public abstract bool CanSwapWith(IDraggable<T> other);
         public abstract void SwapWith(IDraggable<T> other);
+        public abstract bool CanReturnToOriginalPosition();
 
         // Abstract/Virtual methods
         protected virtual bool CanStartDrag() => data != null;
