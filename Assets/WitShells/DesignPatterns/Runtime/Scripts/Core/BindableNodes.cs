@@ -58,6 +58,7 @@ namespace WitShells.DesignPatterns.Core
     {
         public bool AddNode(NodeController<T> node);
         public bool RemoveNode(NodeController<T> node);
+        public void Clear();
         public IEnumerable<NodeController<T>> GetAllNodes();
         public string ToJson();
         public void FromJson(string json);
@@ -89,6 +90,15 @@ namespace WitShells.DesignPatterns.Core
             var key = _keySelector(node.CurrentNode.Value);
             node.Dispose();
             return _uniqueNodes.Remove(key);
+        }
+
+        public void Clear()
+        {
+            foreach (var node in _uniqueNodes.Values)
+            {
+                node.Dispose();
+            }
+            _uniqueNodes.Clear();
         }
 
         public NodeController<T> GetNode(T value)
@@ -138,6 +148,15 @@ namespace WitShells.DesignPatterns.Core
         {
             node.Dispose();
             return _nodes.Remove(node);
+        }
+
+        public void Clear()
+        {
+            foreach (var node in _nodes)
+            {
+                node.Dispose();
+            }
+            _nodes.Clear();
         }
 
         public NodeController<T> GetNode(T value)
