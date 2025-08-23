@@ -1,16 +1,21 @@
 using System;
 using System.Collections.Generic;
-using Codice.Client.BaseCommands;
 
 namespace WitShells.DesignPatterns.Core
 {
-    public abstract class NodeController<T> : Builder<T>, IEquatable<T>
+    public abstract class NodeController<T> : Builder<T>, IDisposable, IEquatable<T>
     {
         private Bindable<T> _currentNode = new Bindable<T>();
+        public ObserverPattern<T> OnRemoved { get; } = new ObserverPattern<T>();
 
         public NodeController(T node)
         {
             _currentNode.Value = node;
+        }
+
+        ~NodeController()
+        {
+            Dispose();
         }
 
         public Bindable<T> CurrentNode => _currentNode;
@@ -39,6 +44,12 @@ namespace WitShells.DesignPatterns.Core
         public virtual void ForceTrigger()
         {
             _currentNode.OnValueChanged.Invoke(_currentNode.Value);
+        }
+
+        public void Dispose()
+        {
+            OnRemoved.NotifyObservers(_currentNode.Value);
+            _currentNode = null;
         }
     }
 
@@ -73,6 +84,7 @@ namespace WitShells.DesignPatterns.Core
         public bool RemoveNode(NodeController<T> node)
         {
             var key = _keySelector(node.CurrentNode.Value);
+            node.Dispose();
             return _uniqueNodes.Remove(key);
         }
 
@@ -111,6 +123,7 @@ namespace WitShells.DesignPatterns.Core
 
         public bool RemoveNode(NodeController<T> node)
         {
+            node.Dispose();
             return _nodes.Remove(node);
         }
 
