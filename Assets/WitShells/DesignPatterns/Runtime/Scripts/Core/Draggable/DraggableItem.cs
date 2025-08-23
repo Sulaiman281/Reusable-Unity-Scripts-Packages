@@ -11,12 +11,15 @@ namespace WitShells.DesignPatterns.Core
         Transform GetTransform();
         void OnDragStarted();
         void OnDragEnded(bool wasDropped);
+        bool CanSwapWith(IDraggable<T> other);
+        void SwapWith(IDraggable<T> other);
     }
 
-    public abstract class DraggableItem<T> : MonoBehaviour, IDraggable<T>, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public abstract class DraggableItem<T> : MonoBehaviour, IDraggable<T>, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
         where T : class
     {
         [SerializeField] protected bool returnToOriginalPosition = true;
+        [SerializeField] protected bool allowSwapping = true;
         [SerializeField] protected CanvasGroup canvasGroup;
         [SerializeField] protected Canvas dragCanvas;
         [SerializeField] protected float dragAlpha = 0.6f;
@@ -99,8 +102,31 @@ namespace WitShells.DesignPatterns.Core
         public virtual Transform GetTransform() => transform;
         public virtual void OnDragStarted() { }
         public virtual void OnDragEnded(bool wasDropped) { }
+        public abstract bool CanSwapWith(IDraggable<T> other);
+        public abstract void SwapWith(IDraggable<T> other);
 
         // Abstract/Virtual methods
         protected virtual bool CanStartDrag() => data != null;
+
+        public void OnDrop(PointerEventData eventData)
+        {
+            if (!isDragging) return;
+
+            wasDropped = true;
+
+            // Check if we dropped on a valid target
+            if (eventData.pointerDrag != null)
+            {
+                var droppedOn = eventData.pointerDrag.GetComponent<IDraggable<T>>();
+                if (droppedOn == null) return;
+                if (allowSwapping)
+                {
+                    if (CanSwapWith(droppedOn))
+                    {
+                        SwapWith(droppedOn);
+                    }
+                }
+            }
+        }
     }
 }
