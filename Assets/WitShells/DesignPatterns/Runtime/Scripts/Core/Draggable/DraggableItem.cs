@@ -90,6 +90,25 @@ namespace WitShells.DesignPatterns.Core
             OnDragEnd?.Invoke(data);
         }
 
+        public virtual void OnDrop(PointerEventData eventData)
+        {
+            wasDropped = true;
+
+            // Check if we dropped on a valid target
+            if (eventData.pointerDrag != null)
+            {
+                var droppedOn = eventData.pointerDrag.GetComponent<IDraggable<T>>();
+                if (droppedOn == null) return;
+                if (allowSwapping)
+                {
+                    if (CanSwapWith(droppedOn))
+                    {
+                        SwapWith(droppedOn);
+                    }
+                }
+            }
+        }
+
         protected virtual void ReturnToOriginalPosition()
         {
             transform.position = originalPosition;
@@ -107,26 +126,5 @@ namespace WitShells.DesignPatterns.Core
 
         // Abstract/Virtual methods
         protected virtual bool CanStartDrag() => data != null;
-
-        public void OnDrop(PointerEventData eventData)
-        {
-            if (!isDragging) return;
-
-            wasDropped = true;
-
-            // Check if we dropped on a valid target
-            if (eventData.pointerDrag != null)
-            {
-                var droppedOn = eventData.pointerDrag.GetComponent<IDraggable<T>>();
-                if (droppedOn == null) return;
-                if (allowSwapping)
-                {
-                    if (CanSwapWith(droppedOn))
-                    {
-                        SwapWith(droppedOn);
-                    }
-                }
-            }
-        }
     }
 }
