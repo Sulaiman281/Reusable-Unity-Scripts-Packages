@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Codice.Client.BaseCommands;
 
 namespace WitShells.DesignPatterns.Core
 {
@@ -32,6 +33,12 @@ namespace WitShells.DesignPatterns.Core
         public override T Build()
         {
             return _currentNode.Value;
+        }
+
+        // A Force Trigger Update to invoke the event
+        public virtual void ForceTrigger()
+        {
+            _currentNode.OnValueChanged.Invoke(_currentNode.Value);
         }
     }
 
