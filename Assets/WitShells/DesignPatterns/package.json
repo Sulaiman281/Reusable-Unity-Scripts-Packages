@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.designpatterns",
-    "version": "1.1.0",
+    "version": "1.1.5",
     "displayName": "WitShells Design Patterns",
     "description": "A collection of reusable design pattern implementations for Unity.",
     "unity": "2021.3",

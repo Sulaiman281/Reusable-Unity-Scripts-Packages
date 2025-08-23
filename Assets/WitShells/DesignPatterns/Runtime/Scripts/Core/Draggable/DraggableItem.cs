@@ -30,7 +30,7 @@ namespace WitShells.DesignPatterns.Core
         protected Transform originalParent;
         protected bool isDragging = false;
         protected bool wasDropped = false;
-        protected int orginalSiblingIndex;
+        protected int originalSiblingIndex;
 
         // Events
         public UnityAction<T> OnDragStart;
@@ -46,7 +46,7 @@ namespace WitShells.DesignPatterns.Core
             originalPosition = transform.position;
             originalParent = transform.parent;
 
-            orginalSiblingIndex = transform.GetSiblingIndex();
+            originalSiblingIndex = transform.GetSiblingIndex();
 
             // Move to top of hierarchy for rendering
             transform.SetParent(dragCanvas.transform, true);
@@ -117,7 +117,7 @@ namespace WitShells.DesignPatterns.Core
         {
             transform.position = originalPosition;
             transform.SetParent(originalParent, true);
-            transform.SetSiblingIndex(orginalSiblingIndex);
+            transform.SetSiblingIndex(originalSiblingIndex);
         }
 
         // IDraggable implementation
