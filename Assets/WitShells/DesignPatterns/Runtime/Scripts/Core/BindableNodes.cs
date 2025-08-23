@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace WitShells.DesignPatterns.Core
 {
@@ -58,6 +59,8 @@ namespace WitShells.DesignPatterns.Core
         public bool AddNode(NodeController<T> node);
         public bool RemoveNode(NodeController<T> node);
         public IEnumerable<NodeController<T>> GetAllNodes();
+        public string ToJson();
+        public void FromJson(string json);
     }
 
     public class UniqueNodesManager<T, TKey> : INodeManager<T>
@@ -105,6 +108,16 @@ namespace WitShells.DesignPatterns.Core
         {
             return _uniqueNodes.Values;
         }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(_uniqueNodes);
+        }
+
+        public void FromJson(string json)
+        {
+            _uniqueNodes = JsonConvert.DeserializeObject<Dictionary<TKey, NodeController<T>>>(json) ?? new Dictionary<TKey, NodeController<T>>();
+        }
     }
 
     public class NodesManager<T> : INodeManager<T>
@@ -135,6 +148,16 @@ namespace WitShells.DesignPatterns.Core
         public IEnumerable<NodeController<T>> GetAllNodes()
         {
             return _nodes;
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(_nodes);
+        }
+
+        public void FromJson(string json)
+        {
+            _nodes = JsonConvert.DeserializeObject<List<NodeController<T>>>(json) ?? new List<NodeController<T>>();
         }
     }
 }
