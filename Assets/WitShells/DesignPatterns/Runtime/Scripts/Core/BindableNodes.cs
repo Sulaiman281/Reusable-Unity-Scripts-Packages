@@ -109,12 +109,12 @@ namespace WitShells.DesignPatterns.Core
             return _uniqueNodes.Values;
         }
 
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(_uniqueNodes);
         }
 
-        public void FromJson(string json)
+        public virtual void FromJson(string json)
         {
             _uniqueNodes = JsonConvert.DeserializeObject<Dictionary<TKey, NodeController<T>>>(json) ?? new Dictionary<TKey, NodeController<T>>();
         }
@@ -150,12 +150,12 @@ namespace WitShells.DesignPatterns.Core
             return _nodes;
         }
 
-        public string ToJson()
+        public virtual string ToJson()
         {
             return JsonConvert.SerializeObject(_nodes);
         }
 
-        public void FromJson(string json)
+        public virtual void FromJson(string json)
         {
             _nodes = JsonConvert.DeserializeObject<List<NodeController<T>>>(json) ?? new List<NodeController<T>>();
         }
