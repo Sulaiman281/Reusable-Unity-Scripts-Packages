@@ -60,13 +60,15 @@ namespace WitShells.DesignPatterns.Core
         public bool RemoveNode(NodeController<T> node);
         public void Clear();
         public IEnumerable<NodeController<T>> GetAllNodes();
+        public List<NodeController<T>> GetAllNodesList() => new(GetAllNodes());
         public string ToJson();
         public void FromJson(string json);
+        public T GetNode(Func<T, bool> predicate);
     }
 
     public class UniqueNodesManager<T, TKey> : INodeManager<T>
     {
-        private Dictionary<TKey, NodeController<T>> _uniqueNodes = new Dictionary<TKey, NodeController<T>>();
+        private Dictionary<TKey, List<NodeController<T>>> _uniqueNodes = new Dictionary<TKey, List<NodeController<T>>>();
         private readonly Func<T, TKey> _keySelector;
 
         public UniqueNodesManager(Func<T, TKey> keySelector)
@@ -79,44 +81,68 @@ namespace WitShells.DesignPatterns.Core
             var key = _keySelector(node.CurrentNode.Value);
             if (!_uniqueNodes.ContainsKey(key))
             {
-                _uniqueNodes[key] = node;
+                _uniqueNodes[key] = new List<NodeController<T>> { node };
                 return true;
             }
-            return false;
+            _uniqueNodes[key].Add(node);
+            return true;
         }
 
         public bool RemoveNode(NodeController<T> node)
         {
             var key = _keySelector(node.CurrentNode.Value);
-            node.Dispose();
-            return _uniqueNodes.Remove(key);
+            if (_uniqueNodes.TryGetValue(key, out var nodeList))
+            {
+                bool removed = nodeList.Remove(node);
+                if (nodeList.Count == 0)
+                {
+                    _uniqueNodes.Remove(key);
+                }
+                if (removed)
+                {
+                    node.Dispose();
+                }
+                return removed;
+            }
+            return false;
         }
 
         public void Clear()
         {
-            foreach (var node in _uniqueNodes.Values)
+            foreach (var nodeList in _uniqueNodes.Values)
             {
-                node.Dispose();
+                foreach (var node in nodeList)
+                {
+                    node.Dispose();
+                }
             }
             _uniqueNodes.Clear();
         }
 
-        public NodeController<T> GetNode(T value)
-        {
-            var key = _keySelector(value);
-            _uniqueNodes.TryGetValue(key, out var node);
-            return node;
-        }
-
-        public NodeController<T> GetNodeByKey(TKey key)
-        {
-            _uniqueNodes.TryGetValue(key, out var node);
-            return node;
-        }
-
         public IEnumerable<NodeController<T>> GetAllNodes()
         {
-            return _uniqueNodes.Values;
+            foreach (var nodeList in _uniqueNodes.Values)
+            {
+                foreach (var node in nodeList)
+                {
+                    yield return node;
+                }
+            }
+        }
+
+        public virtual T GetNode(Func<T, bool> predicate)
+        {
+            foreach (var nodeList in _uniqueNodes.Values)
+            {
+                foreach (var node in nodeList)
+                {
+                    if (predicate(node.CurrentNode.Value))
+                    {
+                        return node.CurrentNode.Value;
+                    }
+                }
+            }
+            return default;
         }
 
         public virtual string ToJson()
@@ -126,7 +152,7 @@ namespace WitShells.DesignPatterns.Core
 
         public virtual void FromJson(string json)
         {
-            _uniqueNodes = JsonConvert.DeserializeObject<Dictionary<TKey, NodeController<T>>>(json) ?? new Dictionary<TKey, NodeController<T>>();
+            _uniqueNodes = JsonConvert.DeserializeObject<Dictionary<TKey, List<NodeController<T>>>>(json) ?? new Dictionary<TKey, List<NodeController<T>>>();
         }
     }
 
@@ -177,6 +203,12 @@ namespace WitShells.DesignPatterns.Core
         public virtual void FromJson(string json)
         {
             _nodes = JsonConvert.DeserializeObject<List<NodeController<T>>>(json) ?? new List<NodeController<T>>();
+        }
+
+        public virtual T GetNode(Func<T, bool> predicate)
+        {
+            var node = _nodes.Find(n => predicate(n.CurrentNode.Value));
+            return node != null ? node.CurrentNode.Value : default;
         }
     }
 }
