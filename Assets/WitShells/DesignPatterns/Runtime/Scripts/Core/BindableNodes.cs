@@ -56,6 +56,7 @@ namespace WitShells.DesignPatterns.Core
     {
         public bool AddNode(NodeController<T> node);
         public bool RemoveNode(NodeController<T> node);
+        public void RemoveWhere(Func<T, bool> predicate);
         public void Clear();
         public IEnumerable<NodeController<T>> GetAllNodes();
         public List<NodeController<T>> GetAllNodesList() => new(GetAllNodes());
@@ -152,6 +153,31 @@ namespace WitShells.DesignPatterns.Core
         {
             _uniqueNodes = JsonConvert.DeserializeObject<Dictionary<TKey, List<NodeController<T>>>>(json) ?? new Dictionary<TKey, List<NodeController<T>>>();
         }
+
+        public void RemoveWhere(Func<T, bool> predicate)
+        {
+            var keysToRemove = new List<TKey>();
+            foreach (var kvp in _uniqueNodes)
+            {
+                kvp.Value.RemoveAll(node =>
+                {
+                    if (predicate(node.CurrentNode.Value))
+                    {
+                        node.Dispose();
+                        return true;
+                    }
+                    return false;
+                });
+                if (kvp.Value.Count == 0)
+                {
+                    keysToRemove.Add(kvp.Key);
+                }
+            }
+            foreach (var key in keysToRemove)
+            {
+                _uniqueNodes.Remove(key);
+            }
+        }
     }
 
     public class NodesManager<T> : INodeManager<T>
@@ -207,6 +233,18 @@ namespace WitShells.DesignPatterns.Core
         {
             var node = _nodes.Find(n => predicate(n.CurrentNode.Value));
             return node != null ? node.CurrentNode.Value : default;
+        }
+
+        public void RemoveWhere(Func<T, bool> predicate)
+        {
+            for (int i = _nodes.Count - 1; i >= 0; i--)
+            {
+                if (predicate(_nodes[i].CurrentNode.Value))
+                {
+                    _nodes[i].Dispose();
+                    _nodes.RemoveAt(i);
+                }
+            }
         }
     }
 }
