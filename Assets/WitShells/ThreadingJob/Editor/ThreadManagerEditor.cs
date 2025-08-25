@@ -3,7 +3,7 @@ using UnityEngine;
 using WitShells.ThreadingJob;
 
 [CustomEditor(typeof(ThreadManager))]
-public class ThreadManagerEditor : Editor
+public partial class ThreadManagerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
@@ -19,5 +19,7 @@ public class ThreadManagerEditor : Editor
                 Debug.LogError($"Job failed with exception: {ex}");
             });
         }
+
+        ShowAllTests();
     }
 }
