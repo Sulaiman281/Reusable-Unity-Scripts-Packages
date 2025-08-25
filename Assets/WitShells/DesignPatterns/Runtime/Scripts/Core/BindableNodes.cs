@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace WitShells.DesignPatterns.Core
 {
-    public abstract class NodeController<T> : Builder<T>, IDisposable, IEquatable<T>
+    public abstract class NodeController<T> : Builder<T>, IEquatable<T>
     {
         private Bindable<T> _currentNode = new Bindable<T>();
         public ObserverPattern<T> OnRemoved { get; } = new ObserverPattern<T>();
@@ -16,7 +16,6 @@ namespace WitShells.DesignPatterns.Core
 
         ~NodeController()
         {
-            Dispose();
         }
 
         public Bindable<T> CurrentNode => _currentNode;
@@ -50,7 +49,6 @@ namespace WitShells.DesignPatterns.Core
         public void Dispose()
         {
             OnRemoved.NotifyObservers(_currentNode.Value);
-            _currentNode = null;
         }
     }
 
