@@ -77,7 +77,7 @@ namespace WitShells.DesignPatterns.Core
 
         private bool IsDraggableObject(GameObject gameObject, out IDraggable<T> draggable)
         {
-            draggable = gameObject.GetComponent<MonoBehaviour>() as IDraggable<T>;
+            draggable = gameObject.GetComponent<DraggableItem<T>>();
             return draggable != null;
         }
 
