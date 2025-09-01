@@ -542,6 +542,7 @@ PlayerSettings:
   - serializedVersion: 2
     m_BuildTarget: Android
     m_EncodingQuality: 1
+  m_BuildTargetGroupHDRCubemapEncodingQuality: []
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetGroupLoadStoreDebugModeSettings: []
   m_BuildTargetNormalMapEncoding:
@@ -816,7 +817,25 @@ PlayerSettings:
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: BCG_RCCP;BCG_URP;RCCP_DEMO
+    EmbeddedLinux: BCG_RCCP;BCG_URP;RCCP_DEMO
+    GameCoreScarlett: BCG_RCCP;BCG_URP;RCCP_DEMO
+    GameCoreXboxOne: BCG_RCCP;BCG_URP;RCCP_DEMO
+    Kepler: BCG_RCCP;BCG_URP;RCCP_DEMO
+    LinuxHeadlessSimulation: BCG_RCCP;BCG_URP;RCCP_DEMO
+    Nintendo Switch: BCG_RCCP;BCG_URP;RCCP_DEMO
+    PS4: BCG_RCCP;BCG_URP;RCCP_DEMO
+    PS5: BCG_RCCP;BCG_URP;RCCP_DEMO
+    QNX: BCG_RCCP;BCG_URP;RCCP_DEMO
+    ReservedCFE: BCG_RCCP;BCG_URP;RCCP_DEMO
+    Standalone: BCG_RCCP;BCG_URP;RCCP_DEMO
+    VisionOS: BCG_RCCP;BCG_URP;RCCP_DEMO
+    WebGL: BCG_RCCP;BCG_URP;RCCP_DEMO
+    Windows Store Apps: BCG_RCCP;BCG_URP;RCCP_DEMO
+    XboxOne: BCG_RCCP;BCG_URP;RCCP_DEMO
+    iPhone: BCG_RCCP;BCG_URP;RCCP_DEMO
+    tvOS: BCG_RCCP;BCG_URP;RCCP_DEMO
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

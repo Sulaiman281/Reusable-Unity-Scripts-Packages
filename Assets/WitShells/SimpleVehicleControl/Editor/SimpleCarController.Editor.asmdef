@@ -1,0 +1,18 @@
+{
+    "name": "SimpleCarController.Editor",
+    "rootNamespace": "WitShells",
+    "references": [
+        "GUID:652fd7effc4e1934daaa0469318d9524"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

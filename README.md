@@ -8,21 +8,27 @@ In this repository, you will find multiple Unity packages designed to accelerate
 
 ## 📦 Available Packages
 
-### **Design Patterns**  
+### **Design Patterns**
+
 A robust, production-ready set of classic and modern design patterns, tailored for Unity projects.
+
 - Singleton, Factory, Observer, Command, State Machine patterns
 - Unity-optimized implementations
 - Comprehensive documentation and examples
 
-### **API Integration**  
+### **API Integration**
+
 A powerful package that makes it easy to integrate any RESTful API into your Unity project with minimal code.
+
 - Quickly define endpoints and headers
 - Send and test API requests directly inside the Unity Editor
 - Supports custom headers, request bodies, and UnityEvents for success/failure callbacks
 - Great for prototyping, debugging, and production use
 
-### **Third Person Control**  
+### **Third Person Control**
+
 A complete third-person character controller system with advanced features.
+
 - Smooth locomotion with walk, run, crouch, and sprint
 - Jump mechanics with proper ground detection
 - Camera-relative movement controls
@@ -30,13 +36,29 @@ A complete third-person character controller system with advanced features.
 - Customizable movement parameters
 - Animation controller included
 
-### **WitActor**  
+### **WitActor**
+
 An advanced actor framework for complex character behaviors and state management.
+
 - Sophisticated locomotion state machines
 - Modular character component system
 - Advanced animation blending
 - Extensible architecture for custom behaviors
 - Integrated with Third Person Control system
+
+### 🚗 Simple Vehicle Control
+**Smart vehicle physics and AI navigation system**
+
+A comprehensive vehicle control package featuring realistic physics-based movement and intelligent AI navigation:
+
+- **CarDriver**: Smooth Rigidbody-based vehicle physics with realistic acceleration and turning
+- **CarDriverAI**: Intelligent AI navigation using NavMesh with obstacle detection and pathfinding
+- **Smart Navigation**: Advanced stuck detection with automatic recovery mechanisms
+- **Obstacle Avoidance**: Real-time collision detection and smart routing around obstacles
+- **Destination Braking**: Intelligent speed control when approaching targets
+- **Clean Architecture**: Well-organized code structure with clear method separation
+
+Perfect for racing games, city simulations, or any project requiring intelligent vehicle behavior.
 
 More packages will be added over time!
 
@@ -70,11 +92,16 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/W
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitActor
 ```
 
-
 ### **Threading Job**
 
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ThreadingJob
+```
+
+### **Simple Car Controller**
+
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SimpleVehicleControl
 ```
 
 ---
@@ -111,7 +138,7 @@ Some packages have dependencies on others. Install them in the following order f
 
 1. **Design Patterns** (foundation)
 2. **Third Person Control** (basic character controller)
-3. **WitActor** (advanced actor system) - *depends on Third Person Control*
+3. **WitActor** (advanced actor system) - _depends on Third Person Control_
 
 ### **For API Integration:**
 
@@ -163,21 +190,25 @@ The WitActor package extends Third Person Control:
 Each package includes comprehensive documentation:
 
 ### **Design Patterns**
+
 - `DesignPatternGuide.md` - Complete guide with code examples
 - Example scenes demonstrating each pattern
 - Best practices and Unity-specific implementations
 
 ### **API Integration**
+
 - Built-in editor documentation
 - Real-time API testing tools
 - Example integration scripts
 
 ### **Third Person Control**
+
 - Component reference guide
 - Movement customization examples
 - Camera setup tutorials
 
 ### **WitActor**
+
 - Advanced state machine documentation
 - Character behavior scripting guides
 - Animation integration examples
@@ -187,18 +218,21 @@ Each package includes comprehensive documentation:
 ## 🎯 Use Cases
 
 ### **Game Development**
+
 - Rapid prototyping with design patterns
 - Professional character controllers
 - API integration for online features
 - Modular actor systems for complex NPCs
 
 ### **Educational Projects**
+
 - Learn design patterns in practice
 - Understand character controller mechanics
 - Explore state machine architectures
 - Practice API integration techniques
 
 ### **Production Ready**
+
 - All packages are optimized for production use
 - Comprehensive error handling
 - Performance-focused implementations
@@ -208,13 +242,13 @@ Each package includes comprehensive documentation:
 
 ## ⚡ Features Comparison
 
-| Feature | Design Patterns | API Integration | Third Person Control | WitActor |
-|---------|----------------|-----------------|---------------------|----------|
-| **Complexity** | Beginner-Advanced | Beginner-Intermediate | Intermediate | Advanced |
-| **Dependencies** | None | None | Cinemachine | Third Person Control |
-| **Editor Tools** | Examples | Test Window | Setup Wizard | State Debugger |
-| **Runtime Performance** | Excellent | Good | Excellent | Excellent |
-| **Customization** | High | Medium | High | Very High |
+| Feature                 | Design Patterns   | API Integration       | Third Person Control | WitActor             |
+| ----------------------- | ----------------- | --------------------- | -------------------- | -------------------- |
+| **Complexity**          | Beginner-Advanced | Beginner-Intermediate | Intermediate         | Advanced             |
+| **Dependencies**        | None              | None                  | Cinemachine          | Third Person Control |
+| **Editor Tools**        | Examples          | Test Window           | Setup Wizard         | State Debugger       |
+| **Runtime Performance** | Excellent         | Good                  | Excellent            | Excellent            |
+| **Customization**       | High              | Medium                | High                 | Very High            |
 
 ---
 
@@ -232,15 +266,18 @@ Each package includes comprehensive documentation:
 ### **Common Issues:**
 
 **Package Import Fails:**
+
 - Ensure stable internet connection
 - Check Unity Package Manager cache
 - Try importing packages individually
 
 **Missing Dependencies:**
+
 - Install Cinemachine for character control packages
 - Follow the dependency installation order
 
 **Compilation Errors:**
+
 - Ensure all dependencies are installed
 - Check Unity version compatibility
 - Restart Unity if needed
@@ -271,17 +308,20 @@ Stay tuned for additional reusable Unity packages in this repository:
 We welcome community involvement!
 
 ### **How to Contribute:**
+
 - Report bugs via GitHub Issues
 - Suggest features and improvements
 - Submit pull requests with enhancements
 - Share your use cases and examples
 
 ### **Contact:**
+
 - **Author:** Syed Suleman
 - **Email:** sayedsulaiman607@gmail.com
 - **GitHub:** [Sulaiman281](https://github.com/Sulaiman281)
 
 ### **License:**
+
 All packages are provided under MIT License - see individual package documentation for details.
 
 ---
