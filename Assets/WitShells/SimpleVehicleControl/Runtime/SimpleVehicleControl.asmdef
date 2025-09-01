@@ -1,7 +1,10 @@
 {
     "name": "SimpleVehicleControl",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:8c4dd21966739024fbd72155091d199e",
+        "GUID:e0cd26848372d4e5c891c569017e11f1"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
