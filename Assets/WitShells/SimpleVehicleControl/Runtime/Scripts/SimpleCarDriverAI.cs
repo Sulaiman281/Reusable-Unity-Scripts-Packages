@@ -206,7 +206,10 @@ namespace WitShells.SimpleCarControls
             {
                 hasReachedDestination = true;
                 OnDestinationReached();
-                agent.ResetPath();
+                if (agent.enabled)
+                {
+                    agent.ResetPath();
+                }
                 carDriver.StopCompletely();
             }
         }
