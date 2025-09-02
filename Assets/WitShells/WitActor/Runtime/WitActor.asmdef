@@ -1,10 +1,11 @@
 {
-    "name": "SimpleVehicleControl",
+    "name": "WitActor",
     "rootNamespace": "",
     "references": [
         "GUID:8c4dd21966739024fbd72155091d199e",
         "GUID:e0cd26848372d4e5c891c569017e11f1",
-        "GUID:23d8dad8adc4cff419f34b9cc790fde4"
+        "GUID:af4a3ceb227b8f94cb8375f40e156398",
+        "GUID:7f7d1af65c2641843945d409d28f2e20"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

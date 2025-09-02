@@ -2,11 +2,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using WitShells.WitActor;
 
 namespace WitShells.SimpleCarControls
 {
     [RequireComponent(typeof(SimpleCarDriver), typeof(NavMeshAgent))]
-    public class SimpleCarDriverAI : MonoBehaviour
+    public class SimpleCarDriverAI : MonoBehaviour, IDestination
     {
         #region Serialized Fields
         [Header("AI Navigation Settings")]
@@ -27,7 +28,7 @@ namespace WitShells.SimpleCarControls
         [SerializeField] private float emergencyBrakeDistance = 3f;
 
         [Header("Events")]
-        public UnityEvent<SimpleCarDriverAI> OnDestinationReached;
+        public UnityEvent<SimpleCarDriverAI> OnDestinationReachedEvent;
 
         [Header("Debug")]
         [SerializeField] private bool showDebugGizmos = true;
@@ -204,7 +205,7 @@ namespace WitShells.SimpleCarControls
             if (distanceToDestination < finalDestinationReachedDistance)
             {
                 hasReachedDestination = true;
-                OnDestinationReached?.Invoke(this);
+                OnDestinationReached();
                 agent.ResetPath();
                 carDriver.StopCompletely();
             }
@@ -576,6 +577,11 @@ namespace WitShells.SimpleCarControls
             currentCornerIndex = 1;
             agent.SetDestination(destination);
             ResetAIState();
+        }
+
+        public void OnDestinationReached()
+        {
+            OnDestinationReachedEvent?.Invoke(this);
         }
 
         [ContextMenu("GoToTarget")]
