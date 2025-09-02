@@ -266,8 +266,7 @@ namespace WitShells.SimpleCarControls
         private bool IsCarStuck()
         {
             return navigationData.positionDelta < minSpeedThreshold &&
-                   obstacleData.frontBlocked &&
-                   !hasReachedDestination;
+                   obstacleData.frontBlocked;
         }
 
         private void HandleStuckDetection()
@@ -575,6 +574,7 @@ namespace WitShells.SimpleCarControls
         {
             hasReachedDestination = false;
             currentCornerIndex = 1;
+            agent.enabled = true;
             agent.SetDestination(destination);
             ResetAIState();
         }
@@ -600,6 +600,12 @@ namespace WitShells.SimpleCarControls
             movementState.stuckTimer = 0f;
             movementState.reverseTimer = 0f;
             movementState.lastPosition = transform.position;
+        }
+
+        public void Stop()
+        {
+            carDriver.StopCompletely();
+            agent.enabled = false;
         }
         #endregion
 

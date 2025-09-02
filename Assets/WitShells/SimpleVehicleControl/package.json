@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.simplecarcontroller",
-    "version": "2.5.2",
+    "version": "2.5.3",
     "displayName": "WitShells Simple Car Controller",
     "description": "A Unity package that provides a robust car controller with AI navigation features.",
     "unity": "2021.3",
