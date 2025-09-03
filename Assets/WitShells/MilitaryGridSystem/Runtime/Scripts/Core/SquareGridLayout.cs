@@ -45,8 +45,56 @@ namespace WitShells.MilitaryGridSystem
         private ObjectPool<RectTransform> linePool;
         private ObjectPool<RectTransform> labelPool;
 
-        public float Width => canvasRect.rect.width;
-        public float Height => canvasRect.rect.height;
+        public RectTransform CanvasRect
+        {
+            get
+            {
+                if (canvasRect == null)
+                {
+                    canvasRect = GetComponent<RectTransform>();
+                }
+                return canvasRect;
+            }
+        }
+
+        private ObjectPool<RectTransform> LinePool
+        {
+            get
+            {
+                if (linePool == null)
+                {
+                    linePool = new ObjectPool<RectTransform>(() =>
+                    {
+                        var line = Instantiate(linePrefab, transform);
+                        var image = line.GetComponent<Image>();
+                        if (image)
+                        {
+                            image.color = lineColor;
+                        }
+                        return line;
+                    });
+                }
+                return linePool;
+            }
+        }
+        private ObjectPool<RectTransform> LabelPool
+        {
+            get
+            {
+                if (labelPool == null)
+                {
+                    labelPool = new ObjectPool<RectTransform>(() =>
+                    {
+                        var label = Instantiate(labelPrefab, transform);
+                        return label.rectTransform;
+                    });
+                }
+                return labelPool;
+            }
+        }
+
+        public float Width => CanvasRect.rect.width;
+        public float Height => CanvasRect.rect.height;
 
         public int Rows => Mathf.FloorToInt(Height / cellSize) + 1;
         public int Columns => Mathf.FloorToInt(Width / cellSize) + 1;
@@ -75,33 +123,6 @@ namespace WitShells.MilitaryGridSystem
             }
         }
 #endif
-
-        private void Awake()
-        {
-            canvasRect = GetComponent<RectTransform>();
-            if (!canvasRect)
-            {
-                Debug.LogError("SquareGrid must be attached to a UI element with RectTransform!");
-                return;
-            }
-
-            linePool = new ObjectPool<RectTransform>(() =>
-            {
-                var line = Instantiate(linePrefab, transform);
-                var image = line.GetComponent<Image>();
-                if (image)
-                {
-                    image.color = lineColor;
-                }
-                return line;
-            });
-
-            labelPool = new ObjectPool<RectTransform>(() =>
-            {
-                var label = Instantiate(labelPrefab, transform);
-                return label.rectTransform;
-            });
-        }
 
         private void Start()
         {
@@ -155,14 +176,14 @@ namespace WitShells.MilitaryGridSystem
             foreach (var line in horizontalLines)
             {
                 line.gameObject.SetActive(false);
-                if (line) linePool.Release(line);
+                if (line) LinePool.Release(line);
             }
             horizontalLines.Clear();
 
             foreach (var line in verticalLines)
             {
                 line.gameObject.SetActive(false);
-                if (line) linePool.Release(line);
+                if (line) LinePool.Release(line);
             }
             verticalLines.Clear();
 
@@ -204,7 +225,7 @@ namespace WitShells.MilitaryGridSystem
                 foreach (var label in labels)
                 {
                     label.gameObject.SetActive(false);
-                    if (label) labelPool.Release(label);
+                    if (label) LabelPool.Release(label);
                 }
                 labels.Clear();
             }
@@ -260,12 +281,12 @@ namespace WitShells.MilitaryGridSystem
 
         private RectTransform CreateLine()
         {
-            return linePool.Get();
+            return LinePool.Get();
         }
 
         private RectTransform CreateLabel()
         {
-            var label = labelPool.Get();
+            var label = LabelPool.Get();
             label.gameObject.SetActive(true);
             label.GetComponent<TMP_Text>().color = lineColor;
             label.sizeDelta = new Vector2(labelSize, labelSize);
