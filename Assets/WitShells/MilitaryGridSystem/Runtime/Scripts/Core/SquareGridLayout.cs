@@ -25,6 +25,8 @@ namespace WitShells.MilitaryGridSystem
         [SerializeField] private int labelIndexOffset = 1;
         [SerializeField] private Vector2 labelOffset = new Vector2(0, 0);
         [SerializeField] private bool showLabels = true;
+        [Header("Labels Settings")]
+        [SerializeField] private bool generateLabelsWithCellsTransform;
 
         private RectTransform canvasRect;
         private readonly List<RectTransform> horizontalLines = new List<RectTransform>();
@@ -138,6 +140,10 @@ namespace WitShells.MilitaryGridSystem
         public void RegenerateGrid()
         {
             GenerateGrid();
+            if (generateLabelsWithCellsTransform)
+            {
+                GenerateTransformBaseSequentialLabels();
+            }
         }
 
         private void GenerateGrid()
@@ -286,5 +292,81 @@ namespace WitShells.MilitaryGridSystem
                 }
             }
         }
+
+        private void GenerateTransformBaseSequentialLabels()
+        {
+            ReleaseLabels(GridLabel.Left);
+            ReleaseLabels(GridLabel.Right);
+            ReleaseLabels(GridLabel.Top);
+            ReleaseLabels(GridLabel.Bottom);
+
+            // left
+            for (int i = labelIndexOffset; i < Rows - labelIndexOffset; i++)
+            {
+                var anchor = new Vector2(cellSize / 2, i * cellSize + labelOffset.y);
+                var worldPos = AnchorPositionToWorldPosition(anchor);
+                var label = CreateLabel();
+                label.GetComponent<TMP_Text>().text = WordPosToNorthing(worldPos);
+                label.transform.SetParent(transform, false);
+                label.anchoredPosition = anchor;
+                gridLabels[GridLabel.Left].Add(label);
+            }
+
+            // right
+            for (int i = labelIndexOffset; i < Rows - labelIndexOffset; i++)
+            {
+                var anchor = new Vector2(Width - cellSize / 2, i * cellSize + labelOffset.y);
+                var worldPos = AnchorPositionToWorldPosition(anchor);
+                var label = CreateLabel();
+                label.GetComponent<TMP_Text>().text = WordPosToNorthing(worldPos);
+                label.transform.SetParent(transform, false);
+                label.anchoredPosition = anchor;
+                gridLabels[GridLabel.Right].Add(label);
+            }
+
+            // top
+            for (int i = labelIndexOffset; i < Columns - labelIndexOffset; i++)
+            {
+                var anchor = new Vector2(i * cellSize + labelOffset.x, cellSize / 2 + labelOffset.y);
+                var worldPos = AnchorPositionToWorldPosition(anchor);
+                var label = CreateLabel();
+                label.GetComponent<TMP_Text>().text = WordPosToEasting(worldPos);
+                label.transform.SetParent(transform, false);
+                label.anchoredPosition = anchor;
+                gridLabels[GridLabel.Top].Add(label);
+            }
+
+            // bottom
+            for (int i = labelIndexOffset; i < Columns - labelIndexOffset; i++)
+            {
+                var anchor = new Vector2(i * cellSize + labelOffset.x, Height - cellSize / 2 + labelOffset.y);
+                var worldPos = AnchorPositionToWorldPosition(anchor);
+                var label = CreateLabel();
+                label.GetComponent<TMP_Text>().text = WordPosToEasting(worldPos);
+                label.transform.SetParent(transform, false);
+                label.anchoredPosition = anchor;
+                gridLabels[GridLabel.Bottom].Add(label);
+            }
+
+        }
+
+        private Vector3 AnchorPositionToWorldPosition(Vector2 anchorPos)
+        {
+            Vector3 worldPos = canvasRect.TransformPoint(new Vector3(anchorPos.x, anchorPos.y, 0));
+            return worldPos;
+        }
+
+        private string WordPosToEasting(Vector3 worldPos)
+        {
+            int easting = Mathf.RoundToInt(worldPos.x) % 10000;
+            return easting.ToString();
+        }
+
+        private string WordPosToNorthing(Vector3 worldPos)
+        {
+            int northing = Mathf.RoundToInt(worldPos.z) % 10000;
+            return northing.ToString();
+        }
+
     }
 }
