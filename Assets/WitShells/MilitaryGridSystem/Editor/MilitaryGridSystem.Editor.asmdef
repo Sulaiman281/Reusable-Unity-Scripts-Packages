@@ -1,0 +1,18 @@
+{
+    "name": "MilitaryGridSystem.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ff6b1016db674cf4faf2fe9a2958b9fb"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
