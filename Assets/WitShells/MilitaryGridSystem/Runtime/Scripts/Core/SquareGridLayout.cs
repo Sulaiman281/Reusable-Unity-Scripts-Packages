@@ -27,6 +27,7 @@ namespace WitShells.MilitaryGridSystem
         [SerializeField] private bool showLabels = true;
         [Header("Labels Settings")]
         [SerializeField] private bool generateLabelsWithCellsTransform;
+        [SerializeField] private int customUtmReminder = 1000;
 
         private RectTransform canvasRect;
         private readonly List<RectTransform> horizontalLines = new List<RectTransform>();
@@ -358,13 +359,13 @@ namespace WitShells.MilitaryGridSystem
 
         private string WordPosToEasting(Vector3 worldPos)
         {
-            int easting = Mathf.RoundToInt(worldPos.x) % 10000;
+            int easting = Mathf.RoundToInt(worldPos.x) % customUtmReminder;
             return easting.ToString();
         }
 
         private string WordPosToNorthing(Vector3 worldPos)
         {
-            int northing = Mathf.RoundToInt(worldPos.z) % 10000;
+            int northing = Mathf.RoundToInt(worldPos.z) % customUtmReminder;
             return northing.ToString();
         }
 
