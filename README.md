@@ -152,6 +152,10 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/W
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/MilitaryGridSystem
 ```
 
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git#MilitaryGridSystem/1.0.0
+```
+
 ---
 
 ## 🚀 Installation Steps
