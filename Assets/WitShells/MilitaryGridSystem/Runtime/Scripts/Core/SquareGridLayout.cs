@@ -25,7 +25,9 @@ namespace WitShells.MilitaryGridSystem
         [SerializeField] private int labelIndexOffset = 1;
         [SerializeField] private Vector2 labelOffset = new Vector2(0, 0);
         [SerializeField] private bool showLabels = true;
+
         [Header("Labels Settings")]
+        [SerializeField] private int labelSize = 30;
         [SerializeField] private bool generateLabelsWithCellsTransform;
         [SerializeField] private int customUtmReminder = 1000;
 
@@ -215,7 +217,7 @@ namespace WitShells.MilitaryGridSystem
                 var label = CreateLabel();
                 label.GetComponent<TMP_Text>().text = leftRight[i];
                 label.transform.SetParent(transform, false);
-                label.anchoredPosition = new Vector2(cellSize / 2, i * cellSize + labelOffset.y);
+                label.anchoredPosition = new Vector2(labelSize / 2, i * labelSize + labelOffset.y);
                 gridLabels[GridLabel.Left].Add(label);
             }
         }
@@ -227,7 +229,7 @@ namespace WitShells.MilitaryGridSystem
                 var label = CreateLabel();
                 label.GetComponent<TMP_Text>().text = leftRight[i];
                 label.transform.SetParent(transform, false);
-                label.anchoredPosition = new Vector2(Width - cellSize / 2, i * cellSize + labelOffset.y);
+                label.anchoredPosition = new Vector2(Width - labelSize / 2, i * labelSize + labelOffset.y);
                 gridLabels[GridLabel.Right].Add(label);
             }
         }
@@ -239,7 +241,7 @@ namespace WitShells.MilitaryGridSystem
                 var label = CreateLabel();
                 label.GetComponent<TMP_Text>().text = topBottom[i];
                 label.transform.SetParent(transform, false);
-                label.anchoredPosition = new Vector2(i * cellSize + labelOffset.x, Height - cellSize / 2 + labelOffset.y);
+                label.anchoredPosition = new Vector2(i * labelSize + labelOffset.x, Height - labelSize / 2 + labelOffset.y);
                 gridLabels[GridLabel.Bottom].Add(label);
             }
         }
@@ -251,7 +253,7 @@ namespace WitShells.MilitaryGridSystem
                 var label = CreateLabel();
                 label.GetComponent<TMP_Text>().text = topBottom[i];
                 label.transform.SetParent(transform, false);
-                label.anchoredPosition = new Vector2(i * cellSize + labelOffset.x, cellSize / 2 + labelOffset.y);
+                label.anchoredPosition = new Vector2(i * labelSize + labelOffset.x, labelSize / 2 + labelOffset.y);
                 gridLabels[GridLabel.Top].Add(label);
             }
         }
@@ -266,7 +268,7 @@ namespace WitShells.MilitaryGridSystem
             var label = labelPool.Get();
             label.gameObject.SetActive(true);
             label.GetComponent<TMP_Text>().color = lineColor;
-            label.sizeDelta = new Vector2(cellSize, cellSize);
+            label.sizeDelta = new Vector2(labelSize, labelSize);
             return label;
         }
 
