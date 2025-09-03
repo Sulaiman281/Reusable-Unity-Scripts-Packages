@@ -103,9 +103,15 @@ namespace WitShells.MilitaryGridSystem
             RegenerateGrid();
         }
 
+        public void SetTotalCells(int totalCells)
+        {
+            cellSize = Mathf.Max(50f, Mathf.Min(Width, Height) / totalCells); // Minimum 50 units for visibility
+            RegenerateGrid();
+        }
+
         public void SetCellSize(float newSize)
         {
-            cellSize = Mathf.Max(10f, newSize); // Minimum 10 units for visibility
+            cellSize = Mathf.Max(50f, newSize); // Minimum 50 units for visibility
             RegenerateGrid();
         }
 
