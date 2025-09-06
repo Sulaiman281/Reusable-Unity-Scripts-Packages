@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -14,25 +13,11 @@ namespace WitShells.SimpleCarControls
         [Header("AI Navigation Settings")]
         [SerializeField] private float waypointReachedDistance = 8f;
         [SerializeField] private float finalDestinationReachedDistance = 4f;
-        [SerializeField] private float pathRecalculationTime = 1f;
-        [SerializeField] private float checkpointSkipAngleThreshold = 120f;
-        [SerializeField] private float checkpointSkipProximityThreshold = 15f;
 
         [Header("Collision Detection")]
         [SerializeField] private Vector3 obstacleDetectionDistance = new Vector3(3, 0, 1.65f);
         [SerializeField] private Vector3 topBottomDetectorSize = new Vector3(1.5f, .5f, 1f);
         [SerializeField] private Vector3 leftRightDetectorSize = new Vector3(1f, .5f, 1f);
-        [SerializeField] private float trafficDetectionRadius = 15f;
-        [SerializeField] private LayerMask vehicleLayerMask;
-
-        [Header("Traffic Management")]
-        [SerializeField] private float carAvoidanceDistance = 5f;
-        [SerializeField] private float slowForVehicleDistance = 10f;
-        [SerializeField] private float vehicleDetectionAngle = 60f;
-        [SerializeField] private bool enableDynamicPathfinding = true;
-        [SerializeField] private float vehicleAvoidanceWeight = 2.5f;
-        [SerializeField] private bool enableCheckpointSkipping = true;
-        [SerializeField] private float minimumDistanceToResetPath = 20f;
 
         [Header("Smart AI Settings")]
         [SerializeField] private float obstacleAvoidanceWeight = 1.5f;
@@ -48,7 +33,6 @@ namespace WitShells.SimpleCarControls
         [Header("Debug")]
         [SerializeField] private bool showDebugGizmos = true;
         [SerializeField] private float gizmoRadius = 1f;
-        [SerializeField] private bool showTrafficGizmos = true;
 
         [Header("AI Target Test")]
         [SerializeField] private Transform targetTransform;
@@ -60,19 +44,11 @@ namespace WitShells.SimpleCarControls
         private Vector3 currentTargetPosition;
         private int currentCornerIndex = 1;
         private bool hasReachedDestination = true;
-        private float pathRecalculationTimer = 0f;
-        private Vector3 lastDestination;
-        private Vector3 originalDestination;
-        private SimpleCarDriverAI[] nearbyVehicles = new SimpleCarDriverAI[0];
-        private bool isAvoidingOtherVehicle = false;
-        private Vector3 vehicleAvoidanceDirection = Vector3.zero;
-        private float nearbyTrafficDensity = 0f;
 
         // Movement state tracking
         private AIMovementState movementState = new AIMovementState();
         private ObstacleDetectionData obstacleData = new ObstacleDetectionData();
         private NavigationData navigationData = new NavigationData();
-        private TrafficData trafficData = new TrafficData();
         #endregion
 
         #region Data Structures
@@ -88,9 +64,6 @@ namespace WitShells.SimpleCarControls
             public float lastDecisionTime;
             public float decisionCooldown = 0.5f;
             public float minReverseDistance = 3f;
-            public bool allowCheckpointSkip = false;
-            public Vector3 skippedCheckpointPos;
-            public bool hasSkippedCheckpoint = false;
         }
 
         private struct ObstacleDetectionData
@@ -114,19 +87,6 @@ namespace WitShells.SimpleCarControls
             public float positionDelta;
             public bool isFacingTarget => Mathf.Abs(angleToTarget) < 90f;
             public bool recentlyReversed;
-            public bool shouldSkipCurrentWaypoint;
-        }
-
-        private struct TrafficData
-        {
-            public SimpleCarDriverAI closestVehicle;
-            public float closestVehicleDistance;
-            public bool isVehicleAhead;
-            public bool isVehicleOnSide;
-            public Vector3 avoidanceDirection;
-            public bool needsToGiveWay;
-            public int vehicleCount;
-            public bool hasVehicleInPath;
         }
         #endregion
 
@@ -146,10 +106,8 @@ namespace WitShells.SimpleCarControls
             if (ShouldStopMovement()) return;
 
             UpdateNavMeshAgent();
-            DetectTraffic();
             UpdatePathNavigation();
             ExecuteMovementLogic();
-            UpdatePathRecalculation();
         }
         #endregion
 
@@ -160,12 +118,6 @@ namespace WitShells.SimpleCarControls
             agent = GetComponent<NavMeshAgent>();
             agent.enabled = true;
             movementState.lastPosition = transform.position;
-
-            // Set vehicle layer if not set
-            if (vehicleLayerMask == 0)
-            {
-                vehicleLayerMask = LayerMask.GetMask("Default");
-            }
         }
 
         private void ConfigureNavMeshAgent()
@@ -191,61 +143,6 @@ namespace WitShells.SimpleCarControls
             agent.nextPosition = transform.position;
         }
 
-        private void UpdatePathRecalculation()
-        {
-            if (!enableDynamicPathfinding) return;
-
-            pathRecalculationTimer -= Time.deltaTime;
-            if (pathRecalculationTimer <= 0)
-            {
-                pathRecalculationTimer = pathRecalculationTime;
-
-                // Only recalculate if there's significant traffic or we're stuck
-                if ((trafficData.vehicleCount > 0 && trafficData.hasVehicleInPath) ||
-                    movementState.isStuck)
-                {
-                    RecalculatePath();
-                }
-
-                // If we've deviated too far from our original destination, reset the path
-                if (movementState.hasSkippedCheckpoint &&
-                    Vector3.Distance(transform.position, movementState.skippedCheckpointPos) > minimumDistanceToResetPath)
-                {
-                    ResetToOriginalDestination();
-                }
-            }
-        }
-
-        private void RecalculatePath()
-        {
-            if (agent.isPathStale || agent.pathPending) return;
-
-            // Random slight offset to avoid all cars making the same decision
-            Vector3 randomOffset = new Vector3(
-                Random.Range(-2f, 2f),
-                0,
-                Random.Range(-2f, 2f)
-            );
-
-            Vector3 targetPos = agent.destination + randomOffset;
-
-            // Store the last destination to detect changes
-            lastDestination = agent.destination;
-
-            // Try to find a new path
-            agent.SetDestination(targetPos);
-        }
-
-        private void ResetToOriginalDestination()
-        {
-            if (originalDestination != Vector3.zero &&
-                Vector3.Distance(agent.destination, originalDestination) > 1f)
-            {
-                agent.SetDestination(originalDestination);
-                movementState.hasSkippedCheckpoint = false;
-            }
-        }
-
         private void UpdatePathNavigation()
         {
             if (IsPathInvalid())
@@ -266,110 +163,6 @@ namespace WitShells.SimpleCarControls
         }
         #endregion
 
-        #region Traffic Detection and Management
-        private void DetectTraffic()
-        {
-            // Find nearby vehicles
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, trafficDetectionRadius, vehicleLayerMask);
-
-            List<SimpleCarDriverAI> vehicles = new List<SimpleCarDriverAI>();
-            SimpleCarDriverAI closestVehicle = null;
-            float closestDistance = float.MaxValue;
-            bool vehicleAhead = false;
-            bool vehicleOnSide = false;
-            Vector3 avoidDir = Vector3.zero;
-            bool giveWay = false;
-            bool vehicleInPath = false;
-
-            foreach (var collider in hitColliders)
-            {
-                // Skip this vehicle
-                if (collider.gameObject == gameObject) continue;
-
-                // Check if it's a vehicle
-                SimpleCarDriverAI otherVehicle = collider.GetComponent<SimpleCarDriverAI>();
-                if (otherVehicle == null) continue;
-
-                vehicles.Add(otherVehicle);
-
-                Vector3 dirToVehicle = otherVehicle.transform.position - transform.position;
-                float distToVehicle = dirToVehicle.magnitude;
-
-                // Track closest vehicle
-                if (distToVehicle < closestDistance)
-                {
-                    closestVehicle = otherVehicle;
-                    closestDistance = distToVehicle;
-                }
-
-                // Check if vehicle is ahead
-                float angleToVehicle = Vector3.Angle(transform.forward, dirToVehicle);
-                if (angleToVehicle < vehicleDetectionAngle)
-                {
-                    vehicleAhead = true;
-
-                    // Calculate avoidance direction (perpendicular to direction to other vehicle)
-                    Vector3 perp = Vector3.Cross(dirToVehicle.normalized, Vector3.up);
-
-                    // Choose the perpendicular direction that's closer to our target
-                    float leftDot = Vector3.Dot(perp, navigationData.directionToTarget);
-                    float rightDot = Vector3.Dot(-perp, navigationData.directionToTarget);
-
-                    Vector3 bestPerp = (leftDot > rightDot) ? perp : -perp;
-                    avoidDir += bestPerp;
-
-                    // Check if vehicle is directly in our path
-                    RaycastHit hit;
-                    if (Physics.Raycast(transform.position, transform.forward, out hit,
-                                       carAvoidanceDistance * 2, vehicleLayerMask))
-                    {
-                        if (hit.collider.gameObject == otherVehicle.gameObject)
-                        {
-                            vehicleInPath = true;
-                        }
-                    }
-                }
-
-                // Check if vehicle is on side (for intersection priority)
-                if (angleToVehicle > 45f && angleToVehicle < 135f && distToVehicle < carAvoidanceDistance * 1.5f)
-                {
-                    vehicleOnSide = true;
-
-                    // Give way to vehicles coming from the right (can be customized based on your traffic rules)
-                    float rightSidedness = Vector3.Dot(transform.right, dirToVehicle.normalized);
-                    if (rightSidedness > 0.5f)
-                    {
-                        giveWay = true;
-                    }
-                }
-            }
-
-            // Normalize avoidance direction
-            if (avoidDir.magnitude > 0.01f)
-            {
-                avoidDir.Normalize();
-            }
-
-            // Update traffic data
-            trafficData.closestVehicle = closestVehicle;
-            trafficData.closestVehicleDistance = closestDistance;
-            trafficData.isVehicleAhead = vehicleAhead;
-            trafficData.isVehicleOnSide = vehicleOnSide;
-            trafficData.avoidanceDirection = avoidDir;
-            trafficData.needsToGiveWay = giveWay;
-            trafficData.vehicleCount = vehicles.Count;
-            trafficData.hasVehicleInPath = vehicleInPath;
-
-            // Store for other methods to use
-            nearbyVehicles = vehicles.ToArray();
-            nearbyTrafficDensity = Mathf.Clamp01((float)vehicles.Count / 5f); // Normalize density
-
-            // Set flag for vehicle avoidance
-            isAvoidingOtherVehicle = vehicleAhead && closestDistance < carAvoidanceDistance;
-            vehicleAvoidanceDirection = avoidDir;
-        }
-        #endregion
-
         #region Path Navigation
         private bool IsPathInvalid()
         {
@@ -386,16 +179,7 @@ namespace WitShells.SimpleCarControls
 
             UpdateCurrentTargetPosition();
             CheckDestinationReached();
-
-            // Check if we should skip waypoints (like when dragged by another car)
-            if (enableCheckpointSkipping && ShouldSkipCurrentWaypoint())
-            {
-                SkipToNextRelevantWaypoint();
-            }
-            else
-            {
-                AdvanceToNextWaypoint();
-            }
+            AdvanceToNextWaypoint();
         }
 
         private bool IsValidPathForNavigation()
@@ -428,58 +212,6 @@ namespace WitShells.SimpleCarControls
                 }
                 carDriver.StopCompletely();
             }
-        }
-
-        private bool ShouldSkipCurrentWaypoint()
-        {
-            // Skip if we're far ahead of current checkpoint
-            if (currentCornerIndex < agent.path.corners.Length - 1)
-            {
-                Vector3 currentWaypoint = agent.path.corners[currentCornerIndex];
-                Vector3 nextWaypoint = agent.path.corners[currentCornerIndex + 1];
-
-                // Calculate angle between current-to-waypoint and current-to-next
-                Vector3 toCurrentWaypoint = currentWaypoint - transform.position;
-                Vector3 toNextWaypoint = nextWaypoint - transform.position;
-
-                float angleBetween = Vector3.Angle(toCurrentWaypoint, toNextWaypoint);
-
-                // If we're going in opposite direction to reach current waypoint (likely we've been pushed past it)
-                if (angleBetween > checkpointSkipAngleThreshold &&
-                    toCurrentWaypoint.magnitude > checkpointSkipProximityThreshold)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private void SkipToNextRelevantWaypoint()
-        {
-            if (!movementState.hasSkippedCheckpoint)
-            {
-                // Record the skipped checkpoint to potentially return to it later
-                movementState.skippedCheckpointPos = agent.path.corners[currentCornerIndex];
-                movementState.hasSkippedCheckpoint = true;
-            }
-
-            // Find the first waypoint ahead of us
-            for (int i = currentCornerIndex; i < agent.path.corners.Length; i++)
-            {
-                Vector3 waypointDir = agent.path.corners[i] - transform.position;
-                float angleToWaypoint = Vector3.Angle(transform.forward, waypointDir);
-
-                // If this waypoint is ahead of us, use it
-                if (angleToWaypoint < 90f)
-                {
-                    currentCornerIndex = i;
-                    return;
-                }
-            }
-
-            // If we didn't find any, just advance by one
-            currentCornerIndex++;
         }
 
         private void AdvanceToNextWaypoint()
@@ -537,7 +269,7 @@ namespace WitShells.SimpleCarControls
         private bool IsCarStuck()
         {
             return navigationData.positionDelta < minSpeedThreshold &&
-                   (obstacleData.frontBlocked || trafficData.isVehicleAhead && trafficData.closestVehicleDistance < carAvoidanceDistance * 0.5f);
+                   obstacleData.frontBlocked;
         }
 
         private void HandleStuckDetection()
@@ -662,24 +394,6 @@ namespace WitShells.SimpleCarControls
 
         private float CalculateSteeringInput()
         {
-            float steering = 0f;
-
-            // Handle vehicle avoidance steering
-            if (isAvoidingOtherVehicle)
-            {
-                float avoidanceStrength = 1f - Mathf.Clamp01(trafficData.closestVehicleDistance / carAvoidanceDistance);
-                steering = Vector3.Dot(vehicleAvoidanceDirection, transform.right) * vehicleAvoidanceWeight * avoidanceStrength;
-
-                // Apply constraints based on obstacles
-                if ((steering < 0 && obstacleData.leftBlocked) || (steering > 0 && obstacleData.rightBlocked))
-                {
-                    steering *= 0.2f; // Reduce steering if obstacle in that direction
-                }
-
-                return Mathf.Clamp(steering, -1f, 1f);
-            }
-
-            // Normal navigation logic
             if (obstacleData.frontBlocked)
             {
                 return CalculateObstacleAvoidanceSteering();
@@ -738,53 +452,26 @@ namespace WitShells.SimpleCarControls
 
         private float CalculateForwardInput()
         {
-            // Priority 1: Emergency braking
             if (ShouldEmergencyBrake())
             {
                 return -1f;
             }
 
-            // Priority 2: Traffic rules
-            if (trafficData.needsToGiveWay && trafficData.closestVehicleDistance < slowForVehicleDistance)
-            {
-                return Mathf.Lerp(-0.5f, 0.1f, trafficData.closestVehicleDistance / slowForVehicleDistance);
-            }
-
-            // Priority 3: Vehicle ahead
-            if (trafficData.isVehicleAhead && trafficData.closestVehicleDistance < slowForVehicleDistance)
-            {
-                // Progressive slowing based on distance
-                float speedFactor = Mathf.Clamp01(trafficData.closestVehicleDistance / slowForVehicleDistance);
-
-                // Stop completely if very close
-                if (trafficData.closestVehicleDistance < carAvoidanceDistance * 0.5f)
-                {
-                    return -0.5f;
-                }
-
-                // Slow down proportionally to distance
-                return Mathf.Lerp(0.1f, 0.7f, speedFactor);
-            }
-
-            // Priority 4: Destination approach
             if (IsApproachingDestination())
             {
                 return CalculateDestinationApproachSpeed();
             }
 
-            // Priority 5: Turning behavior
             if (ShouldSlowForTurning())
             {
                 return 0.6f;
             }
 
-            // Priority 6: Obstacle handling
             if (obstacleData.frontBlocked)
             {
                 return CalculateObstacleNavigationSpeed();
             }
 
-            // Normal driving
             return CalculateNormalForwardSpeed();
         }
 
@@ -797,11 +484,7 @@ namespace WitShells.SimpleCarControls
             bool destinationEmergency = navigationData.distanceToFinalDestination < emergencyBrakeDistance &&
                                        navigationData.currentSpeedAbs > 3f;
 
-            bool vehicleEmergency = trafficData.isVehicleAhead &&
-                                   trafficData.closestVehicleDistance < carAvoidanceDistance * 0.3f &&
-                                   navigationData.currentSpeedAbs > 3f;
-
-            return obstacleAtSpeed || destinationEmergency || vehicleEmergency;
+            return obstacleAtSpeed || destinationEmergency;
         }
 
         private bool IsApproachingDestination()
@@ -863,9 +546,6 @@ namespace WitShells.SimpleCarControls
                 baseSpeed *= 0.5f;
             }
 
-            // Slow down in dense traffic
-            baseSpeed *= Mathf.Lerp(1f, 0.7f, nearbyTrafficDensity);
-
             return baseSpeed;
         }
 
@@ -899,7 +579,6 @@ namespace WitShells.SimpleCarControls
             currentCornerIndex = 1;
             agent.enabled = true;
             agent.SetDestination(destination);
-            originalDestination = destination; // Store original destination
             ResetAIState();
         }
 
@@ -924,8 +603,6 @@ namespace WitShells.SimpleCarControls
             movementState.stuckTimer = 0f;
             movementState.reverseTimer = 0f;
             movementState.lastPosition = transform.position;
-            movementState.hasSkippedCheckpoint = false;
-            pathRecalculationTimer = 0f;
         }
 
         public void Stop()
@@ -961,11 +638,6 @@ namespace WitShells.SimpleCarControls
 
             DrawPathGizmos();
             DrawObstacleDetectionGizmos();
-
-            if (showTrafficGizmos)
-            {
-                DrawTrafficGizmos();
-            }
         }
 
         private void DrawPathGizmos()
@@ -1032,81 +704,21 @@ namespace WitShells.SimpleCarControls
 
             CheckSurroundings(out bool top, out bool bottom, out bool left, out bool right);
 
-            // Calculate positions for each detection box
-            Vector3 topPos = center + transform.forward * obstacleDetectionDistance.x;
-            Vector3 bottomPos = center - transform.forward * obstacleDetectionDistance.x;
-            Vector3 leftPos = center - transform.right * obstacleDetectionDistance.z;
-            Vector3 rightPos = center + transform.right * obstacleDetectionDistance.z;
-
-            // Draw the four detection boxes at their correct positions
-            Gizmos.color = top ? hitColor : noHitColor;
-            Gizmos.matrix = Matrix4x4.TRS(topPos, transform.rotation, Vector3.one);
-            Gizmos.DrawCube(Vector3.zero, topBottomDetectorSize);
-
-            Gizmos.color = bottom ? hitColor : noHitColor;
-            Gizmos.matrix = Matrix4x4.TRS(bottomPos, transform.rotation, Vector3.one);
-            Gizmos.DrawCube(Vector3.zero, topBottomDetectorSize);
-
-            Gizmos.color = left ? hitColor : noHitColor;
-            Gizmos.matrix = Matrix4x4.TRS(leftPos, transform.rotation, Vector3.one);
-            Gizmos.DrawCube(Vector3.zero, leftRightDetectorSize);
-
-            Gizmos.color = right ? hitColor : noHitColor;
-            Gizmos.matrix = Matrix4x4.TRS(rightPos, transform.rotation, Vector3.one);
-            Gizmos.DrawCube(Vector3.zero, leftRightDetectorSize);
-
-            // Reset matrix
-            Gizmos.matrix = Matrix4x4.identity;
-
-            // Draw lines from center to each detection box (optional)
-            Gizmos.color = Color.white;
-            Gizmos.DrawLine(center, topPos);
-            Gizmos.DrawLine(center, bottomPos);
-            Gizmos.DrawLine(center, leftPos);
-            Gizmos.DrawLine(center, rightPos);
+            DrawDetectionBox(center, topBottomDetectorSize, transform.forward, obstacleDetectionDistance.x, top ? hitColor : noHitColor);
+            DrawDetectionBox(center, topBottomDetectorSize, -transform.forward, obstacleDetectionDistance.x, bottom ? hitColor : noHitColor);
+            DrawDetectionBox(center, leftRightDetectorSize, -transform.right, obstacleDetectionDistance.z, left ? hitColor : noHitColor);
+            DrawDetectionBox(center, leftRightDetectorSize, transform.right, obstacleDetectionDistance.z, right ? hitColor : noHitColor);
         }
 
-        private void DrawTrafficGizmos()
+        private void DrawDetectionBox(Vector3 origin, Vector3 size, Vector3 direction, float distance, Color color)
         {
-            // Draw traffic detection radius
-            Gizmos.color = new Color(0.3f, 0.3f, 1f, 0.1f);
-            Gizmos.DrawWireSphere(transform.position, trafficDetectionRadius);
-
-            // Draw vehicle avoidance area
-            Gizmos.color = new Color(1f, 0.5f, 0f, 0.2f);
-            Gizmos.DrawWireSphere(transform.position, carAvoidanceDistance);
-
-            // Draw slow down area
-            Gizmos.color = new Color(1f, 1f, 0f, 0.1f);
-            Gizmos.DrawWireSphere(transform.position, slowForVehicleDistance);
-
-            // Draw detected vehicles
-            if (nearbyVehicles != null)
-            {
-                foreach (var vehicle in nearbyVehicles)
-                {
-                    if (vehicle == null) continue;
-
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawLine(transform.position + Vector3.up * 0.5f,
-                                   vehicle.transform.position + Vector3.up * 0.5f);
-                }
-            }
-
-            // Draw avoidance direction
-            if (isAvoidingOtherVehicle)
-            {
-                Gizmos.color = Color.magenta;
-                Gizmos.DrawRay(transform.position + Vector3.up, vehicleAvoidanceDirection * 5f);
-            }
-
-            // Draw skipped checkpoint
-            if (movementState.hasSkippedCheckpoint)
-            {
-                Gizmos.color = new Color(1f, 0.5f, 1f, 0.8f);
-                Gizmos.DrawWireSphere(movementState.skippedCheckpointPos, 2f);
-                Gizmos.DrawLine(transform.position, movementState.skippedCheckpointPos);
-            }
+            Gizmos.color = color;
+            Gizmos.matrix = Matrix4x4.TRS(origin, transform.rotation, Vector3.one);
+            Gizmos.DrawCube(Vector3.zero, size);
+            Gizmos.matrix = Matrix4x4.TRS(origin + direction * distance, transform.rotation, Vector3.one);
+            Gizmos.DrawCube(Vector3.zero, size);
+            Gizmos.matrix = Matrix4x4.identity;
+            Gizmos.DrawLine(origin, origin + direction * distance);
         }
 #endif
         #endregion
