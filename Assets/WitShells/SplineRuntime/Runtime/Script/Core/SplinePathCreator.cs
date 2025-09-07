@@ -8,13 +8,13 @@ namespace WitShells.SplineRuntime
     public class SplinePathCreator : ASplineRuntime
     {
         [Header("Reference")]
-        [SerializeField] private GameObject nodePrefab;
+        public GameObject nodePrefab;
 
         [Header("Settings")]
-        [SerializeField] private LayerMask LayerMask = ~0;
-        [SerializeField] private bool updateNodes = false;
-        [SerializeField] private float spacing = 1f;
-        [SerializeField] private Vector3 rotationOffset = Vector3.zero;
+        public LayerMask LayerMask = ~0;
+        public bool updateNodes = false;
+        public float spacing = 1f;
+        public Vector3 rotationOffset = Vector3.zero;
 
         [Header("Runtime")]
         [SerializeField] private GameObject spawnObject;
