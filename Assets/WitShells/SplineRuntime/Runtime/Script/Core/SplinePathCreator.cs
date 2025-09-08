@@ -59,5 +59,10 @@ namespace WitShells.SplineRuntime
                 .SpawnObjectsAlongSplineAdvanced(splineContainer, NodePool, SpawnObject.transform, LayerMask,
                      true, true, 0, spacing, rotationOffset);
         }
+
+        public void ClearNodes()
+        {
+            nodePool = null;
+        }
     }
 }
