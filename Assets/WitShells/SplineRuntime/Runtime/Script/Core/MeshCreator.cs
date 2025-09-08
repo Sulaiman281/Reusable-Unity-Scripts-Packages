@@ -266,6 +266,12 @@ namespace WitShells.SplineRuntime
         {
             Mesh mesh = null;
 
+            if(SplineContainer.Spline.Count == 0)
+            {
+                Debug.LogWarning("No splines found in the container.");
+                return;
+            }
+
             // Generate the appropriate mesh type based on the selected enum
             switch (meshType)
             {
@@ -286,6 +292,8 @@ namespace WitShells.SplineRuntime
                     break;
             }
 
+            if (mesh == null) return;
+
             // Assign the generated mesh to the mesh filter
             MeshFilter.sharedMesh = mesh;
 
@@ -294,8 +302,6 @@ namespace WitShells.SplineRuntime
             {
                 MeshCollider.sharedMesh = mesh;
             }
-
-            Debug.Log($"Generated {meshType} mesh with {mesh.vertexCount} vertices", this);
         }
 
         public void SetMaterial(Material material)
