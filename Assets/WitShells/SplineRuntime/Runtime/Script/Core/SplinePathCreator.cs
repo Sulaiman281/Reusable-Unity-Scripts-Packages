@@ -41,11 +41,12 @@ namespace WitShells.SplineRuntime
             }
         }
 
-        private void Update()
+        public override void Update()
         {
-            if(SplineContainer == null) return;
-            if(SplineContainer.Spline == null) return;
-            if(SplineContainer.Spline.Count == 0) return;
+            base.Update();
+            if (SplineContainer == null) return;
+            if (SplineContainer.Spline == null) return;
+            if (SplineContainer.Spline.Count == 0) return;
 
             if (updateNodes)
                 UpdateSplinePositions();
