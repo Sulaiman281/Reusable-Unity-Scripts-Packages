@@ -266,7 +266,7 @@ namespace WitShells.SplineRuntime
         {
             Mesh mesh = null;
 
-            if(SplineContainer.Spline.Count == 0)
+            if (SplineContainer.Spline == null || SplineContainer.Spline.Count == 0)
             {
                 Debug.LogWarning("No splines found in the container.");
                 return;
