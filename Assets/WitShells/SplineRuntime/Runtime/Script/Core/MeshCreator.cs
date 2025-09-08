@@ -244,22 +244,22 @@ namespace WitShells.SplineRuntime
         }
 
         [Header("Mesh Type")]
-        [SerializeField] private SplineMeshType meshType = SplineMeshType.Road;
+        public SplineMeshType meshType = SplineMeshType.Road;
 
         [Header("Road Settings")]
-        [SerializeField] private RoadMeshSettings roadSettings = RoadMeshSettings.Default;
+        public RoadMeshSettings roadSettings = RoadMeshSettings.Default;
 
         [Header("Elevated Road Settings")]
-        [SerializeField] private ElevatedRoadMeshSettings elevatedRoadSettings = ElevatedRoadMeshSettings.Default;
+        public ElevatedRoadMeshSettings elevatedRoadSettings = ElevatedRoadMeshSettings.Default;
 
         [Header("Tunnel Settings")]
-        [SerializeField] private TunnelMeshSettings tunnelSettings = TunnelMeshSettings.Default;
+        public TunnelMeshSettings tunnelSettings = TunnelMeshSettings.Default;
 
         [Header("Ribbon Settings")]
-        [SerializeField] private RibbonMeshSettings ribbonSettings = RibbonMeshSettings.Default;
+        public RibbonMeshSettings ribbonSettings = RibbonMeshSettings.Default;
 
         [Header("Mesh Components")]
-        [SerializeField] private bool generateCollider = true;
+        public bool generateCollider = true;
 
         [ContextMenu("Generate Mesh")]
         public void GenerateMesh()
