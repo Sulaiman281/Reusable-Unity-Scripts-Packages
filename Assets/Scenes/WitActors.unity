@@ -2994,22 +2994,26 @@ MonoBehaviour:
   labelPrefab: {fileID: 3448425109287941113, guid: cb801da18ce147b4583456806e4f757d, type: 3}
   lineColor: {r: 1, g: 1, b: 1, a: 1}
   lineThickness: 2.5
-  cellSize: 80
   maintainAspectRatio: 1
   gridType: 2
-  labelType: 0
-  labelSize: 30
-  labelIndexOffset: 1
-  labelOffset: {x: 0, y: 0}
-  showLabels: 1
-  sequentialStartingNumber: 10
-  customUtmReminder: 1000
-  totalAreaKmSquare: 100
-  boxSizeKmSquare: 5
-  horizontalDistanceKm: 10
-  verticalDistanceKm: 10
-  gridCellSizeKm: 1
   offsetPosition: {x: 0, y: 0, z: 0}
+  fixedSettings:
+    cellSize: 80
+  areaSettings:
+    totalAreaKmSquare: 100
+    boxSizeKmSquare: 5
+  dimensionSettings:
+    horizontalDistanceKm: 10
+    verticalDistanceKm: 10
+    gridCellSizeKm: 1
+  labelType: 0
+  showLabels: 1
+  labelSettings:
+    labelSize: 30
+    labelIndexOffset: 1
+    labelOffset: {x: 0, y: 0}
+    sequentialStartingNumber: 10
+    customUtmReminder: 1000
   canvasRect: {fileID: 1458214011}
 --- !u!114 &1458214013
 MonoBehaviour:
@@ -3464,6 +3468,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f69ec1734d50254faf15ee82ddd7096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1661881429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1661881430}
+  - component: {fileID: 1661881431}
+  m_Layer: 0
+  m_Name: FormationTesting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1661881430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661881429}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -101.6, y: 0, z: 51}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1661881431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661881429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 418bf561bae49604c8b6d6a3cf2afb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  formation: 0
+  entities: 2
+  spacingX: 1
+  spacingZ: 0
+  sphereSize: 2
+  circleRadius: 2
 --- !u!1 &1668453537
 GameObject:
   m_ObjectHideFlags: 0
@@ -4690,3 +4744,4 @@ SceneRoots:
   - {fileID: 1029348115}
   - {fileID: 1174293864}
   - {fileID: 2067116578}
+  - {fileID: 1661881430}

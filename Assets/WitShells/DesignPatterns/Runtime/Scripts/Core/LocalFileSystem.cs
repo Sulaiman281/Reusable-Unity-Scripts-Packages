@@ -38,16 +38,51 @@ namespace WitShells.DesignPatterns.Core
 
         public static async Task<string> LoadFileAsync(string savePath, string fileName, string password, string extension = ".json")
         {
-            string fullPath = Path.Combine(savePath, fileName + extension);
-            if (!File.Exists(fullPath))
+            try
             {
-                return null;
-            }
+                string fullPath = Path.Combine(savePath, fileName + extension);
+                if (!File.Exists(fullPath))
+                {
+                    return null;
+                }
 
-            string encryptedJson = await File.ReadAllTextAsync(fullPath);
-            string compressedBase64 = Decrypt(encryptedJson, password);
-            byte[] compressedJson = Convert.FromBase64String(compressedBase64);
-            return DecompressStringGZip(compressedJson);
+                string encryptedJson = await File.ReadAllTextAsync(fullPath);
+                string compressedBase64 = Decrypt(encryptedJson, password);
+                byte[] compressedJson = Convert.FromBase64String(compressedBase64);
+                return DecompressStringGZip(compressedJson);
+            }
+            catch
+            {
+                throw new LocalFileSystemException($"Failed to load or decrypt file with your password: {fileName}");
+            }
+        }
+
+        public static async Task<bool> DeleteFileAsync(string savePath, string fileName, string password, string extension = ".json")
+        {
+            try
+            {
+                string fullPath = Path.Combine(savePath, fileName + extension);
+                if (!File.Exists(fullPath))
+                {
+                    throw new LocalFileSystemException($"File not found: {fileName}");
+                }
+
+                // First verify the password by attempting to decrypt the file
+                string encryptedJson = await File.ReadAllTextAsync(fullPath);
+                string compressedBase64 = Decrypt(encryptedJson, password);
+
+                // If decryption succeeded (no exception thrown), delete the file
+                File.Delete(fullPath);
+                return true;
+            }
+            catch (LocalFileSystemException ex)
+            {
+                throw ex; // Re-throw specific exceptions
+            }
+            catch (Exception ex)
+            {
+                throw new LocalFileSystemException($"Failed to delete file {fileName}: {ex.Message}");
+            }
         }
 
         // AES encryption with password
@@ -137,5 +172,10 @@ namespace WitShells.DesignPatterns.Core
                 }
             }
         }
+    }
+
+    public class LocalFileSystemException : Exception
+    {
+        public LocalFileSystemException(string message) : base(message) { }
     }
 }
