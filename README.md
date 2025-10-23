@@ -65,7 +65,8 @@ Perfect for racing games, city simulations, or any project requiring intelligent
 
 A flexible and efficient grid system designed for military-style tactical displays and map overlays:
 
-- **Square Grid Layout**: 
+- **Square Grid Layout**:
+
   - Precise square grid generation using UI lines
   - Dynamic cell size adjustment (default 80x80 units)
   - Automatic scaling with canvas resolution
@@ -73,12 +74,14 @@ A flexible and efficient grid system designed for military-style tactical displa
   - Perfect pixel-aligned grid lines
 
 - **Grid Labeling**:
+
   - Configurable label positions (Left, Right, Top, Bottom)
   - Custom label offset support
   - Automatic label scaling and positioning
   - TextMeshPro integration for crisp text rendering
 
 - **Performance Features**:
+
   - Efficient line rendering using UI Images
   - Object pooling for both lines and labels
   - Optimized for runtime modifications
@@ -91,6 +94,7 @@ A flexible and efficient grid system designed for military-style tactical displa
   - Support for different grid styles
 
 Perfect for:
+
 - Tactical map displays
 - Strategy game interfaces
 - Navigation systems
@@ -115,6 +119,18 @@ All packages can be installed using Unity's Package Manager with Git URLs. Choos
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ApiIntegration
 ```
+
+### **WitClientApi (WitShells)**
+
+Lightweight runtime API integration package that lets you define endpoints in a JSON manifest (or paste an OpenAPI/Swagger JSON) and call them dynamically from Unity. It includes token-based auth helpers, a runtime endpoint reader, and a simple manager for calling endpoints without creating DTOs.
+
+Copy this URL into Unity's Package Manager → Add package from Git URL to install the WitClientApi package directly:
+
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitClientApi
+```
+
+After installing, open the package's sample and runtime docs under `Assets/WitShells/WitClientApi` for quick-start instructions and an endpoints example manifest located at `Runtime/Resources/Endpoints/endpoints.json`.
 
 ### **Design Patterns Package**
 
@@ -161,7 +177,6 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git#MilitaryGridS
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SplineRuntime
 ```
-
 
 ---
 
