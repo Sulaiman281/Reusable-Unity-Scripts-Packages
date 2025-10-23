@@ -10,5 +10,6 @@
     },
     "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.2.1"
-    }
+    },
+    "deprecated": "This package is obsolete and will not be updated. It may be removed in a future release. Please migrate to WitClientApi (Assets/WitShells/WitClientApi)."
 }

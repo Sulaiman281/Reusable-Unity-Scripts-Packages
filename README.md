@@ -20,6 +20,8 @@ A robust, production-ready set of classic and modern design patterns, tailored f
 
 A powerful package that makes it easy to integrate any RESTful API into your Unity project with minimal code.
 
+**DEPRECATED / OBSOLETE:** This package is no longer maintained and may be removed in a future release. Please migrate to the newer `WitClientApi` package located at `Assets/WitShells/WitClientApi` which provides a runtime JSON endpoint reader, token-based auth helpers, and OpenAPI/Swagger import support.
+
 - Quickly define endpoints and headers
 - Send and test API requests directly inside the Unity Editor
 - Supports custom headers, request bodies, and UnityEvents for success/failure callbacks
