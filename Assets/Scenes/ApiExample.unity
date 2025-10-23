@@ -435,8 +435,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1714316691}
-  - component: {fileID: 1714316690}
-  - component: {fileID: 1714316689}
+  - component: {fileID: 1714316692}
+  - component: {fileID: 1714316693}
   m_Layer: 0
   m_Name: ApiManager
   m_TagString: Untagged
@@ -444,223 +444,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1714316689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714316688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73ab9c962d46c954f95e296238e4d584, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endpoints:
-  - endpointName: Time Trial Standings
-    endpoint:
-      Method: 0
-      ContentType: 0
-      Path: app/show-time-trial-standings
-      IsSecure: 0
-      responseType: 0
-    includeDefaultHeaders: 0
-    customHeaders: []
-    includeBody: 0
-    bodyFields: []
-    onSuccess:
-      onJsonData:
-        m_PersistentCalls:
-          m_Calls: []
-      onBytesData:
-        m_PersistentCalls:
-          m_Calls: []
-      onTextData:
-        m_PersistentCalls:
-          m_Calls: []
-      accessTokenKey: 
-      refreshTokenKey: 
-    onFail:
-      m_PersistentCalls:
-        m_Calls: []
-  - endpointName: Hello
-    endpoint:
-      Method: 0
-      ContentType: 0
-      Path: 
-      IsSecure: 0
-      responseType: 0
-    includeDefaultHeaders: 0
-    customHeaders: []
-    includeBody: 0
-    bodyFields: []
-    onSuccess:
-      onJsonData:
-        m_PersistentCalls:
-          m_Calls: []
-      onBytesData:
-        m_PersistentCalls:
-          m_Calls: []
-      onTextData:
-        m_PersistentCalls:
-          m_Calls: []
-      accessTokenKey: 
-      refreshTokenKey: 
-    onFail:
-      m_PersistentCalls:
-        m_Calls: []
-  - endpointName: Login
-    endpoint:
-      Method: 1
-      ContentType: 0
-      Path: auth/login
-      IsSecure: 0
-      responseType: 6
-    includeDefaultHeaders: 0
-    customHeaders: []
-    includeBody: 1
-    bodyFields:
-    - key: email
-      type: 0
-      stringValue: sayedsulaiman607@gmail.com
-      intValue: 0
-      floatValue: 0
-      boolValue: 0
-      mediaPath: 
-    - key: password
-      type: 0
-      stringValue: 12ta442ta1
-      intValue: 0
-      floatValue: 0
-      boolValue: 0
-      mediaPath: 
-    onSuccess:
-      onJsonData:
-        m_PersistentCalls:
-          m_Calls: []
-      onBytesData:
-        m_PersistentCalls:
-          m_Calls: []
-      onTextData:
-        m_PersistentCalls:
-          m_Calls: []
-      accessTokenKey: accessToken
-      refreshTokenKey: refreshToken
-    onFail:
-      m_PersistentCalls:
-        m_Calls: []
-  - endpointName: Profile
-    endpoint:
-      Method: 0
-      ContentType: 0
-      Path: user/profile
-      IsSecure: 1
-      responseType: 0
-    includeDefaultHeaders: 1
-    customHeaders: []
-    includeBody: 1
-    bodyFields: []
-    onSuccess:
-      onJsonData:
-        m_PersistentCalls:
-          m_Calls: []
-      onBytesData:
-        m_PersistentCalls:
-          m_Calls: []
-      onTextData:
-        m_PersistentCalls:
-          m_Calls: []
-      accessTokenKey: accessToken
-      refreshTokenKey: refreshToken
-    onFail:
-      m_PersistentCalls:
-        m_Calls: []
-  - endpointName: Upload Image
-    endpoint:
-      Method: 1
-      ContentType: 3
-      Path: app/upload-image-bytes
-      IsSecure: 1
-      responseType: 0
-    includeDefaultHeaders: 1
-    customHeaders: []
-    includeBody: 1
-    bodyFields:
-    - key: imageData
-      type: 5
-      stringValue: 
-      intValue: 0
-      floatValue: 0
-      boolValue: 0
-      mediaPath: E:/Resume/profile_pic.png
-    onSuccess:
-      onJsonData:
-        m_PersistentCalls:
-          m_Calls: []
-      onBytesData:
-        m_PersistentCalls:
-          m_Calls: []
-      onTextData:
-        m_PersistentCalls:
-          m_Calls: []
-      accessTokenKey: accessToken
-      refreshTokenKey: refreshToken
-    onFail:
-      m_PersistentCalls:
-        m_Calls: []
-  - endpointName: Fetch Image
-    endpoint:
-      Method: 0
-      ContentType: 2
-      Path: app/get-image-bytes-by-id
-      IsSecure: 1
-      responseType: 0
-    includeDefaultHeaders: 1
-    customHeaders: []
-    includeBody: 1
-    bodyFields:
-    - key: id
-      type: 0
-      stringValue: 684c031b8851ef091da54c75
-      intValue: 0
-      floatValue: 0
-      boolValue: 0
-      mediaPath: 
-    onSuccess:
-      onJsonData:
-        m_PersistentCalls:
-          m_Calls: []
-      onBytesData:
-        m_PersistentCalls:
-          m_Calls: []
-      onTextData:
-        m_PersistentCalls:
-          m_Calls: []
-      accessTokenKey: accessToken
-      refreshTokenKey: refreshToken
-    onFail:
-      m_PersistentCalls:
-        m_Calls: []
---- !u!114 &1714316690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714316688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c734b5b7e8deeb49b47087e10272b7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsPersistent: 1
-  ApiInProgress:
-    m_PersistentCalls:
-      m_Calls: []
-  ApiFinished:
-    m_PersistentCalls:
-      m_Calls: []
-  apiExecutor: {fileID: 1714316689}
 --- !u!4 &1714316691
 Transform:
   m_ObjectHideFlags: 0
@@ -676,6 +459,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1714316692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714316688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d1a0ab44afb84459e63800aa3bb2fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPersistent: 0
+  EndpointsResourcePath: Endpoints/endpoints
+  ApiConfig: {fileID: 11400000, guid: 60345462bd4de5740b320699a9648dc0, type: 2}
+  AvailableEndpoints: []
+  testApiIndex: 0
+--- !u!114 &1714316693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714316688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 483b3f024542879499f9a755daac0f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPersistent: 0
+  maxThreads: 4
+  maxQueueSize: 1000
+  enableDebugLogs: 0
+  OnActiveThreadsChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnQueueSizeChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJobCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnJobFailed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

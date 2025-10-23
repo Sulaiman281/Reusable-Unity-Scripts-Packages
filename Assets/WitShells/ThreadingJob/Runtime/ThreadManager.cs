@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace WitShells.ThreadingJob
         private readonly ConcurrentQueue<Action> _mainThreadQueue = new ConcurrentQueue<Action>();
         private readonly ConcurrentQueue<ThreadJobItem> _threadJobQueue = new ConcurrentQueue<ThreadJobItem>();
         private readonly ConcurrentBag<Thread> _runningThreads = new ConcurrentBag<Thread>();
+        private readonly ConcurrentDictionary<string, CancellationTokenSource> _jobCancellationTokens = new ConcurrentDictionary<string, CancellationTokenSource>();
+        private readonly ConcurrentDictionary<string, ThreadJobItem> _activeJobs = new ConcurrentDictionary<string, ThreadJobItem>();
 
         // Thread-safe counters
         private volatile int _activeThreads = 0;
@@ -126,6 +129,11 @@ namespace WitShells.ThreadingJob
 
         private void StartJobExecution(ThreadJobItem jobItem)
         {
+            // Get the specific cancellation token for this job
+            var jobCancellationToken = _jobCancellationTokens.TryGetValue(jobItem.JobId, out var tokenSource)
+                ? tokenSource.Token
+                : CancellationToken.None;
+
             if (jobItem.IsAsync)
             {
                 // Use Task.Run for async jobs
@@ -133,18 +141,47 @@ namespace WitShells.ThreadingJob
                 {
                     try
                     {
-                        await ExecuteAsyncJob(jobItem);
+                        await ExecuteAsyncJob(jobItem, jobCancellationToken);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        if (enableDebugLogs)
+                            Debug.Log($"[ThreadManager] Job {jobItem.JobId} was cancelled");
                     }
                     catch (Exception ex)
                     {
                         HandleJobError(jobItem, ex);
+                    }
+                    finally
+                    {
+                        CleanupJob(jobItem.JobId);
                     }
                 }, _cancellationTokenSource.Token);
             }
             else
             {
                 // Create dedicated thread for sync jobs
-                var thread = new Thread(() => ExecuteSyncJob(jobItem))
+                var thread = new Thread(() =>
+                {
+                    try
+                    {
+                        ExecuteSyncJob(jobItem, jobCancellationToken);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        if (enableDebugLogs)
+                            Debug.Log($"[ThreadManager] Job {jobItem.JobId} was cancelled");
+                    }
+                    catch (Exception ex)
+                    {
+                        HandleJobError(jobItem, ex);
+                    }
+                    finally
+                    {
+                        CleanupJob(jobItem.JobId);
+                        Interlocked.Decrement(ref _activeThreads);
+                    }
+                })
                 {
                     IsBackground = true,
                     Name = $"ThreadJob_{jobItem.JobId}"
@@ -156,7 +193,7 @@ namespace WitShells.ThreadingJob
             }
         }
 
-        private async Task ExecuteAsyncJob(ThreadJobItem jobItem)
+        private async Task ExecuteAsyncJob(ThreadJobItem jobItem, CancellationToken cancellationToken)
         {
             try
             {
@@ -181,7 +218,7 @@ namespace WitShells.ThreadingJob
             }
         }
 
-        private void ExecuteSyncJob(ThreadJobItem jobItem)
+        private void ExecuteSyncJob(ThreadJobItem jobItem, CancellationToken cancellationToken)
         {
             try
             {
@@ -253,18 +290,18 @@ namespace WitShells.ThreadingJob
         }
 
         // Public API methods
-        public void EnqueueJob<TResult>(ThreadJob<TResult> job, UnityAction<TResult> onComplete, UnityAction<Exception> onError = null)
+        public string EnqueueJob<TResult>(ThreadJob<TResult> job, UnityAction<TResult> onComplete, UnityAction<Exception> onError = null)
         {
             if (_isShuttingDown)
             {
                 Debug.LogWarning("[ThreadManager] Cannot enqueue job, manager is shutting down");
-                return;
+                return null;
             }
 
             if (job.IsStreaming)
             {
                 Debug.LogWarning("Use EnqueueStreamingJob for streaming jobs");
-                return;
+                return null;
             }
 
             var jobItem = new ThreadJobItem<TResult>(job, onComplete, onError);
@@ -273,13 +310,20 @@ namespace WitShells.ThreadingJob
             {
                 Debug.LogWarning("[ThreadManager] Thread job queue is full, rejecting job");
                 onError?.Invoke(new InvalidOperationException("Job queue is full"));
-                return;
+                return null;
             }
+
+            // Create cancellation token for this specific job
+            var jobCancellationToken = new CancellationTokenSource();
+            _jobCancellationTokens.TryAdd(jobItem.JobId, jobCancellationToken);
+            _activeJobs.TryAdd(jobItem.JobId, jobItem);
 
             _threadJobQueue.Enqueue(jobItem);
 
             if (enableDebugLogs)
                 Debug.Log($"[ThreadManager] Enqueued job {jobItem.JobId}");
+
+            return jobItem.JobId; // Return the job ID
         }
 
         public void EnqueueStreamingJob<TResult>(
@@ -313,6 +357,36 @@ namespace WitShells.ThreadingJob
 
             if (enableDebugLogs)
                 Debug.Log($"[ThreadManager] Enqueued streaming job {jobItem.JobId}");
+        }
+
+        public bool CancelJob(string jobId)
+        {
+            if (string.IsNullOrEmpty(jobId)) return false;
+
+            if (_jobCancellationTokens.TryRemove(jobId, out var tokenSource))
+            {
+                tokenSource.Cancel();
+                tokenSource.Dispose();
+
+                _activeJobs.TryRemove(jobId, out _);
+
+                if (enableDebugLogs)
+                    Debug.Log($"[ThreadManager] Cancelled job {jobId}");
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool IsJobActive(string jobId)
+        {
+            return _jobCancellationTokens.ContainsKey(jobId);
+        }
+
+        public string[] GetActiveJobIds()
+        {
+            return _jobCancellationTokens.Keys.ToArray();
         }
 
         // Utility methods
@@ -393,6 +467,15 @@ namespace WitShells.ThreadingJob
             {
                 // Optional: pause or clear non-critical jobs
             }
+        }
+
+        private void CleanupJob(string jobId)
+        {
+            if (_jobCancellationTokens.TryRemove(jobId, out var tokenSource))
+            {
+                tokenSource.Dispose();
+            }
+            _activeJobs.TryRemove(jobId, out _);
         }
     }
 

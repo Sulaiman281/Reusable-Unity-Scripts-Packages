@@ -1,0 +1,21 @@
+{
+    "name": "com.witshells.witclientapi",
+    "version": "1.0.1",
+    "displayName": "Wit Client API",
+    "description": "Lightweight Unity package to call REST endpoints from a JSON manifest, with built-in auth, thread-safe token storage, and envelope-aware response parsing.",
+    "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "email": "sayedsulaiman607@gmail.com",
+        "url": "https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages"
+    },
+    "keywords": ["api", "http", "rest", "unity", "auth", "tokens", "endpoints"],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git"
+    },
+    "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+    }
+}

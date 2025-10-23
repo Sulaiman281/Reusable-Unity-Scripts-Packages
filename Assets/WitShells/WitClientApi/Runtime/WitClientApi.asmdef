@@ -1,0 +1,17 @@
+{
+    "name": "WitClientApi",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ec8dcffcd0a03ff4fa9b67aecf8c0e87",
+        "GUID:48da056df6bda5340851f684a46ed06c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
