@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2729d32497b71324492a79e1b9a0bc49, type: 3}
   m_Name: MapSettings
   m_EditorClassIdentifier: 
-  useOnlineMap: 1
+  useOnlineMap: 0
   showLabels: 0

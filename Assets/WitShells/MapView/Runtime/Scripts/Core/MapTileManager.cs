@@ -5,6 +5,7 @@ using System.Linq;
 using SQLite;
 using UnityEngine;
 using UnityEngine.Events;
+using WitShells.DesignPatterns;
 using WitShells.DesignPatterns.Core;
 using WitShells.ThreadingJob;
 
@@ -47,18 +48,32 @@ namespace WitShells.MapView
         }
 
         [Header("Events")]
+        // Fired per-tile when a single tile is stored/fetched
         public UnityEvent<Vector2Int, Tile> OnTileFetched;
+        // Fired when a batch of tiles is stored/fetched (optimized consumer should subscribe to this)
+        public UnityEvent<List<Tile>> OnTilesFetched;
 
         void Start()
         {
-            using var conn = DbConnection;
+            // Initialize DB connection without disposing it immediately.
+            var conn = DbConnection;
             if (conn == null)
             {
-                Debug.LogError("Failed to create or open the database.");
+                WitLogger.LogError("Failed to create or open the database.");
             }
             else
             {
-                Debug.Log("Database opened successfully.");
+                try
+                {
+                    // Optional: enable WAL for safer concurrent access (recommended if background threads write)
+                    try { conn.Execute("PRAGMA journal_mode=WAL;"); } catch { /* ignore if not supported */ }
+
+                    WitLogger.Log("Database opened successfully.");
+                }
+                catch (Exception ex)
+                {
+                    WitLogger.LogWarning($"Database init warning: {ex.Message}");
+                }
             }
         }
 
@@ -73,25 +88,21 @@ namespace WitShells.MapView
         {
             if (enqueuedTiles.Count == 0) return;
 
-            var streamTileFetcher = new StreamTileFetcher(FilePath, enqueuedTiles, zoomLevel, showLabels, canFetchOnline, canCacheTiles);
+            var streamTileFetcher = new StreamTileFetcher(FilePath, enqueuedTiles, zoomLevel, showLabels, canFetchOnline);
             ThreadManager.Instance.EnqueueStreamingJob(
                 streamTileFetcher,
-                onProgress: (tile) =>
+                onProgress: (tiles) =>
                 {
-                    if (tile != null)
-                    {
-                        var coord = new Vector2Int(tile.TileX, tile.TileY);
-                        StoreInCache(tile);
-                        OnTileFetched?.Invoke(new Vector2Int(tile.TileX, tile.TileY), tile);
-                    }
+                    if (tiles == null || tiles.Count == 0) return;
+                    StoreTilesInCache(tiles);
                 },
                 onComplete: () =>
                 {
-                    Debug.Log("Completed streaming tile fetch.");
+                    WitLogger.Log("Completed streaming tile fetch.");
                 },
                 onError: (ex) =>
                 {
-                    Debug.LogError($"Error during streaming tile fetch: {ex.Message}");
+                    WitLogger.LogError($"Error during streaming tile fetch: {ex.Message}");
                 });
         }
 
@@ -120,51 +131,55 @@ namespace WitShells.MapView
                 },
                 onError: (ex) =>
                 {
-                    Debug.LogError($"Error fetching tile: {ex.Message}");
+                    WitLogger.LogError($"Error fetching tile: {ex.Message}");
                     onComplete?.Invoke(null);
                 });
         }
 
-        private void StoreInCache(Tile tile)
+        private void StoreInCache(Tile tile, bool invokeSingleEvent = true)
         {
             if (tile == null) return;
 
             var coord = new Vector2Int(tile.TileX, tile.TileY);
-            if (_cachedTiles.Count > maxCachedTiles)
+            // Evict when reaching capacity
+            if (_cachedTiles.Count >= maxCachedTiles && _cachedTiles.Count > 0)
             {
                 var toRemove = _cachedTiles.First();
                 _cachedTiles.Remove(toRemove.Key);
             }
             _cachedTiles[coord] = tile;
+            // Notify single-tile listeners (main-thread callers expect this)
+            if (invokeSingleEvent)
+            {
+                try { OnTileFetched?.Invoke(coord, tile); } catch { }
+            }
         }
 
+        private void StoreTilesInCache(List<Tile> tiles)
+        {
+            foreach (var tile in tiles)
+            {
+                // prevent per-tile single events during bulk store to avoid duplicate notifications
+                StoreInCache(tile, invokeSingleEvent: false);
+            }
+            // Notify batch listeners after storing all tiles. Use try/catch to avoid propagation.
+            try { OnTilesFetched?.Invoke(tiles); } catch { }
+        }
 
 
         #region Database Management
 
         public bool CreateDatabase(out SQLiteConnection connection)
         {
-            connection = null;
             try
             {
-                if (!Directory.Exists(DirectoryPath))
-                {
-                    Directory.CreateDirectory(DirectoryPath);
-                }
-
-                if (!File.Exists(FilePath))
-                {
-                    File.Create(FilePath).Dispose();
-                }
-
-                connection = new SQLiteConnection(FilePath);
-                // Creates the table only if it does not exist; no-op if it already exists
-                connection.CreateTable<Tile>();
-                return true;
+                connection = DatabaseUtils.EnsureDatabaseWithSchema(FilePath);
+                return connection != null;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"Error creating database: {ex.Message}");
+                connection = null;
+                WitLogger.LogError($"Error creating database: {ex.Message}");
                 return false;
             }
         }
@@ -179,9 +194,31 @@ namespace WitShells.MapView
             return centerTile;
         }
 
+        /// <summary>
+        /// Asynchronous version of GetCenterTile - runs the query on the ThreadManager and returns on main thread.
+        /// </summary>
+        public void GetCenterTileAsync(int zoomLevel, UnityAction<Tile> onComplete, UnityAction<Exception> onError = null)
+        {
+            string sql = "SELECT * FROM Tile WHERE Zoom = ? ORDER BY TileX, TileY LIMIT 1 OFFSET (SELECT COUNT(*) FROM Tile WHERE Zoom = ?) / 2";
+            DbQuery.EnqueueQuery(TileDbPath(), conn => conn.Query<Tile>(sql, zoomLevel, zoomLevel).FirstOrDefault(), onComplete, onError);
+        }
+
         public Tile GetTile(Vector2Int coordinate, int zoomLevel)
         {
             return GetTile(coordinate.x, coordinate.y, zoomLevel, DbConnection);
+        }
+
+        /// <summary>
+        /// Asynchronous version of GetTile - runs the query on a background thread and returns the result on the main thread.
+        /// </summary>
+        public void GetTileAsync(Vector2Int coordinate, int zoomLevel, UnityAction<Tile> onComplete, UnityAction<Exception> onError = null)
+        {
+            DbQuery.EnqueueQuery(TileDbPath(), conn => GetTile(coordinate.x, coordinate.y, zoomLevel, conn), onComplete, onError);
+        }
+
+        private string TileDbPath()
+        {
+            return FilePath;
         }
 
         public static Tile GetTile(int x, int y, int zoomLevel, SQLiteConnection connection)
@@ -198,12 +235,21 @@ namespace WitShells.MapView
 
         public void Dispose()
         {
-            _dbConnection?.Close();
+            DatabaseUtils.SafeCloseConnection(_dbConnection, checkpoint: true);
             _dbConnection = null;
+
+            // Dispose any DbWorker associated with this database file so background writers exit
+            try { DatabaseWriter.DisposeWriter(FilePath); } catch { }
 
             _cachedTiles.Clear();
         }
 
+        protected override void OnDestroy()
+        {
+            // Ensure background DB worker is disposed when the manager is destroyed.
+            try { Dispose(); } catch { }
+            base.OnDestroy();
+        }
 
         #region Test Logs
 
@@ -212,7 +258,7 @@ namespace WitShells.MapView
         [ContextMenu("Log Database Path")]
         public void LogDatabasePath()
         {
-            Debug.Log($"Database Path: {FilePath}");
+            WitLogger.Log($"Database Path: {FilePath}");
         }
 
 #endif

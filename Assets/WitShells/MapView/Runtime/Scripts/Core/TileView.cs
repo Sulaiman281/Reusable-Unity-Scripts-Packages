@@ -14,6 +14,11 @@ namespace WitShells.MapView
 
         private bool _showLabels = false;
 
+        private void OnDisable()
+        {
+            tileImage.texture = null;
+        }
+
         public void SetData(Tile data, Vector2Int coordinate)
         {
             Coordinate = coordinate;
@@ -48,8 +53,8 @@ namespace WitShells.MapView
 
         public void MoveTo(Vector3 position)
         {
-            var targetPosition = transform.position + position;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * 10f);
+            var targetPosition = transform.localPosition + position;
+            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * 10f);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.IO;
 using System.Threading.Tasks;
 using SQLite;
 using UnityEngine;
+using WitShells.DesignPatterns;
 using WitShells.ThreadingJob;
 
 namespace WitShells.MapView
@@ -95,11 +96,17 @@ namespace WitShells.MapView
                     newTile.NormalData = data;
                 }
 
-                // cache to db
+                // cache to db (enqueue write to background worker to avoid concurrent writers)
                 if (_cacheTile)
                 {
-                    using var connection = DbConnection;
-                    connection.Insert(newTile);
+                    try
+                    {
+                        DatabaseWriter.EnqueueTileBatch(dbPath, new System.Collections.Generic.List<Tile> { newTile });
+                    }
+                    catch (System.Exception ex)
+                    {
+                        ConcurrentLoggerBehaviour.Enqueue($"Failed to enqueue tile for DB persist: {ex.Message}");
+                    }
                 }
 
                 return newTile;

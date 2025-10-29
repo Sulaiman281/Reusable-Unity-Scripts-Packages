@@ -14,12 +14,17 @@ namespace WitShells.ThreadingJob
         [Header("Thread Configuration")]
         [SerializeField] private int maxThreads = 4;
         [SerializeField] private int maxQueueSize = 1000;
+        [Tooltip("If true, when the main-thread action queue is full the oldest action will be dropped to accept the new one.")]
+        [SerializeField] private bool dropOldestOnMainQueueFull = true;
+        [Tooltip("Minimum seconds between repeated queue-full warnings to avoid log spam.")]
+        [SerializeField] private float queueWarningCooldownSeconds = 5f;
         [SerializeField] private bool enableDebugLogs = false;
 
         // Concurrent collections for thread-safe operations
         private readonly ConcurrentQueue<Action> _mainThreadQueue = new ConcurrentQueue<Action>();
         private readonly ConcurrentQueue<ThreadJobItem> _threadJobQueue = new ConcurrentQueue<ThreadJobItem>();
-        private readonly ConcurrentBag<Thread> _runningThreads = new ConcurrentBag<Thread>();
+        // Track running threads by job id so we can cleanup finished threads reliably
+        private readonly System.Collections.Concurrent.ConcurrentDictionary<string, Thread> _runningThreads = new System.Collections.Concurrent.ConcurrentDictionary<string, Thread>();
         private readonly ConcurrentDictionary<string, CancellationTokenSource> _jobCancellationTokens = new ConcurrentDictionary<string, CancellationTokenSource>();
         private readonly ConcurrentDictionary<string, ThreadJobItem> _activeJobs = new ConcurrentDictionary<string, ThreadJobItem>();
 
@@ -27,6 +32,9 @@ namespace WitShells.ThreadingJob
         private volatile int _activeThreads = 0;
         private volatile bool _isShuttingDown = false;
         private volatile bool _isRunning = false;
+
+    // internal warning throttle (use UTC time so background threads can update without Unity API)
+    private DateTime _lastQueueWarningTime = DateTime.MinValue;
 
         // Background processing thread
         private Thread _processingThread;
@@ -81,7 +89,8 @@ namespace WitShells.ThreadingJob
         private void ProcessMainThreadQueue()
         {
             int processedCount = 0;
-            const int maxProcessPerFrame = 10; // Prevent frame drops
+            // Dynamically increase processing when backlog grows to reduce queue pressure.
+            int maxProcessPerFrame = Math.Min(100, 10 + (_mainThreadQueue.Count / 10));
 
             while (processedCount < maxProcessPerFrame && _mainThreadQueue.TryDequeue(out Action action))
             {
@@ -136,7 +145,9 @@ namespace WitShells.ThreadingJob
 
             if (jobItem.IsAsync)
             {
-                // Use Task.Run for async jobs
+                // Use Task.Run for async jobs and account for active thread count
+                Interlocked.Increment(ref _activeThreads);
+
                 _ = Task.Run(async () =>
                 {
                     try
@@ -154,7 +165,8 @@ namespace WitShells.ThreadingJob
                     }
                     finally
                     {
-                        CleanupJob(jobItem.JobId);
+                        try { CleanupJob(jobItem.JobId); } catch { }
+                        Interlocked.Decrement(ref _activeThreads);
                     }
                 }, _cancellationTokenSource.Token);
             }
@@ -178,7 +190,9 @@ namespace WitShells.ThreadingJob
                     }
                     finally
                     {
-                        CleanupJob(jobItem.JobId);
+                        try { CleanupJob(jobItem.JobId); } catch { }
+                        // Remove from running threads map
+                        try { _runningThreads.TryRemove(jobItem.JobId, out _); } catch { }
                         Interlocked.Decrement(ref _activeThreads);
                     }
                 })
@@ -187,7 +201,7 @@ namespace WitShells.ThreadingJob
                     Name = $"ThreadJob_{jobItem.JobId}"
                 };
 
-                _runningThreads.Add(thread);
+                _runningThreads.TryAdd(jobItem.JobId, thread);
                 Interlocked.Increment(ref _activeThreads);
                 thread.Start();
             }
@@ -263,10 +277,45 @@ namespace WitShells.ThreadingJob
         {
             if (_isShuttingDown) return;
 
+            // If queue is full, either drop the oldest (if configured) or drop the new action.
             if (_mainThreadQueue.Count >= maxQueueSize)
             {
-                Debug.LogWarning("[ThreadManager] Main thread queue is full, dropping action");
-                return;
+                var now = DateTime.UtcNow;
+                if (dropOldestOnMainQueueFull)
+                {
+                    // Attempt to remove the oldest action to make space
+                    if (_mainThreadQueue.TryDequeue(out var dropped))
+                    {
+                        _mainThreadQueue.Enqueue(action);
+
+                        if (enableDebugLogs && (now - _lastQueueWarningTime).TotalSeconds > queueWarningCooldownSeconds)
+                        {
+                            Debug.LogWarning("[ThreadManager] Main thread queue was full; dropped oldest action to enqueue new one.");
+                            _lastQueueWarningTime = now;
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        // Could not dequeue (race); fall through to drop new action
+                        if ((now - _lastQueueWarningTime).TotalSeconds > queueWarningCooldownSeconds)
+                        {
+                            Debug.LogWarning("[ThreadManager] Main thread queue is full and could not make space; dropping incoming action");
+                            _lastQueueWarningTime = now;
+                        }
+                        return;
+                    }
+                }
+                else
+                {
+                    var now2 = DateTime.UtcNow;
+                    if ((now2 - _lastQueueWarningTime).TotalSeconds > queueWarningCooldownSeconds)
+                    {
+                        Debug.LogWarning("[ThreadManager] Main thread queue is full, dropping action");
+                        _lastQueueWarningTime = now2;
+                    }
+                    return;
+                }
             }
 
             _mainThreadQueue.Enqueue(action);
@@ -274,9 +323,25 @@ namespace WitShells.ThreadingJob
 
         private void CleanupFinishedThreads()
         {
-            // Note: ConcurrentBag doesn't support removing items efficiently
-            // For production, consider using a different collection or periodic full cleanup
-            // This is simplified for the example
+            // Remove finished sync threads from the tracking dictionary to avoid memory growth
+            try
+            {
+                var keys = _runningThreads.Keys.ToList();
+                foreach (var key in keys)
+                {
+                    if (_runningThreads.TryGetValue(key, out var thread))
+                    {
+                        if (thread == null || !thread.IsAlive)
+                        {
+                            _runningThreads.TryRemove(key, out _);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (enableDebugLogs) Debug.LogWarning($"[ThreadManager] CleanupFinishedThreads error: {ex.Message}");
+            }
         }
 
         private void UpdateEvents()

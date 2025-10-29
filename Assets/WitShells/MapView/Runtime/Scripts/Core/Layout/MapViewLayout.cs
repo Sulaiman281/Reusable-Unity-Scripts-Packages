@@ -3,25 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using WitShells.DesignPatterns;
 using WitShells.DesignPatterns.Core;
 
 namespace WitShells.MapView
 {
+    [Serializable]
+    public struct Coordinates
+    {
+        public double Latitude;
+        public double Longitude;
+
+        public override string ToString()
+        {
+            return $"{Latitude}, {Longitude}";
+        }
+    }
+
     public class MapViewLayout : MonoBehaviour, IPointerClickHandler, IDragHandler, IScrollHandler
     {
-        [Serializable]
-        public struct Coordinates
-        {
-            public double Latitude;
-            public double Longitude;
 
-            public override string ToString()
-            {
-                return $"{Latitude}, {Longitude}";
-            }
-        }
+        [Header("References")]
+        [SerializeField] private Canvas parentCanvas;
 
         [Header("Location")]
+        [SerializeField] private string locationName;
         [SerializeField] private Coordinates fromCoordinates;
         [SerializeField] private Coordinates toCoordinates;
         [SerializeField] private int zoomLevel = 15;
@@ -48,7 +54,6 @@ namespace WitShells.MapView
         [SerializeField] private float currentZoomLevel;
 
         [SerializeField] private float zoomVelocity = 0f;
-        private bool requireZoomUpdate = false;
 
 
         [Header("Runtime")]
@@ -96,7 +101,20 @@ namespace WitShells.MapView
             currentZoomLevel = zoomLevel;
             GenerateLayout();
 
+            // Subscribe to both single-tile and batch tile events for compatibility.
+            // Batch updates are preferred for performance when available.
             MapTileManager.Instance.OnTileFetched.AddListener(OnTileIsFetched);
+            MapTileManager.Instance.OnTilesFetched?.AddListener(OnTilesIsFetchedBatch);
+        }
+
+        void OnDestroy()
+        {
+            if (MapTileManager.Instance != null)
+            {
+                MapTileManager.Instance.OnTileFetched.RemoveListener(OnTileIsFetched);
+                if (MapTileManager.Instance.OnTilesFetched != null)
+                    MapTileManager.Instance.OnTilesFetched.RemoveListener(OnTilesIsFetchedBatch);
+            }
         }
 
 
@@ -104,8 +122,59 @@ namespace WitShells.MapView
         {
             if (_velocity.magnitude > 0.01f)
             {
-                // Apply inertia movement
-                MoveTileToDirection.Invoke(_velocity * Time.unscaledDeltaTime);
+                // Compute the movement that would be applied this frame
+                Vector3 movement = _velocity * Time.unscaledDeltaTime;
+
+                // If we have corner tiles available, ensure movement won't immediately push the layout
+                // past the allowed bounds. For any axis that would exceed bounds, stop movement on that axis.
+                if (TopLeftTile != null && BottomRightTile != null)
+                {
+                    // Horizontal movement: positive X = move right, negative X = move left
+                    if (movement.x > 0f)
+                    {
+                        // moving right -> would trigger MoveRightColumnToLeft when exceeding right bound
+                        if (!CanMoveRightColumnToLeft())
+                        {
+                            movement.x = 0f;
+                            _velocity.x = 0f;
+                        }
+                    }
+                    else if (movement.x < 0f)
+                    {
+                        // moving left -> would trigger MoveLeftColumnToRight when exceeding left bound
+                        if (!CanMoveLeftColumnToRight())
+                        {
+                            movement.x = 0f;
+                            _velocity.x = 0f;
+                        }
+                    }
+
+                    // Vertical movement: positive Y = move up, negative Y = move down
+                    if (movement.y > 0f)
+                    {
+                        // moving up -> would trigger MoveTopRowToBottom when exceeding top bound
+                        if (!CanMoveTopRowToBottom())
+                        {
+                            movement.y = 0f;
+                            _velocity.y = 0f;
+                        }
+                    }
+                    else if (movement.y < 0f)
+                    {
+                        // moving down -> would trigger MoveBottomRowToTop when exceeding bottom bound
+                        if (!CanMoveBottomRowToTop())
+                        {
+                            movement.y = 0f;
+                            _velocity.y = 0f;
+                        }
+                    }
+                }
+
+                // Apply movement if any axis is still allowed
+                if (movement.sqrMagnitude > 0.000001f)
+                {
+                    MoveTileToDirection.Invoke(movement);
+                }
 
                 // Framerate-independent damping (inertiaDamping ~ 0.9 means ~10% decay per 60fps frame)
                 float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
@@ -117,46 +186,43 @@ namespace WitShells.MapView
 
         private void OnTileIsFetched(Vector2Int coordinate, Tile tile)
         {
+            // Backwards-compatible single-tile handler
             if (tile == null) return;
             TileView tv = GetTileAtCoordinate(coordinate);
-            if (tv == null)
-            {
-                return;
-            }
+            if (tv == null) return;
             tv.SetData(tile);
+        }
+
+        private void OnTilesIsFetchedBatch(List<Tile> fetchedTiles)
+        {
+            if (fetchedTiles == null || fetchedTiles.Count == 0) return;
+            if (this.tiles == null) return;
+
+            foreach (var tile in fetchedTiles)
+            {
+                if (tile == null) continue;
+                var coord = new Vector2Int(tile.TileX, tile.TileY);
+                var tv = GetTileAtCoordinate(coord);
+                if (tv == null) continue;
+                tv.SetData(tile);
+            }
         }
 
         private void HandleZoomUpdate()
         {
-            if (Mathf.Abs(zoomVelocity) <= 0.01f)
-            {
-                if (requireZoomUpdate && (int)currentZoomLevel != zoomLevel)
-                {
-                    SetZoomUpdate((int)currentZoomLevel);
-                }
-                requireZoomUpdate = false;
-            }
-            else
-            {
-                requireZoomUpdate = true;
-            }
-
-            currentZoomLevel = Mathf.Clamp(currentZoomLevel + zoomVelocity, minZoomLevel, maxZoomLevel);
+            currentZoomLevel = Mathf.Clamp(currentZoomLevel + zoomVelocity, minZoomLevel, maxZoomLevel + .9f);
 
             float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
             zoomVelocity *= decay;
 
-            if (zoomLevel == maxZoomLevel && zoomVelocity > 0)
+            var zoom = (int)currentZoomLevel;
+
+            if (Mathf.Abs(zoomVelocity) <= 0.01f)
             {
-                zoomVelocity = 0;
-                ZoomLayer().localScale = Vector3.one;
-                return;
-            }
-            else if (zoomLevel == minZoomLevel && zoomVelocity < 0)
-            {
-                zoomVelocity = 0;
-                ZoomLayer().localScale = Vector3.one;
-                return;
+                if (zoom != zoomLevel)
+                {
+                    SetZoomUpdate(zoom);
+                }
             }
 
             var zoomDelta = currentZoomLevel - zoomLevel;
@@ -172,34 +238,66 @@ namespace WitShells.MapView
             // Left-Right cycling using 2D array
             if (TopLeftTile.transform.localPosition.x < TopLeftLimit.x - 128)
             {
-                // Move left column to right side
-                MoveLeftColumnToRight();
-                UpdateCorners();
+                // Move left column to right side if allowed by bounds
+                if (CanMoveLeftColumnToRight())
+                {
+                    MoveLeftColumnToRight();
+                    UpdateCorners();
+                }
+                else
+                {
+                    // Hit horizontal right bound - stop horizontal motion
+                    _velocity.x = 0f;
+                }
                 return;
             }
 
             if (BottomRightTile.transform.localPosition.x > BottomRightLimit.x + 128)
             {
-                // Move right column to left side
-                MoveRightColumnToLeft();
-                UpdateCorners();
+                // Move right column to left side if allowed by bounds
+                if (CanMoveRightColumnToLeft())
+                {
+                    MoveRightColumnToLeft();
+                    UpdateCorners();
+                }
+                else
+                {
+                    // Hit horizontal left bound - stop horizontal motion
+                    _velocity.x = 0f;
+                }
                 return;
             }
 
             // Top-Bottom cycling using 2D array
             if (TopLeftTile.transform.localPosition.y > TopLeftLimit.y + 128)
             {
-                // Move top row to bottom
-                MoveTopRowToBottom();
-                UpdateCorners();
+                // Move top row to bottom if allowed by bounds
+                if (CanMoveTopRowToBottom())
+                {
+                    MoveTopRowToBottom();
+                    UpdateCorners();
+                }
+                else
+                {
+                    // Hit vertical top bound - stop vertical motion
+                    _velocity.y = 0f;
+                }
                 return;
             }
 
             if (BottomRightTile.transform.localPosition.y < BottomRightLimit.y - 128)
             {
-                // Move bottom row to top
-                MoveBottomRowToTop();
-                UpdateCorners();
+                // Move bottom row to top if allowed by bounds
+                if (CanMoveBottomRowToTop())
+                {
+                    MoveBottomRowToTop();
+                    UpdateCorners();
+                }
+                else
+                {
+                    // Hit vertical bottom bound - stop vertical motion
+                    _velocity.y = 0f;
+                }
                 return;
             }
         }
@@ -250,7 +348,7 @@ namespace WitShells.MapView
             catch (Exception ex)
             {
                 // ignore
-                Debug.LogWarning($"Failed to generate map layout: {ex.Message}");
+                WitLogger.LogWarning($"Failed to generate map layout: {ex.Message}");
             }
         }
 
@@ -395,7 +493,7 @@ namespace WitShells.MapView
             List<Vector2Int> allTiles = new List<Vector2Int>();
 
             int arrayX = 0;
-            Debug.Log($"Generating tiles for area: {startX}, {startY} to {endX}, {endY}");
+            WitLogger.Log($"Generating tiles for area: {startX}, {startY} to {endX}, {endY}");
             for (int x = startX; x <= endX; x++)
             {
                 int arrayY = 0;
@@ -410,7 +508,7 @@ namespace WitShells.MapView
                 }
                 arrayX++;
             }
-            Debug.Log($"Generated {arrayX} x {tiles.GetLength(1)} tiles.");
+            WitLogger.Log($"Generated {arrayX} x {tiles.GetLength(1)} tiles.");
 
             MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
 
@@ -424,6 +522,7 @@ namespace WitShells.MapView
                 var obj = new GameObject($"Zoom_{zoomLevel}");
                 obj.transform.SetParent(transform);
                 obj.transform.localPosition = Vector3.zero;
+                obj.transform.localRotation = Quaternion.identity;
                 var rectTransform = obj.AddComponent<RectTransform>();
                 var size = RectSize();
                 rectTransform.sizeDelta = new Vector2(size.Width, size.Height);
@@ -488,7 +587,7 @@ namespace WitShells.MapView
 
         public void OnScroll(PointerEventData eventData)
         {
-            Debug.Log($"Scroll delta: {eventData.scrollDelta} - position {eventData.position}");
+            WitLogger.Log($"Scroll delta: {eventData.scrollDelta} - position {eventData.position}");
 
             float scrollDelta = eventData.scrollDelta.y;
             float targetVelocity = scrollDelta * zoomSensitivity;
@@ -499,8 +598,10 @@ namespace WitShells.MapView
         {
             if (isFixedLayout) return;
 
+            var cam = parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : parentCanvas.worldCamera;
+
             // Convert screen position to local position
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, eventData.position, null, out Vector2 localPoint);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, eventData.position, cam, out Vector2 localPoint);
 
 
             // Calculate the tile position
@@ -530,9 +631,9 @@ namespace WitShells.MapView
                 normX = Mathf.Clamp01(normX);
                 normY = Mathf.Clamp01(normY);
 
-                Debug.Log($"Clicked On: {localPoint} - Tile bounds: ({tileLeft},{tileBottom}) to ({tileRight},{tileTop})");
-                Debug.Log($"Normalized position: ({normX:F4}, {normY:F4})");
-                Debug.Log($"Clicked on tile: {clickedTile.name} at coordinate {clickedTile.Coordinate}");
+                WitLogger.Log($"Clicked On: {localPoint} - Tile bounds: ({tileLeft},{tileBottom}) to ({tileRight},{tileTop})");
+                WitLogger.Log($"Normalized position: ({normX:F4}, {normY:F4})");
+                WitLogger.Log($"Clicked on tile: {clickedTile.name} at coordinate {clickedTile.Coordinate}");
 
                 var (lat, lon) = Utils.TileNormalizedToLatLon(clickedTile.Coordinate.x, clickedTile.Coordinate.y, zoomLevel, normX, normY);
                 SelectedCoordinates = new Coordinates { Latitude = lat, Longitude = lon };
@@ -540,6 +641,7 @@ namespace WitShells.MapView
                 _hasClicked = true;
 
                 GUIUtility.systemCopyBuffer = SelectedCoordinates.ToString();
+                WitLogger.Log($"Selected Coordinates: {SelectedCoordinates} (copied to clipboard)");
             }
         }
 
@@ -713,5 +815,91 @@ namespace WitShells.MapView
 
             MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
         }
+
+        // --- Boundary checks ---
+        private (int xMin, int xMax, int yMin, int yMax) GetBoundsForCurrentZoom()
+        {
+            return Utils.TileRangeForBounds(fromCoordinates, toCoordinates, zoomLevel);
+        }
+
+        private bool CanMoveLeftColumnToRight()
+        {
+            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
+            // The left column tiles will be moved by +gridSize.x; ensure the new X does not exceed xMax
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                var tile = tiles[0, y];
+                if (tile == null) continue;
+                int newX = tile.Coordinate.x + gridSize.x;
+                if (newX > xMax) return false;
+            }
+            return true;
+        }
+
+        private bool CanMoveRightColumnToLeft()
+        {
+            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                var tile = tiles[gridSize.x - 1, y];
+                if (tile == null) continue;
+                int newX = tile.Coordinate.x - gridSize.x;
+                if (newX < xMin) return false;
+            }
+            return true;
+        }
+
+        private bool CanMoveTopRowToBottom()
+        {
+            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
+            for (int x = 0; x < gridSize.x; x++)
+            {
+                var tile = tiles[x, 0];
+                if (tile == null) continue;
+                int newY = tile.Coordinate.y + gridSize.y;
+                if (newY > yMax) return false;
+            }
+            return true;
+        }
+
+        private bool CanMoveBottomRowToTop()
+        {
+            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
+            for (int x = 0; x < gridSize.x; x++)
+            {
+                var tile = tiles[x, gridSize.y - 1];
+                if (tile == null) continue;
+                int newY = tile.Coordinate.y - gridSize.y;
+                if (newY < yMin) return false;
+            }
+            return true;
+        }
+
+        #region Editor Methods
+
+#if UNITY_EDITOR
+
+        [Header("WitLogger Downloader")]
+        [SerializeField] private DownloaderTiles downloaderTiles;
+
+        [ContextMenu("Download Map File")]
+        public void DownloadMapFile()
+        {
+            var mapFile = new MapFile
+            {
+                MapName = locationName,
+                TopLeft = fromCoordinates,
+                BottomRight = toCoordinates,
+                MinZoom = minZoomLevel,
+                MaxZoom = maxZoomLevel
+            };
+
+            downloaderTiles = new DownloaderTiles(mapFile);
+            downloaderTiles.DownloadMapFile();
+        }
+
+#endif
+
+        #endregion
     }
 }
