@@ -63,7 +63,10 @@ namespace WitShells.WitClientApi
             _authService.SignInAsync(credentials, (tr) =>
             {
                 Debug.Log($"Signed in via AuthService. Access Token: {tr?.AccessToken}");
-            }, CancellationToken.None);
+            }, () =>
+            {
+                Debug.LogError("Sign-in failed via AuthService.");
+            });
         }
 
         public string fetchPage;
