@@ -12,5 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2729d32497b71324492a79e1b9a0bc49, type: 3}
   m_Name: MapSettings
   m_EditorClassIdentifier: 
+  mapFile:
+    MapName: hyderbad-test
+    TopLeft:
+      Latitude: 25.446409225463867
+      Longitude: 68.29647064208984
+    BottomRight:
+      Latitude: 25.34669303894043
+      Longitude: 68.41869354248047
+    MinZoom: 12
+    MaxZoom: 20
   useOnlineMap: 0
   showLabels: 1

@@ -134,6 +134,17 @@ namespace WitShells.MapView
             // Initialize world object markers
             worldObjectMarkers.Initialize();
             HandleMarkerUpdate();
+
+            InitializeMapSettings(MapSettings.Instance.MapFile);
+        }
+
+        public void InitializeMapSettings(MapFile settings)
+        {
+            fromCoordinates = settings.TopLeft;
+            toCoordinates = settings.BottomRight;
+            minZoomLevel = settings.MinZoom;
+            maxZoomLevel = settings.MaxZoom;
+            locationName = settings.MapName;
         }
 
         [ContextMenu("Toggle Geo Tags")]

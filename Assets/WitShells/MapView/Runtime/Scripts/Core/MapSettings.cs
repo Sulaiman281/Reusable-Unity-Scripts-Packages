@@ -13,9 +13,14 @@ namespace WitShells.MapView
             }
         }
 
+        [Header("Map File")]
+        [SerializeField] private MapFile mapFile;
 
         [Header("Map Settings")]
         public bool useOnlineMap = true;
         public bool showLabels = false;
+
+        public MapFile MapFile => mapFile;
+
     }
 }
