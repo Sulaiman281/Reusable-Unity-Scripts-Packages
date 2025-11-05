@@ -1,56 +1,32 @@
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using WitShells.DesignPatterns;
 using WitShells.DesignPatterns.Core;
 
 namespace WitShells.ThreadingJob
 {
     public partial class ThreadManager : MonoSingleton<ThreadManager>, IDisposable
     {
+        [Header("Stats")]
+        [SerializeField] private ThreadManagerStats stats;
+
         [Header("Thread Configuration")]
         [SerializeField] private int maxThreads = 4;
-        [SerializeField] private int maxQueueSize = 1000;
-        [Tooltip("If true, when the main-thread action queue is full the oldest action will be dropped to accept the new one.")]
-        [SerializeField] private bool dropOldestOnMainQueueFull = true;
-        [Tooltip("Minimum seconds between repeated queue-full warnings to avoid log spam.")]
-        [SerializeField] private float queueWarningCooldownSeconds = 5f;
-        [SerializeField] private bool enableDebugLogs = false;
 
-        // Concurrent collections for thread-safe operations
-        private readonly ConcurrentQueue<Action> _mainThreadQueue = new ConcurrentQueue<Action>();
-        private readonly ConcurrentQueue<ThreadJobItem> _threadJobQueue = new ConcurrentQueue<ThreadJobItem>();
-        // Track running threads by job id so we can cleanup finished threads reliably
-        private readonly System.Collections.Concurrent.ConcurrentDictionary<string, Thread> _runningThreads = new System.Collections.Concurrent.ConcurrentDictionary<string, Thread>();
-        private readonly ConcurrentDictionary<string, CancellationTokenSource> _jobCancellationTokens = new ConcurrentDictionary<string, CancellationTokenSource>();
-        private readonly ConcurrentDictionary<string, ThreadJobItem> _activeJobs = new ConcurrentDictionary<string, ThreadJobItem>();
+        private List<JobThread> _jobThreads = new List<JobThread>();
+        private Queue<ThreadJobItem> _threadJobs = new Queue<ThreadJobItem>();
 
-        // Thread-safe counters
-        private volatile int _activeThreads = 0;
-        private volatile bool _isShuttingDown = false;
-        private volatile bool _isRunning = false;
-
-    // internal warning throttle (use UTC time so background threads can update without Unity API)
-    private DateTime _lastQueueWarningTime = DateTime.MinValue;
-
-        // Background processing thread
-        private Thread _processingThread;
-        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
-
-        // Events for monitoring
-        public UnityEvent<int> OnActiveThreadsChanged;
-        public UnityEvent<int> OnQueueSizeChanged;
-        public UnityEvent<string> OnJobCompleted;
-        public UnityEvent<string> OnJobFailed;
+        private bool _isShuttingDown;
 
         // Properties
-        public int ActiveThreads => _activeThreads;
-        public int QueuedJobs => _threadJobQueue.Count;
-        public int PendingMainThreadActions => _mainThreadQueue.Count;
-        public bool IsRunning => _isRunning;
+        public int ActiveThreads => _jobThreads.Count(jt => jt.IsBusy);
+        public int QueuedJobs => _jobThreads.Sum(jt => jt.PendingJobCount);
 
         public override void Awake()
         {
@@ -60,338 +36,162 @@ namespace WitShells.ThreadingJob
 
         private void Initialize()
         {
-            _isRunning = true;
-
-            // Start background processing thread
-            _processingThread = new Thread(ProcessingLoop)
+            // Create and start JobThread pool
+            for (int i = 0; i < maxThreads; i++)
             {
-                IsBackground = true,
-                Name = "ThreadManager_ProcessingLoop"
-            };
-            _processingThread.Start();
+                var jobThread = new JobThread();
+                jobThread.Start();
+                _jobThreads.Add(jobThread);
+            }
 
-            if (enableDebugLogs)
-                Debug.Log($"[ThreadManager] Initialized with max {maxThreads} threads");
+            WitLogger.Log($"[ThreadManager] Initialized with {maxThreads} JobThreads");
+        }
+
+        private void FixedUpdate()
+        {
+            // Update each JobThread's main thread processing
+            foreach (var jobThread in _jobThreads)
+            {
+                jobThread.MainThreadUpdate();
+            }
         }
 
         private void Update()
         {
-            // Process main thread queue
             ProcessMainThreadQueue();
-
-            // Cleanup finished threads
-            CleanupFinishedThreads();
-
-            // Update UI events
-            UpdateEvents();
+            stats = GetStats();
         }
 
         private void ProcessMainThreadQueue()
         {
-            int processedCount = 0;
-            // Dynamically increase processing when backlog grows to reduce queue pressure.
-            int maxProcessPerFrame = Math.Min(100, 10 + (_mainThreadQueue.Count / 10));
-
-            while (processedCount < maxProcessPerFrame && _mainThreadQueue.TryDequeue(out Action action))
+            while (_threadJobs.Count > 0)
             {
-                try
+                var availableThread = GetAvailableJobThread();
+                if (availableThread != null)
                 {
-                    action?.Invoke();
-                    processedCount++;
-                }
-                catch (Exception ex)
-                {
-                    Debug.LogError($"[ThreadManager] Error executing main thread action: {ex}");
-                }
-            }
-        }
-
-        private void ProcessingLoop()
-        {
-            try
-            {
-                while (_isRunning && !_cancellationTokenSource.Token.IsCancellationRequested)
-                {
-                    ProcessThreadQueue();
-                    Thread.Sleep(10); // Small delay to prevent CPU spinning
-                }
-            }
-            catch (ThreadAbortException)
-            {
-                // Expected during shutdown
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"[ThreadManager] Processing loop error: {ex}");
-            }
-        }
-
-        private void ProcessThreadQueue()
-        {
-            while (_activeThreads < maxThreads &&
-                   _threadJobQueue.TryDequeue(out ThreadJobItem jobItem) &&
-                   !_isShuttingDown)
-            {
-                StartJobExecution(jobItem);
-            }
-        }
-
-        private void StartJobExecution(ThreadJobItem jobItem)
-        {
-            // Get the specific cancellation token for this job
-            var jobCancellationToken = _jobCancellationTokens.TryGetValue(jobItem.JobId, out var tokenSource)
-                ? tokenSource.Token
-                : CancellationToken.None;
-
-            if (jobItem.IsAsync)
-            {
-                // Use Task.Run for async jobs and account for active thread count
-                Interlocked.Increment(ref _activeThreads);
-
-                _ = Task.Run(async () =>
-                {
-                    try
+                    var jobItem = _threadJobs.Dequeue();
+                    if (availableThread.TryEnqueue(jobItem))
                     {
-                        await ExecuteAsyncJob(jobItem, jobCancellationToken);
-                    }
-                    catch (OperationCanceledException)
-                    {
-                        if (enableDebugLogs)
-                            Debug.Log($"[ThreadManager] Job {jobItem.JobId} was cancelled");
-                    }
-                    catch (Exception ex)
-                    {
-                        HandleJobError(jobItem, ex);
-                    }
-                    finally
-                    {
-                        try { CleanupJob(jobItem.JobId); } catch { }
-                        Interlocked.Decrement(ref _activeThreads);
-                    }
-                }, _cancellationTokenSource.Token);
-            }
-            else
-            {
-                // Create dedicated thread for sync jobs
-                var thread = new Thread(() =>
-                {
-                    try
-                    {
-                        ExecuteSyncJob(jobItem, jobCancellationToken);
-                    }
-                    catch (OperationCanceledException)
-                    {
-                        if (enableDebugLogs)
-                            Debug.Log($"[ThreadManager] Job {jobItem.JobId} was cancelled");
-                    }
-                    catch (Exception ex)
-                    {
-                        HandleJobError(jobItem, ex);
-                    }
-                    finally
-                    {
-                        try { CleanupJob(jobItem.JobId); } catch { }
-                        // Remove from running threads map
-                        try { _runningThreads.TryRemove(jobItem.JobId, out _); } catch { }
-                        Interlocked.Decrement(ref _activeThreads);
-                    }
-                })
-                {
-                    IsBackground = true,
-                    Name = $"ThreadJob_{jobItem.JobId}"
-                };
 
-                _runningThreads.TryAdd(jobItem.JobId, thread);
-                Interlocked.Increment(ref _activeThreads);
-                thread.Start();
-            }
-        }
-
-        private async Task ExecuteAsyncJob(ThreadJobItem jobItem, CancellationToken cancellationToken)
-        {
-            try
-            {
-                if (jobItem.IsStreaming)
-                {
-                    await jobItem.ExecuteStreamingAsync(
-                        (result) => EnqueueMainThreadAction(() => jobItem.OnProgress?.Invoke(result)),
-                        () => EnqueueMainThreadAction(() => jobItem.OnComplete?.Invoke())
-                    );
-                }
-                else
-                {
-                    var result = await jobItem.ExecuteAsync();
-                    EnqueueMainThreadAction(() => jobItem.OnResult?.Invoke(result));
-                }
-
-                EnqueueMainThreadAction(() => OnJobCompleted?.Invoke(jobItem.JobId));
-            }
-            catch (Exception ex)
-            {
-                HandleJobError(jobItem, ex);
-            }
-        }
-
-        private void ExecuteSyncJob(ThreadJobItem jobItem, CancellationToken cancellationToken)
-        {
-            try
-            {
-                if (jobItem.IsStreaming)
-                {
-                    jobItem.ExecuteStreaming(
-                        (result) => EnqueueMainThreadAction(() => jobItem.OnProgress?.Invoke(result)),
-                        () => EnqueueMainThreadAction(() => jobItem.OnComplete?.Invoke())
-                    );
-                }
-                else
-                {
-                    var result = jobItem.Execute();
-                    EnqueueMainThreadAction(() => jobItem.OnResult?.Invoke(result));
-                }
-
-                EnqueueMainThreadAction(() => OnJobCompleted?.Invoke(jobItem.JobId));
-            }
-            catch (Exception ex)
-            {
-                HandleJobError(jobItem, ex);
-            }
-            finally
-            {
-                Interlocked.Decrement(ref _activeThreads);
-            }
-        }
-
-        private void HandleJobError(ThreadJobItem jobItem, Exception ex)
-        {
-            EnqueueMainThreadAction(() =>
-            {
-                jobItem.OnError?.Invoke(ex);
-                OnJobFailed?.Invoke(jobItem.JobId);
-            });
-
-            if (enableDebugLogs)
-                Debug.LogError($"[ThreadManager] Job {jobItem.JobId} failed: {ex}");
-        }
-
-        private void EnqueueMainThreadAction(Action action)
-        {
-            if (_isShuttingDown) return;
-
-            // If queue is full, either drop the oldest (if configured) or drop the new action.
-            if (_mainThreadQueue.Count >= maxQueueSize)
-            {
-                var now = DateTime.UtcNow;
-                if (dropOldestOnMainQueueFull)
-                {
-                    // Attempt to remove the oldest action to make space
-                    if (_mainThreadQueue.TryDequeue(out var dropped))
-                    {
-                        _mainThreadQueue.Enqueue(action);
-
-                        if (enableDebugLogs && (now - _lastQueueWarningTime).TotalSeconds > queueWarningCooldownSeconds)
-                        {
-                            Debug.LogWarning("[ThreadManager] Main thread queue was full; dropped oldest action to enqueue new one.");
-                            _lastQueueWarningTime = now;
-                        }
-                        return;
                     }
                     else
                     {
-                        // Could not dequeue (race); fall through to drop new action
-                        if ((now - _lastQueueWarningTime).TotalSeconds > queueWarningCooldownSeconds)
-                        {
-                            Debug.LogWarning("[ThreadManager] Main thread queue is full and could not make space; dropping incoming action");
-                            _lastQueueWarningTime = now;
-                        }
-                        return;
+                        _threadJobs.Enqueue(jobItem); // re-enqueue if failed
                     }
                 }
                 else
                 {
-                    var now2 = DateTime.UtcNow;
-                    if ((now2 - _lastQueueWarningTime).TotalSeconds > queueWarningCooldownSeconds)
-                    {
-                        Debug.LogWarning("[ThreadManager] Main thread queue is full, dropping action");
-                        _lastQueueWarningTime = now2;
-                    }
-                    return;
+                    break; // No available threads, exit loop
                 }
             }
-
-            _mainThreadQueue.Enqueue(action);
         }
 
-        private void CleanupFinishedThreads()
+        /// <summary>
+        /// Find the best available JobThread for enqueueing a job.
+        /// Prefers non-busy threads, then threads with the smallest queue.
+        /// </summary>
+        private JobThread GetAvailableJobThread()
         {
-            // Remove finished sync threads from the tracking dictionary to avoid memory growth
-            try
+            if (_jobThreads.Count == 0) return null;
+
+            // First, try to find a non-busy thread
+            var nonBusyThread = _jobThreads.FirstOrDefault(jt => !jt.IsBusy && jt.IsRunning);
+            if (nonBusyThread != null) return nonBusyThread;
+
+            // If all are busy, find the one with the smallest queue
+            return _jobThreads.Where(jt => jt.IsRunning).OrderBy(jt => jt.PendingJobCount).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Helper method to enqueue multiple jobs into a single JobThread.
+        /// Distributes jobs across available threads if no single thread can handle all.
+        /// </summary>
+        public bool EnqueueJobsBatch(List<ThreadJobItem> jobs)
+        {
+            if (_isShuttingDown)
             {
-                var keys = _runningThreads.Keys.ToList();
-                foreach (var key in keys)
+                WitLogger.LogWarning("[ThreadManager] Cannot enqueue jobs batch, manager is shutting down");
+                return false;
+            }
+
+            if (jobs == null || jobs.Count == 0) return false;
+
+            // Try to find a single JobThread that can handle all jobs
+            var bestThread = GetAvailableJobThread();
+            if (bestThread == null)
+            {
+                WitLogger.LogWarning("[ThreadManager] No available JobThreads for batch enqueue");
+                return false;
+            }
+
+            // Attempt to enqueue all jobs to the best thread
+            bool allEnqueued = true;
+            foreach (var job in jobs)
+            {
+                if (!bestThread.TryEnqueue(job))
                 {
-                    if (_runningThreads.TryGetValue(key, out var thread))
+                    // If this thread can't handle more, try others
+                    bestThread = GetAvailableJobThread();
+                    if (bestThread != null && bestThread.TryEnqueue(job))
                     {
-                        if (thread == null || !thread.IsAlive)
-                        {
-                            _runningThreads.TryRemove(key, out _);
-                        }
+                        WitLogger.Log($"[ThreadManager] Job {job.JobId} enqueued to alternate thread {bestThread.Id}");
+                    }
+                    else
+                    {
+                        allEnqueued = false;
+                        WitLogger.LogWarning($"[ThreadManager] Failed to enqueue job {job.JobId} in batch");
                     }
                 }
+                else
+                {
+                    WitLogger.Log($"[ThreadManager] Job {job.JobId} enqueued to thread {bestThread.Id}");
+                }
             }
-            catch (Exception ex)
-            {
-                if (enableDebugLogs) Debug.LogWarning($"[ThreadManager] CleanupFinishedThreads error: {ex.Message}");
-            }
+
+            return allEnqueued;
         }
 
-        private void UpdateEvents()
-        {
-            // Trigger events for monitoring (throttled to avoid spam)
-            if (Time.frameCount % 30 == 0) // Every 30 frames
-            {
-                OnActiveThreadsChanged?.Invoke(_activeThreads);
-                OnQueueSizeChanged?.Invoke(_threadJobQueue.Count);
-            }
-        }
-
-        // Public API methods
+        // Public API methods (keeping same signatures for backward compatibility)
         public string EnqueueJob<TResult>(ThreadJob<TResult> job, UnityAction<TResult> onComplete, UnityAction<Exception> onError = null)
         {
             if (_isShuttingDown)
             {
-                Debug.LogWarning("[ThreadManager] Cannot enqueue job, manager is shutting down");
+                WitLogger.LogWarning("[ThreadManager] Cannot enqueue job, manager is shutting down");
                 return null;
             }
 
             if (job.IsStreaming)
             {
-                Debug.LogWarning("Use EnqueueStreamingJob for streaming jobs");
+                WitLogger.LogWarning("Use EnqueueStreamingJob for streaming jobs");
                 return null;
             }
 
             var jobItem = new ThreadJobItem<TResult>(job, onComplete, onError);
 
-            if (_threadJobQueue.Count >= maxQueueSize)
+            // Create cancellation token for this specific job
+            var jobCancellationToken = new CancellationTokenSource();
+
+            // Find available JobThread and enqueue
+            var availableThread = GetAvailableJobThread();
+            if (availableThread == null)
             {
-                Debug.LogWarning("[ThreadManager] Thread job queue is full, rejecting job");
-                onError?.Invoke(new InvalidOperationException("Job queue is full"));
+                WitLogger.LogWarning("[ThreadManager] No available JobThreads");
+                onError?.Invoke(new InvalidOperationException("No available threads"));
                 return null;
             }
 
-            // Create cancellation token for this specific job
-            var jobCancellationToken = new CancellationTokenSource();
-            _jobCancellationTokens.TryAdd(jobItem.JobId, jobCancellationToken);
-            _activeJobs.TryAdd(jobItem.JobId, jobItem);
+            if (!availableThread.TryEnqueue(jobItem))
+            {
+                WitLogger.LogWarning("[ThreadManager] Failed to enqueue job to available thread");
+                onError?.Invoke(new InvalidOperationException("Failed to enqueue job"));
+                return null;
+            }
 
-            _threadJobQueue.Enqueue(jobItem);
-
-            if (enableDebugLogs)
-                Debug.Log($"[ThreadManager] Enqueued job {jobItem.JobId}");
-
-            return jobItem.JobId; // Return the job ID
+            WitLogger.Log($"[ThreadManager] Enqueued job {jobItem.JobId} to thread {availableThread.Id}");
+            return jobItem.JobId;
         }
 
-        public void EnqueueStreamingJob<TResult>(
+        public string EnqueueStreamingJob<TResult>(
             ThreadJob<TResult> job,
             UnityAction<TResult> onProgress,
             UnityAction onComplete = null,
@@ -399,78 +199,66 @@ namespace WitShells.ThreadingJob
         {
             if (_isShuttingDown)
             {
-                Debug.LogWarning("[ThreadManager] Cannot enqueue streaming job, manager is shutting down");
-                return;
+                WitLogger.LogWarning("[ThreadManager] Cannot enqueue streaming job, manager is shutting down");
+                onError?.Invoke(new InvalidOperationException("Manager is shutting down"));
+                return null;
             }
 
             if (!job.IsStreaming)
             {
-                Debug.LogWarning("Use EnqueueJob for non-streaming jobs");
-                return;
+                WitLogger.LogWarning("Use EnqueueJob for non-streaming jobs");
+                onError?.Invoke(new InvalidOperationException("Job is not streaming"));
+                return null;
             }
 
             var jobItem = new StreamingThreadJobItem<TResult>(job, onProgress, onComplete, onError);
 
-            if (_threadJobQueue.Count >= maxQueueSize)
+            // Find available JobThread and enqueue
+            var availableThread = GetAvailableJobThread();
+            if (availableThread == null)
             {
-                Debug.LogWarning("[ThreadManager] Thread job queue is full, rejecting streaming job");
-                onError?.Invoke(new InvalidOperationException("Job queue is full"));
-                return;
+                WitLogger.LogWarning("[ThreadManager] No available JobThreads for streaming job");
+                onError?.Invoke(new InvalidOperationException("No available threads"));
+                return null;
             }
 
-            _threadJobQueue.Enqueue(jobItem);
-
-            if (enableDebugLogs)
-                Debug.Log($"[ThreadManager] Enqueued streaming job {jobItem.JobId}");
+            if (!availableThread.TryEnqueue(jobItem))
+            {
+                WitLogger.LogWarning("[ThreadManager] Failed to enqueue streaming job to available thread");
+                onError?.Invoke(new InvalidOperationException("Failed to enqueue streaming job"));
+                return null;
+            }
+            WitLogger.Log($"[ThreadManager] Enqueued streaming job {jobItem.JobId} to thread {availableThread.Id}");
+            return jobItem.JobId;
         }
 
         public bool CancelJob(string jobId)
         {
-            if (string.IsNullOrEmpty(jobId)) return false;
-
-            if (_jobCancellationTokens.TryRemove(jobId, out var tokenSource))
+            foreach (var jobThread in _jobThreads)
             {
-                tokenSource.Cancel();
-                tokenSource.Dispose();
-
-                _activeJobs.TryRemove(jobId, out _);
-
-                if (enableDebugLogs)
-                    Debug.Log($"[ThreadManager] Cancelled job {jobId}");
-
-                return true;
+                jobThread.CancelJob(jobId);
             }
-
-            return false;
+            return true;
         }
 
         public bool IsJobActive(string jobId)
         {
-            return _jobCancellationTokens.ContainsKey(jobId);
+            return false;
         }
 
         public string[] GetActiveJobIds()
         {
-            return _jobCancellationTokens.Keys.ToArray();
-        }
-
-        // Utility methods
-        public void ClearQueue()
-        {
-            while (_threadJobQueue.TryDequeue(out _)) { }
-            if (enableDebugLogs)
-                Debug.Log("[ThreadManager] Queue cleared");
+            return Array.Empty<string>();
         }
 
         public ThreadManagerStats GetStats()
         {
             return new ThreadManagerStats
             {
-                ActiveThreads = _activeThreads,
-                QueuedJobs = _threadJobQueue.Count,
-                PendingMainThreadActions = _mainThreadQueue.Count,
+                ActiveThreads = _jobThreads.Count(jt => !jt.IsBusy),
+                QueuedJobs = _jobThreads.Sum(jt => jt.PendingJobCount),
+                PendingMainThreadActions = _threadJobs.Count,
                 MaxThreads = maxThreads,
-                IsRunning = _isRunning
             };
         }
 
@@ -486,61 +274,35 @@ namespace WitShells.ThreadingJob
             if (_isShuttingDown) return;
 
             _isShuttingDown = true;
-            _isRunning = false;
+            WitLogger.Log("[ThreadManager] Starting shutdown...");
 
-            if (enableDebugLogs)
-                Debug.Log("[ThreadManager] Starting shutdown...");
-
-            // Cancel all pending operations
-            _cancellationTokenSource?.Cancel();
-
-            // Wait for processing thread to finish
-            if (_processingThread != null && _processingThread.IsAlive)
+            // Stop and dispose all JobThreads
+            foreach (var jobThread in _jobThreads)
             {
-                if (!_processingThread.Join(2000)) // Wait up to 2 seconds
+                try
                 {
-                    _processingThread.Abort();
+                    jobThread.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    WitLogger.LogError($"[ThreadManager] Error disposing JobThread {jobThread.Id}: {ex}");
                 }
             }
 
-            // Wait for running threads to complete
-            var timeout = DateTime.Now.AddSeconds(3);
-            while (_activeThreads > 0 && DateTime.Now < timeout)
-            {
-                Thread.Sleep(100);
-            }
+            _jobThreads.Clear();
 
-            // Force cleanup
-            _cancellationTokenSource?.Dispose();
 
-            if (enableDebugLogs)
-                Debug.Log("[ThreadManager] Shutdown complete");
+            WitLogger.Log("[ThreadManager] Shutdown complete");
         }
 
         private void OnApplicationPause(bool pauseStatus)
         {
-            if (pauseStatus && _isRunning)
-            {
-                // Pause job processing
-                ClearQueue();
-            }
+
         }
 
         private void OnApplicationFocus(bool hasFocus)
         {
-            if (!hasFocus && _isRunning)
-            {
-                // Optional: pause or clear non-critical jobs
-            }
-        }
 
-        private void CleanupJob(string jobId)
-        {
-            if (_jobCancellationTokens.TryRemove(jobId, out var tokenSource))
-            {
-                tokenSource.Dispose();
-            }
-            _activeJobs.TryRemove(jobId, out _);
         }
     }
 

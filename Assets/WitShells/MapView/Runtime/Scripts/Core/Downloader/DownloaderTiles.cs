@@ -118,7 +118,7 @@ namespace WitShells.MapView
                     {
                         var downloadedCount = result.Item1;
                         var totalPossible = result.Item2;
-                        _tilesDownloaded = downloadedCount;
+                        // _tilesDownloaded = downloadedCount;
 
                         WitLogger.Log($"Initial state: {downloadedCount}/{totalPossible} tile data pieces already downloaded ({(downloadedCount * 100f / totalPossible):F1}% complete)");
                         onComplete(downloadedCount);
@@ -300,7 +300,8 @@ namespace WitShells.MapView
                     }
 
                     int existingCount = totalTiles - toDownload.Count;
-                    _totalTiles += toDownload.Count;
+                    _totalTiles += totalTiles;
+                    _tilesDownloaded += existingCount;
 
                     WitLogger.Log($"Zoom {zoomLevel} ({dataType}): {existingCount}/{totalTiles} tiles have data, downloading {toDownload.Count} missing tiles (expected: {expectedTiles})");
 

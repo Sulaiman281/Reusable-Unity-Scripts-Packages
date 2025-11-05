@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using SQLite;
-using UnityEngine;
 using WitShells.DesignPatterns;
 
 namespace WitShells.MapView
@@ -12,6 +11,20 @@ namespace WitShells.MapView
     /// </summary>
     public static class DatabaseUtils
     {
+        /// <summary>
+        /// Determines if a SQLite result code represents an actual error that should be logged.
+        /// Success codes like OK, Done, Row are considered normal and should not be logged as warnings.
+        /// </summary>
+        /// <param name="result">SQLite result code</param>
+        /// <returns>True if this is an actual error, false if it's a success/status message</returns>
+        private static bool IsActualSQLiteError(SQLite3.Result result)
+        {
+            // These are success/status codes that should not be logged as errors
+            return result != SQLite3.Result.OK &&
+                   result != SQLite3.Result.Done &&
+                   result != SQLite3.Result.Row;
+        }
+
         /// <summary>
         /// Creates or opens a database connection with proper schema and unique constraints.
         /// This is the single method all code should use for database creation.
@@ -44,10 +57,23 @@ namespace WitShells.MapView
                     connection.Execute("PRAGMA journal_mode=WAL;");
                     connection.Execute("PRAGMA busy_timeout=5000;");
                     connection.Execute("PRAGMA synchronous=NORMAL;");
+                    WitLogger.Log($"DatabaseUtils: Successfully applied pragmas to '{Path.GetFileName(dbPath)}'");
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex) when (IsActualSQLiteError(ex.Result))
                 {
-                    WitLogger.LogWarning($"DatabaseUtils: Failed to apply pragmas to '{dbPath}': {ex.Message}");
+                    // Only log actual SQLite errors, not status/success messages
+                    WitLogger.LogWarning($"DatabaseUtils: Failed to apply pragmas to '{Path.GetFileName(dbPath)}': {ex.Message} (SQLite Result: {ex.Result})");
+                }
+                catch (SQLiteException ex)
+                {
+                    // SQLite success messages that we should ignore (like "not an error")
+                    // These are normal status messages, not actual errors
+                    WitLogger.Log($"DatabaseUtils: SQLite status message for '{Path.GetFileName(dbPath)}': {ex.Message} (Result: {ex.Result})");
+                }
+                catch (Exception ex) when (!ex.Message.Contains("not an error"))
+                {
+                    // Log other unexpected exceptions, but ignore "not an error" messages from any source
+                    WitLogger.LogWarning($"DatabaseUtils: Unexpected error applying pragmas to '{Path.GetFileName(dbPath)}': {ex.Message}");
                 }
 
                 // Create table with proper schema
@@ -96,9 +122,20 @@ namespace WitShells.MapView
                 {
                     connection.Execute("PRAGMA journal_mode=WAL;");
                 }
-                catch (Exception ex)
+                catch (SQLiteException ex) when (IsActualSQLiteError(ex.Result))
                 {
-                    WitLogger.LogWarning($"DatabaseUtils: Failed to apply read-only pragmas to '{dbPath}': {ex.Message}");
+                    // Only log actual SQLite errors, not status messages
+                    WitLogger.LogWarning($"DatabaseUtils: Failed to apply read-only pragmas to '{Path.GetFileName(dbPath)}': {ex.Message} (SQLite Result: {ex.Result})");
+                }
+                catch (SQLiteException ex)
+                {
+                    // SQLite success messages - just log at info level
+                    WitLogger.Log($"DatabaseUtils: SQLite status for read-only connection to '{Path.GetFileName(dbPath)}': {ex.Message}");
+                }
+                catch (Exception ex) when (!ex.Message.Contains("not an error"))
+                {
+                    // Log other unexpected exceptions, but ignore "not an error" messages
+                    WitLogger.LogWarning($"DatabaseUtils: Unexpected error applying read-only pragmas to '{Path.GetFileName(dbPath)}': {ex.Message}");
                 }
 
                 return connection;
@@ -125,8 +162,19 @@ namespace WitShells.MapView
                     {
                         connection.Execute("PRAGMA wal_checkpoint(TRUNCATE);");
                     }
-                    catch (Exception ex)
+                    catch (SQLiteException ex) when (IsActualSQLiteError(ex.Result))
                     {
+                        // Only log actual SQLite errors, not status messages
+                        WitLogger.LogWarning($"DatabaseUtils: Checkpoint failed: {ex.Message} (SQLite Result: {ex.Result})");
+                    }
+                    catch (SQLiteException ex)
+                    {
+                        // SQLite success messages for checkpoint
+                        WitLogger.Log($"DatabaseUtils: Checkpoint status: {ex.Message}");
+                    }
+                    catch (Exception ex) when (!ex.Message.Contains("not an error"))
+                    {
+                        // Log other unexpected exceptions, but ignore "not an error" messages
                         WitLogger.LogWarning($"DatabaseUtils: Checkpoint failed: {ex.Message}");
                     }
                 }

@@ -47,13 +47,13 @@ namespace WitShells.MapView
                 if (_useDatabase)
                 {
 
-                    using (var dbRead = DatabaseUtils.CreateReadOnlyConnection(database))
+                    using (var dbRead = DatabaseUtils.EnsureDatabaseWithSchema(database))
                     {
                         if (dbRead == null)
                         {
                             throw new InvalidOperationException($"Failed to open read-only database connection to '{database}'");
                         }
-                        
+
                         ConcurrentLoggerBehaviour.Enqueue($"Fetching from {database} for zoom {_zoomLevel}, {_tilesToFetch.Count} tiles");
 
                         // Prefer a single bulk query when the number of tiles is reasonable to avoid

@@ -29,6 +29,61 @@ namespace WitShells.MapView
             return (lat_deg, lon_deg);
         }
 
+        public static (int tileX, int tileY, float normX, float normY) LatLonToTileNormalized(double lat, double lon, int zoom)
+        {
+            double n = Mathf.Pow(2, zoom);
+
+            // Convert lat/lon to tile coordinates
+            double x = (lon + 180.0) / 360.0 * n;
+            double latRad = lat * Mathf.Deg2Rad;
+            double y = (1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * n;
+
+            // Separate integer tile and fractional (normalized) part
+            int tileX = (int)Math.Floor(x);
+            int tileY = (int)Math.Floor(y);
+
+            float normX = (float)(x - tileX);
+            float normY = (float)(y - tileY);
+
+            return (tileX, tileY, normX, normY);
+        }
+
+        // compute normalized position inside tile by converting the click from map-local -> world -> tile-local
+        public static void GetNormalizedPositionInTile(RectTransform tile, Vector2 localClickPosInMapLocal, Transform mapTransform, out float normX, out float normY)
+        {
+            // Convert click (which is in MapView's local space) to world space, then to tile local space
+            var worldPoint = mapTransform.TransformPoint((Vector3)localClickPosInMapLocal);
+            var localInTile = tile.InverseTransformPoint(worldPoint);
+
+            var rect = tile.rect;
+            // account for pivot: rect.xMin = -rect.width * pivot.x
+            // px = distance from left edge; py = distance from bottom edge
+            float px = localInTile.x + rect.width * tile.pivot.x;
+            float py = localInTile.y + rect.height * tile.pivot.y;
+
+            normX = Mathf.Clamp01(px / rect.width);
+            // invert Y so normalized Y matches tile coordinate system (0 = top)
+            normY = Mathf.Clamp01(1f - (py / rect.height));
+        }
+
+        public static void GetLocalPositionFromNormalizedInTile(RectTransform tile, float normX, float normY, Transform mapTransform, out Vector3 localPosInMapLocal)
+        {
+            var rect = tile.rect;
+
+            // px = distance from left edge in local tile coordinates (0..width)
+            float px = Mathf.Clamp01(normX) * rect.width;
+            // py measured from bottom; invert normY because tile normalized Y is top=0
+            float py = (1f - Mathf.Clamp01(normY)) * rect.height;
+
+            // Convert to tile-local coordinates (origin at pivot)
+            float localX = px - rect.width * tile.pivot.x;
+            float localY = py - rect.height * tile.pivot.y;
+
+            var pointInTileLocal = new Vector3(localX, localY, 0f);
+            var worldPoint = tile.TransformPoint(pointInTileLocal);
+            localPosInMapLocal = mapTransform.InverseTransformPoint(worldPoint);
+        }
+
         public static Vector2Int LatLonToTile(double lat, double lon, int zoom)
         {
             int n = 1 << zoom;

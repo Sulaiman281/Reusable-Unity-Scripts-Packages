@@ -231,6 +231,52 @@ namespace WitShells.MapView
             return tile;
         }
 
+        public void RevealDatabaseInFileExplorer()
+        {
+            var path = FilePath;
+            if (string.IsNullOrEmpty(path) || !File.Exists(path))
+            {
+                WitLogger.LogWarning($"Database file not found: {path}");
+                return;
+            }
+
+#if UNITY_EDITOR
+            try
+            {
+                UnityEditor.EditorUtility.RevealInFinder(path);
+            }
+            catch (Exception ex)
+            {
+                WitLogger.LogError($"RevealInFinder failed: {ex}");
+            }
+#else
+            try
+            {
+                var dir = Path.GetDirectoryName(path);
+                if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+                {
+                    // select the file in Explorer
+                    Process.Start("explorer.exe", $"/select,\"{path}\"");
+                }
+                else if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor)
+                {
+                    // reveal in Finder
+                    Process.Start("open", $"-R \"{path}\"");
+                }
+                else
+                {
+                    // Linux: open containing folder
+                    Process.Start("xdg-open", dir);
+                }
+            }
+            catch (Exception ex)
+            {
+                WitLogger.LogError($"Could not open file explorer: {ex}");
+            }
+#endif
+        }
+
+
         #endregion
 
         public void Dispose()
@@ -259,6 +305,12 @@ namespace WitShells.MapView
         public void LogDatabasePath()
         {
             WitLogger.Log($"Database Path: {FilePath}");
+        }
+
+        [ContextMenu("Reveal Database In Explorer")]
+        public void RevealDatabaseInExplorer()
+        {
+            RevealDatabaseInFileExplorer();
         }
 
 #endif

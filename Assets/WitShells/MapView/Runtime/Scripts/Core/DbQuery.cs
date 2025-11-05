@@ -38,7 +38,7 @@ namespace WitShells.MapView
                     SQLiteConnection conn = null;
                     try
                     {
-                        conn = DatabaseUtils.CreateReadOnlyConnection(_path);
+                        conn = DatabaseUtils.EnsureDatabaseWithSchema(_path);
                         if (conn == null)
                         {
                             throw new InvalidOperationException($"Failed to open database connection to '{_path}'");

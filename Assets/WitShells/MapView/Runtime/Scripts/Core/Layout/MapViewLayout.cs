@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -17,6 +19,27 @@ namespace WitShells.MapView
         public override string ToString()
         {
             return $"{Latitude}, {Longitude}";
+        }
+    }
+
+    [Serializable]
+    public class WorldObjectMarkers
+    {
+        [SerializeField] protected GameObject markerContainer;
+
+        public List<Placable> Placables;
+
+        public bool HasMarkers => Placables != null && Placables.Count > 0;
+
+        public void Initialize()
+        {
+            if (markerContainer == null)
+            {
+                markerContainer = new GameObject("WorldObjectMarkers");
+            }
+
+            markerContainer.name = "WorldObjectMarkers";
+            Placables = markerContainer.GetComponentsInChildren<Placable>(true).ToList();
         }
     }
 
@@ -55,6 +78,8 @@ namespace WitShells.MapView
 
         [SerializeField] private float zoomVelocity = 0f;
 
+        [Header("Map Markers")]
+        [SerializeField] private WorldObjectMarkers worldObjectMarkers;
 
         [Header("Runtime")]
         [SerializeField] private Coordinates SelectedCoordinates;
@@ -105,6 +130,28 @@ namespace WitShells.MapView
             // Batch updates are preferred for performance when available.
             MapTileManager.Instance.OnTileFetched.AddListener(OnTileIsFetched);
             MapTileManager.Instance.OnTilesFetched?.AddListener(OnTilesIsFetchedBatch);
+
+            // Initialize world object markers
+            worldObjectMarkers.Initialize();
+            HandleMarkerUpdate();
+        }
+
+        [ContextMenu("Toggle Geo Tags")]
+        public void ToggleGeoTags()
+        {
+            MapSettings.Instance.showLabels = !MapSettings.Instance.showLabels;
+
+            // Update all tiles to reflect the new label setting
+            foreach (Transform zoomLayer in zoomLayers.Values)
+            {
+                foreach (Transform child in zoomLayer)
+                {
+                    if (child.TryGetComponent<TileView>(out var tile))
+                    {
+                        tile.ChangeLabelMode(showLabels);
+                    }
+                }
+            }
         }
 
         void OnDestroy()
@@ -179,8 +226,11 @@ namespace WitShells.MapView
                 // Framerate-independent damping (inertiaDamping ~ 0.9 means ~10% decay per 60fps frame)
                 float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
                 _velocity *= decay;
+
+                // Handles Marker repositioning
             }
 
+            HandleMarkerUpdate();
             HandleZoomUpdate();
         }
 
@@ -227,6 +277,28 @@ namespace WitShells.MapView
 
             var zoomDelta = currentZoomLevel - zoomLevel;
             ZoomLayer().localScale = Vector3.one * (1 + zoomDelta);
+        }
+
+        private void HandleMarkerUpdate()
+        {
+            if (worldObjectMarkers == null) return;
+
+            foreach (var placable in worldObjectMarkers.Placables)
+            {
+                if (placable == null) continue;
+
+                if (!HasWorldPositionInMapView(placable.Data, out var position))
+                {
+                    placable.gameObject.SetActive(false);
+                    continue;
+                }
+                else if (!placable.gameObject.activeSelf)
+                {
+                    placable.gameObject.SetActive(true);
+                }
+                placable.transform.position = position;
+                placable.UpdateScale(currentZoomLevel, maxZoomLevel);
+            }
         }
 
         void FixedUpdate()
@@ -558,6 +630,41 @@ namespace WitShells.MapView
         }
 
 
+        public bool HasWorldPositionInMapView(PlacableData data, out Vector3 position)
+        {
+            var coordinates = data.Coordinates;
+            return HasWorldPositionInMapView(coordinates, out position);
+        }
+
+        public bool HasWorldPositionInMapView(Coordinates coordinates, out Vector3 position)
+        {
+            (int tileX, int tileY, float normX, float normY) =
+                Utils.LatLonToTileNormalized(coordinates.Latitude, coordinates.Longitude, zoomLevel);
+
+            // clamp normalized values to be safe
+            normX = Mathf.Clamp01(normX);
+            normY = Mathf.Clamp01(normY);
+
+            return HasWorldPositionInMapView(new Vector2Int(tileX, tileY), normX, normY, out position);
+        }
+
+        private bool HasWorldPositionInMapView(Vector2Int tileCoordinate, float normX, float normY, out Vector3 position)
+        {
+            var tile = GetTileAtCoordinate(tileCoordinate);
+            if (tile == null)
+            {
+                position = Vector3.zero;
+                return false;
+            }
+
+            // get position in MapView local space using updated utils (pass map transform)
+            Utils.GetLocalPositionFromNormalizedInTile(tile.RectTransform, normX, normY, transform, out position);
+
+            // convert to world position
+            position = transform.TransformPoint(position);
+            return true;
+        }
+
         #region Input Handlers
 
         public void OnDrag(PointerEventData eventData)
@@ -600,11 +707,9 @@ namespace WitShells.MapView
 
             var cam = parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : parentCanvas.worldCamera;
 
-            // Convert screen position to local position
+            // Convert screen position to local position (map-local space)
             RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, eventData.position, cam, out Vector2 localPoint);
 
-
-            // Calculate the tile position
             int tileX = Mathf.FloorToInt((localPoint.x + (gridSize.x * 256f / 2)) / 256f);
             int tileY = Mathf.FloorToInt((-localPoint.y + (gridSize.y * 256f / 2)) / 256f);
 
@@ -613,40 +718,21 @@ namespace WitShells.MapView
             {
                 var clickedTile = tiles[tileX, tileY];
 
-                // Get the tile's actual position and size (256x256 pixels)
-                Vector3 tileWorldPos = clickedTile.transform.localPosition;
-                float tileSize = 256f; // Standard tile size
-
-                // Calculate the tile's bounds in local space
-                float tileLeft = tileWorldPos.x - tileSize / 2f;
-                float tileRight = tileWorldPos.x + tileSize / 2f;
-                float tileTop = tileWorldPos.y + tileSize / 2f;
-                float tileBottom = tileWorldPos.y - tileSize / 2f;
-
-                // Calculate normalized position within the tile (0,0 to 1,1)
-                float normX = (localPoint.x - tileLeft) / tileSize;
-                float normY = (tileTop - localPoint.y) / tileSize; // Invert Y since Unity Y-up vs tile Y-down
-
-                // Clamp to [0,1] to handle any floating point precision issues
-                normX = Mathf.Clamp01(normX);
-                normY = Mathf.Clamp01(normY);
-
-                WitLogger.Log($"Clicked On: {localPoint} - Tile bounds: ({tileLeft},{tileBottom}) to ({tileRight},{tileTop})");
-                WitLogger.Log($"Normalized position: ({normX:F4}, {normY:F4})");
-                WitLogger.Log($"Clicked on tile: {clickedTile.name} at coordinate {clickedTile.Coordinate}");
+                // Pass map transform so Utils computes normalized coords correctly across parent/scale/pivot
+                Utils.GetNormalizedPositionInTile(clickedTile.RectTransform, localPoint, transform, out float normX, out float normY);
 
                 var (lat, lon) = Utils.TileNormalizedToLatLon(clickedTile.Coordinate.x, clickedTile.Coordinate.y, zoomLevel, normX, normY);
                 SelectedCoordinates = new Coordinates { Latitude = lat, Longitude = lon };
 
                 _hasClicked = true;
-
                 GUIUtility.systemCopyBuffer = SelectedCoordinates.ToString();
-                WitLogger.Log($"Selected Coordinates: {SelectedCoordinates} (copied to clipboard)");
+                WitLogger.Log($"Selected Coordinates: {SelectedCoordinates} (copied to clipboard) {normX}, {normY}");
             }
         }
 
         #endregion
 
+        #region Bound Checks
         private void MoveLeftColumnToRight()
         {
             // Store the left column tiles
@@ -874,6 +960,8 @@ namespace WitShells.MapView
             }
             return true;
         }
+
+        #endregion
 
         #region Editor Methods
 
