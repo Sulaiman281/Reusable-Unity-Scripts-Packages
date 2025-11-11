@@ -5,6 +5,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using WitShells.DesignPatterns;
 using WitShells.DesignPatterns.Core;
 
@@ -64,6 +65,9 @@ namespace WitShells.MapView
         [SerializeField] private Vector3 TopLeftLimit;
         [SerializeField] private Vector3 BottomRightLimit;
 
+        [Tooltip("Toggle between UI Navigation or Touch Input")]
+        [SerializeField] private bool useTouchInput = true;
+
         [Header("Drag Settings")]
         [SerializeField] private float dragSensitivity = 1f;
         [SerializeField] private bool invertDrag = false;
@@ -120,6 +124,11 @@ namespace WitShells.MapView
         private Vector2 _lastDragPosition;
         private float _lastDragStartTime = 0f;
         private Vector3 _velocity = Vector3.zero;
+
+        // Touch helpers
+        private bool _isPinching = false;
+        private float _prevTouchDistance = 0f;
+        private Vector2 _prevTouchCenter = Vector2.zero;
 
         void Start()
         {
@@ -178,6 +187,9 @@ namespace WitShells.MapView
 
         void Update()
         {
+            HandleTouchInputes();
+
+
             if (_velocity.magnitude > 0.01f)
             {
                 // Compute the movement that would be applied this frame
@@ -245,72 +257,6 @@ namespace WitShells.MapView
             HandleZoomUpdate();
         }
 
-        private void OnTileIsFetched(Vector2Int coordinate, Tile tile)
-        {
-            // Backwards-compatible single-tile handler
-            if (tile == null) return;
-            TileView tv = GetTileAtCoordinate(coordinate);
-            if (tv == null) return;
-            tv.SetData(tile);
-        }
-
-        private void OnTilesIsFetchedBatch(List<Tile> fetchedTiles)
-        {
-            if (fetchedTiles == null || fetchedTiles.Count == 0) return;
-            if (this.tiles == null) return;
-
-            foreach (var tile in fetchedTiles)
-            {
-                if (tile == null) continue;
-                var coord = new Vector2Int(tile.TileX, tile.TileY);
-                var tv = GetTileAtCoordinate(coord);
-                if (tv == null) continue;
-                tv.SetData(tile);
-            }
-        }
-
-        private void HandleZoomUpdate()
-        {
-            currentZoomLevel = Mathf.Clamp(currentZoomLevel + zoomVelocity, minZoomLevel, maxZoomLevel + .9f);
-
-            float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
-            zoomVelocity *= decay;
-
-            var zoom = (int)currentZoomLevel;
-
-            if (Mathf.Abs(zoomVelocity) <= 0.01f)
-            {
-                if (zoom != zoomLevel)
-                {
-                    SetZoomUpdate(zoom);
-                }
-            }
-
-            var zoomDelta = currentZoomLevel - zoomLevel;
-            ZoomLayer().localScale = Vector3.one * (1 + zoomDelta);
-        }
-
-        private void HandleMarkerUpdate()
-        {
-            if (worldObjectMarkers == null) return;
-
-            foreach (var placable in worldObjectMarkers.Placables)
-            {
-                if (placable == null) continue;
-
-                if (!HasWorldPositionInMapView(placable.Data, out var position))
-                {
-                    placable.gameObject.SetActive(false);
-                    continue;
-                }
-                else if (!placable.gameObject.activeSelf)
-                {
-                    placable.gameObject.SetActive(true);
-                }
-                placable.transform.position = position;
-                placable.UpdateScale(currentZoomLevel, maxZoomLevel);
-            }
-        }
 
         void FixedUpdate()
         {
@@ -384,6 +330,169 @@ namespace WitShells.MapView
                 return;
             }
         }
+
+        private void HandleTouchInputes()
+        {
+            if (!useTouchInput)
+            {
+                // Touch input disabled by setting — skip handling
+                return;
+            }
+
+            if (!Input.touchSupported)
+            {
+                // Device does not support touch; skip touch handling to avoid duplicate input
+                // falling back to mouse/keyboard input
+                useTouchInput = false;
+                return;
+            }
+
+            // Prefer legacy Input.touches for broad compatibility in editor and devices
+            int touchCount = Input.touchCount;
+
+            if (touchCount == 0)
+            {
+                // nothing touching - don't modify existing velocities here (inertia will decay in Update)
+                _isPinching = false;
+                return;
+            }
+
+            // Single touch -> pan/drag
+            if (touchCount == 1)
+            {
+                Touch t = Input.GetTouch(0);
+
+                if (t.phase == UnityEngine.TouchPhase.Began)
+                {
+                    _hasDragStarted = true;
+                    _lastDragPosition = t.position;
+                    _lastDragStartTime = Time.time;
+                }
+                else if (t.phase == UnityEngine.TouchPhase.Moved || t.phase == UnityEngine.TouchPhase.Stationary)
+                {
+                    if (!_hasDragStarted)
+                    {
+                        _hasDragStarted = true;
+                        _lastDragPosition = t.position;
+                        _lastDragStartTime = Time.time;
+                    }
+
+                    Vector2 delta = t.position - _lastDragPosition;
+                    var direction = invertDrag ? -1 : 1;
+                    var movement = delta * dragSensitivity * direction;
+
+                    // convert to velocity (units per second)
+                    _velocity = new Vector3(movement.x, movement.y, 0f) / Mathf.Max(Time.deltaTime, 0.0001f);
+
+                    _lastDragPosition = t.position;
+                }
+                else if (t.phase == UnityEngine.TouchPhase.Ended || t.phase == UnityEngine.TouchPhase.Canceled)
+                {
+                    _hasDragStarted = false;
+                }
+
+                _isPinching = false;
+                return;
+            }
+
+            // Multi-touch (use first two touches) -> pinch to zoom + two-finger pan
+            if (touchCount >= 2)
+            {
+                Touch t0 = Input.GetTouch(0);
+                Touch t1 = Input.GetTouch(1);
+
+                // Two-finger pan: use movement of the center point
+                Vector2 prevCenter = (t0.position - t0.deltaPosition + t1.position - t1.deltaPosition) * 0.5f;
+                Vector2 curCenter = (t0.position + t1.position) * 0.5f;
+                Vector2 centerDelta = curCenter - prevCenter;
+
+                var direction = invertDrag ? -1 : 1;
+                var panMovement = centerDelta * dragSensitivity * direction;
+                _velocity = new Vector3(panMovement.x, panMovement.y, 0f) / Mathf.Max(Time.deltaTime, 0.0001f);
+
+                // Pinch zoom: compare distance between touches
+                float prevDist = (t0.position - t0.deltaPosition - (t1.position - t1.deltaPosition)).magnitude;
+                float currDist = (t0.position - t1.position).magnitude;
+                float pinchDelta = currDist - prevDist;
+
+                // Scale pinchDelta down to a zoom velocity; tuned to feel natural on typical devices
+                float targetZoomVelocity = pinchDelta * zoomSensitivity * 0.01f;
+                zoomVelocity = Mathf.Lerp(zoomVelocity, targetZoomVelocity, Time.deltaTime * 10f);
+
+                _isPinching = true;
+                _prevTouchDistance = currDist;
+                _prevTouchCenter = curCenter;
+            }
+        }
+
+        private void OnTileIsFetched(Vector2Int coordinate, Tile tile)
+        {
+            // Backwards-compatible single-tile handler
+            if (tile == null) return;
+            TileView tv = GetTileAtCoordinate(coordinate);
+            if (tv == null) return;
+            tv.SetData(tile);
+        }
+
+        private void OnTilesIsFetchedBatch(List<Tile> fetchedTiles)
+        {
+            if (fetchedTiles == null || fetchedTiles.Count == 0) return;
+            if (this.tiles == null) return;
+
+            foreach (var tile in fetchedTiles)
+            {
+                if (tile == null) continue;
+                var coord = new Vector2Int(tile.TileX, tile.TileY);
+                var tv = GetTileAtCoordinate(coord);
+                if (tv == null) continue;
+                tv.SetData(tile);
+            }
+        }
+
+        private void HandleZoomUpdate()
+        {
+            currentZoomLevel = Mathf.Clamp(currentZoomLevel + zoomVelocity, minZoomLevel, maxZoomLevel + .9f);
+
+            float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
+            zoomVelocity *= decay;
+
+            var zoom = (int)currentZoomLevel;
+
+            if (Mathf.Abs(zoomVelocity) <= 0.01f)
+            {
+                if (zoom != zoomLevel)
+                {
+                    SetZoomUpdate(zoom);
+                }
+            }
+
+            var zoomDelta = currentZoomLevel - zoomLevel;
+            ZoomLayer().localScale = Vector3.one * (1 + zoomDelta);
+        }
+
+        private void HandleMarkerUpdate()
+        {
+            if (worldObjectMarkers == null) return;
+
+            foreach (var placable in worldObjectMarkers.Placables)
+            {
+                if (placable == null) continue;
+
+                if (!HasWorldPositionInMapView(placable.Data, out var position))
+                {
+                    placable.gameObject.SetActive(false);
+                    continue;
+                }
+                else if (!placable.gameObject.activeSelf)
+                {
+                    placable.gameObject.SetActive(true);
+                }
+                placable.transform.position = position;
+                placable.UpdateScale(currentZoomLevel, maxZoomLevel);
+            }
+        }
+
+
 
         private void UpdateCorners()
         {
@@ -680,6 +789,8 @@ namespace WitShells.MapView
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (useTouchInput) return;
+
             if (isFixedLayout) return;
 
             if (!_hasDragStarted)
@@ -705,6 +816,7 @@ namespace WitShells.MapView
 
         public void OnScroll(PointerEventData eventData)
         {
+            if (useTouchInput) return;
             WitLogger.Log($"Scroll delta: {eventData.scrollDelta} - position {eventData.position}");
 
             float scrollDelta = eventData.scrollDelta.y;

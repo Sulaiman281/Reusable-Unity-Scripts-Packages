@@ -1,0 +1,14 @@
+{
+    "name": "com.witshells.canvasdrawtool",
+    "version": "1.2.0",
+    "displayName": "WitShells Canvas Draw Tool",
+    "description": "A collection of reusable canvas drawing tools for Unity.",
+    "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "email": "sayedsulaiman607@gmail.com"
+    },
+    "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+    }
+}
