@@ -40,7 +40,7 @@ namespace WitShells.WitClientApi
                 onSuccess?.Invoke(tr);
             }, (fail) =>
             {
-
+                OnFail?.Invoke();
             });
         }
 

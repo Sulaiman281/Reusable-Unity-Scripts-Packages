@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5c8a39d21da5542b75dc5f9524b43c, type: 3}
   m_Name: ApiConfig
   m_EditorClassIdentifier: 
-  Environment: 0
+  Environment: 1
   LocalBaseUrl: localhost
   LocalPort: 5000
   UseHttpsForLocal: 0
-  ProductionBaseUrl: https://api.witshells.com
+  ProductionBaseUrl: https://witcoin.witshells.com
   ProductionPort: 443
   BasePath: /
+  SignInPath: /api/Auth/login
+  SignOutPath: /api/Auth/logout
+  RefreshTokenPath: /api/Auth/refresh-token

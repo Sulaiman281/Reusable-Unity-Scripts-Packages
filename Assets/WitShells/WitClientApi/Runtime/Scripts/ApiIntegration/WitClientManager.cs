@@ -56,7 +56,7 @@ namespace WitShells.WitClientApi
         {
             var credentials = new
             {
-                email = "sayedsulaiman607@gmail.com",
+                email = "witshells@gmail.com",
                 password = "12ta442ta1"
             };
 
