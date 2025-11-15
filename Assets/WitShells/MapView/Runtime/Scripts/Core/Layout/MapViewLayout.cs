@@ -100,6 +100,8 @@ namespace WitShells.MapView
 
         public Vector2Int TargetClickedZoomTile => Utils.LatLonToTile(SelectedCoordinates.Latitude, SelectedCoordinates.Longitude, zoomLevel);
 
+        public bool CanInput { get; set; } = true;
+
         private ObjectPool<TileView> tilePool;
         public ObjectPool<TileView> Pool
         {
@@ -339,6 +341,8 @@ namespace WitShells.MapView
 
         private void HandleTouchInputes()
         {
+            if (!CanInput) return;
+
             if (!useTouchInput)
             {
                 // Touch input disabled by setting — skip handling
@@ -799,6 +803,7 @@ namespace WitShells.MapView
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (!CanInput) return;
             if (useTouchInput) return;
 
             if (isFixedLayout) return;
@@ -826,6 +831,7 @@ namespace WitShells.MapView
 
         public void OnScroll(PointerEventData eventData)
         {
+            if (!CanInput) return;
             if (useTouchInput) return;
             WitLogger.Log($"Scroll delta: {eventData.scrollDelta} - position {eventData.position}");
 
