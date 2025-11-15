@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using SQLite;
@@ -249,30 +250,32 @@ namespace WitShells.MapView
             {
                 WitLogger.LogError($"RevealInFinder failed: {ex}");
             }
-#else
+#elif !UNITY_ANDROID
             try
             {
-                var dir = Path.GetDirectoryName(path);
-                if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
-                {
-                    // select the file in Explorer
-                    Process.Start("explorer.exe", $"/select,\"{path}\"");
-                }
-                else if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor)
-                {
-                    // reveal in Finder
-                    Process.Start("open", $"-R \"{path}\"");
-                }
-                else
-                {
-                    // Linux: open containing folder
-                    Process.Start("xdg-open", dir);
-                }
+            var dir = Path.GetDirectoryName(path);
+            if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+            {
+                // select the file in Explorer
+                Process.Start("explorer.exe", $"/select,\"{path}\"");
+            }
+            else if (Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor)
+            {
+                // reveal in Finder
+                Process.Start("open", $"-R \"{path}\"");
+            }
+            else
+            {
+                // Linux: open containing folder
+                Process.Start("xdg-open", dir);
+            }
             }
             catch (Exception ex)
             {
-                WitLogger.LogError($"Could not open file explorer: {ex}");
+            WitLogger.LogError($"Could not open file explorer: {ex}");
             }
+#else
+            WitLogger.LogWarning("File explorer reveal not supported on Android platform");
 #endif
         }
 
