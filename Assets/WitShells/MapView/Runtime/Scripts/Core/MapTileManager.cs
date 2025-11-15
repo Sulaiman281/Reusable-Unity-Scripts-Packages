@@ -18,7 +18,7 @@ namespace WitShells.MapView
         public bool canCacheTiles = true;
 
         [Header("Offline Map Settings")]
-        [SerializeField] private string fileName;
+        [SerializeField] private string fileName => MapSettings.Instance.MapFile.MapName ?? "OfflineMap";
 
         [Header("Cache Settings")]
         [SerializeField] private int maxCachedTiles = 100;

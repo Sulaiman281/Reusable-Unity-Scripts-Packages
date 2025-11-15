@@ -132,6 +132,8 @@ namespace WitShells.MapView
 
         void Start()
         {
+            InitializeMapSettings(MapSettings.Instance.MapFile);
+
             currentZoomLevel = zoomLevel;
             GenerateLayout();
 
@@ -144,7 +146,6 @@ namespace WitShells.MapView
             worldObjectMarkers.Initialize();
             HandleMarkerUpdate();
 
-            InitializeMapSettings(MapSettings.Instance.MapFile);
         }
 
         public void InitializeMapSettings(MapFile settings)
