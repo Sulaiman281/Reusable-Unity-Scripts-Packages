@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 using WitShells.DesignPatterns;
 using WitShells.DesignPatterns.Core;
 
@@ -133,6 +134,10 @@ namespace WitShells.MapView
         void Start()
         {
             InitializeMapSettings(MapSettings.Instance.MapFile);
+
+            // enable Enhanced Touch support (InputSystem) so we can use activeTouches
+            if (!EnhancedTouchSupport.enabled)
+                EnhancedTouchSupport.Enable();
 
             currentZoomLevel = zoomLevel;
             GenerateLayout();
@@ -340,16 +345,19 @@ namespace WitShells.MapView
                 return;
             }
 
-            if (!Input.touchSupported)
+            // If no Touchscreen (InputSystem) is available, fall back to non-touch input paths
+            if (Touchscreen.current == null)
             {
-                // Device does not support touch; skip touch handling to avoid duplicate input
-                // falling back to mouse/keyboard input
                 useTouchInput = false;
                 return;
             }
 
-            // Prefer legacy Input.touches for broad compatibility in editor and devices
-            int touchCount = Input.touchCount;
+            // Ensure EnhancedTouch is enabled (Start does this too, but keep safe here)
+            if (!EnhancedTouchSupport.enabled)
+                EnhancedTouchSupport.Enable();
+
+            var touches = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches;
+            int touchCount = touches.Count;
 
             if (touchCount == 0)
             {
@@ -361,33 +369,34 @@ namespace WitShells.MapView
             // Single touch -> pan/drag
             if (touchCount == 1)
             {
-                Touch t = Input.GetTouch(0);
+                var t = touches[0];
+                var phase = t.phase; // UnityEngine.InputSystem.TouchPhase
 
-                if (t.phase == UnityEngine.TouchPhase.Began)
+                if (phase == UnityEngine.InputSystem.TouchPhase.Began)
                 {
                     _hasDragStarted = true;
-                    _lastDragPosition = t.position;
+                    _lastDragPosition = t.screenPosition;
                     _lastDragStartTime = Time.time;
                 }
-                else if (t.phase == UnityEngine.TouchPhase.Moved || t.phase == UnityEngine.TouchPhase.Stationary)
+                else if (phase == UnityEngine.InputSystem.TouchPhase.Moved || phase == UnityEngine.InputSystem.TouchPhase.Stationary)
                 {
                     if (!_hasDragStarted)
                     {
                         _hasDragStarted = true;
-                        _lastDragPosition = t.position;
+                        _lastDragPosition = t.screenPosition;
                         _lastDragStartTime = Time.time;
                     }
 
-                    Vector2 delta = t.position - _lastDragPosition;
+                    Vector2 delta = t.screenPosition - _lastDragPosition;
                     var direction = invertDrag ? -1 : 1;
                     var movement = delta * dragSensitivity * direction;
 
                     // convert to velocity (units per second)
                     _velocity = new Vector3(movement.x, movement.y, 0f) / Mathf.Max(Time.deltaTime, 0.0001f);
 
-                    _lastDragPosition = t.position;
+                    _lastDragPosition = t.screenPosition;
                 }
-                else if (t.phase == UnityEngine.TouchPhase.Ended || t.phase == UnityEngine.TouchPhase.Canceled)
+                else if (phase == UnityEngine.InputSystem.TouchPhase.Ended || phase == UnityEngine.InputSystem.TouchPhase.Canceled)
                 {
                     _hasDragStarted = false;
                 }
@@ -399,12 +408,12 @@ namespace WitShells.MapView
             // Multi-touch (use first two touches) -> pinch to zoom + two-finger pan
             if (touchCount >= 2)
             {
-                Touch t0 = Input.GetTouch(0);
-                Touch t1 = Input.GetTouch(1);
+                var t0 = touches[0];
+                var t1 = touches[1];
 
                 // Two-finger pan: use movement of the center point
-                Vector2 prevCenter = (t0.position - t0.deltaPosition + t1.position - t1.deltaPosition) * 0.5f;
-                Vector2 curCenter = (t0.position + t1.position) * 0.5f;
+                Vector2 prevCenter = (t0.screenPosition - t0.delta + t1.screenPosition - t1.delta) * 0.5f;
+                Vector2 curCenter = (t0.screenPosition + t1.screenPosition) * 0.5f;
                 Vector2 centerDelta = curCenter - prevCenter;
 
                 var direction = invertDrag ? -1 : 1;
@@ -412,8 +421,8 @@ namespace WitShells.MapView
                 _velocity = new Vector3(panMovement.x, panMovement.y, 0f) / Mathf.Max(Time.deltaTime, 0.0001f);
 
                 // Pinch zoom: compare distance between touches
-                float prevDist = (t0.position - t0.deltaPosition - (t1.position - t1.deltaPosition)).magnitude;
-                float currDist = (t0.position - t1.position).magnitude;
+                float prevDist = (t0.screenPosition - t0.delta - (t1.screenPosition - t1.delta)).magnitude;
+                float currDist = (t0.screenPosition - t1.screenPosition).magnitude;
                 float pinchDelta = currDist - prevDist;
 
                 // Scale pinchDelta down to a zoom velocity; tuned to feel natural on typical devices
