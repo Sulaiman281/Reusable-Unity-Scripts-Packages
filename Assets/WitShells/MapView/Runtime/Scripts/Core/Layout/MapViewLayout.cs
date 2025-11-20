@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -12,44 +10,83 @@ using WitShells.DesignPatterns.Core;
 
 namespace WitShells.MapView
 {
+    #region Data Structures
+
     [Serializable]
     public struct Coordinates
     {
         public double Latitude;
         public double Longitude;
+        public override string ToString() => $"{Latitude}, {Longitude}";
+    }
 
-        public override string ToString()
-        {
-            return $"{Latitude}, {Longitude}";
-        }
+    [Serializable]
+    public class PlacableItems
+    {
+        public List<PlacableData> Items;
+        public PlacableItems() => Items = new List<PlacableData>();
+        public void Register(PlacableData data) => Items.Add(data);
+        public void Unregister(PlacableData data) => Items.Remove(data);
     }
 
     [Serializable]
     public class WorldObjectMarkers
     {
         [SerializeField] protected GameObject markerContainer;
-
-        public List<Placable> Placables;
-
+        [SerializeField] private ObjectPool<Placable> placablePool;
+        public Dictionary<PlacableData, Placable> Placables;
         public bool HasMarkers => Placables != null && Placables.Count > 0;
 
         public void Initialize()
         {
             if (markerContainer == null)
-            {
                 markerContainer = new GameObject("WorldObjectMarkers");
-            }
-
             markerContainer.name = "WorldObjectMarkers";
-            Placables = markerContainer.GetComponentsInChildren<Placable>(true).ToList();
+
+            placablePool = new ObjectPool<Placable>(() =>
+            {
+                var obj = new GameObject("Placable").AddComponent<Placable>();
+                obj.transform.SetParent(markerContainer.transform);
+                obj.gameObject.SetActive(false);
+                return obj;
+            });
+
+            Placables ??= new Dictionary<PlacableData, Placable>();
+        }
+
+        public Placable GetPlacable()
+        {
+            placablePool ??= new ObjectPool<Placable>(() =>
+            {
+                var obj = new GameObject("Placable").AddComponent<Placable>();
+                obj.transform.SetParent(markerContainer.transform);
+                obj.gameObject.SetActive(false);
+                return obj;
+            });
+
+            var placable = placablePool.Get();
+            placable.gameObject.SetActive(true);
+            Placables ??= new Dictionary<PlacableData, Placable>();
+            Placables[placable.Data] = placable;
+            return placable;
+        }
+
+        public void ReleasePlacable(Placable placable)
+        {
+            if (placablePool == null || placable == null) return;
+            placable.gameObject.SetActive(false);
+            Placables.Remove(placable.Data);
+            placablePool.Release(placable);
         }
     }
 
+    #endregion
+
     public class MapViewLayout : MonoBehaviour, IPointerClickHandler, IDragHandler, IScrollHandler
     {
+        #region Serialized Fields
 
-        [Header("References")]
-        [SerializeField] private Canvas parentCanvas;
+        [Header("References")][SerializeField] private Canvas parentCanvas;
 
         [Header("Location")]
         [SerializeField] private string locationName;
@@ -58,8 +95,7 @@ namespace WitShells.MapView
         [SerializeField] private int zoomLevel = 15;
         [SerializeField] private bool showLabels => MapSettings.Instance.showLabels;
 
-        [Header("Prefab")]
-        [SerializeField] private TileView tilePrefab;
+        [Header("Prefab")][SerializeField] private TileView tilePrefab;
 
         [Header("Settings")]
         [SerializeField] private int BoundsOffset = 5;
@@ -80,14 +116,19 @@ namespace WitShells.MapView
         [SerializeField] private int maxZoomLevel = 20;
         [SerializeField] private float zoomSensitivity = .1f;
         [SerializeField] private float currentZoomLevel;
-
         [SerializeField] private float zoomVelocity = 0f;
 
         [Header("Map Markers")]
         [SerializeField] private WorldObjectMarkers worldObjectMarkers;
+        [SerializeField] private PlacableItems placableItems;
 
         [Header("Runtime")]
         [SerializeField] private Coordinates SelectedCoordinates;
+
+        #endregion
+
+        #region Runtime State
+
         public TileView TopLeftTile;
         public TileView BottomRightTile;
         public TileView TopRightTile;
@@ -97,12 +138,26 @@ namespace WitShells.MapView
         public Vector2Int CenterCoordiante;
         private bool _hasClicked = false;
         [SerializeField] private Vector2Int gridSize;
-
         public Vector2Int TargetClickedZoomTile => Utils.LatLonToTile(SelectedCoordinates.Latitude, SelectedCoordinates.Longitude, zoomLevel);
-
         public bool CanInput { get; set; } = true;
+        public PlacableItems PlacableItems => placableItems;
 
         private ObjectPool<TileView> tilePool;
+        private TileView[,] tiles;
+        private Dictionary<int, Transform> zoomLayers = new();
+        public UnityEvent<Vector3> MoveTileToDirection = new();
+        private bool isFixedLayout = false;
+
+        private bool _hasDragStarted = false;
+        private Vector2 _lastDragPosition;
+        private float _lastDragStartTime = 0f;
+        private Vector3 _velocity = Vector3.zero;
+
+        // Touch helpers
+        private bool _isPinching = false;
+        private float _prevTouchDistance = 0f;
+        private Vector2 _prevTouchCenter = Vector2.zero;
+
         public ObjectPool<TileView> Pool
         {
             get
@@ -117,69 +172,24 @@ namespace WitShells.MapView
             }
         }
 
-        private TileView[,] tiles;
+        #endregion
 
-        private Dictionary<int, Transform> zoomLayers = new Dictionary<int, Transform>();
-        public UnityEvent<Vector3> MoveTileToDirection = new();
-        private bool isFixedLayout = false;
-
-        private bool _hasDragStarted = false;
-        private Vector2 _lastDragPosition;
-        private float _lastDragStartTime = 0f;
-        private Vector3 _velocity = Vector3.zero;
-
-        // Touch helpers
-        private bool _isPinching = false;
-        private float _prevTouchDistance = 0f;
-        private Vector2 _prevTouchCenter = Vector2.zero;
+        #region Lifecycle
 
         void Start()
         {
             InitializeMapSettings(MapSettings.Instance.MapFile);
-
-            // enable Enhanced Touch support (InputSystem) so we can use activeTouches
-            if (!EnhancedTouchSupport.enabled)
-                EnhancedTouchSupport.Enable();
+            if (!EnhancedTouchSupport.enabled) EnhancedTouchSupport.Enable();
 
             currentZoomLevel = zoomLevel;
             GenerateLayout();
 
-            // Subscribe to both single-tile and batch tile events for compatibility.
-            // Batch updates are preferred for performance when available.
             MapTileManager.Instance.OnTileFetched.AddListener(OnTileIsFetched);
             MapTileManager.Instance.OnTilesFetched?.AddListener(OnTilesIsFetchedBatch);
 
-            // Initialize world object markers
             worldObjectMarkers.Initialize();
+            placableItems ??= new PlacableItems();
             HandleMarkerUpdate();
-
-        }
-
-        public void InitializeMapSettings(MapFile settings)
-        {
-            fromCoordinates = settings.TopLeft;
-            toCoordinates = settings.BottomRight;
-            minZoomLevel = settings.MinZoom;
-            maxZoomLevel = settings.MaxZoom;
-            locationName = settings.MapName;
-        }
-
-        [ContextMenu("Toggle Geo Tags")]
-        public void ToggleGeoTags()
-        {
-            MapSettings.Instance.showLabels = !MapSettings.Instance.showLabels;
-
-            // Update all tiles to reflect the new label setting
-            foreach (Transform zoomLayer in zoomLayers.Values)
-            {
-                foreach (Transform child in zoomLayer)
-                {
-                    if (child.TryGetComponent<TileView>(out var tile))
-                    {
-                        tile.ChangeLabelMode(showLabels);
-                    }
-                }
-            }
         }
 
         void OnDestroy()
@@ -192,190 +202,100 @@ namespace WitShells.MapView
             }
         }
 
-
         void Update()
         {
             HandleTouchInputes();
-
-
-            if (_velocity.magnitude > 0.01f)
-            {
-                // Compute the movement that would be applied this frame
-                Vector3 movement = _velocity * Time.unscaledDeltaTime;
-
-                // If we have corner tiles available, ensure movement won't immediately push the layout
-                // past the allowed bounds. For any axis that would exceed bounds, stop movement on that axis.
-                if (TopLeftTile != null && BottomRightTile != null)
-                {
-                    // Horizontal movement: positive X = move right, negative X = move left
-                    if (movement.x > 0f)
-                    {
-                        // moving right -> would trigger MoveRightColumnToLeft when exceeding right bound
-                        if (!CanMoveRightColumnToLeft())
-                        {
-                            movement.x = 0f;
-                            _velocity.x = 0f;
-                        }
-                    }
-                    else if (movement.x < 0f)
-                    {
-                        // moving left -> would trigger MoveLeftColumnToRight when exceeding left bound
-                        if (!CanMoveLeftColumnToRight())
-                        {
-                            movement.x = 0f;
-                            _velocity.x = 0f;
-                        }
-                    }
-
-                    // Vertical movement: positive Y = move up, negative Y = move down
-                    if (movement.y > 0f)
-                    {
-                        // moving up -> would trigger MoveTopRowToBottom when exceeding top bound
-                        if (!CanMoveTopRowToBottom())
-                        {
-                            movement.y = 0f;
-                            _velocity.y = 0f;
-                        }
-                    }
-                    else if (movement.y < 0f)
-                    {
-                        // moving down -> would trigger MoveBottomRowToTop when exceeding bottom bound
-                        if (!CanMoveBottomRowToTop())
-                        {
-                            movement.y = 0f;
-                            _velocity.y = 0f;
-                        }
-                    }
-                }
-
-                // Apply movement if any axis is still allowed
-                if (movement.sqrMagnitude > 0.000001f)
-                {
-                    MoveTileToDirection.Invoke(movement);
-                }
-
-                // Framerate-independent damping (inertiaDamping ~ 0.9 means ~10% decay per 60fps frame)
-                float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
-                _velocity *= decay;
-
-                // Handles Marker repositioning
-            }
-
+            ApplyVelocityMovement();
             HandleMarkerUpdate();
             HandleZoomUpdate();
         }
 
-
         void FixedUpdate()
         {
             if (isFixedLayout) return;
-
             if (TopLeftTile == null || BottomRightTile == null || tiles == null) return;
+            HandleCycling();
+        }
 
-            // Left-Right cycling using 2D array
-            if (TopLeftTile.transform.localPosition.x < TopLeftLimit.x - 128)
-            {
-                // Move left column to right side if allowed by bounds
-                if (CanMoveLeftColumnToRight())
-                {
-                    MoveLeftColumnToRight();
-                    UpdateCorners();
-                }
-                else
-                {
-                    // Hit horizontal right bound - stop horizontal motion
-                    _velocity.x = 0f;
-                }
-                return;
-            }
+        #endregion
 
-            if (BottomRightTile.transform.localPosition.x > BottomRightLimit.x + 128)
-            {
-                // Move right column to left side if allowed by bounds
-                if (CanMoveRightColumnToLeft())
-                {
-                    MoveRightColumnToLeft();
-                    UpdateCorners();
-                }
-                else
-                {
-                    // Hit horizontal left bound - stop horizontal motion
-                    _velocity.x = 0f;
-                }
-                return;
-            }
+        #region Initialization
 
-            // Top-Bottom cycling using 2D array
-            if (TopLeftTile.transform.localPosition.y > TopLeftLimit.y + 128)
-            {
-                // Move top row to bottom if allowed by bounds
-                if (CanMoveTopRowToBottom())
-                {
-                    MoveTopRowToBottom();
-                    UpdateCorners();
-                }
-                else
-                {
-                    // Hit vertical top bound - stop vertical motion
-                    _velocity.y = 0f;
-                }
-                return;
-            }
+        public void InitializeMapSettings(MapFile settings)
+        {
+            fromCoordinates = settings.TopLeft;
+            toCoordinates = settings.BottomRight;
+            minZoomLevel = settings.MinZoom;
+            maxZoomLevel = settings.MaxZoom;
+            locationName = settings.MapName;
+        }
 
-            if (BottomRightTile.transform.localPosition.y < BottomRightLimit.y - 128)
+        #endregion
+
+        #region Labels Toggle
+
+        [ContextMenu("Toggle Geo Tags")]
+        public void ToggleGeoTags()
+        {
+            MapSettings.Instance.showLabels = !MapSettings.Instance.showLabels;
+            foreach (Transform zoomLayer in zoomLayers.Values)
             {
-                // Move bottom row to top if allowed by bounds
-                if (CanMoveBottomRowToTop())
+                foreach (Transform child in zoomLayer)
                 {
-                    MoveBottomRowToTop();
-                    UpdateCorners();
+                    if (child.TryGetComponent<TileView>(out var tile))
+                        tile.ChangeLabelMode(showLabels);
                 }
-                else
-                {
-                    // Hit vertical bottom bound - stop vertical motion
-                    _velocity.y = 0f;
-                }
-                return;
             }
         }
 
-        private void HandleTouchInputes()
-        {
-            if (!CanInput) return;
+        #endregion
 
-            if (!useTouchInput)
+        #region Velocity & Movement
+
+        private void ApplyVelocityMovement()
+        {
+            if (_velocity.magnitude <= 0.01f) return;
+
+            Vector3 movement = _velocity * Time.unscaledDeltaTime;
+
+            if (TopLeftTile != null && BottomRightTile != null)
             {
-                // Touch input disabled by setting — skip handling
-                return;
+                if (movement.x > 0f && !CanMoveRightColumnToLeft()) { movement.x = 0f; _velocity.x = 0f; }
+                else if (movement.x < 0f && !CanMoveLeftColumnToRight()) { movement.x = 0f; _velocity.x = 0f; }
+
+                if (movement.y > 0f && !CanMoveTopRowToBottom()) { movement.y = 0f; _velocity.y = 0f; }
+                else if (movement.y < 0f && !CanMoveBottomRowToTop()) { movement.y = 0f; _velocity.y = 0f; }
             }
 
-            // If no Touchscreen (InputSystem) is available, fall back to non-touch input paths
+            if (movement.sqrMagnitude > 0.000001f)
+                MoveTileToDirection.Invoke(movement);
+
+            float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
+            _velocity *= decay;
+        }
+
+        #endregion
+
+        #region Touch Input
+
+        private void HandleTouchInputes()
+        {
+            if (!CanInput || !useTouchInput) return;
             if (Touchscreen.current == null)
             {
                 useTouchInput = false;
                 return;
             }
-
-            // Ensure EnhancedTouch is enabled (Start does this too, but keep safe here)
-            if (!EnhancedTouchSupport.enabled)
-                EnhancedTouchSupport.Enable();
+            if (!EnhancedTouchSupport.enabled) EnhancedTouchSupport.Enable();
 
             var touches = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches;
             int touchCount = touches.Count;
+            if (touchCount == 0) { _isPinching = false; return; }
 
-            if (touchCount == 0)
-            {
-                // nothing touching - don't modify existing velocities here (inertia will decay in Update)
-                _isPinching = false;
-                return;
-            }
-
-            // Single touch -> pan/drag
             if (touchCount == 1)
             {
                 var t = touches[0];
-                var phase = t.phase; // UnityEngine.InputSystem.TouchPhase
-
+                var phase = t.phase;
                 if (phase == UnityEngine.InputSystem.TouchPhase.Began)
                 {
                     _hasDragStarted = true;
@@ -390,46 +310,34 @@ namespace WitShells.MapView
                         _lastDragPosition = t.screenPosition;
                         _lastDragStartTime = Time.time;
                     }
-
                     Vector2 delta = t.screenPosition - _lastDragPosition;
                     var direction = invertDrag ? -1 : 1;
                     var movement = delta * dragSensitivity * direction;
-
-                    // convert to velocity (units per second)
                     _velocity = new Vector3(movement.x, movement.y, 0f) / Mathf.Max(Time.deltaTime, 0.0001f);
-
                     _lastDragPosition = t.screenPosition;
                 }
                 else if (phase == UnityEngine.InputSystem.TouchPhase.Ended || phase == UnityEngine.InputSystem.TouchPhase.Canceled)
                 {
                     _hasDragStarted = false;
                 }
-
                 _isPinching = false;
                 return;
             }
 
-            // Multi-touch (use first two touches) -> pinch to zoom + two-finger pan
             if (touchCount >= 2)
             {
                 var t0 = touches[0];
                 var t1 = touches[1];
-
-                // Two-finger pan: use movement of the center point
                 Vector2 prevCenter = (t0.screenPosition - t0.delta + t1.screenPosition - t1.delta) * 0.5f;
                 Vector2 curCenter = (t0.screenPosition + t1.screenPosition) * 0.5f;
                 Vector2 centerDelta = curCenter - prevCenter;
-
                 var direction = invertDrag ? -1 : 1;
                 var panMovement = centerDelta * dragSensitivity * direction;
                 _velocity = new Vector3(panMovement.x, panMovement.y, 0f) / Mathf.Max(Time.deltaTime, 0.0001f);
 
-                // Pinch zoom: compare distance between touches
                 float prevDist = (t0.screenPosition - t0.delta - (t1.screenPosition - t1.delta)).magnitude;
                 float currDist = (t0.screenPosition - t1.screenPosition).magnitude;
                 float pinchDelta = currDist - prevDist;
-
-                // Scale pinchDelta down to a zoom velocity; tuned to feel natural on typical devices
                 float targetZoomVelocity = pinchDelta * zoomSensitivity * 0.01f;
                 zoomVelocity = Mathf.Lerp(zoomVelocity, targetZoomVelocity, Time.deltaTime * 10f);
 
@@ -439,90 +347,99 @@ namespace WitShells.MapView
             }
         }
 
-        private void OnTileIsFetched(Vector2Int coordinate, Tile tile)
-        {
-            // Backwards-compatible single-tile handler
-            if (tile == null) return;
-            TileView tv = GetTileAtCoordinate(coordinate);
-            if (tv == null) return;
-            tv.SetData(tile);
-        }
+        #endregion
 
-        private void OnTilesIsFetchedBatch(List<Tile> fetchedTiles)
-        {
-            if (fetchedTiles == null || fetchedTiles.Count == 0) return;
-            if (this.tiles == null) return;
-
-            foreach (var tile in fetchedTiles)
-            {
-                if (tile == null) continue;
-                var coord = new Vector2Int(tile.TileX, tile.TileY);
-                var tv = GetTileAtCoordinate(coord);
-                if (tv == null) continue;
-                tv.SetData(tile);
-            }
-        }
+        #region Zoom
 
         private void HandleZoomUpdate()
         {
             currentZoomLevel = Mathf.Clamp(currentZoomLevel + zoomVelocity, minZoomLevel, maxZoomLevel + .9f);
-
             float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
             zoomVelocity *= decay;
 
             var zoom = (int)currentZoomLevel;
-
-            if (Mathf.Abs(zoomVelocity) <= 0.01f)
-            {
-                if (zoom != zoomLevel)
-                {
-                    SetZoomUpdate(zoom);
-                }
-            }
+            if (Mathf.Abs(zoomVelocity) <= 0.01f && zoom != zoomLevel)
+                SetZoomUpdate(zoom);
 
             var zoomDelta = currentZoomLevel - zoomLevel;
             ZoomLayer().localScale = Vector3.one * (1 + zoomDelta);
         }
 
-        private void HandleMarkerUpdate()
+        private void SetZoomUpdate(int value)
         {
-            if (worldObjectMarkers == null) return;
-
-            foreach (var placable in worldObjectMarkers.Placables)
+            foreach (Transform child in ZoomLayer())
             {
-                if (placable == null) continue;
+                if (child.TryGetComponent<TileView>(out var tile))
+                {
+                    tile.gameObject.SetActive(false);
+                    MoveTileToDirection.RemoveListener(tile.MoveTo);
+                    Pool.Release(tile);
+                }
+            }
+            ZoomLayer().gameObject.SetActive(false);
 
-                if (!HasWorldPositionInMapView(placable.Data, out var position))
-                {
-                    placable.gameObject.SetActive(false);
-                    continue;
-                }
-                else if (!placable.gameObject.activeSelf)
-                {
-                    placable.gameObject.SetActive(true);
-                }
-                placable.transform.position = position;
-                placable.UpdateScale(currentZoomLevel, maxZoomLevel);
+            var (lat, lon) = _hasClicked
+                ? (SelectedCoordinates.Latitude, SelectedCoordinates.Longitude)
+                : Utils.TileXYToLonLat(CenterCoordiante.x, CenterCoordiante.y, zoomLevel);
+
+            zoomLevel = Mathf.Clamp(value, minZoomLevel, maxZoomLevel);
+            ZoomLayer().gameObject.SetActive(true);
+            ZoomLayer().localScale = Vector3.one;
+
+            CenterCoordiante = Utils.LatLonToTile(lat, lon, zoomLevel);
+            CenterTile = null;
+
+            if (IsLocationBoundsLessThenScreen())
+            {
+                GenerateAllTiles();
+                isFixedLayout = true;
+            }
+            else
+            {
+                GenerateScreenFillingTiles();
+                isFixedLayout = false;
             }
         }
 
+        #endregion
 
+        #region Marker Management
 
-        private void UpdateCorners()
+        private void HandleMarkerUpdate()
         {
-            TopLeftTile = tiles[0, 0];
-            BottomRightTile = tiles[gridSize.x - 1, gridSize.y - 1];
-            TopRightTile = tiles[gridSize.x - 1, 0];
-            BottomLeftTile = tiles[0, gridSize.y - 1];
-            CenterTile = tiles[gridSize.x / 2, gridSize.y / 2];
+            if (worldObjectMarkers == null || placableItems?.Items == null || placableItems.Items.Count == 0) return;
 
-            CenterCoordiante = CenterTile.Coordinate;
+            foreach (var data in placableItems.Items)
+            {
+                bool exists = worldObjectMarkers.Placables != null && worldObjectMarkers.Placables.ContainsKey(data);
+                var placable = exists ? worldObjectMarkers.Placables[data] : null;
+
+                if (!HasWorldPositionInMapView(data, out var position))
+                {
+                    if (exists) worldObjectMarkers.ReleasePlacable(placable);
+                    continue;
+                }
+
+                if (exists)
+                {
+                    placable.transform.position = position;
+                    placable.UpdateScale(currentZoomLevel, maxZoomLevel);
+                }
+                else
+                {
+                    placable = worldObjectMarkers.GetPlacable();
+                    placable.UpdateCoordinates(data.Coordinates, data.ZoomLevel);
+                }
+            }
         }
+
+        #endregion
+
+        #region Tile Generation
 
         [ContextMenu("Generate Layout")]
         public void GenerateLayout()
         {
-            // clear existing tiles
             foreach (Transform zoomLayer in zoomLayers.Values)
             {
                 foreach (Transform child in zoomLayer)
@@ -553,82 +470,77 @@ namespace WitShells.MapView
             }
             catch (Exception ex)
             {
-                // ignore
                 WitLogger.LogWarning($"Failed to generate map layout: {ex.Message}");
-            }
-        }
-
-        private void SetZoomUpdate(int value)
-        {
-            // clear current zoom layer
-            foreach (Transform child in ZoomLayer())
-            {
-                if (child.TryGetComponent<TileView>(out var tile))
-                {
-                    tile.gameObject.SetActive(false);
-                    MoveTileToDirection.RemoveListener(tile.MoveTo);
-                    Pool.Release(tile);
-                }
-            }
-            ZoomLayer().gameObject.SetActive(false);
-
-            var (lat, lon) = _hasClicked ? (SelectedCoordinates.Latitude, SelectedCoordinates.Longitude) :
-                Utils.TileXYToLonLat(CenterCoordiante.x, CenterCoordiante.y, zoomLevel);
-
-            // increase the zoom
-            zoomLevel = Mathf.Clamp(value, minZoomLevel, maxZoomLevel);
-            ZoomLayer().gameObject.SetActive(true);
-            ZoomLayer().localScale = Vector3.one;
-
-            CenterCoordiante = Utils.LatLonToTile(lat, lon, zoomLevel);
-
-            CenterTile = null;
-            if (IsLocationBoundsLessThenScreen())
-            {
-                GenerateAllTiles();
-                isFixedLayout = true;
-            }
-            else
-            {
-                GenerateScreenFillingTiles();
-                isFixedLayout = false;
             }
         }
 
         private void GenerateAllTiles()
         {
             (int xMin, int xMax, int yMin, int yMax) = Utils.TileRangeForBounds(fromCoordinates, toCoordinates, zoomLevel);
-
-            this.CenterCoordiante = Utils.TileCenterForBounds(fromCoordinates, toCoordinates, zoomLevel);
-
+            CenterCoordiante = Utils.TileCenterForBounds(fromCoordinates, toCoordinates, zoomLevel);
             gridSize = new Vector2Int(xMax - xMin + 1, yMax - yMin + 1);
-
             tiles = new TileView[gridSize.x, gridSize.y];
 
-            List<Vector2Int> allTiles = new List<Vector2Int>();
+            List<Vector2Int> allTiles = new();
 
             for (int x = 0; x < gridSize.x; x++)
             {
                 for (int y = 0; y < gridSize.y; y++)
                 {
                     var coordinate = new Vector2Int(x + xMin, y + yMin);
-
                     AddTile(coordinate, out var tile);
                     tiles[x, y] = tile;
-
                     allTiles.Add(coordinate);
                 }
             }
 
             MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
-
-
             UpdateCorners();
-
-            // set limits
             TopLeftLimit = GetPositionForTile(new Vector2Int(xMin, yMin));
             BottomRightLimit = GetPositionForTile(new Vector2Int(xMax, yMax));
+        }
 
+        private void GenerateScreenFillingTiles()
+        {
+            var centerTile = CenterCoordiante;
+            CenterCoordiante = centerTile;
+
+            var count = TileCount();
+            int startX = centerTile.x - count.Col / 2;
+            int endX = centerTile.x + count.Col / 2;
+            int startY = centerTile.y - count.Row / 2;
+            int endY = centerTile.y + count.Row / 2;
+
+            startX -= BoundsOffset;
+            endX += BoundsOffset;
+            startY -= BoundsOffset;
+            endY += BoundsOffset;
+
+            gridSize = new Vector2Int(endX - startX + 1, endY - startY + 1);
+            tiles = new TileView[gridSize.x, gridSize.y];
+
+            TopLeftLimit = GetPositionForTile(new Vector2Int(startX, startY));
+            BottomRightLimit = GetPositionForTile(new Vector2Int(endX, endY));
+
+            List<Vector2Int> allTiles = new();
+            int arrayX = 0;
+
+            for (int x = startX; x <= endX; x++)
+            {
+                int arrayY = 0;
+                for (int y = startY; y <= endY; y++)
+                {
+                    var coordinate = new Vector2Int(x, y);
+                    AddTile(coordinate, out var tile);
+                    tiles[arrayX, arrayY] = tile;
+                    arrayY++;
+                    allTiles.Add(coordinate);
+                }
+                arrayX++;
+            }
+
+            MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
+            UpdateCorners();
         }
 
         private void AddTile(Vector2Int coordinate, out TileView tile)
@@ -639,25 +551,244 @@ namespace WitShells.MapView
             tile.gameObject.SetActive(true);
             tile.UpdateCoordinate(coordinate, zoomLevel, showLabels);
 
-            // Register Events
             MoveTileToDirection.AddListener(tile.MoveTo);
-            // tile.OnMoved += OnTileMoved;
-
             tile.transform.localScale = Vector3.one;
-
-            var position = GetPositionForTile(coordinate);
-            tile.transform.localPosition = position;
+            tile.transform.localPosition = GetPositionForTile(coordinate);
         }
+
+        private void UpdateCorners()
+        {
+            TopLeftTile = tiles[0, 0];
+            BottomRightTile = tiles[gridSize.x - 1, gridSize.y - 1];
+            TopRightTile = tiles[gridSize.x - 1, 0];
+            BottomLeftTile = tiles[0, gridSize.y - 1];
+            CenterTile = tiles[gridSize.x / 2, gridSize.y / 2];
+            CenterCoordiante = CenterTile.Coordinate;
+        }
+
+        #endregion
+
+        #region Bounds Cycling
+
+        private void HandleCycling()
+        {
+            if (TopLeftTile.transform.localPosition.x < TopLeftLimit.x - 128)
+            {
+                if (CanMoveLeftColumnToRight())
+                {
+                    MoveLeftColumnToRight();
+                    UpdateCorners();
+                }
+                else _velocity.x = 0f;
+                return;
+            }
+
+            if (BottomRightTile.transform.localPosition.x > BottomRightLimit.x + 128)
+            {
+                if (CanMoveRightColumnToLeft())
+                {
+                    MoveRightColumnToLeft();
+                    UpdateCorners();
+                }
+                else _velocity.x = 0f;
+                return;
+            }
+
+            if (TopLeftTile.transform.localPosition.y > TopLeftLimit.y + 128)
+            {
+                if (CanMoveTopRowToBottom())
+                {
+                    MoveTopRowToBottom();
+                    UpdateCorners();
+                }
+                else _velocity.y = 0f;
+                return;
+            }
+
+            if (BottomRightTile.transform.localPosition.y < BottomRightLimit.y - 128)
+            {
+                if (CanMoveBottomRowToTop())
+                {
+                    MoveBottomRowToTop();
+                    UpdateCorners();
+                }
+                else _velocity.y = 0f;
+                return;
+            }
+        }
+
+        private void MoveLeftColumnToRight()
+        {
+            TileView[] leftColumn = new TileView[gridSize.y];
+            List<Vector2Int> fetch = new();
+
+            for (int y = 0; y < gridSize.y; y++)
+                leftColumn[y] = tiles[0, y];
+
+            for (int x = 0; x < gridSize.x - 1; x++)
+                for (int y = 0; y < gridSize.y; y++)
+                    tiles[x, y] = tiles[x + 1, y];
+
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                var tile = leftColumn[y];
+                var newCoord = new Vector2Int(tile.Coordinate.x + gridSize.x, tile.Coordinate.y);
+                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
+                tile.transform.localPosition = GetPositionForTile(newCoord);
+                tiles[gridSize.x - 1, y] = tile;
+
+                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
+                    tile.SetData(data);
+                else fetch.Add(newCoord);
+            }
+            MapTileManager.Instance.StartStreamFetch(fetch, zoomLevel, showLabels);
+        }
+
+        private void MoveRightColumnToLeft()
+        {
+            TileView[] rightColumn = new TileView[gridSize.y];
+            List<Vector2Int> fetch = new();
+
+            for (int y = 0; y < gridSize.y; y++)
+                rightColumn[y] = tiles[gridSize.x - 1, y];
+
+            for (int x = gridSize.x - 1; x > 0; x--)
+                for (int y = 0; y < gridSize.y; y++)
+                    tiles[x, y] = tiles[x - 1, y];
+
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                var tile = rightColumn[y];
+                var newCoord = new Vector2Int(tile.Coordinate.x - gridSize.x, tile.Coordinate.y);
+                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
+                tile.transform.localPosition = GetPositionForTile(newCoord);
+                tiles[0, y] = tile;
+
+                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
+                    tile.SetData(data);
+                else fetch.Add(newCoord);
+            }
+            MapTileManager.Instance.StartStreamFetch(fetch, zoomLevel, showLabels);
+        }
+
+        private void MoveTopRowToBottom()
+        {
+            TileView[] topRow = new TileView[gridSize.x];
+            List<Vector2Int> fetch = new();
+
+            for (int x = 0; x < gridSize.x; x++)
+                topRow[x] = tiles[x, 0];
+
+            for (int y = 0; y < gridSize.y - 1; y++)
+                for (int x = 0; x < gridSize.x; x++)
+                    tiles[x, y] = tiles[x, y + 1];
+
+            for (int x = 0; x < gridSize.x; x++)
+            {
+                var tile = topRow[x];
+                var newCoord = new Vector2Int(tile.Coordinate.x, tile.Coordinate.y + gridSize.y);
+                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
+                tile.transform.localPosition = GetPositionForTile(newCoord);
+                tiles[x, gridSize.y - 1] = tile;
+
+                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
+                    tile.SetData(data);
+                else fetch.Add(newCoord);
+            }
+            MapTileManager.Instance.StartStreamFetch(fetch, zoomLevel, showLabels);
+        }
+
+        private void MoveBottomRowToTop()
+        {
+            TileView[] bottomRow = new TileView[gridSize.x];
+            List<Vector2Int> fetch = new();
+
+            for (int x = 0; x < gridSize.x; x++)
+                bottomRow[x] = tiles[x, gridSize.y - 1];
+
+            for (int y = gridSize.y - 1; y > 0; y--)
+                for (int x = 0; x < gridSize.x; x++)
+                    tiles[x, y] = tiles[x, y - 1];
+
+            for (int x = 0; x < gridSize.x; x++)
+            {
+                var tile = bottomRow[x];
+                var newCoord = new Vector2Int(tile.Coordinate.x, tile.Coordinate.y - gridSize.y);
+                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
+                tile.transform.localPosition = GetPositionForTile(newCoord);
+                tiles[x, 0] = tile;
+
+                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
+                    tile.SetData(data);
+                else fetch.Add(newCoord);
+            }
+            MapTileManager.Instance.StartStreamFetch(fetch, zoomLevel, showLabels);
+        }
+
+        private (int xMin, int xMax, int yMin, int yMax) GetBoundsForCurrentZoom() =>
+            Utils.TileRangeForBounds(fromCoordinates, toCoordinates, zoomLevel);
+
+        private bool CanMoveLeftColumnToRight()
+        {
+            var (xMin, xMax, _, _) = GetBoundsForCurrentZoom();
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                var tile = tiles[0, y];
+                if (tile == null) continue;
+                if (tile.Coordinate.x + gridSize.x > xMax) return false;
+            }
+            return true;
+        }
+
+        private bool CanMoveRightColumnToLeft()
+        {
+            var (xMin, _, _, _) = GetBoundsForCurrentZoom();
+            for (int y = 0; y < gridSize.y; y++)
+            {
+                var tile = tiles[gridSize.x - 1, y];
+                if (tile == null) continue;
+                if (tile.Coordinate.x - gridSize.x < xMin) return false;
+            }
+            return true;
+        }
+
+        private bool CanMoveTopRowToBottom()
+        {
+            var (_, _, _, yMax) = GetBoundsForCurrentZoom();
+            for (int x = 0; x < gridSize.x; x++)
+            {
+                var tile = tiles[x, 0];
+                if (tile == null) continue;
+                if (tile.Coordinate.y + gridSize.y > yMax) return false;
+            }
+            return true;
+        }
+
+        private bool CanMoveBottomRowToTop()
+        {
+            var (_, _, yMin, _) = GetBoundsForCurrentZoom();
+            for (int x = 0; x < gridSize.x; x++)
+            {
+                var tile = tiles[x, gridSize.y - 1];
+                if (tile == null) continue;
+                if (tile.Coordinate.y - gridSize.y < yMin) return false;
+            }
+            return true;
+        }
+
+        #endregion
+
+        #region Utilities
 
         public Vector3 GetPositionForTile(Vector2Int coordinate)
         {
             if (CenterTile == null)
             {
                 var pos = coordinate - CenterCoordiante;
-                return new Vector3(pos.x * 256, pos.y * -1 * 256, 0);
+                return new Vector3(pos.x * 256, pos.y * -256, 0);
             }
             var position = coordinate - CenterTile.Coordinate;
-            var basePosition = new Vector3(position.x * 256, position.y * -1 * 256, 0);
+            var basePosition = new Vector3(position.x * 256, position.y * -256, 0);
             return basePosition + CenterTile.transform.localPosition;
         }
 
@@ -667,58 +798,6 @@ namespace WitShells.MapView
             var totalCols = Utils.TotalHorizontalBoundsTiles(fromCoordinates, toCoordinates, zoomLevel);
             var totalRows = Utils.TotalVerticalBoundsTiles(fromCoordinates, toCoordinates, zoomLevel);
             return totalCols < col && totalRows < row;
-        }
-
-        private void GenerateScreenFillingTiles()
-        {
-            Vector2Int centerTile = CenterCoordiante;
-
-            this.CenterCoordiante = centerTile;
-
-            var gridSize = TileCount();
-
-            int startX = centerTile.x - gridSize.Col / 2;
-            int endX = centerTile.x + gridSize.Col / 2;
-            int startY = centerTile.y - gridSize.Row / 2;
-            int endY = centerTile.y + gridSize.Row / 2;
-
-            startX -= BoundsOffset;
-            endX += BoundsOffset;
-            startY -= BoundsOffset;
-            endY += BoundsOffset;
-
-            this.gridSize = new Vector2Int(endX - startX + 1, endY - startY + 1);
-
-            // Initialize the 2D array for dynamic layout too
-            tiles = new TileView[this.gridSize.x, this.gridSize.y];
-
-
-            TopLeftLimit = GetPositionForTile(new Vector2Int(startX, startY));
-            BottomRightLimit = GetPositionForTile(new Vector2Int(endX, endY));
-
-            List<Vector2Int> allTiles = new List<Vector2Int>();
-
-            int arrayX = 0;
-            WitLogger.Log($"Generating tiles for area: {startX}, {startY} to {endX}, {endY}");
-            for (int x = startX; x <= endX; x++)
-            {
-                int arrayY = 0;
-                for (int y = startY; y <= endY; y++)
-                {
-                    var coordinate = new Vector2Int(x, y);
-                    AddTile(coordinate, out var tile);
-                    tiles[arrayX, arrayY] = tile;
-                    arrayY++;
-
-                    allTiles.Add(coordinate);
-                }
-                arrayX++;
-            }
-            WitLogger.Log($"Generated {arrayX} x {tiles.GetLength(1)} tiles.");
-
-            MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
-
-            UpdateCorners();
         }
 
         private Transform ZoomLayer()
@@ -732,14 +811,11 @@ namespace WitShells.MapView
                 var rectTransform = obj.AddComponent<RectTransform>();
                 var size = RectSize();
                 rectTransform.sizeDelta = new Vector2(size.Width, size.Height);
-
                 obj.transform.localScale = Vector3.one;
-
                 zoomLayers[zoomLevel] = obj.transform;
             }
             return zoomLayers[zoomLevel];
         }
-
 
         public (float Width, float Height) RectSize()
         {
@@ -756,29 +832,21 @@ namespace WitShells.MapView
         public TileView GetTileAtCoordinate(Vector2Int coordinate)
         {
             var startingTile = coordinate - TopLeftTile.Coordinate;
-            if (startingTile.x < 0 || startingTile.y < 0 || startingTile.x >= tiles.GetLength(0) || startingTile.y >= tiles.GetLength(1))
-            {
+            if (startingTile.x < 0 || startingTile.y < 0 ||
+                startingTile.x >= tiles.GetLength(0) || startingTile.y >= tiles.GetLength(1))
                 return null;
-            }
             return tiles[startingTile.x, startingTile.y];
         }
 
-
-        public bool HasWorldPositionInMapView(PlacableData data, out Vector3 position)
-        {
-            var coordinates = data.Coordinates;
-            return HasWorldPositionInMapView(coordinates, out position);
-        }
+        public bool HasWorldPositionInMapView(PlacableData data, out Vector3 position) =>
+            HasWorldPositionInMapView(data.Coordinates, out position);
 
         public bool HasWorldPositionInMapView(Coordinates coordinates, out Vector3 position)
         {
             (int tileX, int tileY, float normX, float normY) =
                 Utils.LatLonToTileNormalized(coordinates.Latitude, coordinates.Longitude, zoomLevel);
-
-            // clamp normalized values to be safe
             normX = Mathf.Clamp01(normX);
             normY = Mathf.Clamp01(normY);
-
             return HasWorldPositionInMapView(new Vector2Int(tileX, tileY), normX, normY, out position);
         }
 
@@ -790,23 +858,18 @@ namespace WitShells.MapView
                 position = Vector3.zero;
                 return false;
             }
-
-            // get position in MapView local space using updated utils (pass map transform)
             Utils.GetLocalPositionFromNormalizedInTile(tile.RectTransform, normX, normY, transform, out position);
-
-            // convert to world position
             position = transform.TransformPoint(position);
             return true;
         }
 
-        #region Input Handlers
+        #endregion
+
+        #region Input Handlers (Pointer / Mouse when touch disabled)
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!CanInput) return;
-            if (useTouchInput) return;
-
-            if (isFixedLayout) return;
+            if (!CanInput || useTouchInput || isFixedLayout) return;
 
             if (!_hasDragStarted)
             {
@@ -823,18 +886,15 @@ namespace WitShells.MapView
             }
 
             Vector2 delta = eventData.position - _lastDragPosition;
-
             var direction = invertDrag ? -1 : 1;
             var movement = delta * dragSensitivity * direction;
-            _velocity = new Vector3(movement.x, movement.y, 0) / Time.deltaTime;
+            _velocity = new Vector3(movement.x, movement.y, 0) / Mathf.Max(Time.deltaTime, 0.0001f);
+            _lastDragPosition = eventData.position;
         }
 
         public void OnScroll(PointerEventData eventData)
         {
-            if (!CanInput) return;
-            if (useTouchInput) return;
-            WitLogger.Log($"Scroll delta: {eventData.scrollDelta} - position {eventData.position}");
-
+            if (!CanInput || useTouchInput) return;
             float scrollDelta = eventData.scrollDelta.y;
             float targetVelocity = scrollDelta * zoomSensitivity;
             zoomVelocity = Mathf.Lerp(zoomVelocity, targetVelocity, Time.deltaTime * 10f);
@@ -845,259 +905,76 @@ namespace WitShells.MapView
             if (isFixedLayout) return;
 
             var cam = parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : parentCanvas.worldCamera;
-
-            // Convert screen position to local position (map-local space)
             RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, eventData.position, cam, out Vector2 localPoint);
 
             int tileX = Mathf.FloorToInt((localPoint.x + (gridSize.x * 256f / 2)) / 256f);
             int tileY = Mathf.FloorToInt((-localPoint.y + (gridSize.y * 256f / 2)) / 256f);
 
-            // Ensure we're within bounds
             if (tileX >= 0 && tileX < gridSize.x && tileY >= 0 && tileY < gridSize.y)
             {
                 var clickedTile = tiles[tileX, tileY];
-
-                // Pass map transform so Utils computes normalized coords correctly across parent/scale/pivot
                 Utils.GetNormalizedPositionInTile(clickedTile.RectTransform, localPoint, transform, out float normX, out float normY);
-
                 var (lat, lon) = Utils.TileNormalizedToLatLon(clickedTile.Coordinate.x, clickedTile.Coordinate.y, zoomLevel, normX, normY);
                 SelectedCoordinates = new Coordinates { Latitude = lat, Longitude = lon };
-
                 _hasClicked = true;
                 GUIUtility.systemCopyBuffer = SelectedCoordinates.ToString();
-                WitLogger.Log($"Selected Coordinates: {SelectedCoordinates} (copied to clipboard) {normX}, {normY}");
+                WitLogger.Log($"Selected Coordinates: {SelectedCoordinates} (copied) {normX}, {normY}");
             }
         }
 
         #endregion
 
-        #region Bound Checks
-        private void MoveLeftColumnToRight()
+        #region Cache
+
+        public void SaveCurrentCenterTileToCache()
         {
-            // Store the left column tiles
-            TileView[] leftColumn = new TileView[gridSize.y];
-            List<Vector2Int> allTiles = new List<Vector2Int>();
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                leftColumn[y] = tiles[0, y];
-            }
-
-            // Shift all columns to the left
-            for (int x = 0; x < gridSize.x - 1; x++)
-            {
-                for (int y = 0; y < gridSize.y; y++)
-                {
-                    tiles[x, y] = tiles[x + 1, y];
-                }
-            }
-
-            // Place left column on the right side with new coordinates
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                var tile = leftColumn[y];
-                var newCoord = new Vector2Int(tile.Coordinate.x + gridSize.x, tile.Coordinate.y);
-
-                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
-                tile.transform.localPosition = GetPositionForTile(newCoord);
-                tiles[gridSize.x - 1, y] = tile;
-
-                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
-                {
-                    tile.SetData(data);
-                }
-                else
-                {
-                    allTiles.Add(newCoord);
-                }
-            }
-            MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
+            string cacheValue = $"{locationName}_{zoomLevel}_{CenterCoordiante.x}_{CenterCoordiante.y}";
+            PlayerPrefs.SetString("MapView_LastCenterTile", cacheValue);
+            PlayerPrefs.Save();
         }
 
-        private void MoveRightColumnToLeft()
+        public bool HasCachedCenterTile(out Vector2Int coordinate, out int zoom)
         {
-            // Store the right column tiles
-            TileView[] rightColumn = new TileView[gridSize.y];
-            List<Vector2Int> allTiles = new List<Vector2Int>();
+            coordinate = Vector2Int.zero;
+            zoom = zoomLevel;
 
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                rightColumn[y] = tiles[gridSize.x - 1, y];
-            }
+            if (!PlayerPrefs.HasKey("MapView_LastCenterTile")) return false;
+            string cacheValue = PlayerPrefs.GetString("MapView_LastCenterTile");
+            string[] parts = cacheValue.Split('_');
+            if (parts.Length != 4) return false;
 
-            // Shift all columns to the right
-            for (int x = gridSize.x - 1; x > 0; x--)
-            {
-                for (int y = 0; y < gridSize.y; y++)
-                {
-                    tiles[x, y] = tiles[x - 1, y];
-                }
-            }
+            if (!string.Equals(parts[0], locationName)) return false;
+            if (!int.TryParse(parts[1], out zoom)) return false;
+            if (!int.TryParse(parts[2], out int tileX)) return false;
+            if (!int.TryParse(parts[3], out int tileY)) return false;
 
-            // Place right column on the left side with new coordinates
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                var tile = rightColumn[y];
-                var newCoord = new Vector2Int(tile.Coordinate.x - gridSize.x, tile.Coordinate.y);
-                // tile.Coordinate = newCoord;
-                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
-                tile.transform.localPosition = GetPositionForTile(newCoord);
-                tiles[0, y] = tile;
-
-                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
-                {
-                    tile.SetData(data);
-                }
-                else
-                {
-                    allTiles.Add(newCoord);
-                }
-            }
-            MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
-        }
-
-        private void MoveTopRowToBottom()
-        {
-            // Store the top row tiles
-            TileView[] topRow = new TileView[gridSize.x];
-            List<Vector2Int> allTiles = new List<Vector2Int>();
-
-            for (int x = 0; x < gridSize.x; x++)
-            {
-                topRow[x] = tiles[x, 0];
-            }
-
-            // Shift all rows up
-            for (int y = 0; y < gridSize.y - 1; y++)
-            {
-                for (int x = 0; x < gridSize.x; x++)
-                {
-                    tiles[x, y] = tiles[x, y + 1];
-                }
-            }
-
-            // Place top row at the bottom with new coordinates
-            for (int x = 0; x < gridSize.x; x++)
-            {
-                var tile = topRow[x];
-                var newCoord = new Vector2Int(tile.Coordinate.x, tile.Coordinate.y + gridSize.y);
-                // tile.Coordinate = newCoord;
-                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
-                tile.transform.localPosition = GetPositionForTile(newCoord);
-                tiles[x, gridSize.y - 1] = tile;
-
-                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
-                {
-                    tile.SetData(data);
-                }
-                else
-                {
-                    allTiles.Add(newCoord);
-                }
-            }
-
-            MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
-        }
-
-        private void MoveBottomRowToTop()
-        {
-            // Store the bottom row tiles
-            TileView[] bottomRow = new TileView[gridSize.x];
-            List<Vector2Int> allTiles = new List<Vector2Int>();
-
-            for (int x = 0; x < gridSize.x; x++)
-            {
-                bottomRow[x] = tiles[x, gridSize.y - 1];
-            }
-
-            // Shift all rows down
-            for (int y = gridSize.y - 1; y > 0; y--)
-            {
-                for (int x = 0; x < gridSize.x; x++)
-                {
-                    tiles[x, y] = tiles[x, y - 1];
-                }
-            }
-
-            // Place bottom row at the top with new coordinates
-            for (int x = 0; x < gridSize.x; x++)
-            {
-                var tile = bottomRow[x];
-                var newCoord = new Vector2Int(tile.Coordinate.x, tile.Coordinate.y - gridSize.y);
-                // tile.Coordinate = newCoord;
-                tile.UpdateCoordinate(newCoord, zoomLevel, showLabels);
-                tile.transform.localPosition = GetPositionForTile(newCoord);
-                tiles[x, 0] = tile;
-
-                if (MapTileManager.Instance.HasCachedTile(newCoord, out var data, showLabels))
-                {
-                    tile.SetData(data);
-                }
-                else
-                {
-                    allTiles.Add(newCoord);
-                }
-            }
-
-            MapTileManager.Instance.StartStreamFetch(allTiles, zoomLevel, showLabels);
-        }
-
-        // --- Boundary checks ---
-        private (int xMin, int xMax, int yMin, int yMax) GetBoundsForCurrentZoom()
-        {
-            return Utils.TileRangeForBounds(fromCoordinates, toCoordinates, zoomLevel);
-        }
-
-        private bool CanMoveLeftColumnToRight()
-        {
-            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
-            // The left column tiles will be moved by +gridSize.x; ensure the new X does not exceed xMax
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                var tile = tiles[0, y];
-                if (tile == null) continue;
-                int newX = tile.Coordinate.x + gridSize.x;
-                if (newX > xMax) return false;
-            }
+            coordinate = new Vector2Int(tileX, tileY);
             return true;
         }
 
-        private bool CanMoveRightColumnToLeft()
+        #endregion
+
+        #region Tile Fetch Handlers
+
+        private void OnTileIsFetched(Vector2Int coordinate, Tile tile)
         {
-            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
-            for (int y = 0; y < gridSize.y; y++)
-            {
-                var tile = tiles[gridSize.x - 1, y];
-                if (tile == null) continue;
-                int newX = tile.Coordinate.x - gridSize.x;
-                if (newX < xMin) return false;
-            }
-            return true;
+            if (tile == null) return;
+            TileView tv = GetTileAtCoordinate(coordinate);
+            if (tv == null) return;
+            tv.SetData(tile);
         }
 
-        private bool CanMoveTopRowToBottom()
+        private void OnTilesIsFetchedBatch(List<Tile> fetchedTiles)
         {
-            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
-            for (int x = 0; x < gridSize.x; x++)
+            if (fetchedTiles == null || fetchedTiles.Count == 0 || tiles == null) return;
+            foreach (var tile in fetchedTiles)
             {
-                var tile = tiles[x, 0];
                 if (tile == null) continue;
-                int newY = tile.Coordinate.y + gridSize.y;
-                if (newY > yMax) return false;
+                var coord = new Vector2Int(tile.TileX, tile.TileY);
+                var tv = GetTileAtCoordinate(coord);
+                if (tv == null) continue;
+                tv.SetData(tile);
             }
-            return true;
-        }
-
-        private bool CanMoveBottomRowToTop()
-        {
-            var (xMin, xMax, yMin, yMax) = GetBoundsForCurrentZoom();
-            for (int x = 0; x < gridSize.x; x++)
-            {
-                var tile = tiles[x, gridSize.y - 1];
-                if (tile == null) continue;
-                int newY = tile.Coordinate.y - gridSize.y;
-                if (newY < yMin) return false;
-            }
-            return true;
         }
 
         #endregion
@@ -1105,9 +982,7 @@ namespace WitShells.MapView
         #region Editor Methods
 
 #if UNITY_EDITOR
-
-        [Header("WitLogger Downloader")]
-        [SerializeField] private DownloaderTiles downloaderTiles;
+        [Header("WitLogger Downloader")][SerializeField] private DownloaderTiles downloaderTiles;
 
         [ContextMenu("Download Map File")]
         public void DownloadMapFile()
@@ -1120,11 +995,9 @@ namespace WitShells.MapView
                 MinZoom = minZoomLevel,
                 MaxZoom = maxZoomLevel
             };
-
             downloaderTiles = new DownloaderTiles(mapFile);
             downloaderTiles.DownloadMapFile();
         }
-
 #endif
 
         #endregion

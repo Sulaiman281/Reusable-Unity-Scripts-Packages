@@ -10,7 +10,7 @@ namespace WitShells.MapView
     }
 
     [Serializable]
-    public struct PlacableData
+    public struct PlacableData : IEquatable<PlacableData>
     {
         public PlacementType PlacementType;
         public Coordinates Coordinates;
@@ -25,6 +25,16 @@ namespace WitShells.MapView
         public (double Lat, double Lon) GetLatLon()
         {
             return Utils.TileNormalizedToLatLon(TileX, TileY, (int)ZoomLevel, NormalizedX, NormalizedY);
+        }
+
+        public bool Equals(PlacableData other)
+        {
+            return Coordinates.Equals(other.Coordinates) &&
+                   ZoomLevel == other.ZoomLevel &&
+                   TileX == other.TileX &&
+                   TileY == other.TileY &&
+                   NormalizedX == other.NormalizedX &&
+                   NormalizedY == other.NormalizedY;
         }
     }
 
