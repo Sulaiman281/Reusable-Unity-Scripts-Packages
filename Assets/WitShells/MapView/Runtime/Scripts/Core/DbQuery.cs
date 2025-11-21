@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
 using SQLite;
-using UnityEngine;
 using UnityEngine.Events;
-using WitShells.DesignPatterns;
 using WitShells.ThreadingJob;
 
 namespace WitShells.MapView

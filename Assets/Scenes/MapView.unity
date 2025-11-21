@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 174552745}
   - component: {fileID: 174552744}
   - component: {fileID: 174552747}
+  - component: {fileID: 174552748}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -335,6 +336,22 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &174552748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174552743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &244407046
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +543,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPersistent: 0
   canCacheTiles: 1
-  fileName: hyderbad-test
   maxCachedTiles: 100
   OnTileFetched:
     m_PersistentCalls:
@@ -860,7 +876,8 @@ MonoBehaviour:
   BoundsOffset: 1
   TopLeftLimit: {x: -1024, y: 768, z: 0}
   BottomRightLimit: {x: 1024, y: -768, z: 0}
-  dragSensitivity: 1
+  useTouchInput: 0
+  dragSensitivity: 6
   invertDrag: 0
   dragTimeOut: 0.25
   inertiaDamping: 0.9
@@ -870,11 +887,19 @@ MonoBehaviour:
   currentZoomLevel: 0
   zoomVelocity: 0
   worldObjectMarkers:
+    placablePrefabCatalog: {fileID: 0}
     markerContainer: {fileID: 1197189514}
-    Placables: []
+  placableItems:
+    Items: []
   SelectedCoordinates:
     Latitude: 0
     Longitude: 0
+  OnLocationSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPositionSelected:
+    m_PersistentCalls:
+      m_Calls: []
   TopLeftTile: {fileID: 0}
   BottomRightTile: {fileID: 0}
   TopRightTile: {fileID: 0}
@@ -934,7 +959,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e899fe7f411e7244b04c7b4643a8600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothing: 20
+  useRigidbodyMove: 0
+  OnDragPositionUpdated:
+    m_PersistentCalls:
+      m_Calls: []
   placableData:
+    Id: test-key
+    Key: test
     PlacementType: 0
     Coordinates:
       Latitude: 25.3969190022418

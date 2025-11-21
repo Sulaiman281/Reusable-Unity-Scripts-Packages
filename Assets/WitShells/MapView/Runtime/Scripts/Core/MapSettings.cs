@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace WitShells.MapView
@@ -20,7 +21,24 @@ namespace WitShells.MapView
         public bool useOnlineMap = true;
         public bool showLabels = false;
 
+        [Header("Marker Settings")]
+        [SerializeField] private bool canDragMarkers = true;
+        [SerializeField] private bool canSelectMarkers = true;
+
+        public bool CanDragMarkers => canDragMarkers;
+        public bool CanSelectMarkers => canSelectMarkers;
+
         public MapFile MapFile => mapFile;
+
+        [Header("Events")]
+        public static Action<bool> OnDragSettingsChanged;
+
+
+        public void SetCanDragMarkers(bool canDrag)
+        {
+            canDragMarkers = canDrag;
+            OnDragSettingsChanged?.Invoke(canDrag);
+        }
 
     }
 }

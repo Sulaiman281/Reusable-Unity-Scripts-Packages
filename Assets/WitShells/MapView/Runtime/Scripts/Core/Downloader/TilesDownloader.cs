@@ -9,6 +9,7 @@ using WitShells.DesignPatterns;
 
 namespace WitShells.MapView
 {
+#if UNITY_EDITOR
     /// <summary>
     /// Unity Editor diagnostic tool for managing and validating map tile databases.
     /// Provides context menu operations for database analysis, tile downloading, and data integrity checks.
@@ -21,20 +22,20 @@ namespace WitShells.MapView
         [Header("Geographic Bounds")]
         [Tooltip("Southern boundary latitude in decimal degrees")]
         [SerializeField] private float _fromLatitude;
-        
+
         [Tooltip("Northern boundary latitude in decimal degrees")]
         [SerializeField] private float _toLatitude;
-        
+
         [Tooltip("Western boundary longitude in decimal degrees")]
         [SerializeField] private float _fromLongitude;
-        
+
         [Tooltip("Eastern boundary longitude in decimal degrees")]
         [SerializeField] private float _toLongitude;
 
         [Header("Zoom Level Configuration")]
         [Tooltip("Minimum zoom level to process")]
         [SerializeField] private int _fromZoom = 12;
-        
+
         [Tooltip("Maximum zoom level to process")]
         [SerializeField] private int _toZoom = 19;
 
@@ -45,7 +46,7 @@ namespace WitShells.MapView
         [Header("Runtime Statistics")]
         [Tooltip("Number of tiles successfully processed")]
         [SerializeField, Space] private int _processedCount;
-        
+
         [Tooltip("Number of failed tile operations")]
         [SerializeField] private int _failedCount;
 
@@ -145,19 +146,19 @@ namespace WitShells.MapView
         {
             /// <summary>Gets or sets the column index.</summary>
             public int cid { get; set; }
-            
+
             /// <summary>Gets or sets the column name.</summary>
             public string name { get; set; }
-            
+
             /// <summary>Gets or sets the column data type.</summary>
             public string type { get; set; }
-            
+
             /// <summary>Gets or sets whether the column allows NULL values (1 = NOT NULL, 0 = allows NULL).</summary>
             public int notnull { get; set; }
-            
+
             /// <summary>Gets or sets the default value for the column.</summary>
             public string dflt_value { get; set; }
-            
+
             /// <summary>Gets or sets whether the column is part of the primary key (1 = yes, 0 = no).</summary>
             public int pk { get; set; }
         }
@@ -304,7 +305,7 @@ namespace WitShells.MapView
             {
                 var tableMapping = connection.GetMapping<T>();
                 var result = connection.ExecuteScalar<int>(
-                    "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name=?", 
+                    "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name=?",
                     tableMapping.TableName);
                 return result > 0;
             }
@@ -410,7 +411,7 @@ namespace WitShells.MapView
             {
                 ValidateConfiguration();
                 string databasePath = GetDatabasePath();
-                
+
                 if (!File.Exists(databasePath))
                 {
                     WitLogger.LogWarning("Database file does not exist.");
@@ -624,7 +625,7 @@ namespace WitShells.MapView
         private List<Tile> updatedTiles => _updatedTiles;
         private int count => _processedCount;
         private int fail => _failedCount;
-        
+
         // Legacy method names for compatibility
         // private string GetDbPath() => GetDatabasePath();
         // private SQLiteConnection CreateConnection() => CreateDatabaseConnection();
@@ -753,7 +754,7 @@ namespace WitShells.MapView
             }
 
             WitLogger.Log("=== Zoom Level Data Analysis ===");
-            
+
             // Check data for each zoom level
             for (int z = fromZoom; z <= toZoom; z++)
             {
@@ -761,18 +762,18 @@ namespace WitShells.MapView
                 var tilesWithNormal = connection.ExecuteScalar<int>("SELECT COUNT(*) FROM Tile WHERE Zoom = ? AND NormalData IS NOT NULL AND length(NormalData) > 0", z);
                 var tilesWithGeo = connection.ExecuteScalar<int>("SELECT COUNT(*) FROM Tile WHERE Zoom = ? AND GeoData IS NOT NULL AND length(GeoData) > 0", z);
                 var tilesWithBoth = connection.ExecuteScalar<int>("SELECT COUNT(*) FROM Tile WHERE Zoom = ? AND NormalData IS NOT NULL AND length(NormalData) > 0 AND GeoData IS NOT NULL AND length(GeoData) > 0", z);
-                
+
                 // Calculate expected tiles for this zoom level
                 var (xMin, xMax, yMin, yMax) = Utils.TileRangeForBounds(fromLatitude, fromLongitude, toLatitude, toLongitude, z);
                 var expectedTiles = (xMax - xMin + 1) * (yMax - yMin + 1);
-                
+
                 WitLogger.Log($"Zoom {z}: {totalTiles}/{expectedTiles} tiles exist, Normal: {tilesWithNormal}, Geo: {tilesWithGeo}, Both: {tilesWithBoth}");
-                
+
                 if (totalTiles < expectedTiles)
                 {
                     WitLogger.LogWarning($"  Missing {expectedTiles - totalTiles} placeholder tiles for zoom {z}");
                 }
-                
+
                 if (z == toZoom && (tilesWithNormal < expectedTiles || tilesWithGeo < expectedTiles))
                 {
                     WitLogger.LogWarning($"  Zoom {z} (max): Missing Normal: {expectedTiles - tilesWithNormal}, Missing Geo: {expectedTiles - tilesWithGeo}");
@@ -785,7 +786,7 @@ namespace WitShells.MapView
         {
             WitLogger.Log($"=== Bounds Analysis for Zoom {fromZoom}-{toZoom} ===");
             WitLogger.Log($"Coordinates: ({fromLatitude}, {fromLongitude}) to ({toLatitude}, {toLongitude})");
-            
+
             for (int z = fromZoom; z <= toZoom; z++)
             {
                 var (xMin, xMax, yMin, yMax) = Utils.TileRangeForBounds(fromLatitude, fromLongitude, toLatitude, toLongitude, z);
@@ -877,4 +878,5 @@ namespace WitShells.MapView
         }
         #endregion
     }
+#endif
 }

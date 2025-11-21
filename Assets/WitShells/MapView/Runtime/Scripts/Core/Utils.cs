@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static WitShells.MapView.MapViewLayout;
 
 namespace WitShells.MapView
 {
