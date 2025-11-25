@@ -63,9 +63,9 @@ namespace WitShells.WitClientApi
             _authService.SignInAsync(credentials, (tr) =>
             {
                 Debug.Log($"Signed in via AuthService. Access Token: {tr?.AccessToken}");
-            }, () =>
+            }, (fail) =>
             {
-                Debug.LogError("Sign-in failed via AuthService.");
+                Debug.LogError($"Sign-in failed via AuthService. Error: \n{fail}");
             });
         }
 

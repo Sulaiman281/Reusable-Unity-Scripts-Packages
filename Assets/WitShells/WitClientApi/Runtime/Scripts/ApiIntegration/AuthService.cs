@@ -7,7 +7,7 @@ namespace WitShells.WitClientApi
 {
     public interface IAuthService
     {
-        void SignInAsync(object credentials, UnityAction<TokenResponse> onSuccess, UnityAction OnFail = null, CancellationToken ct = default);
+        void SignInAsync(object credentials, UnityAction<TokenResponse> onSuccess, UnityAction<string> OnFail = null, CancellationToken ct = default);
         void SignOutAsync(CancellationToken ct);
         Task<bool> RefreshTokenAsync(CancellationToken ct);
     }
@@ -30,7 +30,7 @@ namespace WitShells.WitClientApi
             _tokenStorage = tokenStorage ?? throw new ArgumentNullException(nameof(tokenStorage));
         }
 
-        public virtual void SignInAsync(object credentials, UnityAction<TokenResponse> onSuccess, UnityAction OnFail = null, CancellationToken ct = default)
+        public virtual void SignInAsync(object credentials, UnityAction<TokenResponse> onSuccess, UnityAction<string> OnFail = null, CancellationToken ct = default)
         {
             var path = _config.SignInPath;
             ApiClientManager.Instance.CallEndpoint(path, credentials, (res) =>
@@ -40,7 +40,7 @@ namespace WitShells.WitClientApi
                 onSuccess?.Invoke(tr);
             }, (fail) =>
             {
-                OnFail?.Invoke();
+                OnFail?.Invoke(fail);
             });
         }
 
