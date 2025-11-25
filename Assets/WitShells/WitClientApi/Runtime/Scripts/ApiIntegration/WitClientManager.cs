@@ -57,7 +57,7 @@ namespace WitShells.WitClientApi
             var credentials = new
             {
                 email = "witshells@gmail.com",
-                password = "12ta442ta1"
+                password = "12ta442ta11"
             };
 
             _authService.SignInAsync(credentials, (tr) =>
@@ -259,6 +259,23 @@ namespace WitShells.WitClientApi
             else
             {
                 var err = httpResp.Error ?? ($"HTTP {httpResp.StatusCode}");
+
+                // Attempt to parse detailed error message from JSON body
+                if (httpResp.Data != null && httpResp.Data.Length > 0)
+                {
+                    try
+                    {
+                        var errorBody = Encoding.UTF8.GetString(httpResp.Data);
+                        if (VerboseLogging)
+                        {
+                            _logQueue.Enqueue(("ERROR", $"[WitClientManager] Error Body: {errorBody}"));
+                        }
+
+                        err = errorBody;
+                    }
+                    catch { /* ignore parsing errors */ }
+                }
+
                 if (VerboseLogging) _logQueue.Enqueue(("ERROR", $"[WitClientManager] HTTP Error {httpResp.StatusCode}: {err} for {req.Method} {req.GetFullUrl()}"));
                 throw new Exception(err);
             }

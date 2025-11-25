@@ -52,5 +52,63 @@ namespace WitShells.LiveMic
             if (AudioSource == null || !AudioSource.isPlaying) return;
             AudioSource.clip.GetData(data, AudioSource.timeSamples);
         }
+
+        public void GetMicrophoneDevices(out string[] devices)
+        {
+            devices = Microphone.devices;
+        }
+
+        public void SetMicrophoneDevice(int index)
+        {
+            if (index < 0 || index >= Microphone.devices.Length) return;
+            micIndex = index;
+            selectedDevice = Microphone.devices[micIndex];
+
+            if (isActiveAndEnabled)
+            {
+                AudioSource.Stop();
+                Microphone.End(selectedDevice);
+                AudioSource.clip = Microphone.Start(selectedDevice, true, 1, sampleRate);
+                AudioSource.Play();
+            }
+        }
+
+        public void GetSpeakerDevices(out string[] devices)
+        {
+            devices = AudioSettings.GetConfiguration().speakerMode.ToString().Split(',');
+        }
+
+        public void SetSampleRate(int rate)
+        {
+            sampleRate = rate;
+
+            if (isActiveAndEnabled)
+            {
+                AudioSource.Stop();
+                Microphone.End(selectedDevice);
+                AudioSource.clip = Microphone.Start(selectedDevice, true, 1, sampleRate);
+                AudioSource.Play();
+            }
+        }
+
+#if UNITY_EDITOR
+
+        [ContextMenu("Next Microphone Device")]
+        public void NextMicrophoneDevice()
+        {
+            int nextIndex = (micIndex + 1) % Microphone.devices.Length;
+            SetMicrophoneDevice(nextIndex);
+            Debug.Log($"Switched to microphone device: {Microphone.devices[nextIndex]}");
+        }
+
+        [ContextMenu("Previous Microphone Device")]
+        public void PreviousMicrophoneDevice()
+        {
+            int prevIndex = (micIndex - 1 + Microphone.devices.Length) % Microphone.devices.Length;
+            SetMicrophoneDevice(prevIndex);
+            Debug.Log($"Switched to microphone device: {Microphone.devices[prevIndex]}");
+        }
+
+#endif
     }
 }
