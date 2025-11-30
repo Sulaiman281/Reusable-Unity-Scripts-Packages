@@ -48,6 +48,30 @@ An advanced actor framework for complex character behaviors and state management
 - Extensible architecture for custom behaviors
 - Integrated with Third Person Control system
 
+### **WitMultiplayer**
+
+A lightweight wrapper and helpers for Unity Gaming Services matchmaking, lobbies, and Relay integration. Includes coroutine-based helpers to interact with UGS Lobby, Matchmaker, and Relay SDKs plus manager classes to simplify joining, creating and monitoring lobbies.
+
+- Lobby management helpers and event callbacks
+- Matchmaking helpers using UGS Matchmaker + Relay
+- Example lobby & matchmaking manager scripts
+
+### **TankControls**
+
+Rigidbody-based tank controls providing smooth movement and turret yaw/pitch handling. Designed to integrate with weapons and trajectory previews for vehicle-mounted weapons.
+
+- Smooth movement and turning
+- Turret yaw and pitch support
+- Integration-ready for ShootingSystem
+
+### **ShootingSystem**
+
+Reusable shooting utilities including a configurable `Weapon` component (raycast & projectile modes), `Trajectory` preview, pooling-friendly projectile helpers, and hit-detection helpers.
+
+- Trajectory preview and indicator
+- Pooling-friendly projectile lifecycle
+- Configurable weapon component with raycast/projectile modes
+
 ### 🚗 Simple Vehicle Control
 
 **Smart vehicle physics and AI navigation system**
@@ -178,6 +202,24 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git#MilitaryGridS
 
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SplineRuntime
+```
+
+### **WitMultiplayer**
+
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitMultiplayer
+```
+
+### **TankControls**
+
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/TankControls
+```
+
+### **ShootingSystem**
+
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ShootingSystem
 ```
 
 ---

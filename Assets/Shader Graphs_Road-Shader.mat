@@ -53,9 +53,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _InnerLinesDistance: 0.02
-    - _InnerThinkness: 0
-    - _OuterLinesDistance: 0.38
-    - _OuterThickness: 0
+    - _InnerThinkness: 1
+    - _OuterLinesDistance: 0.17
+    - _OuterThickness: 0.21
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

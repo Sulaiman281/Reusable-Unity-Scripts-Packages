@@ -27,6 +27,7 @@ namespace WitShells.ThirdPersonControl
             int randomIndex = Random.Range(0, FootstepSounds.Length);
             AudioClip clip = FootstepSounds[randomIndex];
             AudioSource.PlayClipAtPoint(clip, position, volume);
+            Debug.Log("Playing footstep sound at position: " + position);
         }
 
         public void PlayLandSound(Vector3 position)

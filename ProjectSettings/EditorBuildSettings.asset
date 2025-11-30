@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ApiExample.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/WitMultiplayer.unity
+    guid: fafde99f5440b164194502ff94f95e25
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d1d9266a6f3cec84199c7b5d6ddbeb12, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

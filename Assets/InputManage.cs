@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using WitShells.ThirdPersonControl;
 
 [RequireComponent(typeof(PlayerInput))]
 public class InputManage : MonoBehaviour
@@ -56,4 +57,14 @@ public class InputManage : MonoBehaviour
         SprintInput = value.isPressed;
         OnSprintInput?.Invoke(SprintInput);
     }
+
+    public void RegisterPlayerController(ThirdPersonControl tpc, CinemachineCamLookInput camLook)
+    {
+        OnLookInput.AddListener((input) => camLook.LookInput = input);
+
+        OnMoveInput.AddListener((input) => tpc.Direction = input);
+        OnJumpInput.AddListener((isJumping) => tpc.Jump = isJumping);
+        OnSprintInput.AddListener((isSprinting) => tpc.Sprint = isSprinting);
+    }
+
 }

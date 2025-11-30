@@ -6,12 +6,12 @@ namespace WitShells.ThirdPersonControl
     {
         public void OnFootStep(AnimationEvent animationEvent)
         {
-            SoundSfxObject.Instance.PlayFootStep(transform.position);
+            // SoundSfxObject.Instance.PlayFootStep(transform.position);
         }
 
         public void OnLand(AnimationEvent animationEvent)
         {
-            SoundSfxObject.Instance.PlayLandSound(transform.position);
+            // SoundSfxObject.Instance.PlayLandSound(transform.position);
         }
     }
 }

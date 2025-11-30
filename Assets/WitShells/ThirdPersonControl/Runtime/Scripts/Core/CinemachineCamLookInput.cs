@@ -67,5 +67,9 @@ namespace WitShells.ThirdPersonControl
             Target.rotation = Quaternion.Euler(_currentPitch, _currentYaw, 0f);
         }
 
+        public void SetTarget(Transform target)
+        {
+            CinemachineCamera.Target.TrackingTarget = target;
+        }
     }
 }

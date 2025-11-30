@@ -29,7 +29,7 @@ cpu_and_mobile
 /[Aa]ssets/Plugins/Editor/JetBrains*
 /[Aa]ssets/LevelPlay/
 /[Aa]ssets/MobileDependencyResolver/
-/[Aa]ssets/Plugins/Android/
+/[Aa]ssets/Plugins/
 
 # Visual Studio cache directory
 .vs/
@@ -54,6 +54,7 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.fbx
 
 # Unity3D generated meta files
 *.pidb.meta

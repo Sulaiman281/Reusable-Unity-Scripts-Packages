@@ -1,0 +1,21 @@
+{
+    "name": "com.witshells.tankcontrols",
+    "displayName": "WitShells Tank Controls",
+    "version": "1.0.0",
+    "unity": "2021.3",
+    "description": "Smooth and configurable tank controller (movement, turret smoothing, Rigidbody integration).",
+    "keywords": [
+        "tank",
+        "vehicle",
+        "controller",
+        "movement",
+        "wit-shells"
+    ],
+    "category": "Gameplay",
+    "author": {
+        "name": "WitShells",
+        "email": "sayedsulaiman607@gmail.com",
+        "url": "https://witshells.com"
+    },
+    "dependencies": {}
+}
