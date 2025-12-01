@@ -442,6 +442,11 @@ namespace WitShells.TankControls
 
         #region Input Methods
 
+        public void SetEnableInputReferences(bool enable)
+        {
+            useInputReferences = enable;
+        }
+
         public void MoveInput(Vector2 dir)
         {
             moveInput = dir;
@@ -490,7 +495,6 @@ namespace WitShells.TankControls
 
         private void OnLookPerformed(InputAction.CallbackContext ctx)
         {
-            Debug.Log("Look Performed");
             try
             {
                 lookInput = ctx.ReadValue<Vector2>();

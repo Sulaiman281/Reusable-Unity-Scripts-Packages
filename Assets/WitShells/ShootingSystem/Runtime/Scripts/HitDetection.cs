@@ -9,6 +9,7 @@ namespace WitShells.ShootingSystem
         [Header("Hit Detection Settings")]
         [SerializeField] private float detectionRadius = 0.5f;
         [SerializeField] private LayerMask hitLayers;
+        [SerializeField] private float lifeAfterHit = 0.1f;
 
         [Header("Events")]
         public UnityEvent<HitInfo> OnHitDetected;
@@ -39,8 +40,10 @@ namespace WitShells.ShootingSystem
             }
             else
             {
-                Destroy(gameObject, 0.5f);
+                Destroy(gameObject, lifeAfterHit);
             }
+
+            OnHitDetected.RemoveAllListeners();
         }
     }
 }
