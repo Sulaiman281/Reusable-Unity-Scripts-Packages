@@ -10,9 +10,19 @@ namespace WitShells.ShootingSystem
         [SerializeField] private float detectionRadius = 0.5f;
         [SerializeField] private LayerMask hitLayers;
         [SerializeField] private float lifeAfterHit = 0.1f;
+        [SerializeField] private float lifeTime = 8f;
+
+        [Header("Impact Effects")]
+        [SerializeField] private bool spawnHitEffect = true;
+        [SerializeField] private GameObject hitEffectPrefab;
 
         [Header("Events")]
         public UnityEvent<HitInfo> OnHitDetected;
+
+        private void Start()
+        {
+            Destroy(gameObject, lifeTime);
+        }
 
         private void OnDrawGizmosSelected()
         {
@@ -32,6 +42,8 @@ namespace WitShells.ShootingSystem
                     HitObject = collision.gameObject
                 };
                 OnHitDetected?.Invoke(hitInfo);
+
+                HandleHitEffect(hitInfo);
             }
             // If this projectile is pooled, return it to its owner's pool; otherwise destroy it.
             if (TryGetComponent<PooledProjectile>(out var pp) && pp.Owner != null)
@@ -44,6 +56,15 @@ namespace WitShells.ShootingSystem
             }
 
             OnHitDetected.RemoveAllListeners();
+        }
+
+        private void HandleHitEffect(HitInfo hitInfo)
+        {
+            if (spawnHitEffect && hitEffectPrefab != null)
+            {
+                var effectInstance = Instantiate(hitEffectPrefab, hitInfo.Point, Quaternion.LookRotation(hitInfo.Normal));
+                Destroy(effectInstance, 5f); // Cleanup after 5 seconds
+            }
         }
     }
 }
