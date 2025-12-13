@@ -1,0 +1,14 @@
+{
+    "name": "com.witshells.webrtc-wit",
+    "version": "1.0.0",
+    "displayName": "WitShells WebRTC P2P",
+    "description": "Reusable P2P multiplayer framework using WebRTC with LAN discovery and signaling server fallback.",
+    "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "email": "sayedsulaiman607@gmail.com"
+    },
+    "dependencies": {
+        "com.unity.webrtc": "3.0.0-pre.7"
+    }
+}

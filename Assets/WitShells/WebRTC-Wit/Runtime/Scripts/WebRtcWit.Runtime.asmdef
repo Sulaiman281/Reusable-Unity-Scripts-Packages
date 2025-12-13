@@ -1,0 +1,18 @@
+{
+  "name": "WitShells.WebRTCWit",
+  "rootNamespace": "WitShells.WebRTCWit",
+  "references": [
+    "Unity.WebRTC",
+    "com.witshells.broadcast",
+    "com.witshells.threadingjob"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

@@ -26,6 +26,11 @@ namespace WitShells.MapView
         public float NormalizedX;
         public float NormalizedY;
 
+        public PlacableData()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
         public PlacableData(string id, string key, PlacementType placementType, Coordinates coordinates, float zoomLevel, int tileX, int tileY, float normalizedX, float normalizedY)
         {
             Id = id;

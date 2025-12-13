@@ -21,6 +21,12 @@ namespace WitShells.ShootingSystem
 
         private void Start()
         {
+            // If this projectile is pooled, the pool owner should manage its lifetime.
+            // Scheduling a Destroy here can destroy pooled instances while they're returned
+            // to the pool. Only schedule automatic destruction for non-pooled projectiles.
+            if (TryGetComponent<PooledProjectile>(out var pp) && pp.Owner != null)
+                return;
+
             Destroy(gameObject, lifeTime);
         }
 
@@ -52,6 +58,7 @@ namespace WitShells.ShootingSystem
             }
             else
             {
+                CancelInvoke();
                 Destroy(gameObject, lifeAfterHit);
             }
 

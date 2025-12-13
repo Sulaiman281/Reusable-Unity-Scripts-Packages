@@ -1,0 +1,23 @@
+{
+    "name": "com.witshells.broadcast",
+    "version": "1.0.0",
+    "displayName": "WitShells Broadcast",
+    "description": "UDP broadcast sender/listener utilities built on ThreadingJob.",
+    "unity": "2021.3",
+    "keywords": [
+        "udp",
+        "broadcast",
+        "networking",
+        "sender",
+        "listener",
+        "threading",
+        "threadingjob",
+        "witshells",
+        "utilities"
+    ],
+    "author": {
+        "name": "WitShells",
+        "email": "sayedsulaiman607@gmail.com"
+    },
+    "dependencies": {}
+}
