@@ -10,6 +10,8 @@ namespace WitShells.MapView
         GameObject GameObject { get; }
         void UpdateCoordinates(Coordinates newCoordinates, float newZoomLevel);
         void UpdateScale(float currentZoomLevel, float maxZoomLevel);
+        void RemovedFromMapView();
+        void AddedToMapView();
     }
 
     public abstract class PlacableBase<TData> : Draggable, IPlacableData<TData>, IPlacable, IPointerDownHandler, IPointerUpHandler
@@ -83,6 +85,9 @@ namespace WitShells.MapView
 
         public abstract void Select();
         public abstract void Release(float time);
+
+        public abstract void RemovedFromMapView();
+        public abstract void AddedToMapView();
     }
 
     public class Placable : PlacableBase<object>
@@ -100,6 +105,16 @@ namespace WitShells.MapView
         public override void Release(float time)
         {
             // Implement release logic here
+        }
+
+        public override void AddedToMapView()
+        {
+            // Implement logic for when added to map view
+        }
+
+        public override void RemovedFromMapView()
+        {
+            // Implement logic for when removed from map view
         }
 
         public override void OnPositionChanged(Vector3 newPosition)

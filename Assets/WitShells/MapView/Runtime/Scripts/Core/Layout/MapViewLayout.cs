@@ -90,6 +90,7 @@ namespace WitShells.MapView
             placable.SetActive(true);
             var placableComponent = placable.GetComponent<MonoBehaviour>() as IPlacable;
             Placables[data.Id] = placableComponent;
+            placableComponent.AddedToMapView();
             return placableComponent;
         }
 
@@ -106,6 +107,7 @@ namespace WitShells.MapView
             if (_placablePool == null || placable == null) return;
             placable.GameObject.SetActive(false);
             Placables.Remove(placable.Data.Id);
+            placable.RemovedFromMapView();
             _placablePool[placable.Data.Key].Release(placable.GameObject);
         }
     }
