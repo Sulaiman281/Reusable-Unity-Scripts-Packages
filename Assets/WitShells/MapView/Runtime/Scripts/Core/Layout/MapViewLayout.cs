@@ -82,7 +82,6 @@ namespace WitShells.MapView
                     }
                     var obj = UnityEngine.Object.Instantiate(prefab, markerContainer.transform);
                     obj.SetActive(false);
-                    Spawn(obj, data, out var placableComponent);
                     return obj;
                 });
                 _placablePool[data.Key] = pool;
@@ -107,18 +106,27 @@ namespace WitShells.MapView
             try
             {
                 var initComp = obj.GetComponent<IPlacableData<object>>();
-                if (initComp != null)
+                if (initComp == null)
+                {
+                    WitLogger.LogWarning($"Placable prefab for key '{data.Key}' does not implement IPlacableData<T>. Skipping custom data initialization.");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(data.Payload))
                 {
                     object customData = null;
-                    if (!string.IsNullOrEmpty(data.Payload))
+                    var settings = new Newtonsoft.Json.JsonSerializerSettings
                     {
-                        var settings = new Newtonsoft.Json.JsonSerializerSettings
-                        {
-                            TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
-                        };
-                        customData = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(data.Payload, settings);
-                    }
+                        TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
+                    };
+                    customData = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(data.Payload, settings);
                     initComp.Initialize(data, customData);
+                }
+                else
+                {
+                    initComp.Initialize(data, data.Payload);
+                    WitLogger.LogWarning($"Placable data for key '{data.Key}' has no payload. Skipping custom data initialization.");
+                    return;
                 }
             }
             catch (Exception ex)
