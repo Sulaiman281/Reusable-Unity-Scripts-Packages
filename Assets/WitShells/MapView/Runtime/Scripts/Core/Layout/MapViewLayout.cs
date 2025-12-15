@@ -253,6 +253,38 @@ namespace WitShells.MapView
 
         #endregion
 
+        #region Queries
+
+        /// <summary>
+        /// Returns the geographic coordinates (lat, lon) at the exact center of the map view.
+        /// Uses the current CenterTile and current zoom to compute the center point (norm 0.5, 0.5).
+        /// </summary>
+        public Coordinates GetCenterCoordinates()
+        {
+            int z = Mathf.RoundToInt(currentZoomLevel);
+
+            // Prefer CenterTile when available
+            if (CenterTile != null)
+            {
+                var (lat, lon) = Utils.TileNormalizedToLatLon(CenterTile.Coordinate.x, CenterTile.Coordinate.y, z, 0.5f, 0.5f);
+                return new Coordinates { Latitude = lat, Longitude = lon };
+            }
+
+            // Fallback to CenterCoordiante if CenterTile not assigned yet
+            if (CenterCoordiante != Vector2Int.zero)
+            {
+                var (lat, lon) = Utils.TileNormalizedToLatLon(CenterCoordiante.x, CenterCoordiante.y, z, 0.5f, 0.5f);
+                return new Coordinates { Latitude = lat, Longitude = lon };
+            }
+
+            // If neither available, estimate from configured bounds mid-point
+            var midLat = (fromCoordinates.Latitude + toCoordinates.Latitude) * 0.5;
+            var midLon = (fromCoordinates.Longitude + toCoordinates.Longitude) * 0.5;
+            return new Coordinates { Latitude = midLat, Longitude = midLon };
+        }
+
+        #endregion
+
         #region Initialization
 
         public void InitializeMapSettings(MapFile settings)
