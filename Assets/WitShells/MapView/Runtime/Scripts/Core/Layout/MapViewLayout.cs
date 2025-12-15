@@ -103,37 +103,7 @@ namespace WitShells.MapView
 
             Placables[data.Id] = placable;
 
-            try
-            {
-                var initComp = obj.GetComponent<IPlacableData<object>>();
-                if (initComp == null)
-                {
-                    WitLogger.LogWarning($"Placable prefab for key '{data.Key}' does not implement IPlacableData<T>. Skipping custom data initialization.");
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(data.Payload))
-                {
-                    object customData = null;
-                    var settings = new Newtonsoft.Json.JsonSerializerSettings
-                    {
-                        TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
-                    };
-                    customData = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(data.Payload, settings);
-                    initComp.Initialize(data, customData);
-                }
-                else
-                {
-                    initComp.Initialize(data, data.Payload);
-                    WitLogger.LogWarning($"Placable data for key '{data.Key}' has no payload. Skipping custom data initialization.");
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                WitLogger.LogWarning($"Failed to deserialize/initialize custom data for Placable key '{data.Key}': {ex.Message}");
-            }
-
+            placable.Initialize(data, data.Payload);
             placable.AddedToMapView();
         }
 

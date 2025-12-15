@@ -9,6 +9,7 @@ namespace WitShells.MapView
     {
         PlacableData Data { get; }
         GameObject GameObject { get; }
+        void Initialize(PlacableData data, string customData);
         void UpdateCoordinates(Coordinates newCoordinates, float newZoomLevel);
         void UpdateScale(float currentZoomLevel, float maxZoomLevel);
         void RemovedFromMapView();
@@ -31,6 +32,35 @@ namespace WitShells.MapView
         {
             placableData = data;
             this.customData = customData;
+            UpdateFromData();
+            CanDrag = MapSettings.Instance.CanDragMarkers;
+        }
+
+        public virtual void Initialize(PlacableData data, string payload)
+        {
+            placableData = data;
+
+            if (!string.IsNullOrEmpty(payload))
+            {
+                try
+                {
+                    var settings = new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    };
+                    customData = JsonConvert.DeserializeObject<TData>(payload, settings);
+                }
+                catch (JsonException ex)
+                {
+                    Debug.LogWarning($"Placable: Failed to deserialize CustomData for '{name}': {ex.Message}");
+                    customData = default;
+                }
+            }
+            else
+            {
+                customData = default;
+            }
+
             UpdateFromData();
             CanDrag = MapSettings.Instance.CanDragMarkers;
         }
