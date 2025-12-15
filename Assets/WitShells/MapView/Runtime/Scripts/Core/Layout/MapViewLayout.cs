@@ -177,6 +177,8 @@ namespace WitShells.MapView
         public bool CanInput { get; set; } = true;
         public PlacableItems PlacableItems => placableItems;
 
+        public int ZoomLevel => Mathf.RoundToInt(currentZoomLevel);
+
         private ObjectPool<TileView> tilePool;
         private TileView[,] tiles;
         private Dictionary<int, Transform> zoomLayers = new();
