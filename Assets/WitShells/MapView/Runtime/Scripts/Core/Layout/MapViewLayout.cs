@@ -82,6 +82,7 @@ namespace WitShells.MapView
                     }
                     var obj = UnityEngine.Object.Instantiate(prefab, markerContainer.transform);
                     obj.SetActive(false);
+                    Spawn(obj, data, out var placableComponent);
                     return obj;
                 });
                 _placablePool[data.Key] = pool;
@@ -89,13 +90,20 @@ namespace WitShells.MapView
 
             var placable = pool.Get();
             placable.SetActive(true);
-            var placableComponent = placable.GetComponent<MonoBehaviour>() as IPlacable;
+            Spawn(placable, data, out var placableComponent);
+            return placableComponent;
+        }
+
+        private void Spawn(GameObject obj, PlacableData data, out IPlacable placable)
+        {
+            var placableComponent = obj.GetComponent<MonoBehaviour>() as IPlacable;
             Placables[data.Id] = placableComponent;
-            placableComponent.AddedToMapView();
+
+            placable = placableComponent;
 
             try
             {
-                var placableData = placable.GetComponent<MonoBehaviour>() as IPlacableData<object>;
+                var placableData = obj.GetComponent<MonoBehaviour>() as IPlacableData<object>;
                 if (placableData != null)
                 {
                     object customData = null;
@@ -114,7 +122,8 @@ namespace WitShells.MapView
             {
                 WitLogger.LogWarning($"Failed to deserialize custom data for Placable with Key: {data.Key}");
             }
-            return placableComponent;
+
+            placableComponent.AddedToMapView();
         }
 
         public bool HasPlacableByData(PlacableData data, out IPlacable placable)
