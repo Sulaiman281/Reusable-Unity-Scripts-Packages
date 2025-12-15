@@ -96,15 +96,18 @@ namespace WitShells.MapView
 
         private void Spawn(GameObject obj, PlacableData data, out IPlacable placable)
         {
-            var placableComponent = obj.GetComponent<MonoBehaviour>() as IPlacable;
-            Placables[data.Id] = placableComponent;
+            placable = obj.GetComponent<IPlacable>();
+            if (placable == null)
+            {
+                throw new InvalidOperationException($"Prefab for key '{data.Key}' must have a component implementing IPlacable.");
+            }
 
-            placable = placableComponent;
+            Placables[data.Id] = placable;
 
             try
             {
-                var placableData = obj.GetComponent<MonoBehaviour>() as IPlacableData<object>;
-                if (placableData != null)
+                var initComp = obj.GetComponent<IPlacableData<object>>();
+                if (initComp != null)
                 {
                     object customData = null;
                     if (!string.IsNullOrEmpty(data.Payload))
@@ -115,15 +118,15 @@ namespace WitShells.MapView
                         };
                         customData = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(data.Payload, settings);
                     }
-                    placableData.Initialize(data, customData);
+                    initComp.Initialize(data, customData);
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                WitLogger.LogWarning($"Failed to deserialize custom data for Placable with Key: {data.Key}");
+                WitLogger.LogWarning($"Failed to deserialize/initialize custom data for Placable key '{data.Key}': {ex.Message}");
             }
 
-            placableComponent.AddedToMapView();
+            placable.AddedToMapView();
         }
 
         public bool HasPlacableByData(PlacableData data, out IPlacable placable)
