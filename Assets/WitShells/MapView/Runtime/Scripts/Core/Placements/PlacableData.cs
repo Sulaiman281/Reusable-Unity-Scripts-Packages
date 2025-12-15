@@ -26,6 +26,8 @@ namespace WitShells.MapView
         public float NormalizedX;
         public float NormalizedY;
 
+        public string Payload; // optional payload for custom data
+
         public PlacableData()
         {
             Id = Guid.NewGuid().ToString();

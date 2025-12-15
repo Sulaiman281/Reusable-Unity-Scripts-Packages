@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
+using WitShells.DesignPatterns;
 using WitShells.DesignPatterns.Core;
 
 namespace WitShells.MapView
@@ -91,6 +92,28 @@ namespace WitShells.MapView
             var placableComponent = placable.GetComponent<MonoBehaviour>() as IPlacable;
             Placables[data.Id] = placableComponent;
             placableComponent.AddedToMapView();
+
+            try
+            {
+                var placableData = placable.GetComponent<MonoBehaviour>() as IPlacableData<object>;
+                if (placableData != null)
+                {
+                    object customData = null;
+                    if (!string.IsNullOrEmpty(data.Payload))
+                    {
+                        var settings = new Newtonsoft.Json.JsonSerializerSettings
+                        {
+                            TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All
+                        };
+                        customData = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(data.Payload, settings);
+                    }
+                    placableData.Initialize(data, customData);
+                }
+            }
+            catch
+            {
+                WitLogger.LogWarning($"Failed to deserialize custom data for Placable with Key: {data.Key}");
+            }
             return placableComponent;
         }
 

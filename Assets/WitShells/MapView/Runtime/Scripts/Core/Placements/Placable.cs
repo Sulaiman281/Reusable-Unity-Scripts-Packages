@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using WitShells.DesignPatterns;
@@ -42,6 +43,27 @@ namespace WitShells.MapView
 
         private void OnDisable()
         {
+            try
+            {
+                if (customData != null)
+                {
+                    var settings = new JsonSerializerSettings
+                    {
+                        TypeNameHandling = TypeNameHandling.All
+                    };
+                    placableData.Payload = JsonConvert.SerializeObject(customData, settings);
+                }
+                else
+                {
+                    placableData.Payload = null;
+                }
+            }
+            catch (JsonException ex)
+            {
+                Debug.LogWarning($"Placable: Failed to serialize CustomData for '{name}': {ex.Message}");
+                placableData.Payload = null;
+            }
+
             MapSettings.OnDragSettingsChanged -= OnDragSettingsChanged;
             OnDragPositionUpdated.RemoveListener(OnPositionChanged);
         }
