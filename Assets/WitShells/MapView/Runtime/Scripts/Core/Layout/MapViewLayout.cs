@@ -117,11 +117,43 @@ namespace WitShells.MapView
 
         public void ReleasePlacable(IPlacable placable)
         {
-            if (_placablePool == null || placable == null) return;
-            placable.GameObject.SetActive(false);
-            Placables.Remove(placable.Data.Id);
+            if (placable == null)
+            {
+                WitLogger.LogWarning("ReleasePlacable: placable is null");
+                return;
+            }
+
+            var data = placable.Data;
+            if (data == null)
+            {
+                WitLogger.LogWarning("ReleasePlacable: placable.Data is null; deactivating without pooling");
+                placable.GameObject.SetActive(false);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(data.Key))
+            {
+                WitLogger.LogWarning($"ReleasePlacable: invalid Key for placable Id={data.Id}; deactivating without pooling");
+                Placables?.Remove(data.Id);
+                placable.RemovedFromMapView();
+                placable.GameObject.SetActive(false);
+                return;
+            }
+
+            if (_placablePool == null || !_placablePool.TryGetValue(data.Key, out var pool))
+            {
+                WitLogger.LogWarning($"ReleasePlacable: no pool found for Key={data.Key}; deactivating without pooling");
+                Placables?.Remove(data.Id);
+                placable.RemovedFromMapView();
+                placable.GameObject.SetActive(false);
+                return;
+            }
+
+            // Normal release path
+            Placables?.Remove(data.Id);
             placable.RemovedFromMapView();
-            _placablePool[placable.Data.Key].Release(placable.GameObject);
+            placable.GameObject.SetActive(false);
+            pool.Release(placable.GameObject);
         }
     }
 
@@ -269,34 +301,6 @@ namespace WitShells.MapView
         #endregion
 
         #region Queries
-
-        /// <summary>
-        /// Returns the geographic coordinates (lat, lon) at the exact center of the map view.
-        /// Uses the current CenterTile and current zoom to compute the center point (norm 0.5, 0.5).
-        /// </summary>
-        public Coordinates GetCenterCoordinates()
-        {
-            int z = Mathf.RoundToInt(currentZoomLevel);
-
-            // Prefer CenterTile when available
-            if (CenterTile != null)
-            {
-                var (lat, lon) = Utils.TileNormalizedToLatLon(CenterTile.Coordinate.x, CenterTile.Coordinate.y, z, 0.5f, 0.5f);
-                return new Coordinates { Latitude = lat, Longitude = lon };
-            }
-
-            // Fallback to CenterCoordiante if CenterTile not assigned yet
-            if (CenterCoordiante != Vector2Int.zero)
-            {
-                var (lat, lon) = Utils.TileNormalizedToLatLon(CenterCoordiante.x, CenterCoordiante.y, z, 0.5f, 0.5f);
-                return new Coordinates { Latitude = lat, Longitude = lon };
-            }
-
-            // If neither available, estimate from configured bounds mid-point
-            var midLat = (fromCoordinates.Latitude + toCoordinates.Latitude) * 0.5;
-            var midLon = (fromCoordinates.Longitude + toCoordinates.Longitude) * 0.5;
-            return new Coordinates { Latitude = midLat, Longitude = midLon };
-        }
 
         #endregion
 
