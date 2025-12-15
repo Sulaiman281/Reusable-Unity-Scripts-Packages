@@ -302,6 +302,79 @@ namespace WitShells.MapView
 
         #region Queries
 
+        /// <summary>
+        /// Sets the map center to the given geographic coordinate at the current zoom.
+        /// Optionally clamps the input to the configured geographic bounds and regenerates tiles immediately.
+        /// </summary>
+        /// <param name="coordinates">Target latitude/longitude.</param>
+        /// <param name="clampToBounds">Clamp the coordinate to [TopLeft, BottomRight] bounds.</param>
+        /// <param name="instantLoad">If true, clears and rebuilds tiles around the new center immediately.</param>
+        public void SetCenterCoordinate(Coordinates coordinates, bool clampToBounds = true, bool instantLoad = true)
+        {
+            // Clamp to configured geographic bounds if requested
+            if (clampToBounds)
+            {
+                double minLat = Math.Min(fromCoordinates.Latitude, toCoordinates.Latitude);
+                double maxLat = Math.Max(fromCoordinates.Latitude, toCoordinates.Latitude);
+                double minLon = Math.Min(fromCoordinates.Longitude, toCoordinates.Longitude);
+                double maxLon = Math.Max(fromCoordinates.Longitude, toCoordinates.Longitude);
+
+                coordinates.Latitude = Mathf.Clamp((float)coordinates.Latitude, (float)minLat, (float)maxLat);
+                coordinates.Longitude = Mathf.Clamp((float)coordinates.Longitude, (float)minLon, (float)maxLon);
+            }
+
+            SelectedCoordinates = coordinates;
+
+            // Convert to tile center at current zoom level
+            var targetTile = Utils.LatLonToTile(coordinates.Latitude, coordinates.Longitude, zoomLevel);
+            CenterCoordiante = targetTile;
+
+            if (!instantLoad)
+                return;
+
+            // Clear existing tiles and rebuild around new center
+            foreach (Transform zoomLayer in zoomLayers.Values)
+            {
+                foreach (Transform child in zoomLayer)
+                {
+                    if (child.TryGetComponent<TileView>(out var tile))
+                    {
+                        tile.gameObject.SetActive(false);
+                        MoveTileToDirection.RemoveListener(tile.MoveTo);
+                        Pool.Release(tile);
+                    }
+                }
+            }
+            CenterTile = null;
+
+            try
+            {
+                if (IsLocationBoundsLessThenScreen())
+                {
+                    // Bounds area is smaller than the view; load all tiles within bounds
+                    GenerateAllTiles();
+                }
+                else
+                {
+                    // Rebuild a screen-filling grid centered on the requested tile
+                    GenerateScreenFillingTiles();
+                }
+
+                // Update markers to reflect new tile positions
+                HandleMarkerUpdate();
+            }
+            catch (Exception ex)
+            {
+                WitLogger.LogWarning($"SetCenterCoordinate failed: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Convenience overload accepting raw latitude/longitude.
+        /// </summary>
+        public void SetCenterCoordinate(double latitude, double longitude, bool clampToBounds = true, bool instantLoad = true)
+            => SetCenterCoordinate(new Coordinates { Latitude = latitude, Longitude = longitude }, clampToBounds, instantLoad);
+
         #endregion
 
         #region Initialization

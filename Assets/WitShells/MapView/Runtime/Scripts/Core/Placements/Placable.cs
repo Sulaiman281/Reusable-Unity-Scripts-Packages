@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using WitShells.DesignPatterns;
+using WitShells.DesignPatterns.Core;
 
 namespace WitShells.MapView
 {
@@ -104,7 +105,18 @@ namespace WitShells.MapView
         }
 
         public abstract void UpdateFromData();
-        public abstract void OnPositionChanged(Vector3 newPosition);
+        public virtual void OnPositionChanged(Vector3 newPosition)
+        {
+            if (SceneObjectCache.TryGet<MapViewLayout>(out var mapViewLayout))
+            {
+                if (mapViewLayout.TryGetTileAndNormalizedFromWorldPosition(newPosition, out Coordinates coordinate, out float normalizedX, out float normalizedY))
+                {
+                    placableData.Coordinates = coordinate;
+                    placableData.NormalizedX = normalizedX;
+                    placableData.NormalizedY = normalizedY;
+                }
+            }
+        }
 
         public void UpdateCoordinates(Coordinates newCoordinates, float newZoomLevel)
         {
@@ -171,19 +183,9 @@ namespace WitShells.MapView
 
         public override void OnPositionChanged(Vector3 newPosition)
         {
+            base.OnPositionChanged(newPosition);
             WitLogger.Log("Updating placable coordinates based on new position." +
                           $"World Position: {newPosition}");
-            var mapViewLayout = FindFirstObjectByType<MapViewLayout>();
-            if (mapViewLayout != null)
-            {
-                if (mapViewLayout.TryGetTileAndNormalizedFromWorldPosition(newPosition, out Coordinates coordinate, out float normalizedX, out float normalizedY))
-                {
-                    WitLogger.Log($"New Tile: {coordinate}, NormalizedX: {normalizedX}, NormalizedY: {normalizedY}");
-                    placableData.Coordinates = coordinate;
-                    placableData.NormalizedX = normalizedX;
-                    placableData.NormalizedY = normalizedY;
-                }
-            }
         }
     }
 }
