@@ -66,13 +66,13 @@ namespace WitShells.MapView
             CanDrag = MapSettings.Instance.CanDragMarkers;
         }
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             MapSettings.OnDragSettingsChanged += OnDragSettingsChanged;
             OnDragPositionUpdated.AddListener(OnPositionChanged);
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             try
             {
@@ -115,6 +115,9 @@ namespace WitShells.MapView
                     placableData.NormalizedX = normalizedX;
                     placableData.NormalizedY = normalizedY;
                 }
+            } else
+            {
+                WitLogger.LogWarning("Placable: Unable to update coordinates from position change - MapViewLayout not found in scene.");
             }
         }
 
