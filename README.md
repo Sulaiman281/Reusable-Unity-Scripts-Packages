@@ -1,447 +1,689 @@
-# CustomAssets
+# WitShells Unity Packages
 
-Welcome to this collection of reusable assets and tools for Unity game development.
-
-In this repository, you will find multiple Unity packages designed to accelerate your workflow and improve code quality, including design patterns, API integration, character control systems, and actor frameworks.
-
----
-
-## 📦 Available Packages
-
-### **Design Patterns**
-
-A robust, production-ready set of classic and modern design patterns, tailored for Unity projects.
-
-- Singleton, Factory, Observer, Command, State Machine patterns
-- Unity-optimized implementations
-- Comprehensive documentation and examples
-
-### **API Integration**
-
-A powerful package that makes it easy to integrate any RESTful API into your Unity project with minimal code.
-
-**DEPRECATED / OBSOLETE:** This package is no longer maintained and may be removed in a future release. Please migrate to the newer `WitClientApi` package located at `Assets/WitShells/WitClientApi` which provides a runtime JSON endpoint reader, token-based auth helpers, and OpenAPI/Swagger import support.
-
-- Quickly define endpoints and headers
-- Send and test API requests directly inside the Unity Editor
-- Supports custom headers, request bodies, and UnityEvents for success/failure callbacks
-- Great for prototyping, debugging, and production use
-
-### **Third Person Control**
-
-A complete third-person character controller system with advanced features.
-
-- Smooth locomotion with walk, run, crouch, and sprint
-- Jump mechanics with proper ground detection
-- Camera-relative movement controls
-- Cinemachine integration for professional camera handling
-- Customizable movement parameters
-- Animation controller included
-
-### **WitActor**
-
-An advanced actor framework for complex character behaviors and state management.
-
-- Sophisticated locomotion state machines
-- Modular character component system
-- Advanced animation blending
-- Extensible architecture for custom behaviors
-- Integrated with Third Person Control system
-
-### **WitMultiplayer**
-
-A lightweight wrapper and helpers for Unity Gaming Services matchmaking, lobbies, and Relay integration. Includes coroutine-based helpers to interact with UGS Lobby, Matchmaker, and Relay SDKs plus manager classes to simplify joining, creating and monitoring lobbies.
-
-- Lobby management helpers and event callbacks
-- Matchmaking helpers using UGS Matchmaker + Relay
-- Example lobby & matchmaking manager scripts
-
-### **TankControls**
-
-Rigidbody-based tank controls providing smooth movement and turret yaw/pitch handling. Designed to integrate with weapons and trajectory previews for vehicle-mounted weapons.
-
-- Smooth movement and turning
-- Turret yaw and pitch support
-- Integration-ready for ShootingSystem
-
-### **ShootingSystem**
-
-Reusable shooting utilities including a configurable `Weapon` component (raycast & projectile modes), `Trajectory` preview, pooling-friendly projectile helpers, and hit-detection helpers.
-
-- Trajectory preview and indicator
-- Pooling-friendly projectile lifecycle
-- Configurable weapon component with raycast/projectile modes
-
-### 🚗 Simple Vehicle Control
-
-**Smart vehicle physics and AI navigation system**
-
-A comprehensive vehicle control package featuring realistic physics-based movement and intelligent AI navigation:
-
-- **CarDriver**: Smooth Rigidbody-based vehicle physics with realistic acceleration and turning
-- **CarDriverAI**: Intelligent AI navigation using NavMesh with obstacle detection and pathfinding
-- **Smart Navigation**: Advanced stuck detection with automatic recovery mechanisms
-- **Obstacle Avoidance**: Real-time collision detection and smart routing around obstacles
-- **Destination Braking**: Intelligent speed control when approaching targets
-- **Clean Architecture**: Well-organized code structure with clear method separation
-
-Perfect for racing games, city simulations, or any project requiring intelligent vehicle behavior.
-
-### **Military Grid System**
-
-A flexible and efficient grid system designed for military-style tactical displays and map overlays:
-
-- **Square Grid Layout**:
-
-  - Precise square grid generation using UI lines
-  - Dynamic cell size adjustment (default 80x80 units)
-  - Automatic scaling with canvas resolution
-  - Object pooling for performance optimization
-  - Perfect pixel-aligned grid lines
-
-- **Grid Labeling**:
-
-  - Configurable label positions (Left, Right, Top, Bottom)
-  - Custom label offset support
-  - Automatic label scaling and positioning
-  - TextMeshPro integration for crisp text rendering
-
-- **Performance Features**:
-
-  - Efficient line rendering using UI Images
-  - Object pooling for both lines and labels
-  - Optimized for runtime modifications
-  - Memory-efficient grid generation
-
-- **Customization**:
-  - Adjustable line thickness and color
-  - Configurable cell sizes
-  - Custom label formatting
-  - Support for different grid styles
-
-Perfect for:
-
-- Tactical map displays
-- Strategy game interfaces
-- Navigation systems
-- Coordinate-based overlays
-
-### Installation:
-
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/MilitaryGridSystem
-```
-
-More packages will be added over time!
+<p align="center">
+  <strong>A collection of production-ready, reusable Unity packages</strong><br>
+  <a href="https://witshells.com">witshells.com</a>
+</p>
 
 ---
 
-## 📥 Package Installation Guide
+## 📦 Quick Install
 
-All packages can be installed using Unity's Package Manager with Git URLs. Choose the packages you need:
+All packages install via Unity Package Manager using Git URLs.
 
-### **API Integration Package**
+**How to Install:**
+1. Open Unity → **Window** → **Package Manager**
+2. Click **+** → **Add package from Git URL**
+3. Copy a URL below and paste it, then click **Add**
 
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ApiIntegration
-```
+---
 
-### **WitClientApi (WitShells)**
-
-Lightweight runtime API integration package that lets you define endpoints in a JSON manifest (or paste an OpenAPI/Swagger JSON) and call them dynamically from Unity. It includes token-based auth helpers, a runtime endpoint reader, and a simple manager for calling endpoints without creating DTOs.
-
-Copy this URL into Unity's Package Manager → Add package from Git URL to install the WitClientApi package directly:
-
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitClientApi
-```
-
-After installing, open the package's sample and runtime docs under `Assets/WitShells/WitClientApi` for quick-start instructions and an endpoints example manifest located at `Runtime/Resources/Endpoints/endpoints.json`.
-
-### **Design Patterns Package**
-
+### Design Patterns
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DesignPatterns
 ```
 
-### **Third Person Control Package**
-
+### Third Person Control
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ThirdPersonControl
 ```
 
-### **WitActor Package**
-
+### WitActor System
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitActor
 ```
 
-### **Threading Job**
-
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ThreadingJob
-```
-
-### **Simple Car Controller**
-
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SimpleVehicleControl
-```
-
-### **Military Grid System**
-
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/MilitaryGridSystem
-```
-
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git#MilitaryGridSystem/1.0.0
-```
-
-### **SplineRuntime**
-
-```
-https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SplineRuntime
-```
-
-### **WitMultiplayer**
-
+### WitMultiplayer
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitMultiplayer
 ```
 
-### **TankControls**
+### WitClientApi
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitClientApi
+```
 
+### Dialogs Manager
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DialogsManager
+```
+
+### Tank Controls
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/TankControls
 ```
 
-### **ShootingSystem**
-
+### Shooting System
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ShootingSystem
 ```
 
----
+### Simple Vehicle Control
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SimpleVehicleControl
+```
 
-## 🚀 Installation Steps
+### Military Grid System
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/MilitaryGridSystem
+```
 
-### 1. Open Your Unity Project
+### Canvas Draw Tool
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/CanvasDrawTool
+```
 
-Open the Unity project where you want to add the packages.
+### Spline Runtime
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SplineRuntime
+```
 
-### 2. Open the Package Manager
+### Threading Job
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ThreadingJob
+```
 
-Go to **Window → Package Manager**.
+### Broadcast (UDP)
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/Broadcast
+```
 
-### 3. Add Package from Git URL
+### WebRTC P2P
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WebRTC-Wit
+```
 
-Click the **+** button (top left), then select **Add package from Git URL...**
+### Live Microphone
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/LiveMic
+```
 
-### 4. Paste the Git URL
+### Map View
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/MapView
+```
 
-Copy and paste one of the Git URLs above for the package you want to install.
-
-### 5. Wait for Import
-
-Unity will download and import the package. Repeat for additional packages as needed.
-
----
-
-## 📋 Package Dependencies
-
-Some packages have dependencies on others. Install them in the following order for best results:
-
-### **For Character Control Systems:**
-
-1. **Design Patterns** (foundation)
-2. **Third Person Control** (basic character controller)
-3. **WitActor** (advanced actor system) - _depends on Third Person Control_
-
-### **For API Integration:**
-
-1. **API Integration** (standalone - no dependencies)
-
-### **Cinemachine Dependency:**
-
-The **Third Person Control** and **WitActor** packages require **Cinemachine**:
-
-1. Open **Window → Package Manager**
-2. Switch to **Unity Registry**
-3. Search for "Cinemachine"
-4. Click **Install**
-
----
-
-## 🛠️ Quick Setup Guides
-
-### **Third Person Control Setup**
-
-After installing the package:
-
-1. Select your character GameObject in the hierarchy
-2. Go to **WitShells → ThirdPersonSetup → Setup ThirdPerson Character**
-3. The setup will automatically:
-   - Add required components (CharacterController, ThirdPersonControl)
-   - Configure the animator with locomotion controller
-   - Create camera target and setup Cinemachine camera
-   - Add CinemachineBrain to Main Camera
-
-### **WitActor Setup**
-
-The WitActor package extends Third Person Control:
-
-1. First complete the Third Person Control setup
-2. Add WitActor components as needed for advanced behaviors
-3. Configure the locomotion state machine for complex character actions
-
-### **API Integration Setup**
-
-1. Go to **WitShells → API Integration → API Test Window**
-2. Define your API endpoints and test them directly in the editor
-3. Use the generated code in your runtime scripts
+### SQLite Database
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SqLite
+```
 
 ---
 
-## 📖 Documentation & Examples
+---
 
-Each package includes comprehensive documentation:
+## 📚 Package Documentation
 
-### **Design Patterns**
+### 1. Design Patterns
 
-- `DesignPatternGuide.md` - Complete guide with code examples
-- Example scenes demonstrating each pattern
-- Best practices and Unity-specific implementations
+Production-ready design pattern implementations optimized for Unity.
 
-### **API Integration**
+**Included Patterns:**
+- Singleton (MonoBehaviour & ScriptableObject)
+- Factory Pattern
+- Observer Pattern
+- Command Pattern
+- State Machine
+- Object Pooling
 
-- Built-in editor documentation
-- Real-time API testing tools
-- Example integration scripts
+```csharp
+// Singleton Example - Create a GameManager that persists across scenes
+using WitShells.DesignPatterns;
 
-### **Third Person Control**
-
-- Component reference guide
-- Movement customization examples
-- Camera setup tutorials
-
-### **WitActor**
-
-- Advanced state machine documentation
-- Character behavior scripting guides
-- Animation integration examples
+public class GameManager : Singleton<GameManager>
+{
+    public int Score { get; private set; }
+    
+    protected override void Awake()
+    {
+        base.Awake(); // Handles DontDestroyOnLoad
+    }
+    
+    public void AddScore(int points)
+    {
+        Score += points;
+        // Access from anywhere: GameManager.Instance.AddScore(10);
+    }
+}
+```
 
 ---
 
-## 🎯 Use Cases
+### 2. Third Person Control
 
-### **Game Development**
+Complete third-person character controller with New Input System and Cinemachine 3.0.
 
-- Rapid prototyping with design patterns
-- Professional character controllers
-- API integration for online features
-- Modular actor systems for complex NPCs
+**Features:**
+- Smooth locomotion (walk, run, crouch, sprint)
+- Jump with ground detection
+- Camera-relative movement
+- ScriptableObject settings
+- PlayerInput component integration
 
-### **Educational Projects**
+**Dependencies:** `com.unity.inputsystem`, `com.unity.cinemachine`
 
-- Learn design patterns in practice
-- Understand character controller mechanics
-- Explore state machine architectures
-- Practice API integration techniques
+```csharp
+// Setup via code or use the Editor menu: WitShells → ThirdPersonSetup
+using WitShells.ThirdPersonControl;
+using UnityEngine;
 
-### **Production Ready**
-
-- All packages are optimized for production use
-- Comprehensive error handling
-- Performance-focused implementations
-- Extensible architectures
-
----
-
-## ⚡ Features Comparison
-
-| Feature                 | Design Patterns   | API Integration       | Third Person Control | WitActor             |
-| ----------------------- | ----------------- | --------------------- | -------------------- | -------------------- |
-| **Complexity**          | Beginner-Advanced | Beginner-Intermediate | Intermediate         | Advanced             |
-| **Dependencies**        | None              | None                  | Cinemachine          | Third Person Control |
-| **Editor Tools**        | Examples          | Test Window           | Setup Wizard         | State Debugger       |
-| **Runtime Performance** | Excellent         | Good                  | Excellent            | Excellent            |
-| **Customization**       | High              | Medium                | High                 | Very High            |
-
----
-
-## 🔧 System Requirements
-
-- **Unity Version:** 2021.3 LTS or newer
-- **Target Platforms:** All Unity-supported platforms
-- **.NET Standard:** 2.1 compatibility
-- **Dependencies:** Package-specific (see above)
+public class PlayerSetup : MonoBehaviour
+{
+    [SerializeField] private ThirdPersonSettings settings;
+    
+    void Start()
+    {
+        // The ThirdPersonControl reads settings from ScriptableObject
+        var controller = GetComponent<ThirdPersonControl>();
+        
+        // Customize at runtime
+        controller.Sprint = true;  // Enable sprint
+        controller.Direction = new Vector2(1, 0);  // Move right
+        controller.Jump = true;    // Trigger jump
+    }
+}
+```
 
 ---
 
-## 🐛 Troubleshooting
+### 3. WitActor System
 
-### **Common Issues:**
+Advanced actor framework for AI characters with navigation and state management.
 
-**Package Import Fails:**
+**Features:**
+- NavMesh-based AI navigation
+- Modular component system
+- State machine integration
+- Patrol, chase, and idle behaviors
 
-- Ensure stable internet connection
-- Check Unity Package Manager cache
-- Try importing packages individually
+```csharp
+using WitShells.WitActor;
+using UnityEngine;
+using UnityEngine.AI;
 
-**Missing Dependencies:**
-
-- Install Cinemachine for character control packages
-- Follow the dependency installation order
-
-**Compilation Errors:**
-
-- Ensure all dependencies are installed
-- Check Unity version compatibility
-- Restart Unity if needed
-
-### **Getting Help:**
-
-1. Check package documentation first
-2. Review example scenes and scripts
-3. Open GitHub issues for bugs
-4. Contribute improvements via pull requests
-
----
-
-## 💡 More Assets Coming Soon
-
-Stay tuned for additional reusable Unity packages in this repository:
-
-- **Inventory System** - Comprehensive item management
-- **Dialogue System** - Branching conversation trees
-- **Save System** - Flexible data persistence
-- **Audio Manager** - Advanced sound management
-- **UI Framework** - Modular interface system
-
----
-
-## 📣 Feedback & Contributions
-
-We welcome community involvement!
-
-### **How to Contribute:**
-
-- Report bugs via GitHub Issues
-- Suggest features and improvements
-- Submit pull requests with enhancements
-- Share your use cases and examples
-
-### **Contact:**
-
-- **Author:** Syed Suleman
-- **Email:** sayedsulaiman607@gmail.com
-- **GitHub:** [Sulaiman281](https://github.com/Sulaiman281)
-
-### **License:**
-
-All packages are provided under MIT License - see individual package documentation for details.
+public class EnemyAI : MonoBehaviour
+{
+    private NavMeshAgent agent;
+    private Transform player;
+    
+    [SerializeField] private float detectionRange = 10f;
+    [SerializeField] private float attackRange = 2f;
+    
+    void Update()
+    {
+        float distance = Vector3.Distance(transform.position, player.position);
+        
+        if (distance <= attackRange)
+        {
+            // Attack state
+            agent.isStopped = true;
+            Attack();
+        }
+        else if (distance <= detectionRange)
+        {
+            // Chase state
+            agent.isStopped = false;
+            agent.SetDestination(player.position);
+        }
+        else
+        {
+            // Patrol state
+            Patrol();
+        }
+    }
+}
+```
 
 ---
 
-**Happy Coding! 🚀**
+### 4. WitMultiplayer
+
+Simplified Unity Gaming Services integration for lobbies, matchmaking, and Relay.
+
+**Features:**
+- Lobby creation and management
+- Matchmaking with UGS Matchmaker
+- Relay integration for NAT traversal
+- In-lobby chat support
+
+```csharp
+using WitShells.WitMultiplayer;
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
+
+public class MultiplayerManager : MonoBehaviour
+{
+    private Lobby currentLobby;
+    
+    public async void CreateLobby(string lobbyName, int maxPlayers)
+    {
+        var options = new CreateLobbyOptions
+        {
+            IsPrivate = false,
+            Data = new Dictionary<string, DataObject>
+            {
+                { "GameMode", new DataObject(DataObject.VisibilityOptions.Public, "TeamDeathmatch") }
+            }
+        };
+        
+        currentLobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName, maxPlayers, options);
+        Debug.Log($"Lobby created: {currentLobby.LobbyCode}");
+    }
+    
+    public async void JoinLobbyByCode(string code)
+    {
+        currentLobby = await LobbyService.Instance.JoinLobbyByCodeAsync(code);
+        Debug.Log($"Joined lobby: {currentLobby.Name}");
+    }
+}
+```
+
+---
+
+### 5. WitClientApi
+
+Lightweight REST API client with JSON manifest support and built-in authentication.
+
+**Features:**
+- Define endpoints in JSON manifest
+- Token-based authentication
+- Thread-safe token storage
+- Envelope-aware response parsing
+
+```csharp
+using WitShells.WitClientApi;
+using UnityEngine;
+
+public class ApiExample : MonoBehaviour
+{
+    private WitApiClient apiClient;
+    
+    void Start()
+    {
+        apiClient = new WitApiClient("https://api.example.com");
+    }
+    
+    public async void Login(string username, string password)
+    {
+        var response = await apiClient.PostAsync<LoginResponse>("/auth/login", new
+        {
+            username,
+            password
+        });
+        
+        if (response.Success)
+        {
+            apiClient.SetAuthToken(response.Data.Token);
+            Debug.Log("Logged in successfully!");
+        }
+    }
+    
+    public async void GetUserProfile()
+    {
+        var profile = await apiClient.GetAsync<UserProfile>("/user/profile");
+        Debug.Log($"Welcome, {profile.Data.Name}!");
+    }
+}
+```
+
+---
+
+### 6. Dialogs Manager
+
+Comprehensive dialog and conversation system with typewriter effects.
+
+**Features:**
+- Conversation sequencing
+- Typewriter text animation
+- Audio playback per dialog
+- Trigger-based activation
+- New Input System support
+
+**Dependencies:** `com.witshells.designpatterns`, `com.unity.textmeshpro`, `com.unity.inputsystem`
+
+```csharp
+using WitShells.DialogsManager;
+using UnityEngine;
+
+public class NPCDialog : MonoBehaviour
+{
+    [SerializeField] private DialogController dialogController;
+    [SerializeField] private Conversation greetingConversation;
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            dialogController.StartConversation(greetingConversation);
+        }
+    }
+}
+
+// Create conversations as ScriptableObjects with dialog lines,
+// speaker names, audio clips, and events per line.
+```
+
+---
+
+### 7. Tank Controls
+
+Rigidbody-based tank controller with smooth turret handling.
+
+**Features:**
+- Smooth movement and turning
+- Turret yaw and pitch control
+- Configurable acceleration/deceleration
+- Integration-ready for weapons
+
+```csharp
+using WitShells.TankControls;
+using UnityEngine;
+
+public class TankInput : MonoBehaviour
+{
+    [SerializeField] private TankController tank;
+    [SerializeField] private Transform turret;
+    
+    void Update()
+    {
+        // Movement
+        float moveInput = Input.GetAxis("Vertical");
+        float turnInput = Input.GetAxis("Horizontal");
+        tank.SetInput(moveInput, turnInput);
+        
+        // Turret aim at mouse position
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            tank.AimTurretAt(hit.point);
+        }
+        
+        // Fire
+        if (Input.GetButtonDown("Fire1"))
+        {
+            tank.Fire();
+        }
+    }
+}
+```
+
+---
+
+### 8. Shooting System
+
+Modular weapon system with raycast and projectile modes.
+
+**Features:**
+- Raycast and projectile firing modes
+- Trajectory preview/prediction
+- Object pooling for projectiles
+- Configurable weapon stats
+
+```csharp
+using WitShells.ShootingSystem;
+using UnityEngine;
+
+public class WeaponController : MonoBehaviour
+{
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private TrajectoryPreview trajectoryPreview;
+    
+    void Update()
+    {
+        // Show trajectory preview while aiming
+        if (Input.GetButton("Fire2"))
+        {
+            trajectoryPreview.ShowTrajectory(
+                weapon.MuzzlePosition,
+                weapon.MuzzleDirection,
+                weapon.ProjectileSpeed
+            );
+        }
+        else
+        {
+            trajectoryPreview.HideTrajectory();
+        }
+        
+        // Fire weapon
+        if (Input.GetButtonDown("Fire1"))
+        {
+            weapon.Fire();
+        }
+    }
+}
+```
+
+---
+
+### 9. Simple Vehicle Control
+
+Smart vehicle physics with AI navigation.
+
+**Features:**
+- Realistic Rigidbody physics
+- NavMesh-based AI driving
+- Obstacle avoidance
+- Stuck detection and recovery
+- Destination braking
+
+```csharp
+using WitShells.SimpleVehicleControl;
+using UnityEngine;
+
+public class CarController : MonoBehaviour
+{
+    [SerializeField] private CarDriver carDriver;
+    [SerializeField] private CarDriverAI carAI;
+    
+    void Update()
+    {
+        // Manual control
+        if (!carAI.enabled)
+        {
+            float throttle = Input.GetAxis("Vertical");
+            float steering = Input.GetAxis("Horizontal");
+            carDriver.SetInput(throttle, steering);
+        }
+    }
+    
+    public void SetAIDestination(Vector3 destination)
+    {
+        carAI.enabled = true;
+        carAI.SetDestination(destination);
+    }
+}
+```
+
+---
+
+### 10. Military Grid System
+
+Tactical grid overlay for strategy games and map displays.
+
+**Features:**
+- Square grid generation
+- Configurable cell sizes
+- Grid labeling (A1, B2, etc.)
+- Object pooling for performance
+
+```csharp
+using WitShells.MilitaryGridSystem;
+using UnityEngine;
+
+public class TacticalMap : MonoBehaviour
+{
+    [SerializeField] private GridGenerator gridGenerator;
+    
+    void Start()
+    {
+        // Generate a 10x10 grid with 100 unit cells
+        gridGenerator.GenerateGrid(10, 10, 100f);
+    }
+    
+    public Vector2Int WorldToGridPosition(Vector3 worldPos)
+    {
+        return gridGenerator.WorldToGrid(worldPos);
+    }
+    
+    public Vector3 GridToWorldPosition(int x, int y)
+    {
+        return gridGenerator.GridToWorld(x, y);
+    }
+}
+```
+
+---
+
+### 10. Spline Runtime
+
+Path creation and object animation along curves.
+
+**Features:**
+- Bezier curve generation
+- Object path following
+- Speed and easing control
+- Editor visualization
+
+```csharp
+using WitShells.SplineRuntime;
+using UnityEngine;
+
+public class PathFollower : MonoBehaviour
+{
+    [SerializeField] private SplinePath splinePath;
+    [SerializeField] private float speed = 5f;
+    
+    private float progress = 0f;
+    
+    void Update()
+    {
+        progress += speed * Time.deltaTime / splinePath.Length;
+        
+        if (progress >= 1f)
+        {
+            progress = 0f; // Loop
+        }
+        
+        transform.position = splinePath.GetPointAtProgress(progress);
+        transform.forward = splinePath.GetDirectionAtProgress(progress);
+    }
+}
+```
+
+---
+
+### 11. Threading Job
+
+Background threading for heavy computations.
+
+**Features:**
+- Easy-to-use job patterns
+- Main thread callbacks
+- Thread-safe operations
+- Progress reporting
+
+```csharp
+using WitShells.ThreadingJob;
+using UnityEngine;
+
+public class HeavyComputation : MonoBehaviour
+{
+    public void ProcessLargeDataset(int[] data)
+    {
+        ThreadingJob.Run(() =>
+        {
+            // This runs on a background thread
+            int sum = 0;
+            foreach (int value in data)
+            {
+                sum += value;
+                // Heavy processing here
+            }
+            return sum;
+        },
+        (result) =>
+        {
+            // This callback runs on the main thread
+            Debug.Log($"Sum: {result}");
+        });
+    }
+}
+```
+
+---
+
+### 12. SQLite Database
+
+Local data persistence with SQLite.
+
+**Features:**
+- Easy CRUD operations
+- Offline storage
+- Cross-platform support
+
+**Dependencies:** `com.gilzoide.sqlite-net`
+
+```csharp
+using WitShells.SqLite;
+using SQLite;
+
+[Table("players")]
+public class PlayerData
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int HighScore { get; set; }
+}
+
+public class DatabaseManager : MonoBehaviour
+{
+    private SQLiteConnection db;
+    
+    void Start()
+    {
+        string dbPath = Application.persistentDataPath + "/game.db";
+        db = new SQLiteConnection(dbPath);
+        db.CreateTable<PlayerData>();
+    }
+    
+    public void SavePlayer(PlayerData player)
+    {
+        db.InsertOrReplace(player);
+    }
+    
+    public PlayerData GetPlayer(int id)
+    {
+        return db.Find<PlayerData>(id);
+    }
+}
+```
+
+---
+
+## 🔧 Requirements
+
+- **Unity:** 2021.3 LTS or newer
+- **Platforms:** All Unity-supported platforms
+- **.NET:** Standard 2.1
+
+---
+
+## 📄 License
+
+MIT License - See individual package documentation for details.
+
+---
+
+## 🤝 Contributing
+
+1. Report bugs via GitHub Issues
+2. Submit pull requests with improvements
+3. Share your use cases and examples
+
+---
+
+<p align="center">
+  <strong>WitShells</strong><br>
+  <a href="https://witshells.com">witshells.com</a>
+</p>

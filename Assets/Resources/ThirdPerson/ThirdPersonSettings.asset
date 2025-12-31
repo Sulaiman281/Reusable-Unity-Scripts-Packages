@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5e087e27e09a7498e9b0c450d8d17b, type: 3}
+  m_Name: ThirdPersonSettings
+  m_EditorClassIdentifier: 
+  walkSpeed: 2
+  runSpeed: 5
+  crouchSpeed: 1
+  jumpForce: 3.5
+  rotationSmoothness: 0.15
+  groundCheckDistance: 0.2
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  terminalVelocity: 53
+  jumpTimeout: 0.2
+  groundedGravity: -2
+  lookSpeed: 2
+  lookSensitivity: 10
+  minPitch: -30
+  maxPitch: 70
+  soundEffects: {fileID: 11400000, guid: 89b0a1fc507d1274cbf3ea8f46305cd1, type: 2}
+  soundVolume: 1

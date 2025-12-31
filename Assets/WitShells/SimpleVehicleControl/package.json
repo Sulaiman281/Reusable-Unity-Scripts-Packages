@@ -1,12 +1,25 @@
 {
     "name": "com.witshells.simplecarcontroller",
     "version": "2.5.3",
-    "displayName": "WitShells Simple Car Controller",
-    "description": "A Unity package that provides a robust car controller with AI navigation features.",
+    "displayName": "WitShells Simple Vehicle Control",
+    "description": "Smart vehicle physics and AI navigation system with realistic Rigidbody-based movement, NavMesh pathfinding, obstacle avoidance, and automatic recovery.",
     "unity": "2021.3",
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "vehicle",
+        "car",
+        "driving",
+        "ai",
+        "navmesh",
+        "pathfinding",
+        "physics",
+        "controller",
+        "witshells"
+    ],
+    "category": "AI",
     "dependencies": {}
 }

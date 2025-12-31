@@ -4,7 +4,6 @@ namespace WitShells.WebRTCWit
     using Unity.WebRTC;
     using System.Collections;
     using WebSocketSharp;
-    using System.Collections.Generic;
     using System.Text;
 
     public class WebRtcSample : MonoBehaviour

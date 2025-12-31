@@ -1,16 +1,23 @@
 {
     "name": "com.witshells.mapview",
     "version": "1.0.7",
-    "displayName": "Map View",
-    "description": "A Unity package that provides map viewing capabilities using Google Maps.",
+    "displayName": "WitShells Map View",
+    "description": "Map viewing capabilities using Google Maps API integration for Unity. Display maps, markers, and geographic data in your game.",
     "unity": "2021.3",
-    "keywords": [
-        "mapview",
-        "google map"
-    ],
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "map",
+        "google-maps",
+        "gps",
+        "location",
+        "geo",
+        "markers",
+        "witshells"
+    ],
+    "category": "Integration",
     "dependencies": {}
 }

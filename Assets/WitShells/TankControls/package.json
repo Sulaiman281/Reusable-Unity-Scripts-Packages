@@ -1,21 +1,24 @@
 {
     "name": "com.witshells.tankcontrols",
-    "displayName": "WitShells Tank Controls",
     "version": "1.0.0",
+    "displayName": "WitShells Tank Controls",
+    "description": "Smooth and configurable tank controller with Rigidbody-based movement, turret yaw/pitch handling, and integration-ready for weapons and trajectory systems.",
     "unity": "2021.3",
-    "description": "Smooth and configurable tank controller (movement, turret smoothing, Rigidbody integration).",
+    "author": {
+        "name": "WitShells",
+        "url": "https://witshells.com"
+    },
+    "license": "MIT",
     "keywords": [
         "tank",
         "vehicle",
         "controller",
-        "movement",
-        "wit-shells"
+        "turret",
+        "military",
+        "rigidbody",
+        "physics",
+        "witshells"
     ],
     "category": "Gameplay",
-    "author": {
-        "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com",
-        "url": "https://witshells.com"
-    },
     "dependencies": {}
 }

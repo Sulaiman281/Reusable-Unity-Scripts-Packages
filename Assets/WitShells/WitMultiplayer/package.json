@@ -1,9 +1,14 @@
 {
     "name": "com.witshells.wit-multiplayer",
     "version": "1.0.0",
-    "displayName": "Wit Multiplayer — Lobbies & Matchmaking",
+    "displayName": "WitShells Multiplayer — Lobbies & Matchmaking",
     "description": "Lightweight Unity package that simplifies lobby creation, matchmaking, in-lobby chat, and Relay/Netcode sessions using Unity Gaming Services (Lobbies, Matchmaker, Relay, Authentication).",
     "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "url": "https://witshells.com"
+    },
+    "license": "MIT",
     "keywords": [
         "multiplayer",
         "matchmaking",
@@ -11,14 +16,10 @@
         "unity-services",
         "relay",
         "netcode",
+        "ugs",
+        "online",
         "witshells"
     ],
-    "categories": [
-        "Other"
-    ],
-    "author": {
-        "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
-    },
+    "category": "Networking",
     "dependencies": {}
 }

@@ -2,11 +2,22 @@
     "name": "com.witshells.threadingjob",
     "version": "1.0.2",
     "displayName": "WitShells Threading Job",
-    "description": "A Unity package that provides a robust threading job system for improved performance.",
+    "description": "Robust threading job system for improved performance in Unity. Run heavy computations off the main thread with easy-to-use job patterns.",
     "unity": "2021.3",
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "threading",
+        "jobs",
+        "async",
+        "multithreading",
+        "performance",
+        "background",
+        "witshells"
+    ],
+    "category": "Scripting",
     "dependencies": {}
 }

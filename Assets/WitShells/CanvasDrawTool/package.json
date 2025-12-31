@@ -1,14 +1,58 @@
 {
     "name": "com.witshells.canvasdrawtool",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "displayName": "WitShells Canvas Draw Tool",
-    "description": "A collection of reusable canvas drawing tools for Unity.",
+    "description": "A complete professional drawing tool for Unity runtime applications. Features include layer system with blend modes, customizable brushes, pen tablet support with pressure sensitivity, color picker, flood fill, shape tools, and texture export capabilities. Perfect for games requiring drawing mechanics, art applications, and custom image creation tools.",
     "unity": "2021.3",
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "email": "contact@witshells.com",
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "drawing",
+        "paint",
+        "canvas",
+        "brush",
+        "layer",
+        "texture",
+        "pen",
+        "tablet",
+        "wacom",
+        "pressure",
+        "art",
+        "image",
+        "editor",
+        "runtime",
+        "ui",
+        "tool",
+        "color-picker",
+        "flood-fill",
+        "witshells"
+    ],
+    "category": "Tools",
     "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.2.1"
-    }
+        "com.unity.inputsystem": "1.4.0",
+        "com.unity.textmeshpro": "3.0.0"
+    },
+    "samples": [
+        {
+            "displayName": "Basic Drawing Demo",
+            "description": "A simple demo scene showing basic drawing functionality with brush and eraser tools.",
+            "path": "Samples~/BasicDemo"
+        },
+        {
+            "displayName": "Full Drawing Application",
+            "description": "A complete drawing application with all UI panels, layer management, and export features.",
+            "path": "Samples~/FullApplication"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/WitShells/CanvasDrawTool.git"
+    },
+    "documentationUrl": "https://witshells.com/docs/canvas-draw-tool",
+    "changelogUrl": "https://witshells.com/docs/canvas-draw-tool/changelog",
+    "licensesUrl": "https://witshells.com/docs/canvas-draw-tool/license"
 }

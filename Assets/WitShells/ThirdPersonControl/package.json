@@ -1,12 +1,34 @@
 {
     "name": "com.witshells.thirdpersoncontrol",
-    "version": "1.0.2",
+    "version": "2.0.0",
     "displayName": "WitShells Third Person Control",
-    "description": "A Unity package that provides a robust third-person character controller with customizable features.",
+    "description": "Complete third-person character controller with ScriptableObject settings, New Input System support, Cinemachine 3.0 integration, locomotion, jumping, sprinting, and crouching.",
     "unity": "2021.3",
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
-    "dependencies": {}
+    "license": "MIT",
+    "keywords": [
+        "third-person",
+        "character-controller",
+        "input-system",
+        "cinemachine",
+        "player",
+        "locomotion",
+        "movement",
+        "witshells"
+    ],
+    "category": "Gameplay",
+    "dependencies": {
+        "com.unity.inputsystem": "1.4.0",
+        "com.unity.cinemachine": "3.0.0"
+    },
+    "samples": [
+        {
+            "displayName": "Third Person Demo",
+            "description": "Complete third-person character demo with animations, sound effects, input actions, and prefabs.",
+            "path": "Samples~/ThirdPersonDemo"
+        }
+    ]
 }

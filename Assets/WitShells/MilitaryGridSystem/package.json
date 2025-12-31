@@ -1,19 +1,24 @@
 {
     "name": "com.witshells.militarygridsystem",
     "version": "1.0.0",
-    "displayName": "Military Grid System",
-    "description": "A flexible and efficient grid system designed for military-style tactical displays and map overlays",
+    "displayName": "WitShells Military Grid System",
+    "description": "A flexible and efficient grid system designed for military-style tactical displays, map overlays, coordinate systems, and strategy game interfaces.",
     "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "url": "https://witshells.com"
+    },
+    "license": "MIT",
     "keywords": [
         "grid",
         "military",
         "tactical",
         "map",
-        "ui"
+        "strategy",
+        "coordinates",
+        "overlay",
+        "witshells"
     ],
-    "author": {
-        "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
-    },
+    "category": "UI",
     "dependencies": {}
 }

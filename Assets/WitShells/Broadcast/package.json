@@ -2,22 +2,23 @@
     "name": "com.witshells.broadcast",
     "version": "1.0.0",
     "displayName": "WitShells Broadcast",
-    "description": "UDP broadcast sender/listener utilities built on ThreadingJob.",
+    "description": "UDP broadcast sender/listener utilities for LAN discovery and local network communication, built on ThreadingJob.",
     "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "url": "https://witshells.com"
+    },
+    "license": "MIT",
     "keywords": [
         "udp",
         "broadcast",
         "networking",
+        "lan",
+        "discovery",
         "sender",
         "listener",
-        "threading",
-        "threadingjob",
-        "witshells",
-        "utilities"
+        "witshells"
     ],
-    "author": {
-        "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
-    },
+    "category": "Networking",
     "dependencies": {}
 }

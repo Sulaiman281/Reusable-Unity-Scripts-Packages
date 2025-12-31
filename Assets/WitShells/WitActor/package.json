@@ -1,12 +1,25 @@
 {
     "name": "com.witshells.witactor",
     "version": "2.5.2",
-    "displayName": "WitShells WitActor",
-    "description": "A Unity package that provides a robust actor system with AI navigation features.",
+    "displayName": "WitShells Actor System",
+    "description": "Advanced actor framework for complex character behaviors, AI navigation, state machines, and modular component systems in Unity.",
     "unity": "2021.3",
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "actor",
+        "ai",
+        "navigation",
+        "navmesh",
+        "state-machine",
+        "npc",
+        "character",
+        "behavior",
+        "witshells"
+    ],
+    "category": "AI",
     "dependencies": {}
 }

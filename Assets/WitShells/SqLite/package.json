@@ -1,17 +1,25 @@
 {
     "name": "com.witshells.sqlite",
     "version": "1.0.0",
-    "displayName": "SQ Lite Database",
-    "description": "A Unity package that handles SQLite database operations.",
+    "displayName": "WitShells SQLite Database",
+    "description": "SQLite database wrapper for Unity. Easy local data persistence, CRUD operations, and offline storage.",
     "unity": "2021.3",
-    "keywords": [
-        "sqlite",
-        "database"
-    ],
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "sqlite",
+        "database",
+        "storage",
+        "persistence",
+        "offline",
+        "crud",
+        "local",
+        "witshells"
+    ],
+    "category": "Data",
     "dependencies": {
         "com.gilzoide.sqlite-net": "https://github.com/gilzoide/unity-sqlite-net.git#1.3.1"
     }

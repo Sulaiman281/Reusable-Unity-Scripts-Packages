@@ -2,11 +2,23 @@
     "name": "com.witshells.splineruntime",
     "version": "1.0.2",
     "displayName": "WitShells Spline Runtime",
-    "description": "A collection of reusable spline runtime implementations for Unity.",
+    "description": "Spline runtime utilities for Unity. Create and follow paths, animate objects along curves, and build procedural tracks.",
     "unity": "2021.3",
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "spline",
+        "curve",
+        "path",
+        "bezier",
+        "animation",
+        "procedural",
+        "track",
+        "witshells"
+    ],
+    "category": "Tools",
     "dependencies": {}
 }

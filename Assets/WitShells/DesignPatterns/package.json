@@ -2,12 +2,25 @@
     "name": "com.witshells.designpatterns",
     "version": "1.2.1",
     "displayName": "WitShells Design Patterns",
-    "description": "A collection of reusable design pattern implementations for Unity.",
+    "description": "Production-ready design pattern implementations for Unity: Singleton, Factory, Observer, Command, State Machine, Object Pooling, and more.",
     "unity": "2021.3",
     "author": {
         "name": "WitShells",
-        "email": "sayedsulaiman607@gmail.com"
+        "url": "https://witshells.com"
     },
+    "license": "MIT",
+    "keywords": [
+        "design-patterns",
+        "singleton",
+        "factory",
+        "observer",
+        "command",
+        "state-machine",
+        "pooling",
+        "architecture",
+        "witshells"
+    ],
+    "category": "Scripting",
     "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.2.1"
     }

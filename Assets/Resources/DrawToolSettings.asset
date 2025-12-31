@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be99e2c50cdf234aada1ec63ba8e98d, type: 3}
+  m_Name: DrawToolSettings
+  m_EditorClassIdentifier: 
+  _brushName: Eraser
+  _brushType: 0
+  _brushSize: 20
+  _brushHardness: 1
+  _brushOpacity: 1
+  _brushSpacing: 0.25
+  _brushJitter: 0
+  _brushScatter: 0
+  _brushAntiAlias: 1
+  _usePressureForSize: 0
+  _usePressureForOpacity: 1
+  _minPressureSize: 0.1
+  _minPressureOpacity: 0.1
+  _primaryColor: {r: 0, g: 0, b: 0, a: 1}
+  _secondaryColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultCanvasWidth: 1024
+  _defaultCanvasHeight: 1024
+  _defaultBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  _currentTool: 1
+  _brushPresets: []

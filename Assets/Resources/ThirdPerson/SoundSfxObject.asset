@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dde0f7cda9e27e4899a274523cf4804, type: 3}
+  m_Name: SoundSfxObject
+  m_EditorClassIdentifier: 
+  volume: 1
+  FootstepSounds:
+  - {fileID: 8300000, guid: d2c6949485417224ea67e92be59cab69, type: 3}
+  - {fileID: 8300000, guid: dd93de23a6050544eb8d05bf6fe06fdc, type: 3}
+  - {fileID: 8300000, guid: 149ef6b0c909660499e92a77062ffb8d, type: 3}
+  - {fileID: 8300000, guid: c3a3c53968c556a4085c464f6d025119, type: 3}
+  - {fileID: 8300000, guid: b15ac395daf8a3640ba0d759356e96cf, type: 3}
+  - {fileID: 8300000, guid: dfb27a3fd4e5252459eb147ac45643b2, type: 3}
+  - {fileID: 8300000, guid: 2ff9e0341c0ebe241b9e2d8202a70109, type: 3}
+  - {fileID: 8300000, guid: f85febfe7fa716343b390aca848dd192, type: 3}
+  - {fileID: 8300000, guid: d3ea40cab29cf5e4cb99d37ed5f9c488, type: 3}
+  - {fileID: 8300000, guid: c4f92d075d16f9640aa4340525704d78, type: 3}
+  landSound: {fileID: 8300000, guid: 66ceeb2f97ce6054c812a2bd15d2d4e7, type: 3}
+  jumpSound: {fileID: 0}
