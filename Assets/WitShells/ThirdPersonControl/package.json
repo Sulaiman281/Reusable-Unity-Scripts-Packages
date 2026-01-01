@@ -21,8 +21,6 @@
     ],
     "category": "Gameplay",
     "dependencies": {
-        "com.unity.inputsystem": "1.4.0",
-        "com.unity.cinemachine": "3.0.0"
     },
     "samples": [
         {
