@@ -1,0 +1,20 @@
+{
+    "name": "WitAnimationRig.Editor",
+    "rootNamespace": "WitShells.AnimationRig.Editor",
+    "references": [
+        "WitAnimationRig",
+        "Unity.Animation.Rigging",
+        "Unity.Animation.Rigging.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

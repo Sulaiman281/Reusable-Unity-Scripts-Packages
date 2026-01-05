@@ -1,0 +1,26 @@
+{
+  "name": "com.witshells.animationrig",
+  "version": "1.0.0",
+  "displayName": "WitShells Animation Rig",
+  "description": "Animation Rigging setup tools and constraint controllers for Unity humanoid characters.",
+  "unity": "2021.3",
+  "unityRelease": "0f1",
+  "documentationUrl": "",
+  "changelogUrl": "",
+  "licensesUrl": "",
+  "dependencies": {
+    "com.unity.animation.rigging": "1.2.1"
+  },
+  "keywords": [
+    "animation",
+    "rigging",
+    "ik",
+    "constraints",
+    "humanoid"
+  ],
+  "author": {
+    "name": "WitShells",
+    "email": "sayedsulaiman607@gmail.com",
+    "url": "https://witshells.com"
+  }
+}

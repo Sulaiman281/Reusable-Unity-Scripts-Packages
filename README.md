@@ -33,6 +33,11 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/W
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitActor
 ```
 
+### Animation Rig
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitAnimationRig
+```
+
 ### WitMultiplayer
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitMultiplayer
@@ -236,7 +241,60 @@ public class EnemyAI : MonoBehaviour
 
 ---
 
-### 4. WitMultiplayer
+### 4. Animation Rig
+
+Powerful Animation Rigging setup tools and constraint controllers for humanoid characters.
+
+**Features:**
+- Wizard-based rig setup with auto bone detection
+- Humanoid avatar bone mapping support
+- Constraint target controllers (head, hands, legs)
+- Per-axis position/rotation constraints
+- Smooth interpolation with configurable speed
+- Runtime weight control
+- Full Undo support
+
+**Dependencies:** `com.unity.animation.rigging`
+
+```csharp
+using WitShells.AnimationRig;
+using UnityEngine;
+
+public class IKController : MonoBehaviour
+{
+    [SerializeField] private ConstraintTargetController constraintController;
+    [SerializeField] private Transform lookAtTarget;
+    [SerializeField] private Transform leftHandTarget;
+    [SerializeField] private Transform rightHandTarget;
+    
+    void Start()
+    {
+        // Set head to look at a target
+        constraintController.SetHeadLookAt(lookAtTarget);
+        
+        // Set hand targets (e.g., for holding objects)
+        constraintController.SetHandTargets(leftHandTarget, rightHandTarget);
+    }
+    
+    void Update()
+    {
+        // Dynamically adjust constraint weights
+        float distance = Vector3.Distance(transform.position, lookAtTarget.position);
+        constraintController.MasterWeight = Mathf.Clamp01(1f - distance / 10f);
+        
+        // Toggle position/rotation constraints independently
+        constraintController.HeadTarget.ConstrainPosition = false; // Only rotation
+        constraintController.LeftHandTarget.ConstrainRotation = true;
+    }
+}
+
+// Setup via Editor: WitShells → Animation Rig → Rig Setup Wizard
+// Or quick setup: WitShells → Animation Rig → Quick Rig Setup (Auto)
+```
+
+---
+
+### 5. WitMultiplayer
 
 Simplified Unity Gaming Services integration for lobbies, matchmaking, and Relay.
 
@@ -280,7 +338,7 @@ public class MultiplayerManager : MonoBehaviour
 
 ---
 
-### 5. WitClientApi
+### 6. WitClientApi
 
 Lightweight REST API client with JSON manifest support and built-in authentication.
 
@@ -328,7 +386,7 @@ public class ApiExample : MonoBehaviour
 
 ---
 
-### 6. Dialogs Manager
+### 7. Dialogs Manager
 
 Comprehensive dialog and conversation system with typewriter effects.
 
@@ -365,7 +423,7 @@ public class NPCDialog : MonoBehaviour
 
 ---
 
-### 7. Tank Controls
+### 8. Tank Controls
 
 Rigidbody-based tank controller with smooth turret handling.
 
@@ -409,7 +467,7 @@ public class TankInput : MonoBehaviour
 
 ---
 
-### 8. Shooting System
+### 9. Shooting System
 
 Modular weapon system with raycast and projectile modes.
 
@@ -455,7 +513,7 @@ public class WeaponController : MonoBehaviour
 
 ---
 
-### 9. Simple Vehicle Control
+### 10. Simple Vehicle Control
 
 Smart vehicle physics with AI navigation.
 
@@ -496,7 +554,7 @@ public class CarController : MonoBehaviour
 
 ---
 
-### 10. Military Grid System
+### 11. Military Grid System
 
 Tactical grid overlay for strategy games and map displays.
 
@@ -534,7 +592,7 @@ public class TacticalMap : MonoBehaviour
 
 ---
 
-### 10. Spline Runtime
+### 12. Spline Runtime
 
 Path creation and object animation along curves.
 
@@ -572,7 +630,7 @@ public class PathFollower : MonoBehaviour
 
 ---
 
-### 11. Threading Job
+### 13. Threading Job
 
 Background threading for heavy computations.
 
@@ -612,7 +670,7 @@ public class HeavyComputation : MonoBehaviour
 
 ---
 
-### 12. SQLite Database
+### 14. SQLite Database
 
 Local data persistence with SQLite.
 

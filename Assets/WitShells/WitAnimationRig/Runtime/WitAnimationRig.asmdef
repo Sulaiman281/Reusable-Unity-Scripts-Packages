@@ -1,0 +1,16 @@
+{
+    "name": "WitAnimationRig",
+    "rootNamespace": "WitShells.AnimationRig",
+    "references": [
+        "Unity.Animation.Rigging"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

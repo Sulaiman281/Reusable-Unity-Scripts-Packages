@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.witactor",
-    "version": "2.5.2",
+    "version": "2.5.3",
     "displayName": "WitShells Actor System",
     "description": "Advanced actor framework for complex character behaviors, AI navigation, state machines, and modular component systems in Unity.",
     "unity": "2021.3",
