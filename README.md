@@ -18,6 +18,11 @@ All packages install via Unity Package Manager using Git URLs.
 
 ---
 
+### WitPose - Bio-Kinetic Posing Tool
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitPose
+```
+
 ### Design Patterns
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DesignPatterns
@@ -119,7 +124,79 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/W
 
 ## 📚 Package Documentation
 
-### 1. Design Patterns
+### 1. WitPose - Bio-Kinetic Posing Tool
+
+Advanced bio-kinetic posing and animation authoring system with real-time muscle control and keyframe recording.
+
+**Features:**
+- Real-time muscle manipulation with 95 individual muscle controls
+- Direct animation keyframe recording with automatic preview management
+- Interactive scene gizmos for bone selection and posing
+- Fist control for natural hand posing (-1 to 1 range)
+- Root transform control with recording support
+- Pose library system for saving and loading poses
+- Anatomical muscle grouping (Core, Head, Arms, Legs, Fingers)
+- Rig builder with constraint-based setup
+- Automatic animation preview disabling during recording
+- Undo/Redo support for all pose operations
+
+```csharp
+using WitShells.WitPose.Editor;
+using UnityEngine;
+using UnityEditor;
+
+public class PoseController : MonoBehaviour
+{
+    [SerializeField] private Animator targetAnimator;
+    [SerializeField] private AnimationClip recordingClip;
+    
+    void Start()
+    {
+        // Open WitPose Editor via Window → WitPose → Animation Editor
+        // Or access programmatically through WitPoseEditor
+    }
+    
+    // Example: Set specific muscle values
+    public void SetCustomPose()
+    {
+        if (!targetAnimator.isHuman) return;
+        
+        // Access muscle system directly
+        var humanPose = new HumanPose();
+        var humanPoseHandler = new HumanPoseHandler(targetAnimator.avatar, targetAnimator.transform);
+        
+        humanPoseHandler.GetHumanPose(ref humanPose);
+        
+        // Modify specific muscles (example: bend left arm)
+        humanPose.muscles[39] = 0.5f; // Left Arm Down-Up
+        humanPose.muscles[42] = 0.8f; // Left Forearm Stretch
+        
+        humanPoseHandler.SetHumanPose(ref humanPose);
+    }
+}
+
+// Key Features in Editor:
+// 🎬 Recording Mode - Automatically disables Animation Preview
+// 🦴 Bone Selection - Click bones in scene to edit related muscles
+// 👊 Fist Control - Single slider controls all finger muscles (-1 to 1)
+// 🎯 Root Control - Position and rotation with keyframe recording
+// 💪 Muscle Groups - Organized by anatomy (Core, Head, Arms, Legs)
+// 📚 Pose Library - Save, load, and manage custom poses
+// ⚙️ Rig Builder - Automated constraint setup for complex rigs
+```
+
+**Editor Workflow:**
+1. **Setup**: Assign Humanoid Animator → Enter Pose Mode
+2. **Bone Selection**: Click bones in scene view to open muscle HUD
+3. **Recording**: Enable Recording Mode → Select Animation Clip → Pose
+4. **Muscle Control**: Use grouped sliders or individual muscle controls
+5. **Hand Posing**: Use Fist Control slider for natural hand poses
+6. **Keyframes**: Changes automatically record when in Recording Mode
+7. **Library**: Save poses to library for reuse across projects
+
+---
+
+### 2. Design Patterns
 
 Production-ready design pattern implementations optimized for Unity.
 

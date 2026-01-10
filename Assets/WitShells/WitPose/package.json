@@ -1,0 +1,39 @@
+{
+  "name": "com.witshells.witpose",
+  "displayName": "WitPose - Bio-Kinetic Posing Tool",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "Advanced bio-kinetic posing and animation authoring tool for Unity Editor featuring real-time muscle control, direct keyframe recording, anatomical constraints, scene gizmos, and comprehensive humanoid character manipulation with automatic animation preview management.",
+  "keywords": [
+    "animation",
+    "posing",
+    "humanoid",
+    "editor",
+    "constraints",
+    "biomechanics",
+    "muscle",
+    "keyframing",
+    "rigging",
+    "gizmos",
+    "recording",
+    "authoring",
+    "kinematic",
+    "character",
+    "avatar",
+    "skeletal",
+    "timeline",
+    "motion"
+  ],
+  "author": {
+    "name": "WitShells",
+    "email": "sayedsulaiman607@gmail.com"
+  },
+  "dependencies": {},
+  "samples": [
+    {
+      "displayName": "Basic Pose Samples",
+      "description": "Example poses and workflows",
+      "path": "Samples~/BasicPoseSamples"
+    }
+  ]
+}

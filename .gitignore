@@ -30,7 +30,9 @@ cpu_and_mobile
 /[Aa]ssets/LevelPlay/
 /[Aa]ssets/MobileDependencyResolver/
 /[Aa]ssets/Plugins/
-
+/[Aa]ssets/UMotionExamples/
+/[Aa]ssets/UMotionEditor/
+/[Aa]ssets/UMotionData/
 # Visual Studio cache directory
 .vs/
 

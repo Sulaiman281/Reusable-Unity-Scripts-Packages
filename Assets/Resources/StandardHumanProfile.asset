@@ -1,0 +1,212 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b329c49b9537972468fd56e385d51b0d, type: 3}
+  m_Name: StandardHumanProfile
+  m_EditorClassIdentifier: 
+  profileName: Standard Adult Human
+  description: Standard anatomical constraints for an adult human skeleton with realistic
+    joint limits.
+  ageCategory: 2
+  bodyType: 1
+  boneConstraints:
+  - boneId: 0
+    boneName: Hips
+    minRotation: {x: -20, y: -30, z: -10}
+    maxRotation: {x: 20, y: 30, z: 10}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.8
+    propagationFactor: 0.5
+    isPosturalBone: 1
+    emphasizeInUI: 0
+  - boneId: 7
+    boneName: Spine
+    minRotation: {x: -30, y: -20, z: -20}
+    maxRotation: {x: 30, y: 20, z: 20}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.6
+    propagationFactor: 0.4
+    isPosturalBone: 1
+    emphasizeInUI: 0
+  - boneId: 8
+    boneName: Chest
+    minRotation: {x: -20, y: -15, z: -15}
+    maxRotation: {x: 20, y: 15, z: 15}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.5
+    propagationFactor: 0.3
+    isPosturalBone: 1
+    emphasizeInUI: 0
+  - boneId: 9
+    boneName: Neck
+    minRotation: {x: -30, y: -60, z: -30}
+    maxRotation: {x: 30, y: 60, z: 30}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.3
+    propagationFactor: 0.2
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 10
+    boneName: Head
+    minRotation: {x: -20, y: -45, z: -20}
+    maxRotation: {x: 20, y: 45, z: 20}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.2
+    propagationFactor: 0.1
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 11
+    boneName: LeftShoulder
+    minRotation: {x: -30, y: -30, z: -30}
+    maxRotation: {x: 30, y: 30, z: 30}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.4
+    propagationFactor: 0.3
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 13
+    boneName: LeftUpperArm
+    minRotation: {x: -90, y: -180, z: -60}
+    maxRotation: {x: 90, y: 60, z: 120}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.5
+    propagationFactor: 0.4
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 15
+    boneName: LeftLowerArm
+    minRotation: {x: 0, y: -90, z: -90}
+    maxRotation: {x: 140, y: 0, z: 90}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.4
+    propagationFactor: 0.2
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 17
+    boneName: LeftHand
+    minRotation: {x: -60, y: -30, z: -30}
+    maxRotation: {x: 60, y: 30, z: 30}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.3
+    propagationFactor: 0.1
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 12
+    boneName: RightShoulder
+    minRotation: {x: -30, y: -30, z: -30}
+    maxRotation: {x: 30, y: 30, z: 30}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.4
+    propagationFactor: 0.3
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 14
+    boneName: RightUpperArm
+    minRotation: {x: -90, y: -60, z: -120}
+    maxRotation: {x: 90, y: 180, z: 60}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.5
+    propagationFactor: 0.4
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 16
+    boneName: RightLowerArm
+    minRotation: {x: 0, y: 0, z: -90}
+    maxRotation: {x: 140, y: 90, z: 90}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.4
+    propagationFactor: 0.2
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 18
+    boneName: RightHand
+    minRotation: {x: -60, y: -30, z: -30}
+    maxRotation: {x: 60, y: 30, z: 30}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.3
+    propagationFactor: 0.1
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 1
+    boneName: LeftUpperLeg
+    minRotation: {x: -90, y: -45, z: -30}
+    maxRotation: {x: 30, y: 45, z: 30}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.6
+    propagationFactor: 0.4
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 3
+    boneName: LeftLowerLeg
+    minRotation: {x: 0, y: -10, z: -10}
+    maxRotation: {x: 140, y: 10, z: 10}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.5
+    propagationFactor: 0.2
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 5
+    boneName: LeftFoot
+    minRotation: {x: -30, y: -20, z: -20}
+    maxRotation: {x: 30, y: 20, z: 20}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.4
+    propagationFactor: 0.1
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 2
+    boneName: RightUpperLeg
+    minRotation: {x: -90, y: -45, z: -30}
+    maxRotation: {x: 30, y: 45, z: 30}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.6
+    propagationFactor: 0.4
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 4
+    boneName: RightLowerLeg
+    minRotation: {x: 0, y: -10, z: -10}
+    maxRotation: {x: 140, y: 10, z: 10}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.5
+    propagationFactor: 0.2
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  - boneId: 6
+    boneName: RightFoot
+    minRotation: {x: -30, y: -20, z: -20}
+    maxRotation: {x: 30, y: 20, z: 20}
+    minPosition: {x: -0.02, y: -0.02, z: -0.02}
+    maxPosition: {x: 0.02, y: 0.02, z: 0.02}
+    stiffness: 0.4
+    propagationFactor: 0.1
+    isPosturalBone: 0
+    emphasizeInUI: 0
+  defaultStiffness: 0.5
+  defaultPropagationFactor: 0.3
