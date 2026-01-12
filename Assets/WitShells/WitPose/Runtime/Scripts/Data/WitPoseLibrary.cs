@@ -57,7 +57,7 @@ namespace WitShells.WitPose
                         UnityEditor.AssetDatabase.CreateAsset(_instance, assetPath);
                         UnityEditor.AssetDatabase.SaveAssets();
 
-                        Debug.Log($"WitPose: Created pose library at {assetPath}");
+                        Logger.Log($"WitPose: Created pose library at {assetPath}");
 #endif
                     }
                 }
@@ -77,21 +77,21 @@ namespace WitShells.WitPose
         {
             if (poseData == null)
             {
-                Debug.LogWarning("WitPose: Cannot save null pose data");
+                Logger.LogWarning("WitPose: Cannot save null pose data");
                 return false;
             }
 
             // Check for duplicate names
             if (savedPoses.Any(p => p.poseName == poseData.poseName))
             {
-                Debug.LogWarning($"WitPose: Pose with name '{poseData.poseName}' already exists. Use UpdatePose() or choose a different name.");
+                Logger.LogWarning($"WitPose: Pose with name '{poseData.poseName}' already exists. Use UpdatePose() or choose a different name.");
                 return false;
             }
 
             // Check pose limit
             if (savedPoses.Count >= maxPoses)
             {
-                Debug.LogWarning($"WitPose: Maximum pose limit ({maxPoses}) reached. Remove some poses first.");
+                Logger.LogWarning($"WitPose: Maximum pose limit ({maxPoses}) reached. Remove some poses first.");
                 return false;
             }
 
@@ -101,7 +101,7 @@ namespace WitShells.WitPose
             savedPoses.Add(poseData);
             SaveLibrary();
 
-            Debug.Log($"WitPose: Saved pose '{poseData.poseName}' to library. Total poses: {savedPoses.Count}");
+            Logger.Log($"WitPose: Saved pose '{poseData.poseName}' to library. Total poses: {savedPoses.Count}");
             return true;
         }
 
@@ -113,7 +113,7 @@ namespace WitShells.WitPose
             var existingPose = savedPoses.FirstOrDefault(p => p.poseName == poseName);
             if (existingPose == null)
             {
-                Debug.LogWarning($"WitPose: Pose '{poseName}' not found for update");
+                Logger.LogWarning($"WitPose: Pose '{poseName}' not found for update");
                 return false;
             }
 
@@ -124,7 +124,7 @@ namespace WitShells.WitPose
             savedPoses[index] = newPoseData;
 
             SaveLibrary();
-            Debug.Log($"WitPose: Updated pose '{poseName}'");
+            Logger.Log($"WitPose: Updated pose '{poseName}'");
             return true;
         }
 
@@ -144,14 +144,14 @@ namespace WitShells.WitPose
             var pose = savedPoses.FirstOrDefault(p => p.poseName == poseName);
             if (pose == null)
             {
-                Debug.LogWarning($"WitPose: Pose '{poseName}' not found for removal");
+                Logger.LogWarning($"WitPose: Pose '{poseName}' not found for removal");
                 return false;
             }
 
             savedPoses.Remove(pose);
             SaveLibrary();
 
-            Debug.Log($"WitPose: Removed pose '{poseName}' from library");
+            Logger.Log($"WitPose: Removed pose '{poseName}' from library");
             return true;
         }
 
@@ -164,7 +164,7 @@ namespace WitShells.WitPose
             savedPoses.Clear();
             SaveLibrary();
 
-            Debug.Log($"WitPose: Cleared all {count} poses from library");
+            Logger.Log($"WitPose: Cleared all {count} poses from library");
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace WitShells.WitPose
 
             string json = JsonUtility.ToJson(exportData, true);
             System.IO.File.WriteAllText(filePath, json);
-            Debug.Log($"WitPose: Exported {savedPoses.Count} poses to {filePath}");
+            Logger.Log($"WitPose: Exported {savedPoses.Count} poses to {filePath}");
 #endif
         }
 
@@ -218,7 +218,7 @@ namespace WitShells.WitPose
 #if UNITY_EDITOR
             if (!System.IO.File.Exists(filePath))
             {
-                Debug.LogError($"WitPose: File not found: {filePath}");
+                Logger.LogError($"WitPose: File not found: {filePath}");
                 return;
             }
 
@@ -238,7 +238,7 @@ namespace WitShells.WitPose
                 }
 
                 SaveLibrary();
-                Debug.Log($"WitPose: Imported {importedCount} new poses from {filePath}");
+                Logger.Log($"WitPose: Imported {importedCount} new poses from {filePath}");
             }
 #endif
         }

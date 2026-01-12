@@ -33,7 +33,7 @@ namespace WitShells.WitPose.Editor
             if (GUILayout.Button("🔑 Commit Current Pose", GUILayout.Height(25)))
             {
                 bonePoseSystem?.CommitPose();
-                Debug.Log("✅ Pose committed");
+                Logger.Log("✅ Pose committed");
             }
             EditorGUILayout.EndHorizontal();
 
@@ -159,7 +159,7 @@ namespace WitShells.WitPose.Editor
         {
             if (musclePoseSystem == null || targetAnimator == null)
             {
-                Debug.LogWarning("Cannot save pose: No active pose system");
+                Logger.LogWarning("Cannot save pose: No active pose system");
                 return;
             }
 
@@ -189,7 +189,7 @@ namespace WitShells.WitPose.Editor
             // Save to library
             if (WitPoseLibrary.Instance.SavePose(poseData))
             {
-                Debug.Log($"✅ Saved pose: {newPoseName} with {HumanTrait.MuscleCount} muscles and body transform");
+                Logger.Log($"✅ Saved pose: {newPoseName} with {HumanTrait.MuscleCount} muscles and body transform");
                 newPoseName = "New Pose"; // Reset name
                 RefreshPoseNames();
             }
@@ -210,7 +210,7 @@ namespace WitShells.WitPose.Editor
 
             if (poseData == null)
             {
-                Debug.LogWarning($"Pose '{poseName}' not found");
+                Logger.LogWarning($"Pose '{poseName}' not found");
                 return;
             }
 
@@ -250,11 +250,11 @@ namespace WitShells.WitPose.Editor
                     recordedCount++;
                 }
 
-                Debug.Log($"🎬 Loaded pose '{poseName}' and recorded {recordedCount} muscle keyframes at time {keyframeTime:F2}s");
+                Logger.Log($"🎬 Loaded pose '{poseName}' and recorded {recordedCount} muscle keyframes at time {keyframeTime:F2}s");
             }
             else
             {
-                Debug.Log($"📂 Loaded pose: {poseName}");
+                Logger.Log($"📂 Loaded pose: {poseName}");
             }
 
             // Optionally commit to animation if in recording mode or auto-key enabled

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace WitShells.WitPose
@@ -264,7 +263,7 @@ namespace WitShells.WitPose
             }
             catch (Exception e)
             {
-                Debug.LogError($"Failed to parse pose JSON: {e.Message}");
+                Logger.LogError($"Failed to parse pose JSON: {e.Message}");
                 return null;
             }
         }

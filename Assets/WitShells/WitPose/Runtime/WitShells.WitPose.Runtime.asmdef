@@ -1,6 +1,6 @@
 {
     "name": "WitShells.WitPose.Runtime",
-    "rootNamespace": "WitShells.WitPose",
+    "rootNamespace": "",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

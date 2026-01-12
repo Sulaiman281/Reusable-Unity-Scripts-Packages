@@ -115,7 +115,7 @@ namespace WitShells.WitPose.Editor.Core
             EditorUtility.SetDirty(activeClip);
             modifiedBones.Clear();
 
-            Debug.Log($"✅ Committed pose at {currentTime:F3}s");
+            Logger.Log($"✅ Committed pose at {currentTime:F3}s");
         }
 
         /// <summary>

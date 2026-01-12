@@ -27,7 +27,7 @@ namespace WitShells.WitPose.Editor.Core
 
             if (!animator.isHuman)
             {
-                Debug.LogError("MusclePoseSystem requires Humanoid rig!");
+                Logger.LogError("MusclePoseSystem requires Humanoid rig!");
                 return;
             }
 

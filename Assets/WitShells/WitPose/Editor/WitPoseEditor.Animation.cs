@@ -54,7 +54,7 @@ namespace WitShells.WitPose.Editor
                 }
 
                 SceneView.RepaintAll();
-                Debug.Log("🎯 Root position centered (X=0, Z=0)");
+                Logger.Log("🎯 Root position centered (X=0, Z=0)");
             }
         }
 
@@ -72,7 +72,7 @@ namespace WitShells.WitPose.Editor
                 }
 
                 SceneView.RepaintAll();
-                Debug.Log("🔄 Root transform reset to origin");
+                Logger.Log("🔄 Root transform reset to origin");
             }
         }
 
@@ -109,7 +109,7 @@ namespace WitShells.WitPose.Editor
             RecordRootPositionKeyframe(rootTransform.position);
             RecordRootRotationKeyframe(rootTransform.rotation);
 
-            Debug.Log($"💾 Root transform recorded at time {GetKeyframeTime():F2}s");
+            Logger.Log($"💾 Root transform recorded at time {GetKeyframeTime():F2}s");
         }
 
         private void RecordTransformCurve(string propertyName, float value, float time)
@@ -158,7 +158,7 @@ namespace WitShells.WitPose.Editor
             }
             catch (System.Exception e)
             {
-                Debug.LogWarning($"Could not access Animation Window time: {e.Message}");
+                Logger.LogWarning($"Could not access Animation Window time: {e.Message}");
             }
 
             return -1f; // Indicates Animation Window time not available
@@ -196,21 +196,21 @@ namespace WitShells.WitPose.Editor
             // Mark the clip as dirty
             EditorUtility.SetDirty(targetAnimationClip);
 
-            Debug.Log($"🎯 Recorded keyframe: {muscleName} = {value:F3} at {keyframeTime:F3}s");
+            Logger.Log($"🎯 Recorded keyframe: {muscleName} = {value:F3} at {keyframeTime:F3}s");
         }
 
         private void RecordAllMusclesAtCurrentTime()
         {
             if (targetAnimationClip == null || musclePoseSystem == null)
             {
-                Debug.LogWarning("Cannot record: No target animation clip or muscle pose system");
+                Logger.LogWarning("Cannot record: No target animation clip or muscle pose system");
                 return;
             }
 
             float keyframeTime = GetKeyframeTime();
             if (keyframeTime < 0f)
             {
-                Debug.LogWarning("Cannot record: Invalid keyframe time");
+                Logger.LogWarning("Cannot record: Invalid keyframe time");
                 return;
             }
 
@@ -246,21 +246,21 @@ namespace WitShells.WitPose.Editor
             // Mark the clip as dirty
             EditorUtility.SetDirty(targetAnimationClip);
 
-            Debug.Log($"💾 Recorded {recordedCount} muscle keyframes at {keyframeTime:F3}s");
+            Logger.Log($"💾 Recorded {recordedCount} muscle keyframes at {keyframeTime:F3}s");
         }
 
         private void ClearKeyframesAtCurrentTime()
         {
             if (targetAnimationClip == null)
             {
-                Debug.LogWarning("Cannot clear keyframes: No target animation clip");
+                Logger.LogWarning("Cannot clear keyframes: No target animation clip");
                 return;
             }
 
             float keyframeTime = GetKeyframeTime();
             if (keyframeTime < 0f)
             {
-                Debug.LogWarning("Cannot clear keyframes: Invalid keyframe time");
+                Logger.LogWarning("Cannot clear keyframes: Invalid keyframe time");
                 return;
             }
 
@@ -298,7 +298,7 @@ namespace WitShells.WitPose.Editor
             // Mark the clip as dirty
             EditorUtility.SetDirty(targetAnimationClip);
 
-            Debug.Log($"🗑️ Cleared {clearedCount} muscle keyframes at {keyframeTime:F3}s");
+            Logger.Log($"🗑️ Cleared {clearedCount} muscle keyframes at {keyframeTime:F3}s");
         }
 
         private float GetKeyframeTime()
@@ -355,7 +355,7 @@ namespace WitShells.WitPose.Editor
                     if (AnimationMode.InAnimationMode())
                     {
                         AnimationMode.StopAnimationMode();
-                        Debug.Log("🎬 Disabled Animation Preview for direct muscle control");
+                        Logger.Log("🎬 Disabled Animation Preview for direct muscle control");
                     }
 
                     if (!muscleTrackingInitialized)
@@ -390,7 +390,7 @@ namespace WitShells.WitPose.Editor
                 {
                     if (targetAnimationClip != null)
                     {
-                        Debug.Log($"🎥 Animation tracking target set: {targetAnimationClip.name}");
+                        Logger.Log($"🎥 Animation tracking target set: {targetAnimationClip.name}");
                     }
                 }
 

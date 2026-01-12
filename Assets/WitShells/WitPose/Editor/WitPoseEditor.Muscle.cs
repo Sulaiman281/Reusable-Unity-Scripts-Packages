@@ -175,9 +175,9 @@ namespace WitShells.WitPose.Editor
 
             GUILayout.Space(10);
 
-            // Debug button
+            // Logger button
             GUI.backgroundColor = new Color(1f, 1f, 0.7f);
-            if (GUILayout.Button("🐛 Debug Log All Muscles", GUILayout.Height(30), GUILayout.Width(160)))
+            if (GUILayout.Button("🐛 Logger Log All Muscles", GUILayout.Height(30), GUILayout.Width(160)))
             {
                 LogAllMusclesWithIndices();
             }
@@ -439,7 +439,7 @@ namespace WitShells.WitPose.Editor
                 musclePoseSystem.SetMuscle(startIndex, 0f, autoKey: true); // Trigger one autokey for the group
             }
 
-            Debug.Log($"🔄 Reset muscle group: indices {startIndex}-{endIndex}");
+            Logger.Log($"🔄 Reset muscle group: indices {startIndex}-{endIndex}");
         }
 
         private void RandomizeMuscleGroup(int startIndex, int endIndex)
@@ -470,7 +470,7 @@ namespace WitShells.WitPose.Editor
                 musclePoseSystem.SetMuscle(startIndex, musclePoseSystem.MuscleValues[startIndex], autoKey: true);
             }
 
-            Debug.Log($"🎲 Randomized muscle group: indices {startIndex}-{endIndex}");
+            Logger.Log($"🎲 Randomized muscle group: indices {startIndex}-{endIndex}");
         }
 
         private void DrawSelectedBoneSection()
@@ -730,7 +730,7 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            Debug.Log("🪑 Applied perfect sitting pose");
+            Logger.Log("🪑 Applied perfect sitting pose");
         }
 
         private void ApplyRandomPose(bool recordKeyframes = false)
@@ -761,36 +761,36 @@ namespace WitShells.WitPose.Editor
             if (musclePoseSystem == null) return;
 
             copiedMuscleValues = (float[])musclePoseSystem.MuscleValues.Clone();
-            Debug.Log("📋 Copied all muscle values to clipboard");
+            Logger.Log("📋 Copied all muscle values to clipboard");
         }
 
         private void PasteAllMuscleValues()
         {
             if (musclePoseSystem == null || copiedMuscleValues == null)
             {
-                Debug.LogWarning("⚠️ No muscle values in clipboard to paste");
+                Logger.LogWarning("⚠️ No muscle values in clipboard to paste");
                 return;
             }
 
             Undo.RecordObject(targetAnimator, "Paste Muscle Values");
             musclePoseSystem.SetAllMuscles(copiedMuscleValues, autoKey: bonePoseSystem.AutoKey);
-            Debug.Log("📄 Pasted all muscle values from clipboard");
+            Logger.Log("📄 Pasted all muscle values from clipboard");
         }
 
         /// <summary>
-        /// Debug method to log all Unity muscle indices and their names
+        /// Logger method to log all Unity muscle indices and their names
         /// </summary>
         private void LogAllMusclesWithIndices()
         {
             if (!isPoseModeActive)
             {
-                Debug.LogWarning("🚫 Enter Pose Mode to access muscle information");
+                Logger.LogWarning("🚫 Enter Pose Mode to access muscle information");
                 return;
             }
 
-            Debug.Log("=== 🐛 Unity HumanTrait Muscle Debug Log ===");
-            Debug.Log($"Total Muscle Count: {HumanTrait.MuscleCount}");
-            Debug.Log("\n📋 All Muscles with Indices:");
+            Logger.Log("=== 🐛 Unity HumanTrait Muscle Logger Log ===");
+            Logger.Log($"Total Muscle Count: {HumanTrait.MuscleCount}");
+            Logger.Log("\n📋 All Muscles with Indices:");
 
             string logOutput = "";
 
@@ -849,8 +849,8 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            Debug.Log(logOutput);
-            Debug.Log("=== 🏁 End Muscle Debug Log ===");
+            Logger.Log(logOutput);
+            Logger.Log("=== 🏁 End Muscle Logger Log ===");
         }
     }
 }

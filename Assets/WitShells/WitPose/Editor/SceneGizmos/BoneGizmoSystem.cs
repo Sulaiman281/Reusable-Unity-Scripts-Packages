@@ -39,7 +39,7 @@ namespace WitShells.WitPose.Editor.SceneGizmos
             set 
             { 
                 useProxyBones = value;
-                Debug.Log($"Gizmos now targeting: {(useProxyBones ? "PROXY bones" : "ORIGINAL bones")}");
+                Logger.Log($"Gizmos now targeting: {(useProxyBones ? "PROXY bones" : "ORIGINAL bones")}");
             } 
         }
 
@@ -57,7 +57,7 @@ namespace WitShells.WitPose.Editor.SceneGizmos
         public void SetProxyBoneMapping(Dictionary<Transform, Transform> mapping)
         {
             proxyBoneMapping = mapping ?? new Dictionary<Transform, Transform>();
-            Debug.Log($"Proxy bone mapping set: {proxyBoneMapping.Count} bones");
+            Logger.Log($"Proxy bone mapping set: {proxyBoneMapping.Count} bones");
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace WitShells.WitPose.Editor.SceneGizmos
             previousTool = Tools.current;
             Tools.current = Tool.None; // Hide Unity's transform tools
             
-            Debug.Log("🎨 Bone Gizmos Activated");
+            Logger.Log("🎨 Bone Gizmos Activated");
         }
 
         public void Deactivate()
@@ -94,7 +94,7 @@ namespace WitShells.WitPose.Editor.SceneGizmos
             SceneView.duringSceneGui -= OnSceneGUI;
             Tools.current = previousTool;
             
-            Debug.Log("Bone Gizmos Deactivated");
+            Logger.Log("Bone Gizmos Deactivated");
         }
 
         private void OnSceneGUI(SceneView sceneView)
@@ -210,7 +210,7 @@ namespace WitShells.WitPose.Editor.SceneGizmos
                     SceneView.RepaintAll();
                     
                     string target = useProxyBones ? " [CTRL]" : "";
-                    Debug.Log($"Selected: {closestBone.boneType}{target}");
+                    Logger.Log($"Selected: {closestBone.boneType}{target}");
                     
                     // Notify editor window of bone selection
                     if (editorWindow != null)

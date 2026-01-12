@@ -285,13 +285,13 @@ namespace WitShells.WitPose.Editor
         {
             if (skeletonRoot == null) return;
 
-            Debug.Log($"🔍 Auto-detecting existing rig for skeleton root: {skeletonRoot.name}");
+            Logger.Log($"🔍 Auto-detecting existing rig for skeleton root: {skeletonRoot.name}");
 
             var existingPoseControls = FindExistingPoseControls();
             if (existingPoseControls != null)
             {
                 poseControlsRoot = existingPoseControls;
-                Debug.Log($"📋 Found existing PoseControls: {existingPoseControls.name}");
+                Logger.Log($"📋 Found existing PoseControls: {existingPoseControls.name}");
 
                 if (duplicateRoot == null)
                 {
@@ -300,18 +300,18 @@ namespace WitShells.WitPose.Editor
 
                 if (duplicateRoot != null)
                 {
-                    Debug.Log($"🎭 Found duplicate root: {duplicateRoot.name}");
+                    Logger.Log($"🎭 Found duplicate root: {duplicateRoot.name}");
                     RebuildRigMappings();
-                    Debug.Log($"✅ Auto-detected existing rig: {constraintMap.Count} constraints found");
+                    Logger.Log($"✅ Auto-detected existing rig: {constraintMap.Count} constraints found");
                 }
                 else
                 {
-                    Debug.LogWarning($"⚠️ PoseControls found but could not locate duplicate root for '{skeletonRoot.name}'");
+                    Logger.LogWarning($"⚠️ PoseControls found but could not locate duplicate root for '{skeletonRoot.name}'");
                 }
             }
             else
             {
-                Debug.Log($"ℹ️ No existing PoseControls found - you may need to create a new pose rig");
+                Logger.Log($"ℹ️ No existing PoseControls found - you may need to create a new pose rig");
             }
         }
 
@@ -348,17 +348,17 @@ namespace WitShells.WitPose.Editor
             string rootName = skeletonRoot.name;
             string expectedCtrlName = rootName + "_CTRL";
 
-            Debug.Log($"🔍 Searching for duplicate root. Original: '{rootName}', Expected CTRL: '{expectedCtrlName}'");
+            Logger.Log($"🔍 Searching for duplicate root. Original: '{rootName}', Expected CTRL: '{expectedCtrlName}'");
 
             for (int i = 0; i < poseControls.transform.childCount; i++)
             {
                 var child = poseControls.transform.GetChild(i);
-                Debug.Log($"  - Checking child: '{child.name}'");
+                Logger.Log($"  - Checking child: '{child.name}'");
 
                 // Check exact matches first
                 if (child.name == expectedCtrlName || child.name == rootName)
                 {
-                    Debug.Log($"✅ Found duplicate root: {child.name}");
+                    Logger.Log($"✅ Found duplicate root: {child.name}");
                     return child;
                 }
 
@@ -366,7 +366,7 @@ namespace WitShells.WitPose.Editor
                 if (string.Equals(child.name, expectedCtrlName, System.StringComparison.OrdinalIgnoreCase) ||
                     string.Equals(child.name, rootName, System.StringComparison.OrdinalIgnoreCase))
                 {
-                    Debug.Log($"✅ Found duplicate root (case-insensitive): {child.name}");
+                    Logger.Log($"✅ Found duplicate root (case-insensitive): {child.name}");
                     return child;
                 }
 
@@ -375,12 +375,12 @@ namespace WitShells.WitPose.Editor
                 string cleanedRootName = WitPoseUtils.CleanBoneName(rootName);
                 if (cleanedChildName == cleanedRootName)
                 {
-                    Debug.Log($"✅ Found duplicate root (cleaned names): {child.name}");
+                    Logger.Log($"✅ Found duplicate root (cleaned names): {child.name}");
                     return child;
                 }
             }
 
-            Debug.LogWarning($"⚠️ Could not find duplicate root for '{rootName}' in PoseControls");
+            Logger.LogWarning($"⚠️ Could not find duplicate root for '{rootName}' in PoseControls");
             return null;
         }
 
@@ -396,18 +396,18 @@ namespace WitShells.WitPose.Editor
             }
 
             int originalBoneCount = CountBones(skeletonRoot);
-            Debug.Log($"🔍 Rebuilding rig mappings... Original skeleton has {originalBoneCount} bones");
+            Logger.Log($"🔍 Rebuilding rig mappings... Original skeleton has {originalBoneCount} bones");
 
             BuildMappingRecursive(skeletonRoot, duplicateRoot);
 
             int mappedBoneCount = originalToProxy.Count;
             rigBuilt = mappedBoneCount > 0;
 
-            Debug.Log($"✅ Rig mapping complete: {mappedBoneCount}/{originalBoneCount} bones mapped, {constraintMap.Count} constraints found");
+            Logger.Log($"✅ Rig mapping complete: {mappedBoneCount}/{originalBoneCount} bones mapped, {constraintMap.Count} constraints found");
 
             if (mappedBoneCount < originalBoneCount)
             {
-                Debug.LogWarning($"⚠️ Only {mappedBoneCount} out of {originalBoneCount} bones were mapped. Some bones may not have matching proxy controls.");
+                Logger.LogWarning($"⚠️ Only {mappedBoneCount} out of {originalBoneCount} bones were mapped. Some bones may not have matching proxy controls.");
             }
         }
 
@@ -434,8 +434,8 @@ namespace WitShells.WitPose.Editor
                 }
                 else
                 {
-                    // Debug warning but continue with other bones
-                    Debug.LogWarning($"Could not find matching proxy bone for '{originalChild.name}' under '{duplicate.name}'");
+                    // Logger warning but continue with other bones
+                    Logger.LogWarning($"Could not find matching proxy bone for '{originalChild.name}' under '{duplicate.name}'");
                 }
             }
         }
@@ -498,12 +498,12 @@ namespace WitShells.WitPose.Editor
                 AddConstraintsToOriginalBones();
                 rigBuilt = true;
 
-                Debug.Log($"✅ Pose rig created: {originalToProxy.Count} bones, {constraintMap.Count} constraints");
+                Logger.Log($"✅ Pose rig created: {originalToProxy.Count} bones, {constraintMap.Count} constraints");
                 EditorUtility.DisplayDialog("Success", $"Pose rig created!\n\n{originalToProxy.Count} control bones\n{constraintMap.Count} constraints", "OK");
             }
             catch (System.Exception e)
             {
-                Debug.LogError($"Failed to create pose rig: {e.Message}");
+                Logger.LogError($"Failed to create pose rig: {e.Message}");
                 EditorUtility.DisplayDialog("Error", $"Failed to create pose rig:\n{e.Message}", "OK");
                 Undo.RevertAllInCurrentGroup();
             }
@@ -568,7 +568,7 @@ namespace WitShells.WitPose.Editor
                 constraintMap[constraint] = originalBone;
             }
 
-            Debug.Log($"✅ Added {constraintMap.Count} ParentConstraints");
+            Logger.Log($"✅ Added {constraintMap.Count} ParentConstraints");
         }
 
         private void DeletePoseRig()
@@ -594,7 +594,7 @@ namespace WitShells.WitPose.Editor
             poseControlsRoot = null;
             duplicateRoot = null;
 
-            Debug.Log("🗑️ Pose rig deleted");
+            Logger.Log("🗑️ Pose rig deleted");
         }
 
         private void EnableConstraints()
@@ -610,7 +610,7 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            Debug.Log("✓ Constraints enabled");
+            Logger.Log("✓ Constraints enabled");
         }
 
         private void DisableConstraints()
@@ -640,7 +640,7 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            Debug.Log("○ Constraints disabled (pose preserved)");
+            Logger.Log("○ Constraints disabled (pose preserved)");
         }
 
         private bool AreConstraintsEnabled()
@@ -678,7 +678,7 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            Debug.Log($"📋 Copied pose from {copiedCount} original bones to proxy bones");
+            Logger.Log($"📋 Copied pose from {copiedCount} original bones to proxy bones");
         }
 
         private int CountBones(Transform root)

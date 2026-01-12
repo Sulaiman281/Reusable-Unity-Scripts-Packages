@@ -121,7 +121,7 @@ namespace WitShells.WitPose.Editor
             {
                 // If recording mode is active but animation preview got enabled again, disable it
                 AnimationMode.StopAnimationMode();
-                Debug.Log("🎬 Animation Preview automatically disabled to maintain direct muscle control");
+                Logger.Log("🎬 Animation Preview automatically disabled to maintain direct muscle control");
             }
         }
 
@@ -229,7 +229,7 @@ namespace WitShells.WitPose.Editor
             {
                 if (targetAnimator != null && !targetAnimator.isHuman)
                 {
-                    Debug.LogError("Selected Animator must be a Humanoid rig!");
+                    Logger.LogError("Selected Animator must be a Humanoid rig!");
                     targetAnimator = null;
                 }
             }
@@ -264,7 +264,7 @@ namespace WitShells.WitPose.Editor
         {
             if (targetAnimator == null || !targetAnimator.isHuman)
             {
-                Debug.LogError("Cannot enter pose mode: Animator must be humanoid!");
+                Logger.LogError("Cannot enter pose mode: Animator must be humanoid!");
                 return;
             }
 
@@ -296,7 +296,7 @@ namespace WitShells.WitPose.Editor
             // Initialize bone-to-muscle mapping
             InitializeBoneToMuscleMapping();
 
-            Debug.Log("✅ Animation Editor Active - Scene Gizmos Enabled");
+            Logger.Log("✅ Animation Editor Active - Scene Gizmos Enabled");
         }
 
         private void ExitPoseMode()
@@ -314,7 +314,7 @@ namespace WitShells.WitPose.Editor
             selectedBone = HumanBodyBones.LastBone;
             showBoneMuscleHUD = false;
 
-            Debug.Log("Exited Animation Editor");
+            Logger.Log("Exited Animation Editor");
         }
 
         // ===== BONE SELECTION & MUSCLE MAPPING =====
@@ -332,31 +332,31 @@ namespace WitShells.WitPose.Editor
             boneToMuscleMapping[HumanBodyBones.Neck] = new int[] { 9, 10, 11 }; // Neck Nod Down-Up, Tilt Left-Right, Turn Left-Right
             boneToMuscleMapping[HumanBodyBones.Head] = new int[] { 12, 13, 14 }; // Head Nod Down-Up, Tilt Left-Right, Turn Left-Right
 
-            // Left Leg (muscles 21-28) - ACTUAL Unity indices from debug log
+            // Left Leg (muscles 21-28) - ACTUAL Unity indices from Logger log
             boneToMuscleMapping[HumanBodyBones.LeftUpperLeg] = new int[] { 21, 22, 23 }; // Left Upper Leg Front-Back, In-Out, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.LeftLowerLeg] = new int[] { 24, 25 }; // Left Lower Leg Stretch, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.LeftFoot] = new int[] { 26, 27 }; // Left Foot Up-Down, Twist In-Out  
             boneToMuscleMapping[HumanBodyBones.LeftToes] = new int[] { 28 }; // Left Toes Up-Down
 
-            // Right Leg (muscles 29-36) - ACTUAL Unity indices from debug log  
+            // Right Leg (muscles 29-36) - ACTUAL Unity indices from Logger log  
             boneToMuscleMapping[HumanBodyBones.RightUpperLeg] = new int[] { 29, 30, 31 }; // Right Upper Leg Front-Back, In-Out, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.RightLowerLeg] = new int[] { 32, 33 }; // Right Lower Leg Stretch, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.RightFoot] = new int[] { 34, 35 }; // Right Foot Up-Down, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.RightToes] = new int[] { 36 }; // Right Toes Up-Down
 
-            // Left Arm (muscles 37-45) - ACTUAL Unity indices from debug log
+            // Left Arm (muscles 37-45) - ACTUAL Unity indices from Logger log
             boneToMuscleMapping[HumanBodyBones.LeftShoulder] = new int[] { 37, 38 }; // Left Shoulder Down-Up, Front-Back
             boneToMuscleMapping[HumanBodyBones.LeftUpperArm] = new int[] { 39, 40, 41 }; // Left Arm Down-Up, Front-Back, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.LeftLowerArm] = new int[] { 42, 43 }; // Left Forearm Stretch, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.LeftHand] = new int[] { 44, 45 }; // Left Hand Down-Up, In-Out
 
-            // Right Arm (muscles 46-54) - ACTUAL Unity indices from debug log
+            // Right Arm (muscles 46-54) - ACTUAL Unity indices from Logger log
             boneToMuscleMapping[HumanBodyBones.RightShoulder] = new int[] { 46, 47 }; // Right Shoulder Down-Up, Front-Back
             boneToMuscleMapping[HumanBodyBones.RightUpperArm] = new int[] { 48, 49, 50 }; // Right Arm Down-Up, Front-Back, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.RightLowerArm] = new int[] { 51, 52 }; // Right Forearm Stretch, Twist In-Out
             boneToMuscleMapping[HumanBodyBones.RightHand] = new int[] { 53, 54 }; // Right Hand Down-Up, In-Out
 
-            // Left Fingers (muscles 55-78) - ACTUAL Unity indices from debug log
+            // Left Fingers (muscles 55-78) - ACTUAL Unity indices from Logger log
             boneToMuscleMapping[HumanBodyBones.LeftThumbProximal] = new int[] { 55, 56 }; // Left Thumb 1 Stretched, Spread
             boneToMuscleMapping[HumanBodyBones.LeftThumbIntermediate] = new int[] { 57 }; // Left Thumb 2 Stretched
             boneToMuscleMapping[HumanBodyBones.LeftThumbDistal] = new int[] { 58 }; // Left Thumb 3 Stretched
@@ -373,7 +373,7 @@ namespace WitShells.WitPose.Editor
             boneToMuscleMapping[HumanBodyBones.LeftLittleIntermediate] = new int[] { 73 }; // Left Little 2 Stretched
             boneToMuscleMapping[HumanBodyBones.LeftLittleDistal] = new int[] { 74 }; // Left Little 3 Stretched
 
-            // Right Fingers (muscles 75-94) - ACTUAL Unity indices from debug log  
+            // Right Fingers (muscles 75-94) - ACTUAL Unity indices from Logger log  
             boneToMuscleMapping[HumanBodyBones.RightThumbProximal] = new int[] { 75, 76 }; // Right Thumb 1 Stretched, Spread
             boneToMuscleMapping[HumanBodyBones.RightThumbIntermediate] = new int[] { 77 }; // Right Thumb 2 Stretched
             boneToMuscleMapping[HumanBodyBones.RightThumbDistal] = new int[] { 78 }; // Right Thumb 3 Stretched
@@ -414,7 +414,7 @@ namespace WitShells.WitPose.Editor
                 {
                     UpdateHUDPosition();
 
-                    // Debug validation - log the actual muscle names being mapped
+                    // Logger validation - log the actual muscle names being mapped
                     int[] muscleIndices = boneToMuscleMapping[selectedBone];
                     string muscleNames = "";
                     foreach (int index in muscleIndices)
@@ -426,7 +426,7 @@ namespace WitShells.WitPose.Editor
                         }
                     }
 
-                    Debug.Log($"🦴 Selected bone: {GetBoneDisplayName(selectedBone)} - Muscles: {muscleNames.TrimEnd(',', ' ')}");
+                    Logger.Log($"🦴 Selected bone: {GetBoneDisplayName(selectedBone)} - Muscles: {muscleNames.TrimEnd(',', ' ')}");
                 }
             }
 
@@ -620,7 +620,7 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            Debug.Log($"🔄 Reset muscles for {GetBoneDisplayName(selectedBone)}");
+            Logger.Log($"🔄 Reset muscles for {GetBoneDisplayName(selectedBone)}");
         }
 
         private void RandomizeSelectedBoneMuscles()
@@ -652,7 +652,7 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            Debug.Log($"🎲 Randomized muscles for {GetBoneDisplayName(selectedBone)}");
+            Logger.Log($"🎲 Randomized muscles for {GetBoneDisplayName(selectedBone)}");
         }
 
         private string GetBoneDisplayName(HumanBodyBones bone)

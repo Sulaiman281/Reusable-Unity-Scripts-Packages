@@ -42,7 +42,7 @@ namespace WitShells.WitPose.Editor.Core
         {
             if (animator == null || !animator.isHuman)
             {
-                Debug.LogError("SkeletonCache requires a Humanoid Animator!");
+                Logger.LogError("SkeletonCache requires a Humanoid Animator!");
                 return;
             }
 
@@ -83,7 +83,7 @@ namespace WitShells.WitPose.Editor.Core
                 }
             }
 
-            Debug.Log($"SkeletonCache: Cached {boneCache.Count} bones");
+            Logger.Log($"SkeletonCache: Cached {boneCache.Count} bones");
         }
 
         public BoneData GetBone(HumanBodyBones bone)

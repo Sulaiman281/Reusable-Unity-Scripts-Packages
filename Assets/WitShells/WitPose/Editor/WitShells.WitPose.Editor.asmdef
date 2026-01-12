@@ -1,6 +1,6 @@
 {
     "name": "WitShells.WitPose.Editor",
-    "rootNamespace": "WitShells.WitPose.Editor",
+    "rootNamespace": "",
     "references": [
         "WitShells.WitPose.Runtime"
     ],

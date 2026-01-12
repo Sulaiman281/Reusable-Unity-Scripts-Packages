@@ -167,11 +167,11 @@ namespace WitShells.WitPose
 
             if (missingBones.Count > 0)
             {
-                Debug.LogWarning($"SkeletonProfile '{profileName}' is missing constraints for: {string.Join(", ", missingBones)}");
+                Logger.LogWarning($"SkeletonProfile '{profileName}' is missing constraints for: {string.Join(", ", missingBones)}");
             }
             else
             {
-                Debug.Log($"SkeletonProfile '{profileName}' validation passed!");
+                Logger.Log($"SkeletonProfile '{profileName}' validation passed!");
             }
         }
 
@@ -215,7 +215,7 @@ namespace WitShells.WitPose
             // Add standard human constraints
             AddStandardConstraints();
 
-            Debug.Log($"Reset profile '{profileName}' to standard human constraints.");
+            Logger.Log($"Reset profile '{profileName}' to standard human constraints.");
         }
 
         /// <summary>
