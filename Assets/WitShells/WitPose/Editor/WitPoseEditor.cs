@@ -121,7 +121,6 @@ namespace WitShells.WitPose.Editor
             {
                 // If recording mode is active but animation preview got enabled again, disable it
                 AnimationMode.StopAnimationMode();
-                Logger.Log("🎬 Animation Preview automatically disabled to maintain direct muscle control");
             }
         }
 
