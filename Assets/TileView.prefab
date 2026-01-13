@@ -52,6 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileImage: {fileID: 5133157965878483494}
   Coordinate: {x: 0, y: 0}
+  normX: 0
+  normY: 0
 --- !u!222 &2621427484056270730
 CanvasRenderer:
   m_ObjectHideFlags: 0

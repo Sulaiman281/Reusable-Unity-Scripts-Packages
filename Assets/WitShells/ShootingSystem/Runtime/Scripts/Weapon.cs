@@ -33,6 +33,7 @@ namespace WitShells.ShootingSystem
         [SerializeField] private int maxAmmo = 30;
         [SerializeField] private int ammo = 30;
         [SerializeField] private float reloadTime = 2f;
+        [SerializeField] private bool autoReload = true;
 
         [Header("Recoil")]
         [SerializeField] private Transform recoilTransform;
@@ -41,7 +42,10 @@ namespace WitShells.ShootingSystem
 
         [Header("Effects")]
         [SerializeField] private ParticleSystem muzzleFlash;
+        [SerializeField] private GameObject muzzlePrefab;
         [SerializeField] private AudioClip shootSound;
+        [SerializeField] private AudioClip reloadSound;
+        [SerializeField] private AudioClip weaponClickSound;
         [SerializeField] private Transform muzzleTransform;
 
         [Header("Projectile")]
@@ -57,6 +61,7 @@ namespace WitShells.ShootingSystem
         // Events
         public UnityEvent OnShoot = new UnityEvent();
         public UnityEvent OnReload = new UnityEvent();
+        public UnityEvent<float> OnReloadProgress = new UnityEvent<float>();
         public UnityEvent<RaycastHit> OnRaycastHit = new UnityEvent<RaycastHit>();
         public UnityEvent<Transform> OnProjectileLaunched = new UnityEvent<Transform>();
 
@@ -97,7 +102,14 @@ namespace WitShells.ShootingSystem
         public bool CanFire()
         {
             if (isReloading) return false;
-            if (currentAmmo <= 0) return false;
+            if (currentAmmo <= 0)
+            {
+                if (autoReload)
+                {
+                    Reload();
+                }
+                return false;
+            }
             float delay = 60f / Mathf.Max(1f, fireRate);
             return Time.time >= lastFireTime + delay;
         }
@@ -112,6 +124,26 @@ namespace WitShells.ShootingSystem
         public void StopAutoFire()
         {
             isFiringAuto = false;
+        }
+
+        public void Fire()
+        {
+            if (fireMode == FireMode.Auto)
+            {
+                // For auto mode, use StartAutoFire/StopAutoFire
+                return;
+            }
+
+            // For Single and Burst modes
+            if (CanFire())
+            {
+                StartCoroutine(FireSingleShot());
+            }
+            else
+            {
+                // Play weapon click sound when trying to fire but can't
+                PlayWeaponClickSound();
+            }
         }
 
         private IEnumerator AutoFireCoroutine()
@@ -278,7 +310,22 @@ namespace WitShells.ShootingSystem
         {
             isReloading = true;
             OnReload?.Invoke();
-            yield return new WaitForSeconds(reloadTime);
+
+            // Play reload sound
+            PlayReloadSound();
+
+            float elapsed = 0f;
+            OnReloadProgress?.Invoke(0f);
+
+            while (elapsed < reloadTime)
+            {
+                yield return new WaitForSeconds(0.1f); // Update every 0.1 seconds for smoother progress
+                elapsed += 0.1f;
+                float progress = elapsed / reloadTime;
+                OnReloadProgress?.Invoke(progress);
+            }
+
+            OnReloadProgress?.Invoke(1f); // Ensure we end at 100%
             currentAmmo = maxAmmo;
             isReloading = false;
         }
@@ -295,10 +342,34 @@ namespace WitShells.ShootingSystem
 
         private void PlayEffects()
         {
-            muzzleFlash?.Play();
+            if (muzzleFlash != null)
+                muzzleFlash?.Play();
+            else if (muzzlePrefab != null)
+            {
+                Vector3 spawnPos = (muzzleTransform != null) ? muzzleTransform.position : transform.position;
+                Quaternion spawnRot = (muzzleTransform != null) ? muzzleTransform.localRotation : transform.rotation;
+                Instantiate(muzzlePrefab, spawnPos, spawnRot);
+            }
+
             if (shootSound != null && audioSource != null)
             {
                 audioSource.PlayOneShot(shootSound);
+            }
+        }
+
+        private void PlayReloadSound()
+        {
+            if (reloadSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(reloadSound);
+            }
+        }
+
+        private void PlayWeaponClickSound()
+        {
+            if (weaponClickSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(weaponClickSound);
             }
         }
 
@@ -307,5 +378,26 @@ namespace WitShells.ShootingSystem
             StopAllCoroutines();
             isFiringAuto = false;
         }
+
+
+#if UNITY_EDITOR
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Vector3 origin = (muzzleTransform != null) ? muzzleTransform.position : transform.position;
+            Vector3 forward = (muzzleTransform != null) ? muzzleTransform.forward : transform.forward;
+            Gizmos.DrawLine(origin, origin + forward * range);
+
+            // Draw spread cone
+            int sampleCount = 10;
+            for (int i = 0; i < sampleCount; i++)
+            {
+                Vector3 dir = GetSpreadDirection(forward);
+                Gizmos.DrawLine(origin, origin + dir * range);
+            }
+        }
+
+#endif
     }
 }

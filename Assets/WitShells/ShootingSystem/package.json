@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.shootingsystem",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "displayName": "WitShells Shooting System",
     "description": "Modular shooting system with raycast and projectile modes, trajectory preview, object pooling, hit detection, and configurable weapon components.",
     "unity": "2021.3",
@@ -20,5 +20,7 @@
         "witshells"
     ],
     "category": "Gameplay",
-    "dependencies": {}
+    "dependencies": {
+        "com.witshells.designpatterns": "https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DesignPatterns"
+    }
 }
