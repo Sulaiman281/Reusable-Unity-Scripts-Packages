@@ -241,10 +241,7 @@ namespace WitShells.ShootingSystem.Editor
                     EditorGUIUtility.PingObject(audioSource);
                 }
             }
-            if (GUILayout.Button("Create Test Scene"))
-            {
-                CreateTestScene();
-            }
+           
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.EndVertical();
@@ -324,23 +321,6 @@ namespace WitShells.ShootingSystem.Editor
             return field?.GetValue(targetWeapon) as GameObject;
         }
 
-        private void CreateTestScene()
-        {
-            // Create a simple test ground
-            GameObject ground = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            ground.name = "Ground";
-            ground.transform.localScale = Vector3.one * 10;
-
-            // Create some target cubes
-            for (int i = 0; i < 3; i++)
-            {
-                GameObject target = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                target.name = "Target_" + (i + 1);
-                target.transform.position = new Vector3(i * 3f - 3f, 1f, 10f);
-                target.AddComponent<WeaponTest>();
-            }
-
-            Debug.Log("Test scene created! Added ground plane and target cubes with WeaponTest components.");
-        }
+        
     }
 }
