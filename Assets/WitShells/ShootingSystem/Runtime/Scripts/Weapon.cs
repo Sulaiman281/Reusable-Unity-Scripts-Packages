@@ -59,11 +59,12 @@ namespace WitShells.ShootingSystem
         [SerializeField] private LayerMask hitMask = ~0;
 
         // Events
-        public UnityEvent OnShoot = new UnityEvent();
-        public UnityEvent OnReload = new UnityEvent();
-        public UnityEvent<float> OnReloadProgress = new UnityEvent<float>();
-        public UnityEvent<RaycastHit> OnRaycastHit = new UnityEvent<RaycastHit>();
-        public UnityEvent<Transform> OnProjectileLaunched = new UnityEvent<Transform>();
+        [Header("Events")]
+        public UnityEvent OnShoot;
+        public UnityEvent OnReload;
+        public UnityEvent<float> OnReloadProgress;
+        public UnityEvent<RaycastHit> OnRaycastHit;
+        public UnityEvent<Transform> OnProjectileLaunched;
 
         private int currentAmmo;
         private bool isReloading;
