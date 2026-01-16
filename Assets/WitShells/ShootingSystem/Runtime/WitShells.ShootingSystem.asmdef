@@ -2,7 +2,8 @@
     "name": "WitShells.ShootingSystem",
     "rootNamespace": "WitShells.ShootingSystem",
     "references": [
-        "GUID:ec8dcffcd0a03ff4fa9b67aecf8c0e87"
+        "GUID:ec8dcffcd0a03ff4fa9b67aecf8c0e87",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

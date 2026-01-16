@@ -74,6 +74,9 @@ namespace WitShells.ShootingSystem
 
         private AudioSource audioSource;
 
+        public FireMode FireMode => fireMode;
+        public int CurrentAmmo => currentAmmo;
+
         private void Awake()
         {
             currentAmmo = ammo = Mathf.Clamp(ammo, 0, maxAmmo);
