@@ -349,9 +349,7 @@ namespace WitShells.ShootingSystem
                 muzzleFlash?.Play();
             else if (muzzlePrefab != null)
             {
-                Vector3 spawnPos = (muzzleTransform != null) ? muzzleTransform.position : transform.position;
-                Quaternion spawnRot = (muzzleTransform != null) ? muzzleTransform.localRotation : transform.rotation;
-                Instantiate(muzzlePrefab, spawnPos, spawnRot);
+                Instantiate(muzzlePrefab, muzzleTransform);
             }
 
             if (shootSound != null && audioSource != null)
