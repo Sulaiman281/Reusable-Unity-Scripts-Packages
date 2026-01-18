@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f69ccdb4aa3a844b8b3601d052aa409, type: 3}
-  m_Name: New Dialog
+  m_Name: Dialog-1 1
   m_EditorClassIdentifier: 
   title: 
-  content: Step
+  content: "Today, we\u2019re going on a climate journey around the world."
   subtitleTextId: 
-  audio: {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
+  audio: {fileID: 8300000, guid: d0a91e8e701e5c7468994194f83da5cc, type: 3}
   displayDuration: 0
-  typingSpeed: 0
   dialogId: New Dialog
   tags: []
   portrait: {fileID: 0}
   emotion: 0
-  requiresAction: 0
-  actionId: 
+  requiresAction: 1
+  actionId: test

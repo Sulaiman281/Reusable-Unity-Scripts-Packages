@@ -1,8 +1,8 @@
 {
     "name": "com.witshells.dialogsmanager",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "displayName": "WitShells Dialogs Manager",
-    "description": "A comprehensive dialog and conversation management system for Unity. Features include conversation sequencing, dialog events, audio playback, typewriter effects, trigger systems, and UI controllers with new Input System support.",
+    "description": "A comprehensive dialog and conversation management system for Unity. Features include conversation sequencing, dialog events, audio playback, typewriter effects, trigger systems, UI controllers with new Input System support, and Unity Timeline integration for cinematic dialog sequences.",
     "unity": "2021.3",
     "unityRelease": "0f1",
     "author": {
@@ -19,13 +19,16 @@
         "cutscene",
         "npc",
         "typewriter",
+        "timeline",
+        "cinematic",
         "witshells"
     ],
     "category": "Tools",
     "dependencies": {
         "com.witshells.designpatterns": "1.2.1",
         "com.unity.textmeshpro": "3.0.6",
-        "com.unity.inputsystem": "1.7.0"
+        "com.unity.inputsystem": "1.7.0",
+        "com.unity.timeline": "1.6.4"
     },
     "samples": [
         {

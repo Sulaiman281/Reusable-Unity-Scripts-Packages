@@ -3,6 +3,21 @@ using UnityEngine;
 
 namespace WitShells.DialogsManager
 {
+
+    public interface IDialogActionRequire
+    {
+        public string ActionId { get; }
+        public bool IsActionComplete();
+    }
+
+    public interface ISubtitleTextUI
+    {
+        // If Empty, use default subtitle text ID from Dialog System Settings
+        // otherwise, use this specific ID for subtitle text display
+        public string Id { get; }
+        public void SetSubtitleText(string text);
+    }
+
     /// <summary>
     /// Represents a single dialog entry with content, audio, and metadata.
     /// Create via Assets > Create > WitShells > Dialogs Manager > Dialog Object.
@@ -18,6 +33,8 @@ namespace WitShells.DialogsManager
 
         [Tooltip("The main content/text of the dialog.")]
         [SerializeField, TextArea(3, 10)] private string content;
+        [SerializeField, Tooltip("Subtitle text ID for UI display. If empty, use default subtitle text ID from Dialog System Settings.")]
+        private string subtitleTextId = "";
 
         [Header("Audio")]
         [Tooltip("Optional audio clip for this dialog.")]
@@ -26,9 +43,6 @@ namespace WitShells.DialogsManager
         [Header("Display Settings")]
         [Tooltip("How long to display this dialog (in seconds). Use 0 for auto (based on audio length or content length).")]
         [SerializeField, Min(0)] private float displayDuration = 0f;
-
-        [Tooltip("Optional character typing speed for text animation (characters per second). Use 0 to disable.")]
-        [SerializeField, Min(0)] private float typingSpeed = 0f;
 
         [Header("Metadata")]
         [Tooltip("Optional unique identifier for this dialog.")]
@@ -43,6 +57,11 @@ namespace WitShells.DialogsManager
 
         [Tooltip("Optional emotion/mood indicator.")]
         [SerializeField] private DialogEmotion emotion = DialogEmotion.Neutral;
+
+        [Header("Action Requirement")]
+        [SerializeField, Tooltip("Indicates if this dialog requires an action to be completed before proceeding.")]
+        private bool requiresAction = false;
+        [SerializeField] private string actionId = "";
 
         #endregion
 
@@ -75,6 +94,12 @@ namespace WitShells.DialogsManager
             set => audio = value;
         }
 
+        public string SubtitleTextId
+        {
+            get => subtitleTextId;
+            set => subtitleTextId = value;
+        }
+
         /// <summary>
         /// The duration to display this dialog.
         /// Returns audio length if available, otherwise calculated from content length.
@@ -99,15 +124,6 @@ namespace WitShells.DialogsManager
                 return 2f; // Default minimum duration
             }
             set => displayDuration = value;
-        }
-
-        /// <summary>
-        /// Character typing speed for text animation (characters per second).
-        /// </summary>
-        public float TypingSpeed
-        {
-            get => typingSpeed;
-            set => typingSpeed = value;
         }
 
         /// <summary>
@@ -157,6 +173,16 @@ namespace WitShells.DialogsManager
         /// </summary>
         public float AudioLength => audio != null ? audio.length : 0f;
 
+        /// <summary>
+        /// Indicates if this dialog requires an action to be completed before proceeding.
+        /// </summary>
+        public bool RequiresAction => requiresAction;
+
+        /// <summary>
+        /// The action ID required to proceed.
+        /// </summary>
+        public string ActionId => actionId;
+
         #endregion
 
         #region Public Methods
@@ -189,17 +215,6 @@ namespace WitShells.DialogsManager
 
             int wordCount = content.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length;
             return wordCount / 2.5f; // ~150 words per minute
-        }
-
-        /// <summary>
-        /// Gets the time required to type out the content at the specified typing speed.
-        /// </summary>
-        public float GetTypingDuration()
-        {
-            if (typingSpeed <= 0 || string.IsNullOrEmpty(content))
-                return 0f;
-
-            return content.Length / typingSpeed;
         }
 
         #endregion

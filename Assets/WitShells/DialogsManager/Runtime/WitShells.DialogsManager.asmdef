@@ -4,7 +4,9 @@
     "references": [
         "WitDesignPattern",
         "Unity.TextMeshPro",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "Unity.Timeline",
+        "Unity.Playables"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Playables;
 using WitShells.DesignPatterns.Core;
 
 namespace WitShells.DialogsManager
@@ -60,6 +61,8 @@ namespace WitShells.DialogsManager
         [Header("Unity Events - Dialog")]
         [SerializeField] private DialogEvent onDialogStarted = new DialogEvent();
         [SerializeField] private DialogEvent onDialogFinished = new DialogEvent();
+
+        public PlayableDirector playableDirector;
 
         #endregion
 
@@ -477,5 +480,31 @@ namespace WitShells.DialogsManager
         }
 
         #endregion
+
+        public void HandleActionAndRewind(float delay, IDialogActionRequire dialogActionRequire, double audioLength)
+        {
+            StartCoroutine(HandleActionRequireCoroutine(delay, dialogActionRequire, audioLength));
+        }
+
+        private System.Collections.IEnumerator HandleActionRequireCoroutine(float delay, IDialogActionRequire dialogActionRequire, double audioLength)
+        {
+            double waitTime = 0;
+            while (!dialogActionRequire.IsActionComplete())
+            {
+                yield return new WaitForSeconds(.1f);
+                waitTime += .1f;
+
+                if( waitTime >= delay)
+                {
+                    playableDirector.time = playableDirector.time - audioLength;
+                    playableDirector.Resume();
+                    yield break;
+                }
+            }
+
+            playableDirector.Resume();
+            yield return null;
+
+        }
     }
 }

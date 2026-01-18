@@ -75,6 +75,8 @@ namespace WitShells.DialogsManager
         /// </summary>
         public bool IsTyping { get; protected set; }
 
+        public float TypeSpeed => DialogsSettings.Instance.DefaultTypingSpeed;
+
         /// <summary>
         /// The currently displayed dialog.
         /// </summary>
@@ -262,9 +264,9 @@ namespace WitShells.DialogsManager
 
             // Set content with optional typewriter effect
             fullContent = dialog.Content;
-            if (useTypewriterEffect && dialog.TypingSpeed > 0)
+            if (useTypewriterEffect && TypeSpeed > 0)
             {
-                StartTypewriter(dialog.Content, dialog.TypingSpeed);
+                StartTypewriter(dialog.Content, TypeSpeed);
             }
             else if (useTypewriterEffect)
             {
