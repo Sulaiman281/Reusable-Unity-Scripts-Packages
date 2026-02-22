@@ -83,6 +83,11 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/W
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/CanvasDrawTool
 ```
 
+### Particles Presets
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/ParticlesPresets
+```
+
 ### Spline Runtime
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SplineRuntime
@@ -795,6 +800,19 @@ public class DatabaseManager : MonoBehaviour
 ```
 
 ---
+    ### 15. Particles Presets
+
+    Editor-only particle presets for quickly setting up optimized smoke, fire, and rain effects.
+
+    **Features:**
+    - Apply presets to any selected ParticleSystem via menu: `WitShells → Particles Presets`
+    - Dark smoke, fire, and rain presets tuned for mobile/Android performance
+
+    **Editor Workflow:**
+    1. Select a GameObject with a ParticleSystem.
+    2. Use `WitShells → Particles Presets → Apply Dark Smoke Up / Apply Fire / Apply Rain`.
+
+    ---
 
 ## 🔧 Requirements
 
