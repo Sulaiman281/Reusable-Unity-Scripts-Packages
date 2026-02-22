@@ -1,0 +1,18 @@
+{
+    "name": "WitShells.McqUI.Editor",
+    "rootNamespace": "WitShells.McqUI.Editor",
+    "references": [
+        "WitShells.McqUI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

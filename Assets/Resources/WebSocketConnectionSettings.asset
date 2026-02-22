@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f59656053423e14887b56a7b2610556, type: 3}
+  m_Name: WebSocketConnectionSettings
+  m_EditorClassIdentifier: 
+  serverUrl: ws://localhost:5163
+  protocols:
+  - signaling
+  defaultProtocolIndex: 0
+  useSecureConnection: 0

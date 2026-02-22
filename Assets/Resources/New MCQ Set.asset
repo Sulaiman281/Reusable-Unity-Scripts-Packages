@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6a77a60f8b4ff380711e343ce9b8ab, type: 3}
+  m_Name: New MCQ Set
+  m_EditorClassIdentifier: 
+  mcqQuestions:
+  - question: What is the capital of France?
+    correctAnswer: Paris
+    wrongOptions:
+    - London
+    - Berlin
+    - Madrid
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: Which planet is closest to the Sun?
+    correctAnswer: Mercury
+    wrongOptions:
+    - Venus
+    - Earth
+    - Mars
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: What is the largest ocean on Earth?
+    correctAnswer: Pacific Ocean
+    wrongOptions:
+    - Atlantic Ocean
+    - Indian Ocean
+    - Arctic Ocean
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: What does 'OOP' stand for in programming?
+    correctAnswer: Object-Oriented Programming
+    wrongOptions:
+    - Object-Oriented Process
+    - Operational Object Programming
+    - Optimized Object Processing
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: Which of the following is NOT a primitive data type in C#?
+    correctAnswer: string
+    wrongOptions:
+    - int
+    - bool
+    - float
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: Which component is required for a GameObject to be rendered?
+    correctAnswer: Renderer
+    wrongOptions:
+    - Collider
+    - Rigidbody
+    - AudioSource
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: What is the default frame rate target for Unity games?
+    correctAnswer: 60 FPS
+    wrongOptions:
+    - 30 FPS
+    - 120 FPS
+    - 90 FPS
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: What is the square root of 64?
+    correctAnswer: 8
+    wrongOptions:
+    - 6
+    - 7
+    - 9
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: What is 15% of 200?
+    correctAnswer: 30
+    wrongOptions:
+    - 25
+    - 35
+    - 40
+    shuffleOptions: 1
+    timeLimit: 0
+  - question: Quick! What is 2 + 2?
+    correctAnswer: 4
+    wrongOptions:
+    - 3
+    - 5
+    - 6
+    shuffleOptions: 1
+    timeLimit: 10
+  setTitle: Generated Test MCQ Set
+  description: Auto-generated MCQ set for testing functionality. Contains questions
+    about general knowledge, programming, Unity, and math.
+  useGlobalRandomSetting: 1
+  randomizeOrder: 1

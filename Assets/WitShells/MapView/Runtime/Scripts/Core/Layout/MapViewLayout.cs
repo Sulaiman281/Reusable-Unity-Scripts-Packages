@@ -170,7 +170,7 @@ namespace WitShells.MapView
         [SerializeField] private Coordinates fromCoordinates;
         [SerializeField] private Coordinates toCoordinates;
         [SerializeField] private int zoomLevel = 15;
-        [SerializeField] private bool showLabels => MapSettings.Instance.showLabels;
+        private bool showLabels => MapSettings.Instance.showLabels;
 
         [Header("Prefab")][SerializeField] private TileView tilePrefab;
 

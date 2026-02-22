@@ -1,0 +1,24 @@
+{
+    "name": "com.witshells.particlespresets",
+    "version": "1.0.0",
+    "displayName": "WitShells Particles Presets",
+    "description": "Editor-only particle system presets for quickly applying optimized effects such as dark smoke for mobile/Android.",
+    "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "email": "sayedsulaiman607@gmail.com",
+        "url": "https://witshells.com"
+    },
+    "license": "MIT",
+    "keywords": [
+        "particles",
+        "presets",
+        "vfx",
+        "smoke",
+        "mobile",
+        "android",
+        "witshells",
+        "editor"
+    ],
+    "category": "Tools"
+}

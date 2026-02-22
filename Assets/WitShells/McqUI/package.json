@@ -1,0 +1,27 @@
+{
+    "name": "com.witshells.mcqui",
+    "version": "1.0.0",
+    "displayName": "WitShells MCQ UI",
+    "description": "A versatile and reusable Multiple Choice Question UI system for Unity. Includes customizable option items, MCQ pages, and data structures for easy implementation in any game.",
+    "unity": "2021.3",
+    "author": {
+        "name": "WitShells",
+        "url": "https://witshells.com"
+    },
+    "license": "MIT",
+    "keywords": [
+        "mcq",
+        "multiple-choice",
+        "quiz",
+        "ui",
+        "questions",
+        "options",
+        "game-ui",
+        "education",
+        "interactive"
+    ],
+    "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.textmeshpro": "3.0.0"
+    }
+}
