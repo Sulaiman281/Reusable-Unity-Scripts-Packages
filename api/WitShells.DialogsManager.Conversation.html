@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Conversation | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Conversation | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Represents a conversation containing a sequence of dialogs. Create via Assets &amp;gt; Create &amp;gt; WitShells &amp;gt; Dialogs Manager &amp;gt; Conversation.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_DialogsManager_Conversation.md&amp;value=---%0Auid%3A%20WitShells.DialogsManager.Conversation%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.DialogsManager.Conversation">
+
+
+
+  <h1 id="WitShells_DialogsManager_Conversation" data-uid="WitShells.DialogsManager.Conversation" class="text-break">
+Class Conversation  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.DialogsManager.html">DialogsManager</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Represents a conversation containing a sequence of dialogs.
+Create via Assets &gt; Create &gt; WitShells &gt; Dialogs Manager &gt; Conversation.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Conversation : ScriptableObject</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Conversation</span></div>
+    </dd>
+  </dl>
+
+
+
+
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="WitShells.DialogsManager.DialogExtensions.html#WitShells_DialogsManager_DialogExtensions_CreateRuntimeCopy_WitShells_DialogsManager_Conversation_">DialogExtensions.CreateRuntimeCopy(Conversation)</a>
+  </div>
+  <div>
+      <a class="xref" href="WitShells.DialogsManager.DialogExtensions.html#WitShells_DialogsManager_DialogExtensions_FindDialogById_WitShells_DialogsManager_Conversation_System_String_">DialogExtensions.FindDialogById(Conversation, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="WitShells.DialogsManager.DialogExtensions.html#WitShells_DialogsManager_DialogExtensions_GetDialogsByEmotion_WitShells_DialogsManager_Conversation_WitShells_DialogsManager_DialogEmotion_">DialogExtensions.GetDialogsByEmotion(Conversation, DialogEmotion)</a>
+  </div>
+  <div>
+      <a class="xref" href="WitShells.DialogsManager.DialogExtensions.html#WitShells_DialogsManager_DialogExtensions_GetDialogsWithTag_WitShells_DialogsManager_Conversation_System_String_">DialogExtensions.GetDialogsWithTag(Conversation, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="WitShells.DialogsManager.DialogExtensions.html#WitShells_DialogsManager_DialogExtensions_GetTotalWordCount_WitShells_DialogsManager_Conversation_">DialogExtensions.GetTotalWordCount(Conversation)</a>
+  </div>
+  </dd></dl>
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_DialogsManager_Conversation_ConversationName_" data-uid="WitShells.DialogsManager.Conversation.ConversationName*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_ConversationName" data-uid="WitShells.DialogsManager.Conversation.ConversationName">
+  ConversationName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name of this conversation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ConversationName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_CurrentDialog_" data-uid="WitShells.DialogsManager.Conversation.CurrentDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_CurrentDialog" data-uid="WitShells.DialogsManager.Conversation.CurrentDialog">
+  CurrentDialog
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L103"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the current dialog without advancing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DialogObject CurrentDialog { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DialogsManager.DialogObject.html">DialogObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_CurrentDialogIndex_" data-uid="WitShells.DialogsManager.Conversation.CurrentDialogIndex*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_CurrentDialogIndex" data-uid="WitShells.DialogsManager.Conversation.CurrentDialogIndex">
+  CurrentDialogIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The current dialog index (0-based). Returns -1 if not started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CurrentDialogIndex { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_Description_" data-uid="WitShells.DialogsManager.Conversation.Description*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_Description" data-uid="WitShells.DialogsManager.Conversation.Description">
+  Description
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Optional description for this conversation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_Dialogs_" data-uid="WitShells.DialogsManager.Conversation.Dialogs*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_Dialogs" data-uid="WitShells.DialogsManager.Conversation.Dialogs">
+  Dialogs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The array of dialogs in this conversation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DialogObject[] Dialogs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DialogsManager.DialogObject.html">DialogObject</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_HasStarted_" data-uid="WitShells.DialogsManager.Conversation.HasStarted*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_HasStarted" data-uid="WitShells.DialogsManager.Conversation.HasStarted">
+  HasStarted
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the conversation has been started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasStarted { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_IsAtLastDialog_" data-uid="WitShells.DialogsManager.Conversation.IsAtLastDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_IsAtLastDialog" data-uid="WitShells.DialogsManager.Conversation.IsAtLastDialog">
+  IsAtLastDialog
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the conversation is at the last dialog.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsAtLastDialog { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_Loop_" data-uid="WitShells.DialogsManager.Conversation.Loop*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_Loop" data-uid="WitShells.DialogsManager.Conversation.Loop">
+  Loop
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the conversation will loop.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Loop { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_TotalDialogs_" data-uid="WitShells.DialogsManager.Conversation.TotalDialogs*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_TotalDialogs" data-uid="WitShells.DialogsManager.Conversation.TotalDialogs">
+  TotalDialogs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The total number of dialogs in this conversation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TotalDialogs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_DialogsManager_Conversation_GetDialogAt_" data-uid="WitShells.DialogsManager.Conversation.GetDialogAt*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_GetDialogAt_System_Int32_" data-uid="WitShells.DialogsManager.Conversation.GetDialogAt(System.Int32)">
+  GetDialogAt(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a dialog at a specific index without changing the current index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DialogObject GetDialogAt(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the dialog to get.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DialogsManager.DialogObject.html">DialogObject</a></dt>
+    <dd><p>The dialog at the specified index, or null if out of range.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_GetNextDialog_" data-uid="WitShells.DialogsManager.Conversation.GetNextDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_GetNextDialog" data-uid="WitShells.DialogsManager.Conversation.GetNextDialog">
+  GetNextDialog()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the next dialog and advances the index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DialogObject GetNextDialog()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DialogsManager.DialogObject.html">DialogObject</a></dt>
+    <dd><p>The next dialog, or null if no more dialogs.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_GetPreviousDialog_" data-uid="WitShells.DialogsManager.Conversation.GetPreviousDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_GetPreviousDialog" data-uid="WitShells.DialogsManager.Conversation.GetPreviousDialog">
+  GetPreviousDialog()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L181"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the previous dialog and moves the index back.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DialogObject GetPreviousDialog()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DialogsManager.DialogObject.html">DialogObject</a></dt>
+    <dd><p>The previous dialog, or null if at the beginning.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_GetProgress_" data-uid="WitShells.DialogsManager.Conversation.GetProgress*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_GetProgress" data-uid="WitShells.DialogsManager.Conversation.GetProgress">
+  GetProgress()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the progress of the conversation (0-1).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetProgress()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_GetTotalAudioDuration_" data-uid="WitShells.DialogsManager.Conversation.GetTotalAudioDuration*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_GetTotalAudioDuration" data-uid="WitShells.DialogsManager.Conversation.GetTotalAudioDuration">
+  GetTotalAudioDuration()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the total duration of all audio clips in the conversation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetTotalAudioDuration()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_HasMoreDialogs_" data-uid="WitShells.DialogsManager.Conversation.HasMoreDialogs*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_HasMoreDialogs" data-uid="WitShells.DialogsManager.Conversation.HasMoreDialogs">
+  HasMoreDialogs()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether there are more dialogs to play.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasMoreDialogs()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_ResetConversation_" data-uid="WitShells.DialogsManager.Conversation.ResetConversation*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_ResetConversation" data-uid="WitShells.DialogsManager.Conversation.ResetConversation">
+  ResetConversation()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the conversation to the beginning.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetConversation()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_Conversation_SetDialogIndex_" data-uid="WitShells.DialogsManager.Conversation.SetDialogIndex*"></a>
+
+  <h3 id="WitShells_DialogsManager_Conversation_SetDialogIndex_System_Int32_" data-uid="WitShells.DialogsManager.Conversation.SetDialogIndex(System.Int32)">
+  SetDialogIndex(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Objects/Conversation.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the current dialog index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDialogIndex(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index to set. Use -1 to reset to beginning.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

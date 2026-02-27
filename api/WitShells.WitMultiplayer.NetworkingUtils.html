@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class NetworkingUtils | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class NetworkingUtils | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_WitMultiplayer_NetworkingUtils.md&amp;value=---%0Auid%3A%20WitShells.WitMultiplayer.NetworkingUtils%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.WitMultiplayer.NetworkingUtils">
+
+
+
+  <h1 id="WitShells_WitMultiplayer_NetworkingUtils" data-uid="WitShells.WitMultiplayer.NetworkingUtils" class="text-break">
+Class NetworkingUtils  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.WitMultiplayer.html">WitMultiplayer</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class NetworkingUtils</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">NetworkingUtils</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_CreateNewLobby_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.CreateNewLobby*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_CreateNewLobby_System_String_System_Int32_CreateLobbyOptions_UnityAction_Lobby__UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.CreateNewLobby(System.String,System.Int32,CreateLobbyOptions,UnityAction{Lobby},UnityAction{System.Exception})">
+  CreateNewLobby(string, int, CreateLobbyOptions, UnityAction&lt;Lobby&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator CreateNewLobby(string name, int maxPlayers, CreateLobbyOptions lobbyOptions, UnityAction&lt;Lobby&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>maxPlayers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>lobbyOptions</code> <span class="xref">CreateLobbyOptions</span></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">Lobby</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_CreateRelayHost_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.CreateRelayHost*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_CreateRelayHost_System_Int32_UnityAction_Allocation__UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.CreateRelayHost(System.Int32,UnityAction{Allocation},UnityAction{System.Exception})">
+  CreateRelayHost(int, UnityAction&lt;Allocation&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L306"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator CreateRelayHost(int maxPlayers, UnityAction&lt;Allocation&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>maxPlayers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">Allocation</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_GetNewPlayer_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.GetNewPlayer*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_GetNewPlayer_System_String_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.GetNewPlayer(System.String)">
+  GetNewPlayer(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Player GetNewPlayer(string playerId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>playerId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Player</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_JoinLobby_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.JoinLobby*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_JoinLobby_Unity_Services_Lobbies_Models_Player_System_String_System_String_UnityAction_Lobby__UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.JoinLobby(Unity.Services.Lobbies.Models.Player,System.String,System.String,UnityAction{Lobby},UnityAction{System.Exception})">
+  JoinLobby(Player, string, string, UnityAction&lt;Lobby&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator JoinLobby(Unity.Services.Lobbies.Models.Player player, string lobbyId, string password, UnityAction&lt;Lobby&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>player</code> <span class="xref">Player</span></dt>
+    <dd></dd>
+    <dt><code>lobbyId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">Lobby</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_JoinRelay_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.JoinRelay*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_JoinRelay_System_String_UnityAction_JoinAllocation__UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.JoinRelay(System.String,UnityAction{JoinAllocation},UnityAction{System.Exception})">
+  JoinRelay(string, UnityAction&lt;JoinAllocation&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L320"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator JoinRelay(string joinCode, UnityAction&lt;JoinAllocation&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>joinCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">JoinAllocation</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_LeaveLobby_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.LeaveLobby*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_LeaveLobby_WitShells_WitMultiplayer_LobbyManager_System_String_UnityAction_UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.LeaveLobby(WitShells.WitMultiplayer.LobbyManager,System.String,UnityAction,UnityAction{System.Exception})">
+  LeaveLobby(LobbyManager, string, UnityAction, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator LeaveLobby(this LobbyManager lobbyManager, string playerId, UnityAction onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lobbyManager</code> <a class="xref" href="WitShells.WitMultiplayer.LobbyManager.html">LobbyManager</a></dt>
+    <dd></dd>
+    <dt><code>playerId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span></dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_LobbyOptions_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.LobbyOptions*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_LobbyOptions_Player_System_String_System_Boolean_System_Collections_Generic_Dictionary_System_String_DataObject__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.LobbyOptions(Player,System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,DataObject})">
+  LobbyOptions(Player, string, bool, Dictionary&lt;string, DataObject&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CreateLobbyOptions LobbyOptions(Player player, string password, bool isPrivate, Dictionary&lt;string, DataObject&gt; data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>player</code> <span class="xref">Player</span></dt>
+    <dd></dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>isPrivate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <span class="xref">DataObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">CreateLobbyOptions</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_QueryLobbies_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.QueryLobbies*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_QueryLobbies_System_Boolean_UnityAction_System_Collections_Generic_List_Lobby___UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.QueryLobbies(System.Boolean,UnityAction{System.Collections.Generic.List{Lobby}},UnityAction{System.Exception})">
+  QueryLobbies(bool, UnityAction&lt;List&lt;Lobby&gt;&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator QueryLobbies(bool includePrivate, UnityAction&lt;List&lt;Lobby&gt;&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>includePrivate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Lobby</span>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_QueryLobbies_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.QueryLobbies*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_QueryLobbies_System_Int32_System_Boolean_UnityAction_System_Collections_Generic_List_Lobby___UnityAction_System_Exception__System_Collections_Generic_Dictionary_System_String_System_String__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.QueryLobbies(System.Int32,System.Boolean,UnityAction{System.Collections.Generic.List{Lobby}},UnityAction{System.Exception},System.Collections.Generic.Dictionary{System.String,System.String})">
+  QueryLobbies(int, bool, UnityAction&lt;List&lt;Lobby&gt;&gt;, UnityAction&lt;Exception&gt;, Dictionary&lt;string, string&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator QueryLobbies(int count, bool includePrivate, UnityAction&lt;List&lt;Lobby&gt;&gt; onComplete, UnityAction&lt;Exception&gt; onError, Dictionary&lt;string, string&gt; filters = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>includePrivate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Lobby</span>&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>filters</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_QuickJoinOrCreate_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.QuickJoinOrCreate*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_QuickJoinOrCreate_Player_System_String_System_Int32_CreateLobbyOptions_UnityAction_Lobby__UnityAction_System_Exception__System_Int32_System_String_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.QuickJoinOrCreate(Player,System.String,System.Int32,CreateLobbyOptions,UnityAction{Lobby},UnityAction{System.Exception},System.Int32,System.String)">
+  QuickJoinOrCreate(Player, string, int, CreateLobbyOptions, UnityAction&lt;Lobby&gt;, UnityAction&lt;Exception&gt;, int, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L226"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator QuickJoinOrCreate(Player player, string lobbyName, int maxPlayers, CreateLobbyOptions createOptions, UnityAction&lt;Lobby&gt; onComplete, UnityAction&lt;Exception&gt; onError, int totalCount = 20, string mode = &quot;&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>player</code> <span class="xref">Player</span></dt>
+    <dd></dd>
+    <dt><code>lobbyName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>maxPlayers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>createOptions</code> <span class="xref">CreateLobbyOptions</span></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">Lobby</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>totalCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>mode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_RemoveLobbyDataKey_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.RemoveLobbyDataKey*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_RemoveLobbyDataKey_Lobby_System_String_UnityAction_Lobby__UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.RemoveLobbyDataKey(Lobby,System.String,UnityAction{Lobby},UnityAction{System.Exception})">
+  RemoveLobbyDataKey(Lobby, string, UnityAction&lt;Lobby&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator RemoveLobbyDataKey(Lobby currentLobby, string key, UnityAction&lt;Lobby&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>currentLobby</code> <span class="xref">Lobby</span></dt>
+    <dd></dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">Lobby</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_StartMatchMaking_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.StartMatchMaking*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_StartMatchMaking_System_Threading_CancellationTokenSource_UnityAction_ISession__UnityAction_System_Exception__System_String_System_UInt16_System_String_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.StartMatchMaking(System.Threading.CancellationTokenSource,UnityAction{ISession},UnityAction{System.Exception},System.String,System.UInt16,System.String)">
+  StartMatchMaking(CancellationTokenSource, UnityAction&lt;ISession&gt;, UnityAction&lt;Exception&gt;, string, ushort, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L263"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initiates the matchmaking process using UGS Matchmaker and automatically configures Unity Relay
+for the resulting session.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator StartMatchMaking(CancellationTokenSource ct, UnityAction&lt;ISession&gt; onComplete, UnityAction&lt;Exception&gt; onError, string sessionType = &quot;matchmade&quot;, ushort maxPlayers = 2, string queueName = &quot;DefaultQueue&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ct</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtokensource">CancellationTokenSource</a></dt>
+    <dd><p>CancellationTokenSource for stopping the polling process.</p>
+</dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">ISession</span>&gt;</dt>
+    <dd><p>Callback providing the ISession object upon successful matchmaking.</p>
+</dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd><p>Callback for handling exceptions.</p>
+</dd>
+    <dt><code>sessionType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>maxPlayers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd><p>The maximum number of players allowed in the match.</p>
+</dd>
+    <dt><code>queueName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the Matchmaker Queue configured in the UGS Dashboard.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_StartRelayServer_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.StartRelayServer*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_StartRelayServer_Allocation_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.StartRelayServer(Allocation)">
+  StartRelayServer(Allocation)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L334"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void StartRelayServer(Allocation allocation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>allocation</code> <span class="xref">Allocation</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_UpdateLobby_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.UpdateLobby*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_UpdateLobby_Lobby_System_String_DataObject_UnityAction_Lobby__UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.UpdateLobby(Lobby,System.String,DataObject,UnityAction{Lobby},UnityAction{System.Exception})">
+  UpdateLobby(Lobby, string, DataObject, UnityAction&lt;Lobby&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator UpdateLobby(Lobby currentLobby, string key, DataObject dataObject, UnityAction&lt;Lobby&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>currentLobby</code> <span class="xref">Lobby</span></dt>
+    <dd></dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>dataObject</code> <span class="xref">DataObject</span></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">Lobby</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitMultiplayer_NetworkingUtils_UpdatePlayerData_" data-uid="WitShells.WitMultiplayer.NetworkingUtils.UpdatePlayerData*"></a>
+
+  <h3 id="WitShells_WitMultiplayer_NetworkingUtils_UpdatePlayerData_Lobby_System_String_System_String_System_String_UnityAction_Lobby__UnityAction_System_Exception__" data-uid="WitShells.WitMultiplayer.NetworkingUtils.UpdatePlayerData(Lobby,System.String,System.String,System.String,UnityAction{Lobby},UnityAction{System.Exception})">
+  UpdatePlayerData(Lobby, string, string, string, UnityAction&lt;Lobby&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitMultiplayer/Runtime/Scripts/Core/NetworkingUtils.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerator UpdatePlayerData(Lobby currentLobby, string playerId, string key, string value, UnityAction&lt;Lobby&gt; onComplete, UnityAction&lt;Exception&gt; onError)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>currentLobby</code> <span class="xref">Lobby</span></dt>
+    <dd></dd>
+    <dt><code>playerId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<span class="xref">Lobby</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

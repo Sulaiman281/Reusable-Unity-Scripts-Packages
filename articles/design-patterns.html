@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Design Patterns Guide | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Design Patterns Guide | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/blob/main/docs/articles/design-patterns.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="design-patterns-guide">Design Patterns Guide</h1>
+
+<p>This article walks through every design pattern available in the <code>WitDesignPattern</code> package.
+For the full source reference, browse the <a href="../api/WitShells.DesignPatterns.Core.html">API documentation</a>.</p>
+<hr>
+<h2 id="singleton--monosingletont">Singleton — <code>MonoSingleton&lt;T&gt;</code></h2>
+<p>Guarantees a single instance of a MonoBehaviour exists across all scenes.</p>
+<pre><code class="lang-csharp">public class GameManager : MonoSingleton&lt;GameManager&gt;
+{
+    public int Score { get; private set; }
+}
+
+// Access anywhere:
+GameManager.Instance.Score++;
+</code></pre>
+<hr>
+<h2 id="observer--observerpatternt">Observer — <code>ObserverPattern&lt;T&gt;</code></h2>
+<p>Publish/subscribe without Unity events or C# delegates.</p>
+<pre><code class="lang-csharp">var onDied = new ObserverPattern&lt;string&gt;();
+onDied.Subscribe(name =&gt; Debug.Log($&quot;{name} died&quot;));
+onDied.NotifyObservers(&quot;Player&quot;);
+</code></pre>
+<hr>
+<h2 id="bindable--bindablet">Bindable — <code>Bindable&lt;T&gt;</code></h2>
+<p>A reactive property that fires a <code>UnityEvent</code> when its value changes.</p>
+<pre><code class="lang-csharp">var health = new Bindable&lt;int&gt;(100);
+health.OnValueChanged.AddListener(v =&gt; healthBar.fillAmount = v / 100f);
+health.Value = 75; // UI updates automatically
+</code></pre>
+<hr>
+<h2 id="state-machine--statemachine--istate">State Machine — <code>StateMachine</code> + <code>IState</code></h2>
+<p>Clean state management with enter/execute/exit lifecycle.</p>
+<pre><code class="lang-csharp">var sm = new StateMachine();
+sm.ChangeState(new IdleState());   // calls Enter()
+sm.Update();                        // calls Execute() each frame
+sm.ChangeState(new MoveState());   // calls Exit() then Enter()
+</code></pre>
+<hr>
+<h2 id="command--commandinvoker--icommand">Command — <code>CommandInvoker</code> + <code>ICommand</code></h2>
+<p>Encapsulate actions with built-in undo support.</p>
+<pre><code class="lang-csharp">var invoker = new CommandInvoker();
+invoker.ExecuteCommand(new PrintCommand(&quot;Fire!&quot;));
+invoker.UndoLastCommand();
+</code></pre>
+<hr>
+<h2 id="object-pool--objectpoolt">Object Pool — <code>ObjectPool&lt;T&gt;</code></h2>
+<p>Reuse objects instead of allocating/GC-ing them.</p>
+<pre><code class="lang-csharp">var pool = new ObjectPool&lt;Bullet&gt;(() =&gt; new Bullet(), initialCapacity: 20);
+Bullet b = pool.Get();
+// … use bullet …
+pool.Release(b);
+</code></pre>
+<hr>
+<h2 id="factory--genericfactorytkey-tproduct">Factory — <code>GenericFactory&lt;TKey, TProduct&gt;</code></h2>
+<p>Register and create products by key.</p>
+<pre><code class="lang-csharp">var factory = new GenericFactory&lt;string, IWeapon&gt;();
+factory.Register(&quot;sword&quot;, () =&gt; new Sword());
+factory.Register(&quot;bow&quot;,   () =&gt; new Bow());
+IWeapon w = factory.Create(&quot;sword&quot;);
+</code></pre>
+<hr>
+<h2 id="service-locator--servicelocator">Service Locator — <code>ServiceLocator</code></h2>
+<p>A global, type-keyed registry for services.</p>
+<pre><code class="lang-csharp">ServiceLocator.Register&lt;IAudioService&gt;(new AudioService());
+// … later …
+var audio = ServiceLocator.Get&lt;IAudioService&gt;();
+audio.Play(&quot;explosion&quot;);
+</code></pre>
+<hr>
+<h2 id="strategy--strategycontexttcontext-tresult">Strategy — <code>StrategyContext&lt;TContext, TResult&gt;</code></h2>
+<p>Swap algorithms at runtime.</p>
+<pre><code class="lang-csharp">var ctx = new StrategyContext&lt;(int, int), int&gt;(new AddStrategy());
+ctx.ExecuteStrategy((3, 4));      // 7
+ctx.SetStrategy(new MultiplyStrategy());
+ctx.ExecuteStrategy((3, 4));      // 12
+</code></pre>
+<hr>
+<h2 id="builder--buildert">Builder — <code>Builder&lt;T&gt;</code></h2>
+<p>Construct complex objects through a fluent API.</p>
+<pre><code class="lang-csharp">var player = new PlayerBuilder()
+    .SetName(&quot;Hero&quot;)
+    .SetHealth(100)
+    .SetSpeed(5.5f)
+    .Build();
+</code></pre>
+<hr>
+<h2 id="mediator--mediator">Mediator — <code>Mediator</code></h2>
+<p>Decouple systems by routing messages through a central hub.</p>
+<pre><code class="lang-csharp">var mediator = new Mediator();
+mediator.Subscribe(&quot;OnScoreChanged&quot;, (sender, data) =&gt; Debug.Log(data));
+mediator.Notify(this, &quot;OnScoreChanged&quot;, 42);
+</code></pre>
+<hr>
+<h2 id="flyweight--flyweightfactorytkey-tflyweight">Flyweight — <code>FlyweightFactory&lt;TKey, TFlyweight&gt;</code></h2>
+<p>Share expensive data (meshes, textures) across thousands of instances.</p>
+<pre><code class="lang-csharp">var factory = new FlyweightFactory&lt;string, TreeFlyweight&gt;();
+var oak = factory.GetFlyweight(&quot;oak&quot;, () =&gt; new TreeFlyweight { Mesh = &quot;oak.fbx&quot; });
+oak.Operation(position);
+</code></pre>
+<hr>
+<h2 id="template-method--templatemethodtinput-tresult">Template Method — <code>TemplateMethod&lt;TInput, TResult&gt;</code></h2>
+<p>Define an algorithm skeleton; let subclasses fill in the steps.</p>
+<pre><code class="lang-csharp">public class ParseInt : TemplateMethod&lt;string, int&gt;
+{
+    protected override void PreProcess(string input) =&gt; Debug.Log(&quot;Validating…&quot;);
+    protected override int  Process(string input)    =&gt; int.Parse(input);
+    protected override void PostProcess(int result)  =&gt; Debug.Log($&quot;Got {result}&quot;);
+}
+</code></pre>
+<hr>
+<h2 id="ecs-entity-component-system">ECS (Entity-Component-System)</h2>
+<p>Compose entities from pure-data components and drive behaviour from systems.</p>
+<pre><code class="lang-csharp">var entity = new Entity();
+entity.AddComponent(new HealthComponent { Health = 100 });
+new HealthSystem().Update(entity);
+</code></pre>
+<hr>
+<h2 id="prototype--iprototypet">Prototype — <code>IPrototype&lt;T&gt;</code></h2>
+<p>Clone configured instances rather than constructing from scratch.</p>
+<pre><code class="lang-csharp">public class EnemyConfig : IPrototype&lt;EnemyConfig&gt;
+{
+    public int Hp; public float Speed;
+    public EnemyConfig Clone() =&gt; (EnemyConfig)MemberwiseClone();
+}
+</code></pre>
+<hr>
+<h2 id="drag--drop--draggableitemt--dropzonet">Drag &amp; Drop — <code>DraggableItem&lt;T&gt;</code> / <code>DropZone&lt;T&gt;</code></h2>
+<p>Full Unity UI drag-and-drop with type-safe payloads, swap support, and visual feedback.</p>
+<hr>
+<h2 id="formation-utils--formationutils">Formation Utils — <code>FormationUtils</code></h2>
+<p>Generate world-space <code>Pose</code> lists for Circle, Line, V, Wedge, Box, Triangle, Echelon, Column, and Diamond formations.</p>
+<pre><code class="lang-csharp">List&lt;Pose&gt; poses = FormationUtils.GenerateCircleFormation(center, radius: 5f, count: 8);
+</code></pre>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SquareGridLayout | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SquareGridLayout | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_MilitaryGridSystem_SquareGridLayout.md&amp;value=---%0Auid%3A%20WitShells.MilitaryGridSystem.SquareGridLayout%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.MilitaryGridSystem.SquareGridLayout">
+
+
+
+  <h1 id="WitShells_MilitaryGridSystem_SquareGridLayout" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout" class="text-break">
+Class SquareGridLayout  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.MilitaryGridSystem.html">MilitaryGridSystem</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SquareGridLayout : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SquareGridLayout</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_ActualColumns_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.ActualColumns*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_ActualColumns" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.ActualColumns">
+  ActualColumns
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L183"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ActualColumns { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_ActualRows_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.ActualRows*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_ActualRows" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.ActualRows">
+  ActualRows
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L182"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ActualRows { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_AreaSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.AreaSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_AreaSettings" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.AreaSettings">
+  AreaSettings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SquareGridLayout.AreaBasedGridSettings AreaSettings { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.AreaBasedGridSettings.html">AreaBasedGridSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_CanvasRect_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CanvasRect*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_CanvasRect" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CanvasRect">
+  CanvasRect
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RectTransform CanvasRect { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">RectTransform</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_Columns_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Columns*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_Columns" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Columns">
+  Columns
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Columns { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_CurrentGridType_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CurrentGridType*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_CurrentGridType" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CurrentGridType">
+  CurrentGridType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SquareGridLayout.GridType CurrentGridType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.GridType.html">GridType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_CurrentLabelSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CurrentLabelSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_CurrentLabelSettings" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CurrentLabelSettings">
+  CurrentLabelSettings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SquareGridLayout.LabelSettings CurrentLabelSettings { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.LabelSettings.html">LabelSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_CurrentLabelType_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CurrentLabelType*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_CurrentLabelType" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.CurrentLabelType">
+  CurrentLabelType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SquareGridLayout.LabelType CurrentLabelType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.LabelType.html">LabelType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_DimensionSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.DimensionSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_DimensionSettings" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.DimensionSettings">
+  DimensionSettings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SquareGridLayout.DimensionBasedGridSettings DimensionSettings { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.DimensionBasedGridSettings.html">DimensionBasedGridSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_FixedSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.FixedSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_FixedSettings" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.FixedSettings">
+  FixedSettings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SquareGridLayout.FixedGridSettings FixedSettings { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.FixedGridSettings.html">FixedGridSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_Height_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Height*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_Height" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Height">
+  Height
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Height { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_MaintainAspectRatio_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.MaintainAspectRatio*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_MaintainAspectRatio" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.MaintainAspectRatio">
+  MaintainAspectRatio
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MaintainAspectRatio { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_Rows_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Rows*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_Rows" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Rows">
+  Rows
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L179"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Rows { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_ShowLabels_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.ShowLabels*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_ShowLabels" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.ShowLabels">
+  ShowLabels
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L185"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShowLabels { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_Width_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Width*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_Width" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.Width">
+  Width
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Width { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_GetGridInfo_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.GetGridInfo*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_GetGridInfo" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.GetGridInfo">
+  GetGridInfo()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L294"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetGridInfo()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_RegenerateGrid_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.RegenerateGrid*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_RegenerateGrid" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.RegenerateGrid">
+  RegenerateGrid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L215"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegenerateGrid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetAreaBasedGridSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetAreaBasedGridSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetAreaBasedGridSettings_System_Single_System_Single_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetAreaBasedGridSettings(System.Single,System.Single)">
+  SetAreaBasedGridSettings(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L257"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAreaBasedGridSettings(float areaKmSquare, float boxKmSquare)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>areaKmSquare</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>boxKmSquare</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetColor_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetColor*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetColor_Color_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetColor(Color)">
+  SetColor(Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L288"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetColor(Color newColor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newColor</code> <span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetDimensionBasedGridSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetDimensionBasedGridSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetDimensionBasedGridSettings_System_Single_System_Single_System_Single_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetDimensionBasedGridSettings(System.Single,System.Single,System.Single)">
+  SetDimensionBasedGridSettings(float, float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L265"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetDimensionBasedGridSettings(float horizontalKm, float verticalKm, float cellSizeKm)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>horizontalKm</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>verticalKm</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>cellSizeKm</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetFixedGridSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetFixedGridSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetFixedGridSettings_System_Single_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetFixedGridSettings(System.Single)">
+  SetFixedGridSettings(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFixedGridSettings(float cellSize)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cellSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetGridType_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetGridType*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetGridType_WitShells_MilitaryGridSystem_SquareGridLayout_GridType_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetGridType(WitShells.MilitaryGridSystem.SquareGridLayout.GridType)">
+  SetGridType(GridType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L238"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetGridType(SquareGridLayout.GridType type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.GridType.html">GridType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetLabelSettings_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetLabelSettings*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetLabelSettings_System_Int32_System_Int32_System_Int32_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetLabelSettings(System.Int32,System.Int32,System.Int32)">
+  SetLabelSettings(int, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L274"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLabelSettings(int labelSize, int startNumber, int indexOffset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>labelSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>startNumber</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>indexOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetLabelType_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetLabelType*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetLabelType_WitShells_MilitaryGridSystem_SquareGridLayout_LabelType_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetLabelType(WitShells.MilitaryGridSystem.SquareGridLayout.LabelType)">
+  SetLabelType(LabelType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L244"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetLabelType(SquareGridLayout.LabelType type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.html">SquareGridLayout</a>.<a class="xref" href="WitShells.MilitaryGridSystem.SquareGridLayout.LabelType.html">LabelType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MilitaryGridSystem_SquareGridLayout_SetMaintainAspectRatio_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetMaintainAspectRatio*"></a>
+
+  <h3 id="WitShells_MilitaryGridSystem_SquareGridLayout_SetMaintainAspectRatio_System_Boolean_" data-uid="WitShells.MilitaryGridSystem.SquareGridLayout.SetMaintainAspectRatio(System.Boolean)">
+  SetMaintainAspectRatio(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MilitaryGridSystem/Runtime/Scripts/Core/SquareGridLayout.cs/#L282"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMaintainAspectRatio(bool maintain)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>maintain</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

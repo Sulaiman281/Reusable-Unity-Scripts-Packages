@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DrawToolController | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DrawToolController | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Main controller that wires all drawing tool components together. This is the primary entry point for the drawing tool. Uses DrawToolSettings ScriptableObject as single source of truth for all settings.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_CanvasDrawTool_DrawToolController.md&amp;value=---%0Auid%3A%20WitShells.CanvasDrawTool.DrawToolController%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.CanvasDrawTool.DrawToolController">
+
+
+
+  <h1 id="WitShells_CanvasDrawTool_DrawToolController" data-uid="WitShells.CanvasDrawTool.DrawToolController" class="text-break">
+Class DrawToolController  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.CanvasDrawTool.html">CanvasDrawTool</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Main controller that wires all drawing tool components together.
+This is the primary entry point for the drawing tool.
+Uses DrawToolSettings ScriptableObject as single source of truth for all settings.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DrawToolController : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DrawToolController</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnBrushChanged" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnBrushChanged">
+  OnBrushChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnBrushChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnCanvasSaved" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnCanvasSaved">
+  OnCanvasSaved
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;string&gt; OnCanvasSaved</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnDrawEnd" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnDrawEnd">
+  OnDrawEnd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnDrawEnd</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnDrawStart" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnDrawStart">
+  OnDrawStart
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnDrawStart</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnImageImported" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnImageImported">
+  OnImageImported
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;string&gt; OnImageImported</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnPrimaryColorChanged" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnPrimaryColorChanged">
+  OnPrimaryColorChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;Color&gt; OnPrimaryColorChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<span class="xref">Color</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnSecondaryColorChanged" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnSecondaryColorChanged">
+  OnSecondaryColorChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;Color&gt; OnSecondaryColorChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<span class="xref">Color</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_OnToolChanged" data-uid="WitShells.CanvasDrawTool.DrawToolController.OnToolChanged">
+  OnToolChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;DrawToolSettings.DrawingTool&gt; OnToolChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.DrawingTool.html">DrawingTool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_CanvasUI_" data-uid="WitShells.CanvasDrawTool.DrawToolController.CanvasUI*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_CanvasUI" data-uid="WitShells.CanvasDrawTool.DrawToolController.CanvasUI">
+  CanvasUI
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DrawCanvasUI CanvasUI { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.DrawCanvasUI.html">DrawCanvasUI</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ColorPicker_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ColorPicker*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ColorPicker" data-uid="WitShells.CanvasDrawTool.DrawToolController.ColorPicker">
+  ColorPicker
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ColorPickerUI ColorPicker { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.ColorPickerUI.html">ColorPickerUI</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_CurrentTool_" data-uid="WitShells.CanvasDrawTool.DrawToolController.CurrentTool*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_CurrentTool" data-uid="WitShells.CanvasDrawTool.DrawToolController.CurrentTool">
+  CurrentTool
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DrawToolSettings.DrawingTool CurrentTool { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.html">DrawToolSettings</a>.<a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.DrawingTool.html">DrawingTool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_DrawingEngine_" data-uid="WitShells.CanvasDrawTool.DrawToolController.DrawingEngine*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_DrawingEngine" data-uid="WitShells.CanvasDrawTool.DrawToolController.DrawingEngine">
+  DrawingEngine
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DrawingEngine DrawingEngine { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.DrawingEngine.html">DrawingEngine</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_DrawingInput_" data-uid="WitShells.CanvasDrawTool.DrawToolController.DrawingInput*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_DrawingInput" data-uid="WitShells.CanvasDrawTool.DrawToolController.DrawingInput">
+  DrawingInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DrawingInput DrawingInput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html">DrawingInput</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ImageSelectionManager_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImageSelectionManager*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ImageSelectionManager" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImageSelectionManager">
+  ImageSelectionManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImageSelectionManager ImageSelectionManager { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.ImageSelectionManager.html">ImageSelectionManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_IsDrawing_" data-uid="WitShells.CanvasDrawTool.DrawToolController.IsDrawing*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_IsDrawing" data-uid="WitShells.CanvasDrawTool.DrawToolController.IsDrawing">
+  IsDrawing
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDrawing { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_LayerManager_" data-uid="WitShells.CanvasDrawTool.DrawToolController.LayerManager*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_LayerManager" data-uid="WitShells.CanvasDrawTool.DrawToolController.LayerManager">
+  LayerManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerManager LayerManager { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerManager.html">LayerManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_LayerPanel_" data-uid="WitShells.CanvasDrawTool.DrawToolController.LayerPanel*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_LayerPanel" data-uid="WitShells.CanvasDrawTool.DrawToolController.LayerPanel">
+  LayerPanel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L62"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerPanelUI LayerPanel { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerPanelUI.html">LayerPanelUI</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_PenInput_" data-uid="WitShells.CanvasDrawTool.DrawToolController.PenInput*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_PenInput" data-uid="WitShells.CanvasDrawTool.DrawToolController.PenInput">
+  PenInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PenInput PenInput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.PenInput.html">PenInput</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_PrimaryColor_" data-uid="WitShells.CanvasDrawTool.DrawToolController.PrimaryColor*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_PrimaryColor" data-uid="WitShells.CanvasDrawTool.DrawToolController.PrimaryColor">
+  PrimaryColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color PrimaryColor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SecondaryColor_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SecondaryColor*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SecondaryColor" data-uid="WitShells.CanvasDrawTool.DrawToolController.SecondaryColor">
+  SecondaryColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color SecondaryColor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_Settings_" data-uid="WitShells.CanvasDrawTool.DrawToolController.Settings*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_Settings" data-uid="WitShells.CanvasDrawTool.DrawToolController.Settings">
+  Settings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DrawToolSettings Settings { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.html">DrawToolSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ApplyBrushPreset_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ApplyBrushPreset*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ApplyBrushPreset_WitShells_CanvasDrawTool_DrawToolSettings_BrushPreset_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ApplyBrushPreset(WitShells.CanvasDrawTool.DrawToolSettings.BrushPreset)">
+  ApplyBrushPreset(BrushPreset)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L675"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Apply a brush preset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyBrushPreset(DrawToolSettings.BrushPreset preset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>preset</code> <a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.html">DrawToolSettings</a>.<a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.BrushPreset.html">BrushPreset</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ClearCanvas_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ClearCanvas*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ClearCanvas" data-uid="WitShells.CanvasDrawTool.DrawToolController.ClearCanvas">
+  ClearCanvas()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L697"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clear the current canvas.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCanvas()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ClearLayerSelection_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ClearLayerSelection*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ClearLayerSelection" data-uid="WitShells.CanvasDrawTool.DrawToolController.ClearLayerSelection">
+  ClearLayerSelection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L807"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clear current layer selection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearLayerSelection()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ExportAsJPG_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ExportAsJPG*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ExportAsJPG_System_String_System_Int32_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ExportAsJPG(System.String,System.Int32)">
+  ExportAsJPG(string, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L865"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Export the canvas as JPG.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExportAsJPG(string filePath, int quality = 90)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>quality</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ExportAsPNG_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ExportAsPNG*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ExportAsPNG_System_String_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ExportAsPNG(System.String)">
+  ExportAsPNG(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L852"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Export the canvas as PNG.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExportAsPNG(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_FitSelectedLayerToCanvas_" data-uid="WitShells.CanvasDrawTool.DrawToolController.FitSelectedLayerToCanvas*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_FitSelectedLayerToCanvas" data-uid="WitShells.CanvasDrawTool.DrawToolController.FitSelectedLayerToCanvas">
+  FitSelectedLayerToCanvas()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L829"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fit selected layer to canvas bounds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FitSelectedLayerToCanvas()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ImportImage_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImage*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ImportImage_System_String_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImage(System.String)">
+  ImportImage(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L708"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Import an image to the active layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ImportImage(string filePath)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ImportImageAsTransformableLayer_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImageAsTransformableLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ImportImageAsTransformableLayer_System_String_System_String_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImageAsTransformableLayer(System.String,System.String)">
+  ImportImageAsTransformableLayer(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L746"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Import an image as a new layer that maintains aspect ratio and can be transformed.
+The image layer preserves its original size and can be moved/scaled/rotated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerObject ImportImageAsTransformableLayer(string filePath, string layerName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>layerName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ImportImageAsTransformableLayer_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImageAsTransformableLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ImportImageAsTransformableLayer_Texture2D_System_String_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImageAsTransformableLayer(Texture2D,System.String)">
+  ImportImageAsTransformableLayer(Texture2D, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L775"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Import an image from a Texture2D as a transformable layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerObject ImportImageAsTransformableLayer(Texture2D texture, string layerName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>texture</code> <span class="xref">Texture2D</span></dt>
+    <dd></dd>
+    <dt><code>layerName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ImportImageToNewLayer_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImageToNewLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ImportImageToNewLayer_System_String_System_String_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ImportImageToNewLayer(System.String,System.String)">
+  ImportImageToNewLayer(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L730"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Import an image to a new layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ImportImageToNewLayer(string filePath, string layerName = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>layerName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_Initialize_" data-uid="WitShells.CanvasDrawTool.DrawToolController.Initialize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_Initialize" data-uid="WitShells.CanvasDrawTool.DrawToolController.Initialize">
+  Initialize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initialize the controller. Call this after wiring references at runtime.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_NewCanvas_" data-uid="WitShells.CanvasDrawTool.DrawToolController.NewCanvas*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_NewCanvas_System_Int32_System_Int32_Color_" data-uid="WitShells.CanvasDrawTool.DrawToolController.NewCanvas(System.Int32,System.Int32,Color)">
+  NewCanvas(int, int, Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L686"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create a new canvas.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void NewCanvas(int width, int height, Color backgroundColor)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>backgroundColor</code> <span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_Redo_" data-uid="WitShells.CanvasDrawTool.DrawToolController.Redo*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_Redo" data-uid="WitShells.CanvasDrawTool.DrawToolController.Redo">
+  Redo()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L886"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Redo last undone operation (placeholder - not yet implemented).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Redo()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ResetSelectedLayerSize_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ResetSelectedLayerSize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ResetSelectedLayerSize" data-uid="WitShells.CanvasDrawTool.DrawToolController.ResetSelectedLayerSize">
+  ResetSelectedLayerSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L818"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reset selected layer to original size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetSelectedLayerSize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SelectLayerForTransform_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SelectLayerForTransform*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SelectLayerForTransform_WitShells_CanvasDrawTool_LayerObject_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SelectLayerForTransform(WitShells.CanvasDrawTool.LayerObject)">
+  SelectLayerForTransform(LayerObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L795"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Select a layer for transform operations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SelectLayerForTransform(LayerObject layer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>layer</code> <a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetBrushHardness_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushHardness*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetBrushHardness_System_Single_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushHardness(System.Single)">
+  SetBrushHardness(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L653"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set brush hardness.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBrushHardness(float hardness)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hardness</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetBrushOpacity_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushOpacity*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetBrushOpacity_System_Single_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushOpacity(System.Single)">
+  SetBrushOpacity(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L642"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set brush opacity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBrushOpacity(float opacity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>opacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetBrushSize_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushSize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetBrushSize_System_Int32_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushSize(System.Int32)">
+  SetBrushSize(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L631"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set brush size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBrushSize(int size)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetBrushSpacing_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushSpacing*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetBrushSpacing_System_Single_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushSpacing(System.Single)">
+  SetBrushSpacing(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L664"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set brush spacing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBrushSpacing(float spacing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetBrushType_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushType*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetBrushType_WitShells_CanvasDrawTool_Brush_BrushType_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetBrushType(WitShells.CanvasDrawTool.Brush.BrushType)">
+  SetBrushType(BrushType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L620"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set brush type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBrushType(Brush.BrushType type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="WitShells.CanvasDrawTool.Brush.html">Brush</a>.<a class="xref" href="WitShells.CanvasDrawTool.Brush.BrushType.html">BrushType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetMaintainAspectRatio_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetMaintainAspectRatio*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetMaintainAspectRatio_System_Boolean_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetMaintainAspectRatio(System.Boolean)">
+  SetMaintainAspectRatio(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L840"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set whether imported images maintain aspect ratio when scaling.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMaintainAspectRatio(bool maintain)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>maintain</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetPrimaryColor_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetPrimaryColor*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetPrimaryColor_Color_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetPrimaryColor(Color)">
+  SetPrimaryColor(Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L587"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the primary drawing color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPrimaryColor(Color color)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>color</code> <span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetSecondaryColor_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetSecondaryColor*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetSecondaryColor_Color_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetSecondaryColor(Color)">
+  SetSecondaryColor(Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L598"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the secondary drawing color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSecondaryColor(Color color)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>color</code> <span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SetTool_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetTool*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SetTool_WitShells_CanvasDrawTool_DrawToolSettings_DrawingTool_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SetTool(WitShells.CanvasDrawTool.DrawToolSettings.DrawingTool)">
+  SetTool(DrawingTool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L576"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the current drawing tool.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTool(DrawToolSettings.DrawingTool tool)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>tool</code> <a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.html">DrawToolSettings</a>.<a class="xref" href="WitShells.CanvasDrawTool.DrawToolSettings.DrawingTool.html">DrawingTool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_SwapColors_" data-uid="WitShells.CanvasDrawTool.DrawToolController.SwapColors*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_SwapColors" data-uid="WitShells.CanvasDrawTool.DrawToolController.SwapColors">
+  SwapColors()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L609"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Swap primary and secondary colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SwapColors()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_Undo_" data-uid="WitShells.CanvasDrawTool.DrawToolController.Undo*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_Undo" data-uid="WitShells.CanvasDrawTool.DrawToolController.Undo">
+  Undo()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L878"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Undo last operation (placeholder - not yet implemented).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Undo()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ZoomToActualSize_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ZoomToActualSize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ZoomToActualSize" data-uid="WitShells.CanvasDrawTool.DrawToolController.ZoomToActualSize">
+  ZoomToActualSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L905"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Zoom to actual size (100%).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ZoomToActualSize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_DrawToolController_ZoomToFit_" data-uid="WitShells.CanvasDrawTool.DrawToolController.ZoomToFit*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_DrawToolController_ZoomToFit" data-uid="WitShells.CanvasDrawTool.DrawToolController.ZoomToFit">
+  ZoomToFit()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/DrawToolController.cs/#L894"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Zoom to fit canvas in view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ZoomToFit()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

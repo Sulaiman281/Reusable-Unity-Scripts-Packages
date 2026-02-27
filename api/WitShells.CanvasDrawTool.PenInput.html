@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PenInput | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PenInput | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Specialized input handler for pen/stylus tablets. Supports pressure sensitivity, tilt, and pen-specific features. Works with Wacom, Surface Pen, Apple Pencil (via Unity&#39;s Pen device).">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_CanvasDrawTool_PenInput.md&amp;value=---%0Auid%3A%20WitShells.CanvasDrawTool.PenInput%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.CanvasDrawTool.PenInput">
+
+
+
+  <h1 id="WitShells_CanvasDrawTool_PenInput" data-uid="WitShells.CanvasDrawTool.PenInput" class="text-break">
+Class PenInput  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.CanvasDrawTool.html">CanvasDrawTool</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Specialized input handler for pen/stylus tablets.
+Supports pressure sensitivity, tilt, and pen-specific features.
+Works with Wacom, Surface Pen, Apple Pencil (via Unity's Pen device).</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PenInput : DrawingInput</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html">DrawingInput</a></div>
+      <div><span class="xref">PenInput</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_OnDrawStart">DrawingInput.OnDrawStart</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_OnDrawMove">DrawingInput.OnDrawMove</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_OnDrawEnd">DrawingInput.OnDrawEnd</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_OnZoom">DrawingInput.OnZoom</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_OnPan">DrawingInput.OnPan</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput__isDrawing">DrawingInput._isDrawing</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput__lastPosition">DrawingInput._lastPosition</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput__currentPressure">DrawingInput._currentPressure</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_IsDrawing">DrawingInput.IsDrawing</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_LastPosition">DrawingInput.LastPosition</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_CurrentPressure">DrawingInput.CurrentPressure</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_OnEnable">DrawingInput.OnEnable()</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_OnDisable">DrawingInput.OnDisable()</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_GetTouchPressure_Finger_">DrawingInput.GetTouchPressure(Finger)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_StartDraw_Vector2_System_Single_">DrawingInput.StartDraw(Vector2, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_ContinueDraw_Vector2_System_Single_">DrawingInput.ContinueDraw(Vector2, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_EndDraw_Vector2_System_Single_">DrawingInput.EndDraw(Vector2, float)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_ScreenToCanvas_Vector2_Vector2__">DrawingInput.ScreenToCanvas(Vector2, out Vector2)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_NormalizedToPixel_Vector2_System_Int32_System_Int32_">DrawingInput.NormalizedToPixel(Vector2, int, int)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_SetCanvasRect_RectTransform_">DrawingInput.SetCanvasRect(RectTransform)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.CanvasDrawTool.DrawingInput.html#WitShells_CanvasDrawTool_DrawingInput_SetUICamera_Camera_">DrawingInput.SetUICamera(Camera)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_OnBarrelButtonPressed" data-uid="WitShells.CanvasDrawTool.PenInput.OnBarrelButtonPressed">
+  OnBarrelButtonPressed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnBarrelButtonPressed</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_OnBarrelButtonReleased" data-uid="WitShells.CanvasDrawTool.PenInput.OnBarrelButtonReleased">
+  OnBarrelButtonReleased
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnBarrelButtonReleased</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_OnEraserTipActive" data-uid="WitShells.CanvasDrawTool.PenInput.OnEraserTipActive">
+  OnEraserTipActive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnEraserTipActive</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_OnPenTipActive" data-uid="WitShells.CanvasDrawTool.PenInput.OnPenTipActive">
+  OnPenTipActive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnPenTipActive</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_OnPressureChanged" data-uid="WitShells.CanvasDrawTool.PenInput.OnPressureChanged">
+  OnPressureChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;float&gt; OnPressureChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_OnTiltChanged" data-uid="WitShells.CanvasDrawTool.PenInput.OnTiltChanged">
+  OnTiltChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;Vector2&gt; OnTiltChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<span class="xref">Vector2</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_CurrentBarrelAction_" data-uid="WitShells.CanvasDrawTool.PenInput.CurrentBarrelAction*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_CurrentBarrelAction" data-uid="WitShells.CanvasDrawTool.PenInput.CurrentBarrelAction">
+  CurrentBarrelAction
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PenInput.BarrelButtonAction CurrentBarrelAction { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.PenInput.html">PenInput</a>.<a class="xref" href="WitShells.CanvasDrawTool.PenInput.BarrelButtonAction.html">BarrelButtonAction</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_IsBarrelButtonPressed_" data-uid="WitShells.CanvasDrawTool.PenInput.IsBarrelButtonPressed*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_IsBarrelButtonPressed" data-uid="WitShells.CanvasDrawTool.PenInput.IsBarrelButtonPressed">
+  IsBarrelButtonPressed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsBarrelButtonPressed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_IsEraserTip_" data-uid="WitShells.CanvasDrawTool.PenInput.IsEraserTip*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_IsEraserTip" data-uid="WitShells.CanvasDrawTool.PenInput.IsEraserTip">
+  IsEraserTip
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEraserTip { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_IsPenAvailable_" data-uid="WitShells.CanvasDrawTool.PenInput.IsPenAvailable*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_IsPenAvailable" data-uid="WitShells.CanvasDrawTool.PenInput.IsPenAvailable">
+  IsPenAvailable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsPenAvailable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_RawPressure_" data-uid="WitShells.CanvasDrawTool.PenInput.RawPressure*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_RawPressure" data-uid="WitShells.CanvasDrawTool.PenInput.RawPressure">
+  RawPressure
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float RawPressure { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_Tilt_" data-uid="WitShells.CanvasDrawTool.PenInput.Tilt*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_Tilt" data-uid="WitShells.CanvasDrawTool.PenInput.Tilt">
+  Tilt
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 Tilt { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_UsePressureForOpacity_" data-uid="WitShells.CanvasDrawTool.PenInput.UsePressureForOpacity*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_UsePressureForOpacity" data-uid="WitShells.CanvasDrawTool.PenInput.UsePressureForOpacity">
+  UsePressureForOpacity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UsePressureForOpacity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_UsePressureForSize_" data-uid="WitShells.CanvasDrawTool.PenInput.UsePressureForSize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_UsePressureForSize" data-uid="WitShells.CanvasDrawTool.PenInput.UsePressureForSize">
+  UsePressureForSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UsePressureForSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_Awake_" data-uid="WitShells.CanvasDrawTool.PenInput.Awake*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_Awake" data-uid="WitShells.CanvasDrawTool.PenInput.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_GetEffectiveOpacity_" data-uid="WitShells.CanvasDrawTool.PenInput.GetEffectiveOpacity*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_GetEffectiveOpacity_System_Single_System_Single_" data-uid="WitShells.CanvasDrawTool.PenInput.GetEffectiveOpacity(System.Single,System.Single)">
+  GetEffectiveOpacity(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L241"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the effective opacity based on pressure settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetEffectiveOpacity(float baseOpacity, float pressure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>baseOpacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>pressure</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_GetEffectiveSize_" data-uid="WitShells.CanvasDrawTool.PenInput.GetEffectiveSize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_GetEffectiveSize_System_Int32_System_Single_" data-uid="WitShells.CanvasDrawTool.PenInput.GetEffectiveSize(System.Int32,System.Single)">
+  GetEffectiveSize(int, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L250"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the effective size based on pressure settings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetEffectiveSize(int baseSize, float pressure)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>baseSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>pressure</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_GetTouchPressure_" data-uid="WitShells.CanvasDrawTool.PenInput.GetTouchPressure*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_GetTouchPressure_UnityEngine_InputSystem_EnhancedTouch_Finger_" data-uid="WitShells.CanvasDrawTool.PenInput.GetTouchPressure(UnityEngine.InputSystem.EnhancedTouch.Finger)">
+  GetTouchPressure(Finger)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L288"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override float GetTouchPressure(UnityEngine.InputSystem.EnhancedTouch.Finger finger)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>finger</code> <span class="xref">Finger</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_SetBarrelButtonAction_" data-uid="WitShells.CanvasDrawTool.PenInput.SetBarrelButtonAction*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_SetBarrelButtonAction_WitShells_CanvasDrawTool_PenInput_BarrelButtonAction_" data-uid="WitShells.CanvasDrawTool.PenInput.SetBarrelButtonAction(WitShells.CanvasDrawTool.PenInput.BarrelButtonAction)">
+  SetBarrelButtonAction(BarrelButtonAction)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L267"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the barrel button action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBarrelButtonAction(PenInput.BarrelButtonAction action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="WitShells.CanvasDrawTool.PenInput.html">PenInput</a>.<a class="xref" href="WitShells.CanvasDrawTool.PenInput.BarrelButtonAction.html">BarrelButtonAction</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_SetPressureCurve_" data-uid="WitShells.CanvasDrawTool.PenInput.SetPressureCurve*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_SetPressureCurve_AnimationCurve_" data-uid="WitShells.CanvasDrawTool.PenInput.SetPressureCurve(AnimationCurve)">
+  SetPressureCurve(AnimationCurve)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L259"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the pressure curve.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPressureCurve(AnimationCurve curve)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>curve</code> <span class="xref">AnimationCurve</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_ShouldUseEraser_" data-uid="WitShells.CanvasDrawTool.PenInput.ShouldUseEraser*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_ShouldUseEraser" data-uid="WitShells.CanvasDrawTool.PenInput.ShouldUseEraser">
+  ShouldUseEraser()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L275"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Check if we should use eraser (either eraser tip or barrel button set to eraser).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShouldUseEraser()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_ShouldUseEyedropper_" data-uid="WitShells.CanvasDrawTool.PenInput.ShouldUseEyedropper*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_ShouldUseEyedropper" data-uid="WitShells.CanvasDrawTool.PenInput.ShouldUseEyedropper">
+  ShouldUseEyedropper()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L283"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Check if we should use eyedropper (barrel button set to eyedropper).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ShouldUseEyedropper()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_PenInput_Update_" data-uid="WitShells.CanvasDrawTool.PenInput.Update*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_PenInput_Update" data-uid="WitShells.CanvasDrawTool.PenInput.Update">
+  Update()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Input/PenInput.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Update()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

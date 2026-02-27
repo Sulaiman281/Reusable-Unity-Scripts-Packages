@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class LayerPanelUI | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class LayerPanelUI | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Layer panel UI for managing layers. Displays layer list with visibility, lock, and selection controls. Updated for LayerObject-based system.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_CanvasDrawTool_LayerPanelUI.md&amp;value=---%0Auid%3A%20WitShells.CanvasDrawTool.LayerPanelUI%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.CanvasDrawTool.LayerPanelUI">
+
+
+
+  <h1 id="WitShells_CanvasDrawTool_LayerPanelUI" data-uid="WitShells.CanvasDrawTool.LayerPanelUI" class="text-break">
+Class LayerPanelUI  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.CanvasDrawTool.html">CanvasDrawTool</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Layer panel UI for managing layers.
+Displays layer list with visibility, lock, and selection controls.
+Updated for LayerObject-based system.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class LayerPanelUI : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">LayerPanelUI</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_OnLayerSelected" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.OnLayerSelected">
+  OnLayerSelected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;int&gt; OnLayerSelected</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_OnLayersChanged" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.OnLayersChanged">
+  OnLayersChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnLayersChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_LayerManager_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.LayerManager*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_LayerManager" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.LayerManager">
+  LayerManager
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerManager LayerManager { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerManager.html">LayerManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_SelectedIndex_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.SelectedIndex*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_SelectedIndex" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.SelectedIndex">
+  SelectedIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SelectedIndex { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_AddLayer_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.AddLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_AddLayer" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.AddLayer">
+  AddLayer()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L225"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Add a new layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddLayer()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_DeleteSelectedLayer_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.DeleteSelectedLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_DeleteSelectedLayer" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.DeleteSelectedLayer">
+  DeleteSelectedLayer()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L237"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Delete the selected layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteSelectedLayer()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_DuplicateSelectedLayer_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.DuplicateSelectedLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_DuplicateSelectedLayer" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.DuplicateSelectedLayer">
+  DuplicateSelectedLayer()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Duplicate the selected layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DuplicateSelectedLayer()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_FlattenAll_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.FlattenAll*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_FlattenAll" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.FlattenAll">
+  FlattenAll()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L282"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Flatten all layers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlattenAll()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_MergeDown_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MergeDown*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_MergeDown" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MergeDown">
+  MergeDown()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merge selected layer down.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeDown()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_MergeVisible_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MergeVisible*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_MergeVisible" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MergeVisible">
+  MergeVisible()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L272"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merge all visible layers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeVisible()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_MoveSelectedDown_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MoveSelectedDown*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_MoveSelectedDown" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MoveSelectedDown">
+  MoveSelectedDown()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L305"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Move selected layer down.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveSelectedDown()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_MoveSelectedUp_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MoveSelectedUp*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_MoveSelectedUp" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.MoveSelectedUp">
+  MoveSelectedUp()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L292"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Move selected layer up.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MoveSelectedUp()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_RefreshLayerList_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.RefreshLayerList*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_RefreshLayerList" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.RefreshLayerList">
+  RefreshLayerList()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Refresh the entire layer list UI.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RefreshLayerList()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerPanelUI_SelectLayer_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.SelectLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerPanelUI_SelectLayer_System_Int32_" data-uid="WitShells.CanvasDrawTool.LayerPanelUI.SelectLayer(System.Int32)">
+  SelectLayer(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/UI/LayerPanelUI.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Select a layer by index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SelectLayer(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

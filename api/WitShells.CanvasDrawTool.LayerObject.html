@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class LayerObject | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class LayerObject | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Represents a single layer as a RawImage GameObject for high performance on mobile. Uses FastTextureBuffer for optimized pixel operations. Each layer can be independently positioned, scaled, rotated and cropped.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_CanvasDrawTool_LayerObject.md&amp;value=---%0Auid%3A%20WitShells.CanvasDrawTool.LayerObject%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.CanvasDrawTool.LayerObject">
+
+
+
+  <h1 id="WitShells_CanvasDrawTool_LayerObject" data-uid="WitShells.CanvasDrawTool.LayerObject" class="text-break">
+Class LayerObject  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.CanvasDrawTool.html">CanvasDrawTool</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Represents a single layer as a RawImage GameObject for high performance on mobile.
+Uses FastTextureBuffer for optimized pixel operations.
+Each layer can be independently positioned, scaled, rotated and cropped.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class LayerObject : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">LayerObject</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_OnLayerChanged" data-uid="WitShells.CanvasDrawTool.LayerObject.OnLayerChanged">
+  OnLayerChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnLayerChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_OnTransformChanged" data-uid="WitShells.CanvasDrawTool.LayerObject.OnTransformChanged">
+  OnTransformChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnTransformChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_OnVisibilityChanged" data-uid="WitShells.CanvasDrawTool.LayerObject.OnVisibilityChanged">
+  OnVisibilityChanged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnVisibilityChanged</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Blend_" data-uid="WitShells.CanvasDrawTool.LayerObject.Blend*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Blend" data-uid="WitShells.CanvasDrawTool.LayerObject.Blend">
+  Blend
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerObject.BlendMode Blend { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a>.<a class="xref" href="WitShells.CanvasDrawTool.LayerObject.BlendMode.html">BlendMode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Buffer_" data-uid="WitShells.CanvasDrawTool.LayerObject.Buffer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Buffer" data-uid="WitShells.CanvasDrawTool.LayerObject.Buffer">
+  Buffer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FastTextureBuffer Buffer { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.FastTextureBuffer.html">FastTextureBuffer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_CropRect_" data-uid="WitShells.CanvasDrawTool.LayerObject.CropRect*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_CropRect" data-uid="WitShells.CanvasDrawTool.LayerObject.CropRect">
+  CropRect
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RectInt CropRect { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">RectInt</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_IsCropped_" data-uid="WitShells.CanvasDrawTool.LayerObject.IsCropped*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_IsCropped" data-uid="WitShells.CanvasDrawTool.LayerObject.IsCropped">
+  IsCropped
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCropped { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_IsDirty_" data-uid="WitShells.CanvasDrawTool.LayerObject.IsDirty*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_IsDirty" data-uid="WitShells.CanvasDrawTool.LayerObject.IsDirty">
+  IsDirty
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L135"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDirty { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_IsLocked_" data-uid="WitShells.CanvasDrawTool.LayerObject.IsLocked*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_IsLocked" data-uid="WitShells.CanvasDrawTool.LayerObject.IsLocked">
+  IsLocked
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLocked { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_IsVisible_" data-uid="WitShells.CanvasDrawTool.LayerObject.IsVisible*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_IsVisible" data-uid="WitShells.CanvasDrawTool.LayerObject.IsVisible">
+  IsVisible
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsVisible { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_LayerName_" data-uid="WitShells.CanvasDrawTool.LayerObject.LayerName*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_LayerName" data-uid="WitShells.CanvasDrawTool.LayerObject.LayerName">
+  LayerName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LayerName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Opacity_" data-uid="WitShells.CanvasDrawTool.LayerObject.Opacity*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Opacity" data-uid="WitShells.CanvasDrawTool.LayerObject.Opacity">
+  Opacity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Opacity { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Pivot_" data-uid="WitShells.CanvasDrawTool.LayerObject.Pivot*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Pivot" data-uid="WitShells.CanvasDrawTool.LayerObject.Pivot">
+  Pivot
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 Pivot { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Position_" data-uid="WitShells.CanvasDrawTool.LayerObject.Position*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Position" data-uid="WitShells.CanvasDrawTool.LayerObject.Position">
+  Position
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 Position { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_RawImage_" data-uid="WitShells.CanvasDrawTool.LayerObject.RawImage*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_RawImage" data-uid="WitShells.CanvasDrawTool.LayerObject.RawImage">
+  RawImage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L131"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RawImage RawImage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">RawImage</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_RectTransform_" data-uid="WitShells.CanvasDrawTool.LayerObject.RectTransform*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_RectTransform" data-uid="WitShells.CanvasDrawTool.LayerObject.RectTransform">
+  RectTransform
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RectTransform RectTransform { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">RectTransform</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Rotation_" data-uid="WitShells.CanvasDrawTool.LayerObject.Rotation*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Rotation" data-uid="WitShells.CanvasDrawTool.LayerObject.Rotation">
+  Rotation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Rotation { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Scale_" data-uid="WitShells.CanvasDrawTool.LayerObject.Scale*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Scale" data-uid="WitShells.CanvasDrawTool.LayerObject.Scale">
+  Scale
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 Scale { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Texture_" data-uid="WitShells.CanvasDrawTool.LayerObject.Texture*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Texture" data-uid="WitShells.CanvasDrawTool.LayerObject.Texture">
+  Texture
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Texture2D Texture { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Texture2D</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_TextureHeight_" data-uid="WitShells.CanvasDrawTool.LayerObject.TextureHeight*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_TextureHeight" data-uid="WitShells.CanvasDrawTool.LayerObject.TextureHeight">
+  TextureHeight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TextureHeight { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_TextureWidth_" data-uid="WitShells.CanvasDrawTool.LayerObject.TextureWidth*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_TextureWidth" data-uid="WitShells.CanvasDrawTool.LayerObject.TextureWidth">
+  TextureWidth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L133"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TextureWidth { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_ApplyChanges_" data-uid="WitShells.CanvasDrawTool.LayerObject.ApplyChanges*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_ApplyChanges" data-uid="WitShells.CanvasDrawTool.LayerObject.ApplyChanges">
+  ApplyChanges()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L529"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Apply pending pixel changes to texture (optimized).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyChanges()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_ApplyTransform_" data-uid="WitShells.CanvasDrawTool.LayerObject.ApplyTransform*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_ApplyTransform" data-uid="WitShells.CanvasDrawTool.LayerObject.ApplyTransform">
+  ApplyTransform()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Apply position, scale, rotation transforms.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyTransform()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Clear_" data-uid="WitShells.CanvasDrawTool.LayerObject.Clear*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Clear_Color_" data-uid="WitShells.CanvasDrawTool.LayerObject.Clear(Color)">
+  Clear(Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L510"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clear the layer with a color.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear(Color color)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>color</code> <span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Dispose_" data-uid="WitShells.CanvasDrawTool.LayerObject.Dispose*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Dispose" data-uid="WitShells.CanvasDrawTool.LayerObject.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L734"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Dispose and cleanup.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_DrawBrushCircle_" data-uid="WitShells.CanvasDrawTool.LayerObject.DrawBrushCircle*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_DrawBrushCircle_System_Int32_System_Int32_System_Int32_Color32_System_Single_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.DrawBrushCircle(System.Int32,System.Int32,System.Int32,Color32,System.Single,System.Single)">
+  DrawBrushCircle(int, int, int, Color32, float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L470"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Draw brush circle (high-performance).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DrawBrushCircle(int centerX, int centerY, int radius, Color32 color, float opacity, float hardness)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>centerX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>centerY</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>radius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>color</code> <span class="xref">Color32</span></dt>
+    <dd></dd>
+    <dt><code>opacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>hardness</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_DrawBrushLine_" data-uid="WitShells.CanvasDrawTool.LayerObject.DrawBrushLine*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_DrawBrushLine_System_Int32_System_Int32_System_Int32_System_Int32_Color32_System_Int32_System_Single_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.DrawBrushLine(System.Int32,System.Int32,System.Int32,System.Int32,Color32,System.Int32,System.Single,System.Single)">
+  DrawBrushLine(int, int, int, int, Color32, int, float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L490"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Draw line between two points (high-performance using Bresenham).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DrawBrushLine(int x0, int y0, int x1, int y1, Color32 color, int thickness, float opacity, float hardness)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x0</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y0</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>x1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>color</code> <span class="xref">Color32</span></dt>
+    <dd></dd>
+    <dt><code>thickness</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>opacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>hardness</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_DrawPixel_" data-uid="WitShells.CanvasDrawTool.LayerObject.DrawPixel*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_DrawPixel_System_Int32_System_Int32_Color_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.DrawPixel(System.Int32,System.Int32,Color,System.Single)">
+  DrawPixel(int, int, Color, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L424"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Draw a pixel with blending (optimized).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DrawPixel(int x, int y, Color brushColor, float brushOpacity)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>brushColor</code> <span class="xref">Color</span></dt>
+    <dd></dd>
+    <dt><code>brushOpacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Duplicate_" data-uid="WitShells.CanvasDrawTool.LayerObject.Duplicate*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Duplicate_Transform_" data-uid="WitShells.CanvasDrawTool.LayerObject.Duplicate(Transform)">
+  Duplicate(Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L703"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create a copy of this layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerObject Duplicate(Transform parent)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_EraseBrushCircle_" data-uid="WitShells.CanvasDrawTool.LayerObject.EraseBrushCircle*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_EraseBrushCircle_System_Int32_System_Int32_System_Int32_System_Single_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.EraseBrushCircle(System.Int32,System.Int32,System.Int32,System.Single,System.Single)">
+  EraseBrushCircle(int, int, int, float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L480"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Erase brush circle (high-performance).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EraseBrushCircle(int centerX, int centerY, int radius, float opacity, float hardness)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>centerX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>centerY</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>radius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>opacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>hardness</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_EraseBrushLine_" data-uid="WitShells.CanvasDrawTool.LayerObject.EraseBrushLine*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_EraseBrushLine_System_Int32_System_Int32_System_Int32_System_Int32_System_Int32_System_Single_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.EraseBrushLine(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single)">
+  EraseBrushLine(int, int, int, int, int, float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L500"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Erase line between two points (high-performance).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EraseBrushLine(int x0, int y0, int x1, int y1, int thickness, float opacity, float hardness)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x0</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y0</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>x1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y1</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>thickness</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>opacity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>hardness</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_ErasePixel_" data-uid="WitShells.CanvasDrawTool.LayerObject.ErasePixel*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_ErasePixel_System_Int32_System_Int32_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.ErasePixel(System.Int32,System.Int32,System.Single)">
+  ErasePixel(int, int, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L447"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Erase a pixel (optimized).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ErasePixel(int x, int y, float eraseStrength)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>eraseStrength</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_ExportAsJPG_" data-uid="WitShells.CanvasDrawTool.LayerObject.ExportAsJPG*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_ExportAsJPG_System_Int32_" data-uid="WitShells.CanvasDrawTool.LayerObject.ExportAsJPG(System.Int32)">
+  ExportAsJPG(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L694"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Export this layer as JPG bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] ExportAsJPG(int quality = 75)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>quality</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_ExportAsPNG_" data-uid="WitShells.CanvasDrawTool.LayerObject.ExportAsPNG*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_ExportAsPNG" data-uid="WitShells.CanvasDrawTool.LayerObject.ExportAsPNG">
+  ExportAsPNG()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L685"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Export this layer as PNG bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[] ExportAsPNG()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_GetPixel_" data-uid="WitShells.CanvasDrawTool.LayerObject.GetPixel*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_GetPixel_System_Int32_System_Int32_" data-uid="WitShells.CanvasDrawTool.LayerObject.GetPixel(System.Int32,System.Int32)">
+  GetPixel(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L406"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get pixel color (uses fast buffer).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color GetPixel(int x, int y)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_GetPixels_" data-uid="WitShells.CanvasDrawTool.LayerObject.GetPixels*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_GetPixels" data-uid="WitShells.CanvasDrawTool.LayerObject.GetPixels">
+  GetPixels()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L551"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get all pixels (creates copy - use sparingly).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color[] GetPixels()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_GetPixelsReadOnly_" data-uid="WitShells.CanvasDrawTool.LayerObject.GetPixelsReadOnly*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_GetPixelsReadOnly" data-uid="WitShells.CanvasDrawTool.LayerObject.GetPixelsReadOnly">
+  GetPixelsReadOnly()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L564"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get pixels without cloning (read-only reference - use carefully).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color[] GetPixelsReadOnly()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Color</span>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_ImportImage_" data-uid="WitShells.CanvasDrawTool.LayerObject.ImportImage*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_ImportImage_Texture2D_System_Int32_System_Int32_" data-uid="WitShells.CanvasDrawTool.LayerObject.ImportImage(Texture2D,System.Int32,System.Int32)">
+  ImportImage(Texture2D, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L653"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Import an image into this layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ImportImage(Texture2D image, int offsetX = 0, int offsetY = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>image</code> <span class="xref">Texture2D</span></dt>
+    <dd></dd>
+    <dt><code>offsetX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>offsetY</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Initialize_" data-uid="WitShells.CanvasDrawTool.LayerObject.Initialize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Initialize_System_Int32_System_Int32_System_Nullable_Color__" data-uid="WitShells.CanvasDrawTool.LayerObject.Initialize(System.Int32,System.Int32,System.Nullable{Color})">
+  Initialize(int, int, Color?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initialize the layer with a new texture.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(int width, int height, Color? fillColor = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>fillColor</code> <span class="xref">Color</span>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_InitializeFromTexture_" data-uid="WitShells.CanvasDrawTool.LayerObject.InitializeFromTexture*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_InitializeFromTexture_Texture2D_System_Boolean_" data-uid="WitShells.CanvasDrawTool.LayerObject.InitializeFromTexture(Texture2D,System.Boolean)">
+  InitializeFromTexture(Texture2D, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initialize from an existing texture/image.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InitializeFromTexture(Texture2D source, bool preserveSize = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">Texture2D</span></dt>
+    <dd></dd>
+    <dt><code>preserveSize</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Move_" data-uid="WitShells.CanvasDrawTool.LayerObject.Move*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Move_Vector2_" data-uid="WitShells.CanvasDrawTool.LayerObject.Move(Vector2)">
+  Move(Vector2)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L262"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Move the layer by delta.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Move(Vector2 delta)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>delta</code> <span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_ResetCrop_" data-uid="WitShells.CanvasDrawTool.LayerObject.ResetCrop*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_ResetCrop" data-uid="WitShells.CanvasDrawTool.LayerObject.ResetCrop">
+  ResetCrop()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L326"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reset crop to full texture.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetCrop()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_Resize_" data-uid="WitShells.CanvasDrawTool.LayerObject.Resize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_Resize_System_Int32_System_Int32_" data-uid="WitShells.CanvasDrawTool.LayerObject.Resize(System.Int32,System.Int32)">
+  Resize(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L343"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resize the layer texture (destructive - resamples content).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resize(int newWidth, int newHeight)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>newHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_SetCrop_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetCrop*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_SetCrop_RectInt_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetCrop(RectInt)">
+  SetCrop(RectInt)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L302"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set crop rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCrop(RectInt rect)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>rect</code> <span class="xref">RectInt</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_SetPixel_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetPixel*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_SetPixel_System_Int32_System_Int32_Color_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetPixel(System.Int32,System.Int32,Color)">
+  SetPixel(int, int, Color)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L385"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set a pixel color (uses fast buffer).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPixel(int x, int y, Color color)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>color</code> <span class="xref">Color</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_SetPixels_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetPixels*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_SetPixels_Color___" data-uid="WitShells.CanvasDrawTool.LayerObject.SetPixels(Color[])">
+  SetPixels(Color[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L595"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set all pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPixels(Color[] pixels)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pixels</code> <span class="xref">Color</span>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_SetPosition_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetPosition*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_SetPosition_Vector2_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetPosition(Vector2)">
+  SetPosition(Vector2)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set absolute position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPosition(Vector2 position)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>position</code> <span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_SetRotation_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetRotation*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_SetRotation_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetRotation(System.Single)">
+  SetRotation(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L294"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Rotate the layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetRotation(float degrees)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>degrees</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_SetScale_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetScale*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_SetScale_System_Single_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetScale(System.Single)">
+  SetScale(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L278"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Scale the layer uniformly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetScale(float scale)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scale</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_LayerObject_SetScale_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetScale*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_LayerObject_SetScale_Vector2_" data-uid="WitShells.CanvasDrawTool.LayerObject.SetScale(Vector2)">
+  SetScale(Vector2)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/LayerObject.cs/#L286"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Scale the layer non-uniformly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetScale(Vector2 scale)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>scale</code> <span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

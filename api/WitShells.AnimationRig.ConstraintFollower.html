@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ConstraintFollower | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ConstraintFollower | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Controls IK constraint targets by following assigned transform references. Allows toggling position/rotation constraints independently for hands, legs, and head.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_AnimationRig_ConstraintFollower.md&amp;value=---%0Auid%3A%20WitShells.AnimationRig.ConstraintFollower%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.AnimationRig.ConstraintFollower">
+
+
+
+  <h1 id="WitShells_AnimationRig_ConstraintFollower" data-uid="WitShells.AnimationRig.ConstraintFollower" class="text-break">
+Class ConstraintFollower  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.AnimationRig.html">AnimationRig</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Controls IK constraint targets by following assigned transform references.
+Allows toggling position/rotation constraints independently for hands, legs, and head.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ConstraintFollower : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ConstraintFollower</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_HeadBinding_" data-uid="WitShells.AnimationRig.ConstraintFollower.HeadBinding*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_HeadBinding" data-uid="WitShells.AnimationRig.ConstraintFollower.HeadBinding">
+  HeadBinding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConstraintBinding HeadBinding { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.AnimationRig.ConstraintBinding.html">ConstraintBinding</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_LeftHandBinding_" data-uid="WitShells.AnimationRig.ConstraintFollower.LeftHandBinding*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_LeftHandBinding" data-uid="WitShells.AnimationRig.ConstraintFollower.LeftHandBinding">
+  LeftHandBinding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConstraintBinding LeftHandBinding { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.AnimationRig.ConstraintBinding.html">ConstraintBinding</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_LeftLegBinding_" data-uid="WitShells.AnimationRig.ConstraintFollower.LeftLegBinding*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_LeftLegBinding" data-uid="WitShells.AnimationRig.ConstraintFollower.LeftLegBinding">
+  LeftLegBinding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConstraintBinding LeftLegBinding { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.AnimationRig.ConstraintBinding.html">ConstraintBinding</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_MasterWeight_" data-uid="WitShells.AnimationRig.ConstraintFollower.MasterWeight*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_MasterWeight" data-uid="WitShells.AnimationRig.ConstraintFollower.MasterWeight">
+  MasterWeight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MasterWeight { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_RigReferences_" data-uid="WitShells.AnimationRig.ConstraintFollower.RigReferences*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_RigReferences" data-uid="WitShells.AnimationRig.ConstraintFollower.RigReferences">
+  RigReferences
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RigReferences RigReferences { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.AnimationRig.RigReferences.html">RigReferences</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_RightHandBinding_" data-uid="WitShells.AnimationRig.ConstraintFollower.RightHandBinding*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_RightHandBinding" data-uid="WitShells.AnimationRig.ConstraintFollower.RightHandBinding">
+  RightHandBinding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConstraintBinding RightHandBinding { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.AnimationRig.ConstraintBinding.html">ConstraintBinding</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_RightLegBinding_" data-uid="WitShells.AnimationRig.ConstraintFollower.RightLegBinding*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_RightLegBinding" data-uid="WitShells.AnimationRig.ConstraintFollower.RightLegBinding">
+  RightLegBinding
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ConstraintBinding RightLegBinding { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.AnimationRig.ConstraintBinding.html">ConstraintBinding</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_ClearAllSources_" data-uid="WitShells.AnimationRig.ConstraintFollower.ClearAllSources*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_ClearAllSources" data-uid="WitShells.AnimationRig.ConstraintFollower.ClearAllSources">
+  ClearAllSources()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L287"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears all source references.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearAllSources()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_SetAllBindings_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetAllBindings*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_SetAllBindings_Transform_System_Boolean_System_Boolean_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetAllBindings(Transform,System.Boolean,System.Boolean)">
+  SetAllBindings(Transform, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets all bindings to follow the same target with configurable position/rotation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAllBindings(Transform source, bool followPosition = true, bool followRotation = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">Transform</span></dt>
+    <dd></dd>
+    <dt><code>followPosition</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>followRotation</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_SetBindingWeight_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetBindingWeight*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_SetBindingWeight_WitShells_AnimationRig_ConstraintFollower_ConstraintType_System_Single_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetBindingWeight(WitShells.AnimationRig.ConstraintFollower.ConstraintType,System.Single)">
+  SetBindingWeight(ConstraintType, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L264"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the weight for a specific constraint binding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetBindingWeight(ConstraintFollower.ConstraintType type, float weight)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="WitShells.AnimationRig.ConstraintFollower.html">ConstraintFollower</a>.<a class="xref" href="WitShells.AnimationRig.ConstraintFollower.ConstraintType.html">ConstraintType</a></dt>
+    <dd></dd>
+    <dt><code>weight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_SetFollowPosition_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetFollowPosition*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_SetFollowPosition_WitShells_AnimationRig_ConstraintFollower_ConstraintType_System_Boolean_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetFollowPosition(WitShells.AnimationRig.ConstraintFollower.ConstraintType,System.Boolean)">
+  SetFollowPosition(ConstraintType, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L244"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enables or disables position following for a specific constraint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFollowPosition(ConstraintFollower.ConstraintType type, bool follow)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="WitShells.AnimationRig.ConstraintFollower.html">ConstraintFollower</a>.<a class="xref" href="WitShells.AnimationRig.ConstraintFollower.ConstraintType.html">ConstraintType</a></dt>
+    <dd></dd>
+    <dt><code>follow</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_SetFollowRotation_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetFollowRotation*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_SetFollowRotation_WitShells_AnimationRig_ConstraintFollower_ConstraintType_System_Boolean_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetFollowRotation(WitShells.AnimationRig.ConstraintFollower.ConstraintType,System.Boolean)">
+  SetFollowRotation(ConstraintType, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L254"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enables or disables rotation following for a specific constraint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFollowRotation(ConstraintFollower.ConstraintType type, bool follow)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="WitShells.AnimationRig.ConstraintFollower.html">ConstraintFollower</a>.<a class="xref" href="WitShells.AnimationRig.ConstraintFollower.ConstraintType.html">ConstraintType</a></dt>
+    <dd></dd>
+    <dt><code>follow</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_AnimationRig_ConstraintFollower_SetSource_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetSource*"></a>
+
+  <h3 id="WitShells_AnimationRig_ConstraintFollower_SetSource_WitShells_AnimationRig_ConstraintFollower_ConstraintType_Transform_" data-uid="WitShells.AnimationRig.ConstraintFollower.SetSource(WitShells.AnimationRig.ConstraintFollower.ConstraintType,Transform)">
+  SetSource(ConstraintType, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitAnimationRig/Runtime/Scripts/Core/ConstraintFollower.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sets the source transform for a specific constraint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSource(ConstraintFollower.ConstraintType type, Transform source)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="WitShells.AnimationRig.ConstraintFollower.html">ConstraintFollower</a>.<a class="xref" href="WitShells.AnimationRig.ConstraintFollower.ConstraintType.html">ConstraintType</a></dt>
+    <dd></dd>
+    <dt><code>source</code> <span class="xref">Transform</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

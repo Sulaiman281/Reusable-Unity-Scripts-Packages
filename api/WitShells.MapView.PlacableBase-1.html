@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class PlacableBase&lt;TData&gt; | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class PlacableBase&lt;TData&gt; | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_MapView_PlacableBase_1.md&amp;value=---%0Auid%3A%20WitShells.MapView.PlacableBase%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.MapView.PlacableBase`1">
+
+
+
+  <h1 id="WitShells_MapView_PlacableBase_1" data-uid="WitShells.MapView.PlacableBase`1" class="text-break">
+Class PlacableBase&lt;TData&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.MapView.html">MapView</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class PlacableBase&lt;TData&gt; : Draggable, IDragHandler, IBeginDragHandler, IEndDragHandler, IPlacableData&lt;TData&gt;, IPlacable, IPointerDownHandler, IPointerUpHandler</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TData</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="WitShells.DesignPatterns.Draggable.html">Draggable</a></div>
+      <div><span class="xref">PlacableBase&lt;TData&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IDragHandler</span></div>
+      <div><span class="xref">IBeginDragHandler</span></div>
+      <div><span class="xref">IEndDragHandler</span></div>
+      <div><a class="xref" href="WitShells.MapView.IPlacableData-1.html">IPlacableData</a>&lt;TData&gt;</div>
+      <div><a class="xref" href="WitShells.MapView.IPlacable.html">IPlacable</a></div>
+      <div><span class="xref">IPointerDownHandler</span></div>
+      <div><span class="xref">IPointerUpHandler</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="WitShells.MapView.Placable.html">Placable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_smoothing">Draggable.smoothing</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_useRigidbodyMove">Draggable.useRigidbodyMove</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_OnDragPositionUpdated">Draggable.OnDragPositionUpdated</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_CanDrag">Draggable.CanDrag</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_IsDragging">Draggable.IsDragging</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_OnBeginDrag_PointerEventData_">Draggable.OnBeginDrag(PointerEventData)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_OnDrag_PointerEventData_">Draggable.OnDrag(PointerEventData)</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Draggable.html#WitShells_DesignPatterns_Draggable_OnEndDrag_PointerEventData_">Draggable.OnEndDrag(PointerEventData)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_MapView_PlacableBase_1_customData" data-uid="WitShells.MapView.PlacableBase`1.customData">
+  customData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TData customData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_MapView_PlacableBase_1_placableData" data-uid="WitShells.MapView.PlacableBase`1.placableData">
+  placableData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected PlacableData placableData</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MapView.PlacableData.html">PlacableData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_MapView_PlacableBase_1_CustomData_" data-uid="WitShells.MapView.PlacableBase`1.CustomData*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_CustomData" data-uid="WitShells.MapView.PlacableBase`1.CustomData">
+  CustomData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TData CustomData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_Data_" data-uid="WitShells.MapView.PlacableBase`1.Data*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_Data" data-uid="WitShells.MapView.PlacableBase`1.Data">
+  Data
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlacableData Data { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MapView.PlacableData.html">PlacableData</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_GameObject_" data-uid="WitShells.MapView.PlacableBase`1.GameObject*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_GameObject" data-uid="WitShells.MapView.PlacableBase`1.GameObject">
+  GameObject
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GameObject GameObject { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_MapView_PlacableBase_1_AddedToMapView_" data-uid="WitShells.MapView.PlacableBase`1.AddedToMapView*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_AddedToMapView" data-uid="WitShells.MapView.PlacableBase`1.AddedToMapView">
+  AddedToMapView()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L157"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void AddedToMapView()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_Initialize_" data-uid="WitShells.MapView.PlacableBase`1.Initialize*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_Initialize_WitShells_MapView_PlacableData_System_String_" data-uid="WitShells.MapView.PlacableBase`1.Initialize(WitShells.MapView.PlacableData,System.String)">
+  Initialize(PlacableData, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Initialize(PlacableData data, string payload)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="WitShells.MapView.PlacableData.html">PlacableData</a></dt>
+    <dd></dd>
+    <dt><code>payload</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_Initialize_" data-uid="WitShells.MapView.PlacableBase`1.Initialize*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_Initialize_WitShells_MapView_PlacableData__0_" data-uid="WitShells.MapView.PlacableBase`1.Initialize(WitShells.MapView.PlacableData,`0)">
+  Initialize(PlacableData, TData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Initialize(PlacableData data, TData customData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="WitShells.MapView.PlacableData.html">PlacableData</a></dt>
+    <dd></dd>
+    <dt><code>customData</code> <span class="xref">TData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_OnDisable_" data-uid="WitShells.MapView.PlacableBase`1.OnDisable*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_OnDisable" data-uid="WitShells.MapView.PlacableBase`1.OnDisable">
+  OnDisable()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDisable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_OnEnable_" data-uid="WitShells.MapView.PlacableBase`1.OnEnable*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_OnEnable" data-uid="WitShells.MapView.PlacableBase`1.OnEnable">
+  OnEnable()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnEnable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_OnPointerDown_" data-uid="WitShells.MapView.PlacableBase`1.OnPointerDown*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_OnPointerDown_PointerEventData_" data-uid="WitShells.MapView.PlacableBase`1.OnPointerDown(PointerEventData)">
+  OnPointerDown(PointerEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnPointerDown(PointerEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">PointerEventData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_OnPointerUp_" data-uid="WitShells.MapView.PlacableBase`1.OnPointerUp*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_OnPointerUp_PointerEventData_" data-uid="WitShells.MapView.PlacableBase`1.OnPointerUp(PointerEventData)">
+  OnPointerUp(PointerEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L147"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnPointerUp(PointerEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">PointerEventData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_OnPositionChanged_" data-uid="WitShells.MapView.PlacableBase`1.OnPositionChanged*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_OnPositionChanged_Vector3_" data-uid="WitShells.MapView.PlacableBase`1.OnPositionChanged(Vector3)">
+  OnPositionChanged(Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnPositionChanged(Vector3 newPosition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newPosition</code> <span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_Release_" data-uid="WitShells.MapView.PlacableBase`1.Release*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_Release_System_Single_" data-uid="WitShells.MapView.PlacableBase`1.Release(System.Single)">
+  Release(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L154"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Release(float time)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>time</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_RemovedFromMapView_" data-uid="WitShells.MapView.PlacableBase`1.RemovedFromMapView*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_RemovedFromMapView" data-uid="WitShells.MapView.PlacableBase`1.RemovedFromMapView">
+  RemovedFromMapView()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L156"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void RemovedFromMapView()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_Select_" data-uid="WitShells.MapView.PlacableBase`1.Select*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_Select" data-uid="WitShells.MapView.PlacableBase`1.Select">
+  Select()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Select()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_UpdateCoordinates_" data-uid="WitShells.MapView.PlacableBase`1.UpdateCoordinates*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_UpdateCoordinates_WitShells_MapView_Coordinates_System_Single_" data-uid="WitShells.MapView.PlacableBase`1.UpdateCoordinates(WitShells.MapView.Coordinates,System.Single)">
+  UpdateCoordinates(Coordinates, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L124"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateCoordinates(Coordinates newCoordinates, float newZoomLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>newCoordinates</code> <a class="xref" href="WitShells.MapView.Coordinates.html">Coordinates</a></dt>
+    <dd></dd>
+    <dt><code>newZoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_UpdateFromData_" data-uid="WitShells.MapView.PlacableBase`1.UpdateFromData*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_UpdateFromData" data-uid="WitShells.MapView.PlacableBase`1.UpdateFromData">
+  UpdateFromData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void UpdateFromData()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_PlacableBase_1_UpdateScale_" data-uid="WitShells.MapView.PlacableBase`1.UpdateScale*"></a>
+
+  <h3 id="WitShells_MapView_PlacableBase_1_UpdateScale_System_Single_System_Single_" data-uid="WitShells.MapView.PlacableBase`1.UpdateScale(System.Single,System.Single)">
+  UpdateScale(float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/Placements/Placable.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateScale(float currentZoomLevel, float maxZoomLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>currentZoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>maxZoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

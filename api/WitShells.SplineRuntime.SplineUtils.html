@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SplineUtils | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SplineUtils | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_SplineRuntime_SplineUtils.md&amp;value=---%0Auid%3A%20WitShells.SplineRuntime.SplineUtils%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.SplineRuntime.SplineUtils">
+
+
+
+  <h1 id="WitShells_SplineRuntime_SplineUtils" data-uid="WitShells.SplineRuntime.SplineUtils" class="text-break">
+Class SplineUtils  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.SplineRuntime.html">SplineRuntime</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class SplineUtils</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SplineUtils</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_AddPointsToSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.AddPointsToSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_AddPointsToSpline_SplineContainer_Vector3___System_Int32_System_Boolean_" data-uid="WitShells.SplineRuntime.SplineUtils.AddPointsToSpline(SplineContainer,Vector3[],System.Int32,System.Boolean)">
+  AddPointsToSpline(SplineContainer, Vector3[], int, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L345"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a sequence of points to an existing spline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddPointsToSpline(SplineContainer splineContainer, Vector3[] positions, int splineIndex = 0, bool autoSmooth = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container to modify</p>
+</dd>
+    <dt><code>positions</code> <span class="xref">Vector3</span>[]</dt>
+    <dd><p>Positions to add</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to modify</p>
+</dd>
+    <dt><code>autoSmooth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to auto-smooth tangents</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_AutoSmoothTangents_" data-uid="WitShells.SplineRuntime.SplineUtils.AutoSmoothTangents*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_AutoSmoothTangents_Spline_System_Single_" data-uid="WitShells.SplineRuntime.SplineUtils.AutoSmoothTangents(Spline,System.Single)">
+  AutoSmoothTangents(Spline, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L302"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Automatically smooths the tangents of a spline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AutoSmoothTangents(Spline spline, float tangentScale = 0.33)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">Spline</span></dt>
+    <dd><p>The spline to smooth</p>
+</dd>
+    <dt><code>tangentScale</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Scale factor for tangent length (default: 0.33)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_ContainerChildrenToPositionList_" data-uid="WitShells.SplineRuntime.SplineUtils.ContainerChildrenToPositionList*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_ContainerChildrenToPositionList_Transform_System_Boolean_System_Boolean_" data-uid="WitShells.SplineRuntime.SplineUtils.ContainerChildrenToPositionList(Transform,System.Boolean,System.Boolean)">
+  ContainerChildrenToPositionList(Transform, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1432"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts all child positions of a container transform to a list of Vector3 positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Vector3&gt; ContainerChildrenToPositionList(Transform container, bool includeInactive = false, bool localPositions = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>container</code> <span class="xref">Transform</span></dt>
+    <dd><p>The parent transform containing child objects</p>
+</dd>
+    <dt><code>includeInactive</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to include inactive child objects (default: false)</p>
+</dd>
+    <dt><code>localPositions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Vector3</span>&gt;</dt>
+    <dd><p>List of Vector3 positions of all children</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateArcBetweenPoints_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateArcBetweenPoints*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateArcBetweenPoints_Vector3_Vector3_System_Single_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateArcBetweenPoints(Vector3,Vector3,System.Single,System.Int32,Transform)">
+  CreateArcBetweenPoints(Vector3, Vector3, float, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a path between two points with an arc</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer CreateArcBetweenPoints(Vector3 start, Vector3 end, float arcHeight, int pointCount = 5, Transform parent = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Start position</p>
+</dd>
+    <dt><code>end</code> <span class="xref">Vector3</span></dt>
+    <dd><p>End position</p>
+</dd>
+    <dt><code>arcHeight</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Height of the arc</p>
+</dd>
+    <dt><code>pointCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of points to generate (min 3)</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>SplineContainer with an arcing path</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateClosedLoopSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateClosedLoopSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateClosedLoopSpline_Vector3___Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateClosedLoopSpline(Vector3[],Transform)">
+  CreateClosedLoopSpline(Vector3[], Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a closed loop spline from positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer CreateClosedLoopSpline(Vector3[] positions, Transform parent = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>positions</code> <span class="xref">Vector3</span>[]</dt>
+    <dd><p>Positions to form the loop</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>A new SplineContainer with a closed loop</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateElevatedRoadMesh_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateElevatedRoadMesh*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateElevatedRoadMesh_SplineContainer_System_Single_System_Single_System_Single_System_Int32_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateElevatedRoadMesh(SplineContainer,System.Single,System.Single,System.Single,System.Int32,System.Int32,Transform)">
+  CreateElevatedRoadMesh(SplineContainer, float, float, float, int, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1055"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates an elevated road mesh with side walls</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Mesh CreateElevatedRoadMesh(SplineContainer splineContainer, float width, float height, float materialTilingMultiplier = 1, int splineIndex = 0, int segments = 100, Transform transform = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline to follow</p>
+</dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Width of the road</p>
+</dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Height of the side walls</p>
+</dd>
+    <dt><code>materialTilingMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Multiplier for texture tiling</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use</p>
+</dd>
+    <dt><code>segments</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of segments for the road mesh</p>
+</dd>
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional transform to convert to local space</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Mesh</span></dt>
+    <dd><p>A generated elevated road mesh with walls</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateRibbonMesh_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateRibbonMesh*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateRibbonMesh_SplineContainer_System_Single_System_Single_System_Single_System_Int32_System_Int32_System_Boolean_System_Single_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateRibbonMesh(SplineContainer,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Boolean,System.Single,Transform)">
+  CreateRibbonMesh(SplineContainer, float, float, float, int, int, bool, float, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1273"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a ribbon mesh following a spline, useful for rivers, streams, or paths</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Mesh CreateRibbonMesh(SplineContainer splineContainer, float startWidth, float endWidth, float materialTilingMultiplier = 1, int splineIndex = 0, int segments = 100, bool conformToTerrain = false, float terrainOffset = 0.1, Transform transform = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline to follow</p>
+</dd>
+    <dt><code>startWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Width at the start of the spline</p>
+</dd>
+    <dt><code>endWidth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Width at the end of the spline</p>
+</dd>
+    <dt><code>materialTilingMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Texture tiling multiplier</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use</p>
+</dd>
+    <dt><code>segments</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of segments along the spline</p>
+</dd>
+    <dt><code>conformToTerrain</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to conform to terrain height</p>
+</dd>
+    <dt><code>terrainOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Height offset from terrain</p>
+</dd>
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional transform to convert to local space</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Mesh</span></dt>
+    <dd><p>A ribbon mesh following the spline with varying width</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateRoadMesh_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateRoadMesh*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateRoadMesh_SplineContainer_System_Single_System_Single_System_Boolean_System_Int32_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateRoadMesh(SplineContainer,System.Single,System.Single,System.Boolean,System.Int32,System.Int32,Transform)">
+  CreateRoadMesh(SplineContainer, float, float, bool, int, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L960"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a road mesh from a spline path</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Mesh CreateRoadMesh(SplineContainer splineContainer, float width, float materialTilingMultiplier = 1, bool flipDirection = false, int splineIndex = 0, int segments = 100, Transform transform = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline to follow</p>
+</dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Width of the road</p>
+</dd>
+    <dt><code>materialTilingMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Multiplier for texture tiling (higher value = more tiling)</p>
+</dd>
+    <dt><code>flipDirection</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to flip the road direction</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use</p>
+</dd>
+    <dt><code>segments</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of segments for the road mesh (higher = smoother)</p>
+</dd>
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional transform to convert to local space</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Mesh</span></dt>
+    <dd><p>A generated road mesh</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateSpiralSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSpiralSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateSpiralSpline_Vector3_System_Single_System_Single_System_Single_System_Single_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSpiralSpline(Vector3,System.Single,System.Single,System.Single,System.Single,System.Int32,Transform)">
+  CreateSpiralSpline(Vector3, float, float, float, float, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a spiral spline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer CreateSpiralSpline(Vector3 center, float startRadius, float endRadius, float height, float rotations, int segments, Transform parent = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>center</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Center of the spiral</p>
+</dd>
+    <dt><code>startRadius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Starting radius</p>
+</dd>
+    <dt><code>endRadius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Ending radius</p>
+</dd>
+    <dt><code>height</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Height difference from start to end</p>
+</dd>
+    <dt><code>rotations</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Number of full rotations</p>
+</dd>
+    <dt><code>segments</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of segments per rotation (higher = smoother)</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>SplineContainer with a spiral shape</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromLocalPositions_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromLocalPositions*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromLocalPositions_Vector3___System_Boolean_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromLocalPositions(Vector3[],System.Boolean)">
+  CreateSplineFromLocalPositions(Vector3[], bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L231"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a Spline object directly from a list of positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Spline CreateSplineFromLocalPositions(Vector3[] positions, bool autoSmooth = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>positions</code> <span class="xref">Vector3</span>[]</dt>
+    <dd><p>Array of positions in local space</p>
+</dd>
+    <dt><code>autoSmooth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to automatically smooth the tangents</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Spline</span></dt>
+    <dd><p>A new Spline object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromPositions_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromPositions*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromPositions_Vector3___Transform_System_Boolean_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromPositions(Vector3[],Transform,System.Boolean)">
+  CreateSplineFromPositions(Vector3[], Transform, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a new SplineContainer with a spline from a list of world positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer CreateSplineFromPositions(Vector3[] positions, Transform parent = null, bool autoSmooth = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>positions</code> <span class="xref">Vector3</span>[]</dt>
+    <dd><p>List of world positions to form the spline</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+    <dt><code>autoSmooth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to automatically smooth the tangents</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>A new SplineContainer GameObject</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromPositionsList_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromPositionsList*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromPositionsList_System_Collections_Generic_List_Vector3__System_Boolean_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromPositionsList(System.Collections.Generic.List{Vector3},System.Boolean)">
+  CreateSplineFromPositionsList(List&lt;Vector3&gt;, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L285"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a spline from a List of Vector3 positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Spline CreateSplineFromPositionsList(List&lt;Vector3&gt; positionsList, bool autoSmooth = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>positionsList</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Vector3</span>&gt;</dt>
+    <dd><p>List of positions in local space</p>
+</dd>
+    <dt><code>autoSmooth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to auto-smooth the tangents</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Spline</span></dt>
+    <dd><p>A new Spline object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromWorldPositions_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromWorldPositions*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateSplineFromWorldPositions_Vector3___Transform_System_Boolean_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineFromWorldPositions(Vector3[],Transform,System.Boolean)">
+  CreateSplineFromWorldPositions(Vector3[], Transform, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L258"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a Spline object directly from a list of world positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Spline CreateSplineFromWorldPositions(Vector3[] worldPositions, Transform referenceTransform, bool autoSmooth = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>worldPositions</code> <span class="xref">Vector3</span>[]</dt>
+    <dd><p>Array of positions in world space</p>
+</dd>
+    <dt><code>referenceTransform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Transform used to convert world to local positions</p>
+</dd>
+    <dt><code>autoSmooth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to automatically smooth the tangents</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Spline</span></dt>
+    <dd><p>A new Spline object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateSplineGrid_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineGrid*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateSplineGrid_Vector3_System_Single_System_Single_System_Int32_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateSplineGrid(Vector3,System.Single,System.Single,System.Int32,System.Int32,Transform)">
+  CreateSplineGrid(Vector3, float, float, int, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a grid of splines forming a network</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;SplineContainer&gt; CreateSplineGrid(Vector3 origin, float width, float length, int rows, int columns, Transform parent = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>origin</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Bottom-left corner of the grid</p>
+</dd>
+    <dt><code>width</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Width of the grid (X axis)</p>
+</dd>
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Length of the grid (Z axis)</p>
+</dd>
+    <dt><code>rows</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of rows</p>
+</dd>
+    <dt><code>columns</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of columns</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">SplineContainer</span>&gt;</dt>
+    <dd><p>List of SplineContainer GameObjects forming the grid</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateTerrainFollowingSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateTerrainFollowingSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateTerrainFollowingSpline_Vector3_Vector3_System_Single_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateTerrainFollowingSpline(Vector3,Vector3,System.Single,System.Int32,Transform)">
+  CreateTerrainFollowingSpline(Vector3, Vector3, float, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a spline that follows terrain height</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer CreateTerrainFollowingSpline(Vector3 startPoint, Vector3 endPoint, float heightOffset, int segments, Transform parent = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>startPoint</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Start position in world space</p>
+</dd>
+    <dt><code>endPoint</code> <span class="xref">Vector3</span></dt>
+    <dd><p>End position in world space</p>
+</dd>
+    <dt><code>heightOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Offset from terrain height</p>
+</dd>
+    <dt><code>segments</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of segments (higher = better terrain following)</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>SplineContainer that follows terrain height</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_CreateTunnelMesh_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateTunnelMesh*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_CreateTunnelMesh_SplineContainer_System_Single_System_Int32_System_Int32_System_Single_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.CreateTunnelMesh(SplineContainer,System.Single,System.Int32,System.Int32,System.Single,System.Int32,Transform)">
+  CreateTunnelMesh(SplineContainer, float, int, int, float, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a tunnel mesh along a spline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Mesh CreateTunnelMesh(SplineContainer splineContainer, float radius, int segments = 50, int circleVertices = 12, float materialTilingMultiplier = 1, int splineIndex = 0, Transform transform = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline to follow</p>
+</dd>
+    <dt><code>radius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Radius of the tunnel</p>
+</dd>
+    <dt><code>segments</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of segments along the spline</p>
+</dd>
+    <dt><code>circleVertices</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of vertices around the circumference</p>
+</dd>
+    <dt><code>materialTilingMultiplier</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Texture tiling multiplier</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use</p>
+</dd>
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional transform to convert to local space</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Mesh</span></dt>
+    <dd><p>A generated tunnel mesh</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_DistributePooledObjectsAlongSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.DistributePooledObjectsAlongSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_DistributePooledObjectsAlongSpline_SplineContainer_System_Func_GameObject__System_Action_GameObject__Transform_System_Int32_System_Collections_Generic_List_GameObject__System_Int32_System_Boolean_Vector3_Vector3_Vector3_" data-uid="WitShells.SplineRuntime.SplineUtils.DistributePooledObjectsAlongSpline(SplineContainer,System.Func{GameObject},System.Action{GameObject},Transform,System.Int32,System.Collections.Generic.List{GameObject},System.Int32,System.Boolean,Vector3,Vector3,Vector3)">
+  DistributePooledObjectsAlongSpline(SplineContainer, Func&lt;GameObject&gt;, Action&lt;GameObject&gt;, Transform, int, List&lt;GameObject&gt;, int, bool, Vector3, Vector3, Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1814"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Distributes GameObjects along a spline using object pooling</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;GameObject&gt; DistributePooledObjectsAlongSpline(SplineContainer spline, Func&lt;GameObject&gt; getPooledObject, Action&lt;GameObject&gt; releasePooledObject, Transform container, int objectCount, List&lt;GameObject&gt; existingObjects = null, int splineIndex = 0, bool alignToSpline = true, Vector3 rotationOffset = null, Vector3 forwardAxis = null, Vector3 upAxis = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline to distribute objects along</p>
+</dd>
+    <dt><code>getPooledObject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd><p>Function to get an object from a pool</p>
+</dd>
+    <dt><code>releasePooledObject</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd><p>Function to release an object back to the pool</p>
+</dd>
+    <dt><code>container</code> <span class="xref">Transform</span></dt>
+    <dd><p>Container transform to parent the objects to</p>
+</dd>
+    <dt><code>objectCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of objects to distribute along the spline</p>
+</dd>
+    <dt><code>existingObjects</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd><p>Optional list of existing objects to release back to the pool</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use (default: 0)</p>
+</dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to align objects to the spline direction</p>
+</dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Additional rotation to apply (in degrees)</p>
+</dd>
+    <dt><code>forwardAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should point forward along the spline</p>
+</dd>
+    <dt><code>upAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should align with the spline's up direction</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd><p>List of positioned GameObjects from the pool</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_DistributePooledPrefabsAlongSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.DistributePooledPrefabsAlongSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_DistributePooledPrefabsAlongSpline_SplineContainer_GameObject_Transform_System_Int32_System_Collections_Generic_List_GameObject__System_Int32_System_Boolean_Vector3_" data-uid="WitShells.SplineRuntime.SplineUtils.DistributePooledPrefabsAlongSpline(SplineContainer,GameObject,Transform,System.Int32,System.Collections.Generic.List{GameObject},System.Int32,System.Boolean,Vector3)">
+  DistributePooledPrefabsAlongSpline(SplineContainer, GameObject, Transform, int, List&lt;GameObject&gt;, int, bool, Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1942"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Example method showing how to use DistributePooledObjectsAlongSpline with ObjectPoolPattern</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;GameObject&gt; DistributePooledPrefabsAlongSpline(SplineContainer spline, GameObject prefab, Transform container, int objectCount, List&lt;GameObject&gt; existingObjects = null, int splineIndex = 0, bool alignToSpline = true, Vector3 rotationOffset = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">SplineContainer</span></dt>
+    <dd></dd>
+    <dt><code>prefab</code> <span class="xref">GameObject</span></dt>
+    <dd></dd>
+    <dt><code>container</code> <span class="xref">Transform</span></dt>
+    <dd></dd>
+    <dt><code>objectCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>existingObjects</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_DistributePooledPrefabsAlongSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.DistributePooledPrefabsAlongSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_DistributePooledPrefabsAlongSpline_SplineContainer_GameObject_Transform_System_Int32_System_Int32_System_Boolean_Vector3_" data-uid="WitShells.SplineRuntime.SplineUtils.DistributePooledPrefabsAlongSpline(SplineContainer,GameObject,Transform,System.Int32,System.Int32,System.Boolean,Vector3)">
+  DistributePooledPrefabsAlongSpline(SplineContainer, GameObject, Transform, int, int, bool, Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1998"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;GameObject&gt; DistributePooledPrefabsAlongSpline(SplineContainer spline, GameObject prefab, Transform container, int objectCount, int splineIndex = 0, bool alignToSpline = true, Vector3 rotationOffset = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">SplineContainer</span></dt>
+    <dd></dd>
+    <dt><code>prefab</code> <span class="xref">GameObject</span></dt>
+    <dd></dd>
+    <dt><code>container</code> <span class="xref">Transform</span></dt>
+    <dd></dd>
+    <dt><code>objectCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_FlipNormals_" data-uid="WitShells.SplineRuntime.SplineUtils.FlipNormals*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_FlipNormals_Mesh_" data-uid="WitShells.SplineRuntime.SplineUtils.FlipNormals(Mesh)">
+  FlipNormals(Mesh)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1400"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Flips the normals of a mesh</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void FlipNormals(Mesh mesh)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mesh</code> <span class="xref">Mesh</span></dt>
+    <dd><p>The mesh to modify</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_GetClosestPointOnSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.GetClosestPointOnSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_GetClosestPointOnSpline_SplineContainer_Vector3_System_Int32_System_Int32_" data-uid="WitShells.SplineRuntime.SplineUtils.GetClosestPointOnSpline(SplineContainer,Vector3,System.Int32,System.Int32)">
+  GetClosestPointOnSpline(SplineContainer, Vector3, int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L624"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the closest point on a spline to a world position</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float GetClosestPointOnSpline(SplineContainer splineContainer, Vector3 worldPosition, int splineIndex = 0, int resolution = 100)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container</p>
+</dd>
+    <dt><code>worldPosition</code> <span class="xref">Vector3</span></dt>
+    <dd><p>The world position to find closest point to</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline</p>
+</dd>
+    <dt><code>resolution</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>How many points to check (higher = more accurate but slower)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Normalized t value (0-1) of the closest point on the spline</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_GetPositionsFromSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.GetPositionsFromSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_GetPositionsFromSpline_Spline_" data-uid="WitShells.SplineRuntime.SplineUtils.GetPositionsFromSpline(Spline)">
+  GetPositionsFromSpline(Spline)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L658"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Extracts a list of all knot positions from a spline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3[] GetPositionsFromSpline(Spline spline)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">Spline</span></dt>
+    <dd><p>The spline to extract positions from</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span>[]</dt>
+    <dd><p>Array of Vector3 positions</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_MergeSplines_" data-uid="WitShells.SplineRuntime.SplineUtils.MergeSplines*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_MergeSplines_System_Collections_Generic_List_SplineContainer__System_Boolean_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.MergeSplines(System.Collections.Generic.List{SplineContainer},System.Boolean,Transform)">
+  MergeSplines(List&lt;SplineContainer&gt;, bool, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L420"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges multiple splines into a single spline container</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer MergeSplines(List&lt;SplineContainer&gt; splines, bool connectEndpoints = false, Transform parent = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splines</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">SplineContainer</span>&gt;</dt>
+    <dd><p>List of spline containers to merge</p>
+</dd>
+    <dt><code>connectEndpoints</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to connect the endpoints of consecutive splines</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>SplineContainer containing all the merged splines</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_NeedToFlipNormals_" data-uid="WitShells.SplineRuntime.SplineUtils.NeedToFlipNormals*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_NeedToFlipNormals_Mesh_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.NeedToFlipNormals(Mesh,Transform)">
+  NeedToFlipNormals(Mesh, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1374"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Helper method to check if mesh normals need to be flipped</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool NeedToFlipNormals(Mesh mesh, Transform transform = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>mesh</code> <span class="xref">Mesh</span></dt>
+    <dd><p>The mesh to check</p>
+</dd>
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional transform to convert normals to world space</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if normals should be flipped</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_OffsetSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.OffsetSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_OffsetSpline_SplineContainer_System_Single_System_Int32_System_Int32_Transform_" data-uid="WitShells.SplineRuntime.SplineUtils.OffsetSpline(SplineContainer,System.Single,System.Int32,System.Int32,Transform)">
+  OffsetSpline(SplineContainer, float, int, int, Transform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L375"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Offsets a spline by a given distance perpendicular to its direction</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer OffsetSpline(SplineContainer sourceSpline, float offset, int splineIndex = 0, int sampleCount = 20, Transform parent = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>sourceSpline</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The source spline container</p>
+</dd>
+    <dt><code>offset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Distance to offset (positive = right, negative = left)</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to offset</p>
+</dd>
+    <dt><code>sampleCount</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of samples for accuracy</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Optional parent transform</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>New SplineContainer with the offset path</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_PlaceObjectAtSplinePoint_" data-uid="WitShells.SplineRuntime.SplineUtils.PlaceObjectAtSplinePoint*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_PlaceObjectAtSplinePoint_SplineContainer_GameObject_Transform_System_Boolean_System_Single_Vector3_Vector3_Vector3_System_Int32_" data-uid="WitShells.SplineRuntime.SplineUtils.PlaceObjectAtSplinePoint(SplineContainer,GameObject,Transform,System.Boolean,System.Single,Vector3,Vector3,Vector3,System.Int32)">
+  PlaceObjectAtSplinePoint(SplineContainer, GameObject, Transform, bool, float, Vector3, Vector3, Vector3, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1511"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Places a single object at a specific point along a spline with precise rotation control</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static GameObject PlaceObjectAtSplinePoint(SplineContainer spline, GameObject prefab, Transform parent, bool normalizeDistance, float distance, Vector3 rotationOffset, Vector3 forwardAxis, Vector3 upAxis, int splineIndex = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container</p>
+</dd>
+    <dt><code>prefab</code> <span class="xref">GameObject</span></dt>
+    <dd><p>The object to spawn</p>
+</dd>
+    <dt><code>parent</code> <span class="xref">Transform</span></dt>
+    <dd><p>Parent transform for the spawned object</p>
+</dd>
+    <dt><code>normalizeDistance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether the distance is normalized (0-1) or in world units</p>
+</dd>
+    <dt><code>distance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Distance along the spline</p>
+</dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Additional rotation to apply (in degrees)</p>
+</dd>
+    <dt><code>forwardAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should point forward along the spline</p>
+</dd>
+    <dt><code>upAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should align with the spline's up direction</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use (default: 0)</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd><p>The instantiated GameObject or null if failed</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_ReverseSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.ReverseSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_ReverseSpline_SplineContainer_System_Int32_" data-uid="WitShells.SplineRuntime.SplineUtils.ReverseSpline(SplineContainer,System.Int32)">
+  ReverseSpline(SplineContainer, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L545"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reverses the direction of a spline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ReverseSpline(SplineContainer splineContainer, int splineIndex = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container to modify</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to reverse</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_SamplePointsAlongSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.SamplePointsAlongSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_SamplePointsAlongSpline_SplineContainer_System_Single_System_Int32_" data-uid="WitShells.SplineRuntime.SplineUtils.SamplePointsAlongSpline(SplineContainer,System.Single,System.Int32)">
+  SamplePointsAlongSpline(SplineContainer, float, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L590"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Samples points along a spline at regular distance intervals</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector3[] SamplePointsAlongSpline(SplineContainer splineContainer, float spacing, int splineIndex = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container to sample</p>
+</dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Distance between samples</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to sample</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span>[]</dt>
+    <dd><p>Array of sampled world positions</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_SpawnObjectsAlongSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.SpawnObjectsAlongSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_SpawnObjectsAlongSpline_SplineContainer_GameObject_Transform_LayerMask_System_Boolean_System_Boolean_System_Single_System_Single_System_Int32_" data-uid="WitShells.SplineRuntime.SplineUtils.SpawnObjectsAlongSpline(SplineContainer,GameObject,Transform,LayerMask,System.Boolean,System.Boolean,System.Single,System.Single,System.Int32)">
+  SpawnObjectsAlongSpline(SplineContainer, GameObject, Transform, LayerMask, bool, bool, float, float, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L684"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spawns objects along a spline at regular intervals</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SpawnObjectsAlongSpline(SplineContainer spline, GameObject prefab, Transform objectContainer, LayerMask groundLayers, bool snapToGround, bool alignToSpline, float groundOffset, float spacing, int splineIndex = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container to follow</p>
+</dd>
+    <dt><code>prefab</code> <span class="xref">GameObject</span></dt>
+    <dd><p>The object to spawn</p>
+</dd>
+    <dt><code>objectContainer</code> <span class="xref">Transform</span></dt>
+    <dd></dd>
+    <dt><code>groundLayers</code> <span class="xref">LayerMask</span></dt>
+    <dd></dd>
+    <dt><code>snapToGround</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>groundOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Distance between objects</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use (default: 0)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_SpawnObjectsAlongSplineAdvanced_" data-uid="WitShells.SplineRuntime.SplineUtils.SpawnObjectsAlongSplineAdvanced*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_SpawnObjectsAlongSplineAdvanced_SplineContainer_GameObject_Transform_LayerMask_System_Boolean_System_Boolean_System_Single_System_Single_Vector3_System_Int32_" data-uid="WitShells.SplineRuntime.SplineUtils.SpawnObjectsAlongSplineAdvanced(SplineContainer,GameObject,Transform,LayerMask,System.Boolean,System.Boolean,System.Single,System.Single,Vector3,System.Int32)">
+  SpawnObjectsAlongSplineAdvanced(SplineContainer, GameObject, Transform, LayerMask, bool, bool, float, float, Vector3, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L771"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Spawns objects along a spline at regular intervals with advanced rotation control</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SpawnObjectsAlongSplineAdvanced(SplineContainer spline, GameObject prefab, Transform objectContainer, LayerMask groundLayers, bool snapToGround, bool alignToSpline, float groundOffset, float spacing, Vector3 rotationOffset, int splineIndex = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container to follow</p>
+</dd>
+    <dt><code>prefab</code> <span class="xref">GameObject</span></dt>
+    <dd><p>The object to spawn</p>
+</dd>
+    <dt><code>objectContainer</code> <span class="xref">Transform</span></dt>
+    <dd><p>Container to parent spawned objects to</p>
+</dd>
+    <dt><code>groundLayers</code> <span class="xref">LayerMask</span></dt>
+    <dd><p>Layers to raycast against for ground snapping</p>
+</dd>
+    <dt><code>snapToGround</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to snap objects to ground</p>
+</dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to align objects to spline direction</p>
+</dd>
+    <dt><code>groundOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Height offset from ground when snapping</p>
+</dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Distance between objects</p>
+</dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Additional rotation to apply to objects (in degrees)</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to use (default: 0)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_SpawnObjectsAlongSplineAdvanced_" data-uid="WitShells.SplineRuntime.SplineUtils.SpawnObjectsAlongSplineAdvanced*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_SpawnObjectsAlongSplineAdvanced_SplineContainer_WitShells_DesignPatterns_Core_ObjectPool_GameObject__Transform_LayerMask_System_Boolean_System_Boolean_System_Single_System_Single_Vector3_System_Int32_" data-uid="WitShells.SplineRuntime.SplineUtils.SpawnObjectsAlongSplineAdvanced(SplineContainer,WitShells.DesignPatterns.Core.ObjectPool{GameObject},Transform,LayerMask,System.Boolean,System.Boolean,System.Single,System.Single,Vector3,System.Int32)">
+  SpawnObjectsAlongSplineAdvanced(SplineContainer, ObjectPool&lt;GameObject&gt;, Transform, LayerMask, bool, bool, float, float, Vector3, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L853"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SpawnObjectsAlongSplineAdvanced(SplineContainer spline, ObjectPool&lt;GameObject&gt; prefabPool, Transform objectContainer, LayerMask groundLayers, bool snapToGround, bool alignToSpline, float groundOffset, float spacing, Vector3 rotationOffset, int splineIndex = 0)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>spline</code> <span class="xref">SplineContainer</span></dt>
+    <dd></dd>
+    <dt><code>prefabPool</code> <a class="xref" href="WitShells.DesignPatterns.Core.ObjectPool-1.html">ObjectPool</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>objectContainer</code> <span class="xref">Transform</span></dt>
+    <dd></dd>
+    <dt><code>groundLayers</code> <span class="xref">LayerMask</span></dt>
+    <dd></dd>
+    <dt><code>snapToGround</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>groundOffset</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd></dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_SubdivideSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.SubdivideSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_SubdivideSpline_SplineContainer_System_Int32_System_Int32_System_Boolean_" data-uid="WitShells.SplineRuntime.SplineUtils.SubdivideSpline(SplineContainer,System.Int32,System.Int32,System.Boolean)">
+  SubdivideSpline(SplineContainer, int, int, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L480"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Subdivides a spline by adding additional points between existing knots</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SubdivideSpline(SplineContainer splineContainer, int subdivisions, int splineIndex = 0, bool preserveTangents = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>splineContainer</code> <span class="xref">SplineContainer</span></dt>
+    <dd><p>The spline container to subdivide</p>
+</dd>
+    <dt><code>subdivisions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of points to add between each existing pair of knots</p>
+</dd>
+    <dt><code>splineIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Index of the spline to subdivide</p>
+</dd>
+    <dt><code>preserveTangents</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to preserve tangent information (true) or auto-smooth (false)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_TransformsToPositionList_" data-uid="WitShells.SplineRuntime.SplineUtils.TransformsToPositionList*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_TransformsToPositionList_System_Collections_Generic_List_Transform__" data-uid="WitShells.SplineRuntime.SplineUtils.TransformsToPositionList(System.Collections.Generic.List{Transform})">
+  TransformsToPositionList(List&lt;Transform&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1457"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts a list of transforms to a list of their world positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Vector3&gt; TransformsToPositionList(List&lt;Transform&gt; transforms)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transforms</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Transform</span>&gt;</dt>
+    <dd><p>List of transforms to convert</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Vector3</span>&gt;</dt>
+    <dd><p>List of Vector3 positions</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_TransformsToPositionList_" data-uid="WitShells.SplineRuntime.SplineUtils.TransformsToPositionList*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_TransformsToPositionList_Transform___" data-uid="WitShells.SplineRuntime.SplineUtils.TransformsToPositionList(Transform[])">
+  TransformsToPositionList(Transform[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1480"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts an array of transforms to a list of their world positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Vector3&gt; TransformsToPositionList(Transform[] transforms)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transforms</code> <span class="xref">Transform</span>[]</dt>
+    <dd><p>Array of transforms to convert</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Vector3</span>&gt;</dt>
+    <dd><p>List of Vector3 positions</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_UpdateObjectsAlongSpline_" data-uid="WitShells.SplineRuntime.SplineUtils.UpdateObjectsAlongSpline*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_UpdateObjectsAlongSpline_System_Collections_Generic_List_Vector3__System_Collections_Generic_List_GameObject__System_Boolean_Vector3_System_Boolean_Vector3_Vector3_" data-uid="WitShells.SplineRuntime.SplineUtils.UpdateObjectsAlongSpline(System.Collections.Generic.List{Vector3},System.Collections.Generic.List{GameObject},System.Boolean,Vector3,System.Boolean,Vector3,Vector3)">
+  UpdateObjectsAlongSpline(List&lt;Vector3&gt;, List&lt;GameObject&gt;, bool, Vector3, bool, Vector3, Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1598"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the positions and rotations of objects based on a spline created from updated positions</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SplineContainer UpdateObjectsAlongSpline(List&lt;Vector3&gt; positions, List&lt;GameObject&gt; objects, bool alignToSpline = true, Vector3 rotationOffset = null, bool distributeEvenly = true, Vector3 forwardAxis = null, Vector3 upAxis = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>positions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Vector3</span>&gt;</dt>
+    <dd><p>List of Vector3 positions to create the spline from</p>
+</dd>
+    <dt><code>objects</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd><p>List of GameObjects to update positions and rotations for</p>
+</dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to align objects to the spline direction</p>
+</dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Additional rotation to apply (in degrees)</p>
+</dd>
+    <dt><code>distributeEvenly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true, distributes objects evenly along spline; if false, tries to match positions to closest spline points</p>
+</dd>
+    <dt><code>forwardAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should point forward along the spline</p>
+</dd>
+    <dt><code>upAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should align with the spline's up direction</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SplineContainer</span></dt>
+    <dd><p>The temporary SplineContainer created for the update (null if failed)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_SplineRuntime_SplineUtils_UpdateObjectsAlongSplineAndCleanup_" data-uid="WitShells.SplineRuntime.SplineUtils.UpdateObjectsAlongSplineAndCleanup*"></a>
+
+  <h3 id="WitShells_SplineRuntime_SplineUtils_UpdateObjectsAlongSplineAndCleanup_System_Collections_Generic_List_Vector3__System_Collections_Generic_List_GameObject__System_Boolean_Vector3_System_Boolean_Vector3_Vector3_" data-uid="WitShells.SplineRuntime.SplineUtils.UpdateObjectsAlongSplineAndCleanup(System.Collections.Generic.List{Vector3},System.Collections.Generic.List{GameObject},System.Boolean,Vector3,System.Boolean,Vector3,Vector3)">
+  UpdateObjectsAlongSplineAndCleanup(List&lt;Vector3&gt;, List&lt;GameObject&gt;, bool, Vector3, bool, Vector3, Vector3)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/SplineRuntime/Runtime/Script/Utils/SplineUtils.cs/#L1784"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Updates the positions and rotations of objects based on a spline created from updated positions,
+and automatically cleans up the temporary spline</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void UpdateObjectsAlongSplineAndCleanup(List&lt;Vector3&gt; positions, List&lt;GameObject&gt; objects, bool alignToSpline = true, Vector3 rotationOffset = null, bool distributeEvenly = true, Vector3 forwardAxis = null, Vector3 upAxis = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>positions</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Vector3</span>&gt;</dt>
+    <dd><p>List of Vector3 positions to create the spline from</p>
+</dd>
+    <dt><code>objects</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd><p>List of GameObjects to update positions and rotations for</p>
+</dd>
+    <dt><code>alignToSpline</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Whether to align objects to the spline direction</p>
+</dd>
+    <dt><code>rotationOffset</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Additional rotation to apply (in degrees)</p>
+</dd>
+    <dt><code>distributeEvenly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true, distributes objects evenly along spline; if false, tries to match positions to closest spline points</p>
+</dd>
+    <dt><code>forwardAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should point forward along the spline</p>
+</dd>
+    <dt><code>upAxis</code> <span class="xref">Vector3</span></dt>
+    <dd><p>Which local axis should align with the spline's up direction</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

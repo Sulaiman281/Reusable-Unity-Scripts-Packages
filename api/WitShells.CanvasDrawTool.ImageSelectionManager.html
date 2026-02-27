@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ImageSelectionManager | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ImageSelectionManager | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Manages selection of imported images and their transform handlers. Handles click-to-select, deselection, and transform mode toggling.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_CanvasDrawTool_ImageSelectionManager.md&amp;value=---%0Auid%3A%20WitShells.CanvasDrawTool.ImageSelectionManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.CanvasDrawTool.ImageSelectionManager">
+
+
+
+  <h1 id="WitShells_CanvasDrawTool_ImageSelectionManager" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager" class="text-break">
+Class ImageSelectionManager  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.CanvasDrawTool.html">CanvasDrawTool</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Manages selection of imported images and their transform handlers.
+Handles click-to-select, deselection, and transform mode toggling.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ImageSelectionManager : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ImageSelectionManager</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_HasSelection_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.HasSelection*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_HasSelection" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.HasSelection">
+  HasSelection
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasSelection { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_IsTransformMode_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.IsTransformMode*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_IsTransformMode" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.IsTransformMode">
+  IsTransformMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTransformMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_MaintainAspectRatio_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.MaintainAspectRatio*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_MaintainAspectRatio" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.MaintainAspectRatio">
+  MaintainAspectRatio
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MaintainAspectRatio { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_SelectedLayer_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.SelectedLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_SelectedLayer" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.SelectedLayer">
+  SelectedLayer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerObject SelectedLayer { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_ClearSelection_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.ClearSelection*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_ClearSelection" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.ClearSelection">
+  ClearSelection()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L190"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clear current selection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearSelection()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_DeleteSelected_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.DeleteSelected*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_DeleteSelected" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.DeleteSelected">
+  DeleteSelected()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L255"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Delete the currently selected layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteSelected()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_EnableClickToSelect_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.EnableClickToSelect*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_EnableClickToSelect_WitShells_CanvasDrawTool_LayerObject_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.EnableClickToSelect(WitShells.CanvasDrawTool.LayerObject)">
+  EnableClickToSelect(LayerObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L270"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Enable click-to-select on a layer's RawImage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnableClickToSelect(LayerObject layer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>layer</code> <a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_FitSelectedToCanvas_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.FitSelectedToCanvas*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_FitSelectedToCanvas_RectTransform_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.FitSelectedToCanvas(RectTransform)">
+  FitSelectedToCanvas(RectTransform)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L247"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Fit selected layer to canvas bounds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FitSelectedToCanvas(RectTransform canvasBounds)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>canvasBounds</code> <span class="xref">RectTransform</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_Initialize_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.Initialize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_Initialize_Canvas_WitShells_CanvasDrawTool_LayerManager_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.Initialize(Canvas,WitShells.CanvasDrawTool.LayerManager)">
+  Initialize(Canvas, LayerManager)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initialize with references.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Initialize(Canvas canvas, LayerManager layerManager)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>canvas</code> <span class="xref">Canvas</span></dt>
+    <dd></dd>
+    <dt><code>layerManager</code> <a class="xref" href="WitShells.CanvasDrawTool.LayerManager.html">LayerManager</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_ResetSelectedToOriginalSize_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.ResetSelectedToOriginalSize*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_ResetSelectedToOriginalSize" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.ResetSelectedToOriginalSize">
+  ResetSelectedToOriginalSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L239"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reset selected layer to original size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetSelectedToOriginalSize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_SelectLayer_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.SelectLayer*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_SelectLayer_WitShells_CanvasDrawTool_LayerObject_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.SelectLayer(WitShells.CanvasDrawTool.LayerObject)">
+  SelectLayer(LayerObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Select a specific layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SelectLayer(LayerObject layer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>layer</code> <a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_CanvasDrawTool_ImageSelectionManager_TrySelectAtPosition_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.TrySelectAtPosition*"></a>
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_TrySelectAtPosition_Vector2_" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.TrySelectAtPosition(Vector2)">
+  TrySelectAtPosition(Vector2)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L205"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Try to select a layer at the given screen position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TrySelectAtPosition(Vector2 screenPosition)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>screenPosition</code> <span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="events">Events
+</h2>
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_OnLayerSelected" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.OnLayerSelected">
+  OnLayerSelected
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;LayerObject&gt; OnLayerSelected</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_OnLayerTransformed" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.OnLayerTransformed">
+  OnLayerTransformed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action&lt;LayerObject&gt; OnLayerTransformed</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="WitShells.CanvasDrawTool.LayerObject.html">LayerObject</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_CanvasDrawTool_ImageSelectionManager_OnSelectionCleared" data-uid="WitShells.CanvasDrawTool.ImageSelectionManager.OnSelectionCleared">
+  OnSelectionCleared
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/CanvasDrawTool/Runtime/Scripts/Core/ImageSelectionManager.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event Action OnSelectionCleared</code></pre>
+  </div>
+
+
+
+
+
+
+  <h4 class="section">Event Type</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

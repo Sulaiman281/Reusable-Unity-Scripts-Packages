@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class QuickThreadJobs | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class QuickThreadJobs | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_ThreadingJob_QuickThreadJobs.md&amp;value=---%0Auid%3A%20WitShells.ThreadingJob.QuickThreadJobs%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.ThreadingJob.QuickThreadJobs">
+
+
+
+  <h1 id="WitShells_ThreadingJob_QuickThreadJobs" data-uid="WitShells.ThreadingJob.QuickThreadJobs" class="text-break">
+Class QuickThreadJobs  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.ThreadingJob.html">ThreadingJob</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class QuickThreadJobs</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">QuickThreadJobs</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_DownloadStringAsync_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.DownloadStringAsync*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_DownloadStringAsync_System_String_UnityAction_System_String__UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.DownloadStringAsync(System.String,UnityAction{System.String},UnityAction{System.Exception})">
+  DownloadStringAsync(string, UnityAction&lt;string&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DownloadStringAsync(string url, UnityAction&lt;string&gt; onComplete, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_ReadFileAsync_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.ReadFileAsync*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_ReadFileAsync_System_String_UnityAction_System_String__UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.ReadFileAsync(System.String,UnityAction{System.String},UnityAction{System.Exception})">
+  ReadFileAsync(string, UnityAction&lt;string&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ReadFileAsync(string filePath, UnityAction&lt;string&gt; onComplete, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_RunAction_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunAction*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_RunAction_System_Action_UnityAction_UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunAction(System.Action,UnityAction,UnityAction{System.Exception})">
+  RunAction(Action, UnityAction, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RunAction(Action action, UnityAction onComplete = null, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span></dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_RunActionAsync_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunActionAsync*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_RunActionAsync_System_Func_System_Threading_Tasks_Task__UnityAction_UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunActionAsync(System.Func{System.Threading.Tasks.Task},UnityAction,UnityAction{System.Exception})">
+  RunActionAsync(Func&lt;Task&gt;, UnityAction, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RunActionAsync(Func&lt;Task&gt; asyncAction, UnityAction onComplete = null, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asyncAction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span></dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_RunFunctionAsync_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunFunctionAsync*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_RunFunctionAsync__1_System_Func_System_Threading_Tasks_Task___0___UnityAction___0__UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunFunctionAsync``1(System.Func{System.Threading.Tasks.Task{``0}},UnityAction{``0},UnityAction{System.Exception})">
+  RunFunctionAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt;, UnityAction&lt;T&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RunFunctionAsync&lt;T&gt;(Func&lt;Task&lt;T&gt;&gt; asyncFunction, UnityAction&lt;T&gt; onComplete, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>asyncFunction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;T&gt;&gt;</dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_RunFunction_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunFunction*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_RunFunction__1_System_Func___0__UnityAction___0__UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunFunction``1(System.Func{``0},UnityAction{``0},UnityAction{System.Exception})">
+  RunFunction&lt;T&gt;(Func&lt;T&gt;, UnityAction&lt;T&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RunFunction&lt;T&gt;(Func&lt;T&gt; function, UnityAction&lt;T&gt; onComplete, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>function</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_RunHeavyComputation_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunHeavyComputation*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_RunHeavyComputation_System_Int32_UnityAction_System_Single__UnityAction_System_Single__UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunHeavyComputation(System.Int32,UnityAction{System.Single},UnityAction{System.Single},UnityAction{System.Exception})">
+  RunHeavyComputation(int, UnityAction&lt;float&gt;, UnityAction&lt;float&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RunHeavyComputation(int iterations, UnityAction&lt;float&gt; onProgress, UnityAction&lt;float&gt; onComplete = null, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>iterations</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>onProgress</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_RunStreamingFunction_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunStreamingFunction*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_RunStreamingFunction__1_System_Func_System_Action___0__System_Action_System_Threading_Tasks_Task__UnityAction___0__UnityAction_UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.RunStreamingFunction``1(System.Func{System.Action{``0},System.Action,System.Threading.Tasks.Task},UnityAction{``0},UnityAction,UnityAction{System.Exception})">
+  RunStreamingFunction&lt;T&gt;(Func&lt;Action&lt;T&gt;, Action, Task&gt;, UnityAction&lt;T&gt;, UnityAction, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RunStreamingFunction&lt;T&gt;(Func&lt;Action&lt;T&gt;, Action, Task&gt; streamingFunction, UnityAction&lt;T&gt; onProgress, UnityAction onComplete = null, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>streamingFunction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;T&gt;, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onProgress</code> <span class="xref">UnityAction</span>&lt;T&gt;</dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span></dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThreadingJob_QuickThreadJobs_WriteFileAsync_" data-uid="WitShells.ThreadingJob.QuickThreadJobs.WriteFileAsync*"></a>
+
+  <h3 id="WitShells_ThreadingJob_QuickThreadJobs_WriteFileAsync_System_String_System_String_UnityAction_UnityAction_System_Exception__" data-uid="WitShells.ThreadingJob.QuickThreadJobs.WriteFileAsync(System.String,System.String,UnityAction,UnityAction{System.Exception})">
+  WriteFileAsync(string, string, UnityAction, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThreadingJob/Runtime/QuickThreadJobs.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void WriteFileAsync(string filePath, string content, UnityAction onComplete = null, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>filePath</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span></dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

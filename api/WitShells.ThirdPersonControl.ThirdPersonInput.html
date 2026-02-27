@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ThirdPersonInput | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ThirdPersonInput | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Handles player input using Unity&#39;s New Input System PlayerInput component. Requires PlayerInput component with &amp;quot;Move&amp;quot;, &amp;quot;Look&amp;quot;, &amp;quot;Jump&amp;quot;, &amp;quot;Sprint&amp;quot;, and &amp;quot;Crouch&amp;quot; actions.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_ThirdPersonControl_ThirdPersonInput.md&amp;value=---%0Auid%3A%20WitShells.ThirdPersonControl.ThirdPersonInput%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.ThirdPersonControl.ThirdPersonInput">
+
+
+
+  <h1 id="WitShells_ThirdPersonControl_ThirdPersonInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput" class="text-break">
+Class ThirdPersonInput  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.ThirdPersonControl.html">ThirdPersonControl</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Handles player input using Unity's New Input System PlayerInput component.
+Requires PlayerInput component with &quot;Move&quot;, &quot;Look&quot;, &quot;Jump&quot;, &quot;Sprint&quot;, and &quot;Crouch&quot; actions.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ThirdPersonInput : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ThirdPersonInput</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnCrouchInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnCrouchInput">
+  OnCrouchInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;bool&gt; OnCrouchInput</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnJumpInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnJumpInput">
+  OnJumpInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent OnJumpInput</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnLookInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnLookInput">
+  OnLookInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;Vector2&gt; OnLookInput</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<span class="xref">Vector2</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnMoveInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnMoveInput">
+  OnMoveInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;Vector2&gt; OnMoveInput</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<span class="xref">Vector2</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnSprintInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnSprintInput">
+  OnSprintInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;bool&gt; OnSprintInput</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_CrouchInput_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.CrouchInput*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_CrouchInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.CrouchInput">
+  CrouchInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while crouch is held.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CrouchInput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_JumpInput_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.JumpInput*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_JumpInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.JumpInput">
+  JumpInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>True when jump was pressed this frame.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool JumpInput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_LookInput_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.LookInput*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_LookInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.LookInput">
+  LookInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Current look/camera input vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 LookInput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_MoveInput_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.MoveInput*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_MoveInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.MoveInput">
+  MoveInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Current movement input vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 MoveInput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_SprintInput_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.SprintInput*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_SprintInput" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.SprintInput">
+  SprintInput
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>True while sprint is held.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SprintInput { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_OnCrouch_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnCrouch*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnCrouch_InputValue_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnCrouch(InputValue)">
+  OnCrouch(InputValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called by PlayerInput when Crouch action is performed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnCrouch(InputValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">InputValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_OnJump_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnJump*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnJump_InputValue_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnJump(InputValue)">
+  OnJump(InputValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called by PlayerInput when Jump action is performed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnJump(InputValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">InputValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_OnSprint_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnSprint*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_OnSprint_InputValue_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.OnSprint(InputValue)">
+  OnSprint(InputValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L204"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called by PlayerInput when Sprint action is performed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OnSprint(InputValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">InputValue</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_RegisterCameraController_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.RegisterCameraController*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_RegisterCameraController_WitShells_ThirdPersonControl_CinemachineCamLookInput_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.RegisterCameraController(WitShells.ThirdPersonControl.CinemachineCamLookInput)">
+  RegisterCameraController(CinemachineCamLookInput)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Register a CinemachineCamLookInput component to receive look input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterCameraController(CinemachineCamLookInput camera)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>camera</code> <a class="xref" href="WitShells.ThirdPersonControl.CinemachineCamLookInput.html">CinemachineCamLookInput</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_RegisterController_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.RegisterController*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_RegisterController_WitShells_ThirdPersonControl_ThirdPersonControl_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.RegisterController(WitShells.ThirdPersonControl.ThirdPersonControl)">
+  RegisterController(ThirdPersonControl)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L222"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Register a ThirdPersonControl component to receive input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterController(ThirdPersonControl controller)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>controller</code> <a class="xref" href="WitShells.ThirdPersonControl.ThirdPersonControl.html">ThirdPersonControl</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_SetCursorLock_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.SetCursorLock*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_SetCursorLock_System_Boolean_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.SetCursorLock(System.Boolean)">
+  SetCursorLock(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Locks or unlocks the cursor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCursorLock(bool locked)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>locked</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_ToggleCursorLock_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.ToggleCursorLock*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_ToggleCursorLock" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.ToggleCursorLock">
+  ToggleCursorLock()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L254"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Toggle cursor lock state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ToggleCursorLock()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_UnregisterCameraController_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.UnregisterCameraController*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_UnregisterCameraController" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.UnregisterCameraController">
+  UnregisterCameraController()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unregister the current camera controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnregisterCameraController()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonInput_UnregisterController_" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.UnregisterController*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonInput_UnregisterController" data-uid="WitShells.ThirdPersonControl.ThirdPersonInput.UnregisterController">
+  UnregisterController()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonInput.cs/#L228"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unregister the current ThirdPersonControl component.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnregisterController()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class MusclePoseSystem | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class MusclePoseSystem | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Muscle-based pose system - HELPER layer only Never writes to AnimationClip directly Forwards all bone transforms to BonePoseSystem">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_WitPose_Editor_Core_MusclePoseSystem.md&amp;value=---%0Auid%3A%20WitShells.WitPose.Editor.Core.MusclePoseSystem%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem">
+
+
+
+  <h1 id="WitShells_WitPose_Editor_Core_MusclePoseSystem" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem" class="text-break">
+Class MusclePoseSystem  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.WitPose.html">WitPose</a>.<a class="xref" href="WitShells.WitPose.Editor.html">Editor</a>.<a class="xref" href="WitShells.WitPose.Editor.Core.html">Core</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Muscle-based pose system - HELPER layer only
+Never writes to AnimationClip directly
+Forwards all bone transforms to BonePoseSystem</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MusclePoseSystem</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">MusclePoseSystem</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem__ctor_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.#ctor*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem__ctor_Animator_WitShells_WitPose_Editor_Core_SkeletonCache_WitShells_WitPose_Editor_Core_BonePoseSystem_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.#ctor(Animator,WitShells.WitPose.Editor.Core.SkeletonCache,WitShells.WitPose.Editor.Core.BonePoseSystem)">
+  MusclePoseSystem(Animator, SkeletonCache, BonePoseSystem)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MusclePoseSystem(Animator animator, SkeletonCache skeleton, BonePoseSystem bonePoseSystem)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>animator</code> <span class="xref">Animator</span></dt>
+    <dd></dd>
+    <dt><code>skeleton</code> <a class="xref" href="WitShells.WitPose.Editor.Core.SkeletonCache.html">SkeletonCache</a></dt>
+    <dd></dd>
+    <dt><code>bonePoseSystem</code> <a class="xref" href="WitShells.WitPose.Editor.Core.BonePoseSystem.html">BonePoseSystem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_MuscleValues_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.MuscleValues*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_MuscleValues" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.MuscleValues">
+  MuscleValues
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L20"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float[] MuscleValues { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_ConstrainAndApply_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.ConstrainAndApply*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_ConstrainAndApply_System_Boolean_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.ConstrainAndApply(System.Boolean)">
+  ConstrainAndApply(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Full muscle-based IK result pipeline — the ONLY correct way to apply IK
+on a Humanoid rig so that joint limits are enforced and the muscle editor
+stays in sync.</p>
+<p>Pipeline:</p>
+<ol>
+<li>GetHumanPose  → converts bone transforms → normalised muscle values.
+Unity auto-clamps each value to [−1, 1], which is the
+humanoid joint-limit enforcement.</li>
+<li>muscleValues[] is updated so the Muscle Editor UI reflects the result.</li>
+<li>SetHumanPose  → writes the clamped muscles back to bone transforms.
+This is identical to what Animation Rigging does
+internally after its own IK passes.</li>
+<li>All bone rotations AND the root (Hips) position are forwarded to the
+authoritative BonePoseSystem.</li>
+<li>CommitPose is called (conditionally) to write animation keys.</li>
+</ol>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ConstrainAndApply(bool commitPose = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>commitPose</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_GetHumanPose_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.GetHumanPose*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_GetHumanPose" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.GetHumanPose">
+  GetHumanPose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the current HumanPose with latest muscle values</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HumanPose GetHumanPose()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">HumanPose</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_GetMuscleLimits_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.GetMuscleLimits*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_GetMuscleLimits_System_Int32_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.GetMuscleLimits(System.Int32)">
+  GetMuscleLimits(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get muscle limits</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 GetMuscleLimits(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector2</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_GetMuscleName_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.GetMuscleName*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_GetMuscleName_System_Int32_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.GetMuscleName(System.Int32)">
+  GetMuscleName(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get muscle name for UI display</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetMuscleName(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_ResetToTPose_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.ResetToTPose*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_ResetToTPose_System_Boolean_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.ResetToTPose(System.Boolean)">
+  ResetToTPose(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reset all muscles to T-Pose (0 values)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResetToTPose(bool autoKey = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>autoKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_SetAllMuscles_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.SetAllMuscles*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_SetAllMuscles_System_Single___System_Boolean_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.SetAllMuscles(System.Single[],System.Boolean)">
+  SetAllMuscles(float[], bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L75"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set all muscle values at once</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAllMuscles(float[] values, bool autoKey = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a>[]</dt>
+    <dd></dd>
+    <dt><code>autoKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_SetMuscle_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.SetMuscle*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_SetMuscle_System_Int32_System_Single_System_Boolean_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.SetMuscle(System.Int32,System.Single,System.Boolean)">
+  SetMuscle(int, float, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set a specific muscle value and apply to skeleton
+Forwards resulting bone rotations to BonePoseSystem</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMuscle(int muscleIndex, float value, bool autoKey = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>muscleIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+    <dt><code>autoKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_WitPose_Editor_Core_MusclePoseSystem_SyncFromSkeleton_" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.SyncFromSkeleton*"></a>
+
+  <h3 id="WitShells_WitPose_Editor_Core_MusclePoseSystem_SyncFromSkeleton" data-uid="WitShells.WitPose.Editor.Core.MusclePoseSystem.SyncFromSkeleton">
+  SyncFromSkeleton()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/WitPose/Editor/Core/MusclePoseSystem.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Read current skeleton state into muscle values</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SyncFromSkeleton()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

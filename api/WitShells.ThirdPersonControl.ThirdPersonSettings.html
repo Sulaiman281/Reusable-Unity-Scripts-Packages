@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ThirdPersonSettings | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ThirdPersonSettings | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="ScriptableObject containing all third-person controller settings. Create an instance via Create &amp;gt; WitShells &amp;gt; ThirdPersonControl &amp;gt; Settings.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_ThirdPersonControl_ThirdPersonSettings.md&amp;value=---%0Auid%3A%20WitShells.ThirdPersonControl.ThirdPersonSettings%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings">
+
+
+
+  <h1 id="WitShells_ThirdPersonControl_ThirdPersonSettings" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings" class="text-break">
+Class ThirdPersonSettings  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.ThirdPersonControl.html">ThirdPersonControl</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>ScriptableObject containing all third-person controller settings.
+Create an instance via Create &gt; WitShells &gt; ThirdPersonControl &gt; Settings.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ThirdPersonSettings : ScriptableObject</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ThirdPersonSettings</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_CrouchSpeed_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.CrouchSpeed*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_CrouchSpeed" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.CrouchSpeed">
+  CrouchSpeed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float CrouchSpeed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_Default_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.Default*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_Default" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.Default">
+  Default
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a default settings instance. Attempts to load from Resources first.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ThirdPersonSettings Default { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.ThirdPersonControl.ThirdPersonSettings.html">ThirdPersonSettings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_GroundCheckDistance_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GroundCheckDistance*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_GroundCheckDistance" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GroundCheckDistance">
+  GroundCheckDistance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GroundCheckDistance { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_GroundLayers_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GroundLayers*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_GroundLayers" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GroundLayers">
+  GroundLayers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayerMask GroundLayers { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">LayerMask</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_GroundedGravity_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GroundedGravity*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_GroundedGravity" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GroundedGravity">
+  GroundedGravity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GroundedGravity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_JumpForce_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.JumpForce*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_JumpForce" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.JumpForce">
+  JumpForce
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float JumpForce { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_JumpTimeout_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.JumpTimeout*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_JumpTimeout" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.JumpTimeout">
+  JumpTimeout
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float JumpTimeout { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_LookSensitivity_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.LookSensitivity*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_LookSensitivity" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.LookSensitivity">
+  LookSensitivity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LookSensitivity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_LookSpeed_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.LookSpeed*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_LookSpeed" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.LookSpeed">
+  LookSpeed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LookSpeed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_MaxPitch_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.MaxPitch*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_MaxPitch" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.MaxPitch">
+  MaxPitch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MaxPitch { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_MinPitch_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.MinPitch*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_MinPitch" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.MinPitch">
+  MinPitch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MinPitch { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_RotationSmoothness_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.RotationSmoothness*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_RotationSmoothness" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.RotationSmoothness">
+  RotationSmoothness
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float RotationSmoothness { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_RunSpeed_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.RunSpeed*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_RunSpeed" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.RunSpeed">
+  RunSpeed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float RunSpeed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_SoundEffects_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.SoundEffects*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_SoundEffects" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.SoundEffects">
+  SoundEffects
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L92"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SoundSfxObject SoundEffects { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.ThirdPersonControl.SoundSfxObject.html">SoundSfxObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_SoundVolume_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.SoundVolume*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_SoundVolume" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.SoundVolume">
+  SoundVolume
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L93"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float SoundVolume { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_TerminalVelocity_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.TerminalVelocity*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_TerminalVelocity" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.TerminalVelocity">
+  TerminalVelocity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float TerminalVelocity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_WalkSpeed_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.WalkSpeed*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_WalkSpeed" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.WalkSpeed">
+  WalkSpeed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float WalkSpeed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_CalculateJumpVelocity_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.CalculateJumpVelocity*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_CalculateJumpVelocity" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.CalculateJumpVelocity">
+  CalculateJumpVelocity()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the initial jump velocity based on jump force and gravity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float CalculateJumpVelocity()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_ClampPitch_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.ClampPitch*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_ClampPitch_System_Single_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.ClampPitch(System.Single)">
+  ClampPitch(float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clamps the pitch angle within the defined limits.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float ClampPitch(float pitch)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>pitch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_ThirdPersonControl_ThirdPersonSettings_GetMovementSpeed_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GetMovementSpeed*"></a>
+
+  <h3 id="WitShells_ThirdPersonControl_ThirdPersonSettings_GetMovementSpeed_System_Boolean_System_Boolean_" data-uid="WitShells.ThirdPersonControl.ThirdPersonSettings.GetMovementSpeed(System.Boolean,System.Boolean)">
+  GetMovementSpeed(bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/ThirdPersonControl/Runtime/Scripts/Core/ThirdPersonSettings.cs/#L127"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the appropriate movement speed based on current state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetMovementSpeed(bool isSprinting, bool isCrouching)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>isSprinting</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>isCrouching</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

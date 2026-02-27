@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SpiralLayoutContainer | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SpiralLayoutContainer | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="A MonoBehaviour that procedurally arranges  GameObjects in a spiral pattern using an  for efficient instantiation and reuse.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_DesignPatterns_SpiralLayoutContainer.md&amp;value=---%0Auid%3A%20WitShells.DesignPatterns.SpiralLayoutContainer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.DesignPatterns.SpiralLayoutContainer">
+
+
+
+  <h1 id="WitShells_DesignPatterns_SpiralLayoutContainer" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer" class="text-break">
+Class SpiralLayoutContainer  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.DesignPatterns.html">DesignPatterns</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>A MonoBehaviour that procedurally arranges <a class="xref" href="WitShells.DesignPatterns.ISpiralNode.html">ISpiralNode</a> GameObjects in a
+spiral pattern using an <a class="xref" href="WitShells.DesignPatterns.Core.ObjectPool-1.html">ObjectPool&lt;T&gt;</a> for efficient instantiation and reuse.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SpiralLayoutContainer : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SpiralLayoutContainer</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+  <h2 id="WitShells_DesignPatterns_SpiralLayoutContainer_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Attach this component to a parent GameObject in your UI or world space.
+Assign a <code>spiralNodePrefab</code> that implements <a class="xref" href="WitShells.DesignPatterns.ISpiralNode.html">ISpiralNode</a>.
+Call <a class="xref" href="WitShells.DesignPatterns.SpiralLayoutContainer.html#WitShells_DesignPatterns_SpiralLayoutContainer_GenerateSpiralLayout_System_Int32_">GenerateSpiralLayout(int)</a> at runtime to build (or rebuild) the spiral.
+The spiral can operate in either world space or canvas (<code>RectTransform</code>) space
+depending on the <code>canvasSpace</code> setting.</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_canvasSpace" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.canvasSpace">
+  canvasSpace
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool canvasSpace</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_head" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.head">
+  head
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ISpiralNode head</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DesignPatterns.ISpiralNode.html">ISpiralNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_maxCount" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.maxCount">
+  maxCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int maxCount</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_nodes" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.nodes">
+  nodes
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;ISpiralNode&gt; nodes</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="WitShells.DesignPatterns.ISpiralNode.html">ISpiralNode</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_spacing" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.spacing">
+  spacing
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float spacing</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_spiralDirection" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.spiralDirection">
+  spiralDirection
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected SpiralDirection spiralDirection</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DesignPatterns.SpiralDirection.html">SpiralDirection</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_spiralGrowthRate" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.spiralGrowthRate">
+  spiralGrowthRate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float spiralGrowthRate</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_spiralNodePrefab" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.spiralNodePrefab">
+  spiralNodePrefab
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected GameObject spiralNodePrefab</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_tail" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.tail">
+  tail
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ISpiralNode tail</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DesignPatterns.ISpiralNode.html">ISpiralNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_Head_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.Head*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_Head" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.Head">
+  Head
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The first node in the spiral chain (closest to the centre).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISpiralNode Head { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DesignPatterns.ISpiralNode.html">ISpiralNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_NodePool_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.NodePool*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_NodePool" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.NodePool">
+  NodePool
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObjectPool&lt;GameObject&gt; NodePool { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DesignPatterns.Core.ObjectPool-1.html">ObjectPool</a>&lt;<span class="xref">GameObject</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_Tail_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.Tail*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_Tail" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.Tail">
+  Tail
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The last node added to the spiral chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ISpiralNode Tail { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DesignPatterns.ISpiralNode.html">ISpiralNode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_AddNodeToSpiral_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.AddNodeToSpiral*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_AddNodeToSpiral" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.AddNodeToSpiral">
+  AddNodeToSpiral()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void AddNodeToSpiral()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_Awake_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.Awake*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_Awake" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_CalculateSpiralPosition_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.CalculateSpiralPosition*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_CalculateSpiralPosition_System_Int32_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.CalculateSpiralPosition(System.Int32)">
+  CalculateSpiralPosition(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L150"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Vector3 CalculateSpiralPosition(int index)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_ClearLayout_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.ClearLayout*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_ClearLayout" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.ClearLayout">
+  ClearLayout()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L219"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ClearLayout()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_ConnectNodes_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.ConnectNodes*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_ConnectNodes" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.ConnectNodes">
+  ConnectNodes()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L211"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ConnectNodes()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_CreateFirstNode_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.CreateFirstNode*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_CreateFirstNode" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.CreateFirstNode">
+  CreateFirstNode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void CreateFirstNode()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_GenerateSpiral_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.GenerateSpiral*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_GenerateSpiral_Vector2Int_System_Int32_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.GenerateSpiral(Vector2Int,System.Int32)">
+  GenerateSpiral(Vector2Int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L285"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Vector2Int&gt; GenerateSpiral(Vector2Int center, int totalTiles)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>center</code> <span class="xref">Vector2Int</span></dt>
+    <dd></dd>
+    <dt><code>totalTiles</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<span class="xref">Vector2Int</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_GenerateSpiralLayout_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.GenerateSpiralLayout*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_GenerateSpiralLayout_System_Int32_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.GenerateSpiralLayout(System.Int32)">
+  GenerateSpiralLayout(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears any existing spiral and generates a new one with <code class="paramref">count</code> nodes.
+Node GameObjects are obtained from <a class="xref" href="WitShells.DesignPatterns.SpiralLayoutContainer.html#WitShells_DesignPatterns_SpiralLayoutContainer_NodePool">NodePool</a> and placed according to
+a square spiral algorithm. Clamped to <code>maxCount</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void GenerateSpiralLayout(int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Desired number of nodes. Clamped to <code>maxCount</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_SpiralLayoutContainer_SetHeadCoordinate_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.SetHeadCoordinate*"></a>
+
+  <h3 id="WitShells_DesignPatterns_SpiralLayoutContainer_SetHeadCoordinate_Vector2Int_" data-uid="WitShells.DesignPatterns.SpiralLayoutContainer.SetHeadCoordinate(Vector2Int)">
+  SetHeadCoordinate(Vector2Int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Layouts/SpiralLayoutContainer.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Moves the head node to <code class="paramref">coordinate</code> and propagates the offset
+to all subsequent nodes in the chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetHeadCoordinate(Vector2Int coordinate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>coordinate</code> <span class="xref">Vector2Int</span></dt>
+    <dd><p>New 2D grid coordinate for the head node.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

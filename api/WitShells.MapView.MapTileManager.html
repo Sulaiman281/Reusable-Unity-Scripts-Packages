@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class MapTileManager | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class MapTileManager | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_MapView_MapTileManager.md&amp;value=---%0Auid%3A%20WitShells.MapView.MapTileManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.MapView.MapTileManager">
+
+
+
+  <h1 id="WitShells_MapView_MapTileManager" data-uid="WitShells.MapView.MapTileManager" class="text-break">
+Class MapTileManager  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.MapView.html">MapView</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MapTileManager : MonoSingleton&lt;MapTileManager&gt;, IDisposable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="WitShells.DesignPatterns.Core.MonoSingleton-1.html">MonoSingleton</a>&lt;<a class="xref" href="WitShells.MapView.MapTileManager.html">MapTileManager</a>&gt;</div>
+      <div><span class="xref">MapTileManager</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Core.MonoSingleton-1.html#WitShells_DesignPatterns_Core_MonoSingleton_1_IsPersistent">MonoSingleton&lt;MapTileManager&gt;.IsPersistent</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Core.MonoSingleton-1.html#WitShells_DesignPatterns_Core_MonoSingleton_1_Instance">MonoSingleton&lt;MapTileManager&gt;.Instance</a>
+    </div>
+    <div>
+      <a class="xref" href="WitShells.DesignPatterns.Core.MonoSingleton-1.html#WitShells_DesignPatterns_Core_MonoSingleton_1_Awake">MonoSingleton&lt;MapTileManager&gt;.Awake()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_MapView_MapTileManager_OnTileFetched" data-uid="WitShells.MapView.MapTileManager.OnTileFetched">
+  OnTileFetched
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;Vector2Int, Tile&gt; OnTileFetched</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<span class="xref">Vector2Int</span>, <a class="xref" href="WitShells.MapView.Tile.html">Tile</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_MapView_MapTileManager_OnTilesFetched" data-uid="WitShells.MapView.MapTileManager.OnTilesFetched">
+  OnTilesFetched
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityEvent&lt;List&lt;Tile&gt;&gt; OnTilesFetched</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityEvent</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="WitShells.MapView.Tile.html">Tile</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_MapView_MapTileManager_canCacheTiles" data-uid="WitShells.MapView.MapTileManager.canCacheTiles">
+  canCacheTiles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool canCacheTiles</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_MapView_MapTileManager_DbConnection_" data-uid="WitShells.MapView.MapTileManager.DbConnection*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_DbConnection" data-uid="WitShells.MapView.MapTileManager.DbConnection">
+  DbConnection
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLiteConnection DbConnection { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">SQLiteConnection</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_DirectoryPath_" data-uid="WitShells.MapView.MapTileManager.DirectoryPath*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_DirectoryPath" data-uid="WitShells.MapView.MapTileManager.DirectoryPath">
+  DirectoryPath
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DirectoryPath { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_FilePath_" data-uid="WitShells.MapView.MapTileManager.FilePath*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_FilePath" data-uid="WitShells.MapView.MapTileManager.FilePath">
+  FilePath
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FilePath { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_HasValidFile_" data-uid="WitShells.MapView.MapTileManager.HasValidFile*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_HasValidFile" data-uid="WitShells.MapView.MapTileManager.HasValidFile">
+  HasValidFile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasValidFile { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_canFetchOnline_" data-uid="WitShells.MapView.MapTileManager.canFetchOnline*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_canFetchOnline" data-uid="WitShells.MapView.MapTileManager.canFetchOnline">
+  canFetchOnline
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool canFetchOnline { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_MapView_MapTileManager_CancelFetch_" data-uid="WitShells.MapView.MapTileManager.CancelFetch*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_CancelFetch_System_String_" data-uid="WitShells.MapView.MapTileManager.CancelFetch(System.String)">
+  CancelFetch(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CancelFetch(string threadId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>threadId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_CreateDatabase_" data-uid="WitShells.MapView.MapTileManager.CreateDatabase*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_CreateDatabase_SQLiteConnection__" data-uid="WitShells.MapView.MapTileManager.CreateDatabase(SQLiteConnection@)">
+  CreateDatabase(out SQLiteConnection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L172"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CreateDatabase(out SQLiteConnection connection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>connection</code> <span class="xref">SQLiteConnection</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_Dispose_" data-uid="WitShells.MapView.MapTileManager.Dispose*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_Dispose" data-uid="WitShells.MapView.MapTileManager.Dispose">
+  Dispose()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L284"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_FetchTile_" data-uid="WitShells.MapView.MapTileManager.FetchTile*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_FetchTile_Vector2Int_System_Int32_System_Boolean_UnityAction_WitShells_MapView_Tile__System_String__" data-uid="WitShells.MapView.MapTileManager.FetchTile(Vector2Int,System.Int32,System.Boolean,UnityAction{WitShells.MapView.Tile},System.String@)">
+  FetchTile(Vector2Int, int, bool, UnityAction&lt;Tile&gt;, out string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FetchTile(Vector2Int coordinate, int zoomLevel, bool showLabels, UnityAction&lt;Tile&gt; onComplete, out string threadId)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>coordinate</code> <span class="xref">Vector2Int</span></dt>
+    <dd></dd>
+    <dt><code>zoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>showLabels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="WitShells.MapView.Tile.html">Tile</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>threadId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_GetCenterTile_" data-uid="WitShells.MapView.MapTileManager.GetCenterTile*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_GetCenterTile_System_Int32_" data-uid="WitShells.MapView.MapTileManager.GetCenterTile(System.Int32)">
+  GetCenterTile(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L187"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tile GetCenterTile(int zoomLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>zoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MapView.Tile.html">Tile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_GetCenterTileAsync_" data-uid="WitShells.MapView.MapTileManager.GetCenterTileAsync*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_GetCenterTileAsync_System_Int32_UnityAction_WitShells_MapView_Tile__UnityAction_System_Exception__" data-uid="WitShells.MapView.MapTileManager.GetCenterTileAsync(System.Int32,UnityAction{WitShells.MapView.Tile},UnityAction{System.Exception})">
+  GetCenterTileAsync(int, UnityAction&lt;Tile&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L200"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asynchronous version of GetCenterTile - runs the query on the ThreadManager and returns on main thread.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetCenterTileAsync(int zoomLevel, UnityAction&lt;Tile&gt; onComplete, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>zoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="WitShells.MapView.Tile.html">Tile</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_GetTile_" data-uid="WitShells.MapView.MapTileManager.GetTile*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_GetTile_System_Int32_System_Int32_System_Int32_SQLiteConnection_" data-uid="WitShells.MapView.MapTileManager.GetTile(System.Int32,System.Int32,System.Int32,SQLiteConnection)">
+  GetTile(int, int, int, SQLiteConnection)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L224"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Tile GetTile(int x, int y, int zoomLevel, SQLiteConnection connection)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>x</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>y</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>zoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>connection</code> <span class="xref">SQLiteConnection</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MapView.Tile.html">Tile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_GetTile_" data-uid="WitShells.MapView.MapTileManager.GetTile*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_GetTile_Vector2Int_System_Int32_" data-uid="WitShells.MapView.MapTileManager.GetTile(Vector2Int,System.Int32)">
+  GetTile(Vector2Int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tile GetTile(Vector2Int coordinate, int zoomLevel)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>coordinate</code> <span class="xref">Vector2Int</span></dt>
+    <dd></dd>
+    <dt><code>zoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.MapView.Tile.html">Tile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_GetTileAsync_" data-uid="WitShells.MapView.MapTileManager.GetTileAsync*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_GetTileAsync_Vector2Int_System_Int32_UnityAction_WitShells_MapView_Tile__UnityAction_System_Exception__" data-uid="WitShells.MapView.MapTileManager.GetTileAsync(Vector2Int,System.Int32,UnityAction{WitShells.MapView.Tile},UnityAction{System.Exception})">
+  GetTileAsync(Vector2Int, int, UnityAction&lt;Tile&gt;, UnityAction&lt;Exception&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L214"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Asynchronous version of GetTile - runs the query on a background thread and returns the result on the main thread.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetTileAsync(Vector2Int coordinate, int zoomLevel, UnityAction&lt;Tile&gt; onComplete, UnityAction&lt;Exception&gt; onError = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>coordinate</code> <span class="xref">Vector2Int</span></dt>
+    <dd></dd>
+    <dt><code>zoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>onComplete</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="WitShells.MapView.Tile.html">Tile</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>onError</code> <span class="xref">UnityAction</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_HasCachedTile_" data-uid="WitShells.MapView.MapTileManager.HasCachedTile*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_HasCachedTile_Vector2Int_WitShells_MapView_Tile__System_Boolean_" data-uid="WitShells.MapView.MapTileManager.HasCachedTile(Vector2Int,WitShells.MapView.Tile@,System.Boolean)">
+  HasCachedTile(Vector2Int, out Tile, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L80"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasCachedTile(Vector2Int coordinate, out Tile tile, bool withLabels)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>coordinate</code> <span class="xref">Vector2Int</span></dt>
+    <dd></dd>
+    <dt><code>tile</code> <a class="xref" href="WitShells.MapView.Tile.html">Tile</a></dt>
+    <dd></dd>
+    <dt><code>withLabels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_OnDestroy_" data-uid="WitShells.MapView.MapTileManager.OnDestroy*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_OnDestroy" data-uid="WitShells.MapView.MapTileManager.OnDestroy">
+  OnDestroy()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L295"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Unity lifecycle: clears the static instance reference when this object is destroyed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnDestroy()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_RevealDatabaseInFileExplorer_" data-uid="WitShells.MapView.MapTileManager.RevealDatabaseInFileExplorer*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_RevealDatabaseInFileExplorer" data-uid="WitShells.MapView.MapTileManager.RevealDatabaseInFileExplorer">
+  RevealDatabaseInFileExplorer()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L234"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RevealDatabaseInFileExplorer()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_MapView_MapTileManager_StartStreamFetch_" data-uid="WitShells.MapView.MapTileManager.StartStreamFetch*"></a>
+
+  <h3 id="WitShells_MapView_MapTileManager_StartStreamFetch_System_Collections_Generic_List_Vector2Int__System_Int32_System_Boolean_" data-uid="WitShells.MapView.MapTileManager.StartStreamFetch(System.Collections.Generic.List{Vector2Int},System.Int32,System.Boolean)">
+  StartStreamFetch(List&lt;Vector2Int&gt;, int, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/MapView/Runtime/Scripts/Core/MapTileManager.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartStreamFetch(List&lt;Vector2Int&gt; enqueuedTiles, int zoomLevel, bool showLabels)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>enqueuedTiles</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Vector2Int</span>&gt;</dt>
+    <dd></dd>
+    <dt><code>zoomLevel</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>showLabels</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

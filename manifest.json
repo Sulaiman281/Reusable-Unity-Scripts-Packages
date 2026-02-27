@@ -1,0 +1,4568 @@
+{
+  "source_base_path": "/home/runner/work/Reusable-Unity-Scripts-Packages/Reusable-Unity-Scripts-Packages/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintBinding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintBinding.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintBinding",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.ConstraintBinding.yml\" sourcestartlinenumber=\"1\">Defines how a constraint should follow a target transform.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintFollower.ConstraintType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintFollower.ConstraintType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintFollower.ConstraintType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintFollower.UpdateMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintFollower.UpdateMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintFollower.UpdateMode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintFollower.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintFollower.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintFollower",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.ConstraintFollower.yml\" sourcestartlinenumber=\"1\">Controls IK constraint targets by following assigned transform references.\nAllows toggling position/rotation constraints independently for hands, legs, and head.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintTarget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintTarget",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.ConstraintTarget.yml\" sourcestartlinenumber=\"1\">Represents a single constraint target that can be assigned to follow a source transform.\nProvides fine-grained control over position and rotation constraints.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintTargetController.BodyPart.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintTargetController.BodyPart.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintTargetController.BodyPart",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintTargetController.UpdateMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintTargetController.UpdateMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintTargetController.UpdateMode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.ConstraintTargetController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.ConstraintTargetController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.ConstraintTargetController",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.ConstraintTargetController.yml\" sourcestartlinenumber=\"1\">Main controller for managing multiple constraint targets.\nAttach this to your character and assign transform references to make constraints follow targets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.Editor.ConstraintTargetControllerEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.Editor.ConstraintTargetControllerEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.Editor.ConstraintTargetControllerEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.Editor.ConstraintTargetControllerEditor.yml\" sourcestartlinenumber=\"1\">Custom editor for ConstraintTargetController with improved UI.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.Editor.RigReferencesEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.Editor.RigReferencesEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.Editor.RigReferencesEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.Editor.RigReferencesEditor.yml\" sourcestartlinenumber=\"1\">Custom editor for RigReferences with quick actions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.Editor.RigSetupQuickMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.Editor.RigSetupQuickMenu.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.Editor.RigSetupQuickMenu",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.Editor.RigSetupQuickMenu.yml\" sourcestartlinenumber=\"1\">Quick access menu item</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.Editor.RigSetupWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.Editor.RigSetupWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.Editor.RigSetupWindow",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.Editor.RigSetupWindow.yml\" sourcestartlinenumber=\"1\">Editor window for setting up Animation Rigging on humanoid characters.\nAutomatically detects bones or allows manual assignment.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.RigReferences.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.RigReferences.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig.RigReferences",
+      "Summary": "<p sourcefile=\"api/WitShells.AnimationRig.RigReferences.yml\" sourcestartlinenumber=\"1\">Holds references to all IK constraints and provides easy access to targets and weights.\nAttach this component to the Rig GameObject.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.AnimationRig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.AnimationRig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.AnimationRig",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.Broadcast.BroadcastSender.PeriodicMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.Broadcast.BroadcastSender.PeriodicMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.Broadcast.BroadcastSender.PeriodicMode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.Broadcast.BroadcastSender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.Broadcast.BroadcastSender.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.Broadcast.BroadcastSender",
+      "Summary": "<p sourcefile=\"api/WitShells.Broadcast.BroadcastSender.yml\" sourcestartlinenumber=\"1\">Sends UDP broadcast packets with optional periodic modes.\nModes:</p>\n<ul sourcefile=\"api/WitShells.Broadcast.BroadcastSender.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/WitShells.Broadcast.BroadcastSender.yml\" sourcestartlinenumber=\"3\">LoopSingle: repeat the same message at a fixed interval.</li>\n<li sourcefile=\"api/WitShells.Broadcast.BroadcastSender.yml\" sourcestartlinenumber=\"4\">UntilResponse: repeat until a response is observed (subscribe to a BroadcastService instance).</li>\n<li sourcefile=\"api/WitShells.Broadcast.BroadcastSender.yml\" sourcestartlinenumber=\"5\">RetryOnFailure: re-send only when local send throws; limited attempts.</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.Broadcast.BroadcastService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.Broadcast.BroadcastService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.Broadcast.BroadcastService",
+      "Summary": "<p sourcefile=\"api/WitShells.Broadcast.BroadcastService.yml\" sourcestartlinenumber=\"1\">Listens for UDP responses on a given port and raises events.\nUsage:\nvar svc = new BroadcastService();\nsvc.OnResponseReceived += (msg, remote) =&gt; { ... };\nsvc.StartBroadcast(&quot;ip_request&quot;, port: 7777, repeatIntervalMs: 0, waitForResponses: true, singleResponse: false);\nsvc.Stop();\nsvc.Dispose();</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.Broadcast.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.Broadcast.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.Broadcast",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.BroadcastEditor.BroadcastWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.BroadcastEditor.BroadcastWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.BroadcastEditor.BroadcastWindow",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.BroadcastEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.BroadcastEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.BroadcastEditor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Brush.BrushType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Brush.BrushType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Brush.BrushType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Brush.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Brush.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Brush",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.Brush.yml\" sourcestartlinenumber=\"1\">Defines brush settings and properties for drawing.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.BrushSettingsUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.BrushSettingsUI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.BrushSettingsUI",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.BrushSettingsUI.yml\" sourcestartlinenumber=\"1\">Brush settings UI panel that reads/writes to DrawToolSettings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.ColorPickerUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.ColorPickerUI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.ColorPickerUI",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.ColorPickerUI.yml\" sourcestartlinenumber=\"1\">Color picker UI with hue bar, saturation/value square, and alpha slider.\nSupports color history and direct input.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawCanvasUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawCanvasUI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawCanvasUI",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.DrawCanvasUI.yml\" sourcestartlinenumber=\"1\">Main drawing canvas UI component.\nManages the layer container and provides zoom/pan functionality.\nEach layer is now a separate RawImage GameObject for mobile performance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawToolController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawToolController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawToolController",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.DrawToolController.yml\" sourcestartlinenumber=\"1\">Main controller that wires all drawing tool components together.\nThis is the primary entry point for the drawing tool.\nUses DrawToolSettings ScriptableObject as single source of truth for all settings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawToolSettings.BrushPreset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawToolSettings.BrushPreset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawToolSettings.BrushPreset",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawToolSettings.DrawingTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawToolSettings.DrawingTool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawToolSettings.DrawingTool",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawToolSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawToolSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawToolSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.DrawToolSettings.yml\" sourcestartlinenumber=\"1\">ScriptableObject that holds all drawing tool settings.\nThis is the single source of truth for brush, color, and canvas settings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawingEngine.DrawTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawingEngine.DrawTool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawingEngine.DrawTool",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawingEngine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawingEngine.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawingEngine",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.DrawingEngine.yml\" sourcestartlinenumber=\"1\">Handles drawing operations on LayerObject.\nUses DrawToolSettings ScriptableObject as single source of truth for brush settings.\nOPTIMIZED: Uses FastTextureBuffer for high-performance Android drawing.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.DrawingInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.DrawingInput.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.DrawingInput",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.DrawingInput.yml\" sourcestartlinenumber=\"1\">Handles all input for the drawing tool using New Input System.\nSupports mouse, touch, and provides base for pen input.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Editor.CanvasDrawToolSetup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Editor.CanvasDrawToolSetup.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Editor.CanvasDrawToolSetup",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.Editor.CanvasDrawToolSetup.yml\" sourcestartlinenumber=\"1\">Editor utility for quick setup of Canvas Draw Tool on a Canvas.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Editor.DrawToolControllerEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Editor.DrawToolControllerEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Editor.DrawToolControllerEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.Editor.DrawToolControllerEditor.yml\" sourcestartlinenumber=\"1\">Custom inspector for DrawToolController with full testing capabilities.\nUses DrawToolSettings for all brush and color operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Editor.DrawingEngineEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Editor.DrawingEngineEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Editor.DrawingEngineEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.Editor.DrawingEngineEditor.yml\" sourcestartlinenumber=\"1\">Custom inspector for DrawingEngine with tool and brush controls.\nUses DrawToolSettings for brush and color operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Editor.LayerManagerEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Editor.LayerManagerEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Editor.LayerManagerEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.Editor.LayerManagerEditor.yml\" sourcestartlinenumber=\"1\">Custom inspector for LayerManager with visual layer preview.\nUpdated for LayerObject-based system with individual RawImage per layer.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Editor.PenInputEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Editor.PenInputEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Editor.PenInputEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.Editor.PenInputEditor.yml\" sourcestartlinenumber=\"1\">Custom inspector for PenInput with pressure and pen settings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.FastTextureBuffer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.FastTextureBuffer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.FastTextureBuffer",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.FastTextureBuffer.yml\" sourcestartlinenumber=\"1\">High-performance texture buffer using byte array for Android optimization.\nBased on DirectTextureDrawing approach for maximum performance.\nUses direct byte manipulation instead of Color struct for speed. (Android optimized)</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.ImageSelectionManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.ImageSelectionManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.ImageSelectionManager",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.ImageSelectionManager.yml\" sourcestartlinenumber=\"1\">Manages selection of imported images and their transform handlers.\nHandles click-to-select, deselection, and transform mode toggling.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.ImageTransformHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.ImageTransformHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.ImageTransformHandler",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.ImageTransformHandler.yml\" sourcestartlinenumber=\"1\">Handles transform operations (move, scale, rotate) for imported images.\nMaintains aspect ratio during scaling. Provides visual handles at corners and edges.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.LayerItemUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.LayerItemUI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.LayerItemUI",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.LayerItemUI.yml\" sourcestartlinenumber=\"1\">Individual layer item UI component.\nUpdated for LayerObject-based system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.LayerManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.LayerManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.LayerManager",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.LayerManager.yml\" sourcestartlinenumber=\"1\">Manages all layers as separate RawImage GameObjects for high performance on mobile.\nEach layer is a LayerObject with its own texture and transform capabilities.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.LayerObject.BlendMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.LayerObject.BlendMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.LayerObject.BlendMode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.LayerObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.LayerObject.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.LayerObject",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.LayerObject.yml\" sourcestartlinenumber=\"1\">Represents a single layer as a RawImage GameObject for high performance on mobile.\nUses FastTextureBuffer for optimized pixel operations.\nEach layer can be independently positioned, scaled, rotated and cropped.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.LayerPanelUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.LayerPanelUI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.LayerPanelUI",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.LayerPanelUI.yml\" sourcestartlinenumber=\"1\">Layer panel UI for managing layers.\nDisplays layer list with visibility, lock, and selection controls.\nUpdated for LayerObject-based system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.PenInput.BarrelButtonAction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.PenInput.BarrelButtonAction.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.PenInput.BarrelButtonAction",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.PenInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.PenInput.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool.PenInput",
+      "Summary": "<p sourcefile=\"api/WitShells.CanvasDrawTool.PenInput.yml\" sourcestartlinenumber=\"1\">Specialized input handler for pen/stylus tablets.\nSupports pressure sensitivity, tilt, and pen-specific features.\nWorks with Wacom, Surface Pen, Apple Pencil (via Unity's Pen device).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.CanvasDrawTool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.CanvasDrawTool.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.CanvasDrawTool",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.AddStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.AddStrategy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.AddStrategy",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.AddStrategy.yml\" sourcestartlinenumber=\"1\">Example strategy that adds two integers together.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.Bindable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.Bindable-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.Bindable<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.Bindable-1.yml\" sourcestartlinenumber=\"1\">A reactive property wrapper that automatically fires a UnityEvent&lt;T&gt;\nwhenever its value changes. Use this to implement the <b>Observer / Data-Binding</b>\npattern without manual event wiring.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.Builder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.Builder-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.Builder<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.Builder-1.yml\" sourcestartlinenumber=\"1\">Abstract base class for the <b>Builder</b> pattern.\nExtend this class and add fluent setter methods to construct complex objects\nstep-by-step, keeping construction logic separate from the product class itself.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.CommandInvoker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.CommandInvoker.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.CommandInvoker",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.CommandInvoker.yml\" sourcestartlinenumber=\"1\">The <b>Invoker</b> in the Command pattern.\nExecutes <xref href=\"WitShells.DesignPatterns.Core.ICommand\" data-throw-if-not-resolved=\"false\"></xref> instances and maintains a history stack\nthat allows undoing operations in LIFO order.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.Component.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.Component.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.Component",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.Component.yml\" sourcestartlinenumber=\"1\">Base class for all <b>ECS Components</b>.\nA component is pure data with no behaviour — it describes one aspect of an <xref href=\"WitShells.DesignPatterns.Core.Entity\" data-throw-if-not-resolved=\"false\"></xref>\n(e.g. position, health, inventory). Derive from this class to create custom components.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.DraggableItem-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.DraggableItem-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.DraggableItem<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.DraggableItem-1.yml\" sourcestartlinenumber=\"1\">Abstract MonoBehaviour base class for draggable UI items in the <b>Drag-and-Drop</b> system.\nHandles pointer events, canvas hierarchy management (render-on-top), transparency during drag,\nand optional snap-back to the original position.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.DropZone-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.DropZone-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.DropZone<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.DropZone-1.yml\" sourcestartlinenumber=\"1\">Abstract MonoBehaviour base class for <b>Drop Zone</b> areas in a drag-and-drop system.\nResponds to Unity pointer events (<code>IDropHandler</code>, <code>IPointerEnterHandler</code>,\n<code>IPointerExitHandler</code>) and delegates acceptance logic to concrete subclasses.\nProvides visual highlight feedback when a compatible draggable hovers over the zone.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.Entity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.Entity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.Entity",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.Entity.yml\" sourcestartlinenumber=\"1\">Represents a game object in the <b>Entity-Component-System (ECS)</b> pattern.\nAn entity is nothing more than a container of <xref href=\"WitShells.DesignPatterns.Core.Component\" data-throw-if-not-resolved=\"false\"></xref> instances — it has no logic itself.\nBehaviour is provided by <i>systems</i> that query entities for required components.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.FlyweightFactory-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.FlyweightFactory-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.FlyweightFactory<TKey, TFlyweight>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.FlyweightFactory-2.yml\" sourcestartlinenumber=\"1\">Generic <b>Flyweight Factory</b> that caches and reuses flyweight instances keyed by\n<code class=\"typeparamref\">TKey</code>. If a flyweight for a given key already exists it is returned\ndirectly, otherwise it is created via the supplied factory delegate and cached.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.FormationUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.FormationUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.FormationUtils",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.FormationUtils.yml\" sourcestartlinenumber=\"1\">Static utility class that generates world-space Pose lists for common\ntactical/game unit formations. Each method returns a list of positions and rotations\nthat can be assigned to agents, NPCs, or any Unity objects.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.GenericFactory-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.GenericFactory-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.GenericFactory<TKey, TProduct>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.GenericFactory-2.yml\" sourcestartlinenumber=\"1\">A generic, key-based <b>Factory</b> that creates new product instances on demand.\nCreator delegates are registered once and called every time a new object is needed,\nso each call to <xref href=\"WitShells.DesignPatterns.Core.GenericFactory%602.Create(%600)\" data-throw-if-not-resolved=\"false\"></xref> returns a fresh instance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.GenericSingleFactory-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.GenericSingleFactory-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.GenericSingleFactory<TKey, TProduct>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.GenericSingleFactory-2.yml\" sourcestartlinenumber=\"1\">Abstract <b>Singleton-per-key Factory</b> that creates at most one instance of\n<code class=\"typeparamref\">TProduct</code> per <code class=\"typeparamref\">TKey</code>.\nOn the first call to <xref href=\"WitShells.DesignPatterns.Core.GenericSingleFactory%602.Get(%600)\" data-throw-if-not-resolved=\"false\"></xref> for a given key the creator is invoked and the\nresult is cached. Subsequent calls return the cached instance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.HealthComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.HealthComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.HealthComponent",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.HealthComponent.yml\" sourcestartlinenumber=\"1\">Example ECS component that stores an entity's health points.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.HealthSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.HealthSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.HealthSystem",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.HealthSystem.yml\" sourcestartlinenumber=\"1\">Example ECS <b>system</b> that operates on entities possessing a <xref href=\"WitShells.DesignPatterns.Core.HealthComponent\" data-throw-if-not-resolved=\"false\"></xref>.\nSystems hold the game logic and iterate over relevant entities each update tick.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IBuilder-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IBuilder-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IBuilder<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IBuilder-1.yml\" sourcestartlinenumber=\"1\">Defines the contract for the <b>Builder</b> pattern.\nImplementors construct a product of type <code class=\"typeparamref\">T</code> step-by-step\nand return it via <xref href=\"WitShells.DesignPatterns.Core.IBuilder%601.Build\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.ICommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.ICommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.ICommand",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.ICommand.yml\" sourcestartlinenumber=\"1\">Defines the contract for the <b>Command</b> pattern.\nEach command encapsulates a single action and its reversal, enabling\nundo/redo stacks, macro recording, and deferred execution.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IDraggable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IDraggable-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IDraggable<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IDraggable-1.yml\" sourcestartlinenumber=\"1\">Contract for a draggable UI item that carries data of type <code class=\"typeparamref\">T</code>.\nImplement this interface (via <xref href=\"WitShells.DesignPatterns.Core.DraggableItem%601\" data-throw-if-not-resolved=\"false\"></xref>) to participate in\ndrag-and-drop interactions with <xref href=\"WitShells.DesignPatterns.Core.DropZone%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IFlyweight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IFlyweight.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IFlyweight",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IFlyweight.yml\" sourcestartlinenumber=\"1\">Defines the contract for a <b>Flyweight</b> object.\nThe flyweight stores only <i>intrinsic</i> (shared, immutable) state;\n<i>extrinsic</i> (per-instance) state is passed in via <xref href=\"WitShells.DesignPatterns.Core.IFlyweight.Operation(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IMediator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IMediator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IMediator",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IMediator.yml\" sourcestartlinenumber=\"1\">Defines the contract for the <b>Mediator</b> pattern.\nThe mediator decouples components (colleagues) by acting as a central hub for\ncommunication — instead of referencing each other directly, components send\nmessages through the mediator.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.INodeManager-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.INodeManager-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.INodeManager<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.INodeManager-1.yml\" sourcestartlinenumber=\"1\">Defines the contract for a collection manager that stores and queries\n<xref href=\"WitShells.DesignPatterns.Core.NodeController%601\" data-throw-if-not-resolved=\"false\"></xref> instances.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IPrototype-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IPrototype-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IPrototype<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IPrototype-1.yml\" sourcestartlinenumber=\"1\">Defines the contract for the <b>Prototype</b> pattern.\nClasses implementing this interface are responsible for producing\na deep copy of themselves, allowing the creation of new objects\nby cloning an existing configured instance rather than constructing\none from scratch.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IState",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IState.yml\" sourcestartlinenumber=\"1\">Defines the contract for a single state in the <b>State Machine</b> pattern.\nEach state owns its own entry, update, and exit logic, keeping behaviour\nself-contained and easy to extend.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IStrategy-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IStrategy-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IStrategy<TContext, TResult>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IStrategy-2.yml\" sourcestartlinenumber=\"1\">Defines the contract for the <b>Strategy</b> pattern.\nEach strategy encapsulates one interchangeable algorithm that transforms a\n<code class=\"typeparamref\">TContext</code> value into a <code class=\"typeparamref\">TResult</code> value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.IdleState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.IdleState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.IdleState",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.IdleState.yml\" sourcestartlinenumber=\"1\">Example <xref href=\"WitShells.DesignPatterns.Core.IState\" data-throw-if-not-resolved=\"false\"></xref> — represents an entity standing still.\nReplace the placeholder comments with your own idle behaviour.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.LocalFileSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.LocalFileSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.LocalFileSystem",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.LocalFileSystem.yml\" sourcestartlinenumber=\"1\">A static async helper for persisting data to the local file system with\n<b>AES-256 encryption</b> and <b>GZip compression</b>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.LocalFileSystemException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.LocalFileSystemException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.LocalFileSystemException",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.LocalFileSystemException.yml\" sourcestartlinenumber=\"1\">Exception thrown by <xref href=\"WitShells.DesignPatterns.Core.LocalFileSystem\" data-throw-if-not-resolved=\"false\"></xref> when a file operation fails\n(e.g. wrong password, missing file, or corrupt data).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.Mediator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.Mediator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.Mediator",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.Mediator.yml\" sourcestartlinenumber=\"1\">A concrete, event-bus style <b>Mediator</b> implementation.\nComponents subscribe to named event channels and are notified whenever\nanother component calls <xref href=\"WitShells.DesignPatterns.Core.Mediator.Notify(System.Object%2cSystem.String%2cSystem.Object)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.MonoSingleton-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.MonoSingleton-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.MonoSingleton<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.MonoSingleton-1.yml\" sourcestartlinenumber=\"1\">Thread-safe <b>MonoBehaviour Singleton</b> base class.\nSubclass this to create a manager or service that must have exactly one instance\nin the scene. The instance is auto-located via <code>FindFirstObjectByType</code> and\noptionally kept alive across scene loads via <code>DontDestroyOnLoad</code>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.MoveState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.MoveState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.MoveState",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.MoveState.yml\" sourcestartlinenumber=\"1\">Example <xref href=\"WitShells.DesignPatterns.Core.IState\" data-throw-if-not-resolved=\"false\"></xref> — represents an entity in motion.\nReplace the placeholder comments with your own movement behaviour.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.MovementComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.MovementComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.MovementComponent",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.MovementComponent.yml\" sourcestartlinenumber=\"1\">Example ECS component that stores an entity's movement speed.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.MultiplyStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.MultiplyStrategy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.MultiplyStrategy",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.MultiplyStrategy.yml\" sourcestartlinenumber=\"1\">Example strategy that multiplies two integers together.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.NodeController-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.NodeController-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.NodeController<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.NodeController-1.yml\" sourcestartlinenumber=\"1\">Abstract reactive node wrapper that combines the <b>Builder</b>, <b>Observer</b>,\nand <b>Bindable</b> patterns into a single unit.\nEach node wraps a value of type <code class=\"typeparamref\">T</code> inside a <xref href=\"WitShells.DesignPatterns.Core.Bindable%601\" data-throw-if-not-resolved=\"false\"></xref>\nso that listeners are automatically notified on change.\nWhen the node is no longer needed, call <xref href=\"WitShells.DesignPatterns.Core.NodeController%601.Dispose\" data-throw-if-not-resolved=\"false\"></xref> to broadcast its removal\nvia <xref href=\"WitShells.DesignPatterns.Core.NodeController%601.OnRemoved\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.NodesManager-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.NodesManager-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.NodesManager<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.NodesManager-1.yml\" sourcestartlinenumber=\"1\">A simple list-backed <xref href=\"WitShells.DesignPatterns.Core.INodeManager%601\" data-throw-if-not-resolved=\"false\"></xref> that stores nodes in insertion order.\nDuplicate nodes (by reference) are rejected.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.ObjectPool-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.ObjectPool-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.ObjectPool<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.ObjectPool-1.yml\" sourcestartlinenumber=\"1\">A generic <b>Object Pool</b> that recycles instances of <code class=\"typeparamref\">T</code> to reduce\nheap allocations and GC pressure. Objects are retrieved with <xref href=\"WitShells.DesignPatterns.Core.ObjectPool%601.Get\" data-throw-if-not-resolved=\"false\"></xref> and returned\nwith <xref href=\"WitShells.DesignPatterns.Core.ObjectPool%601.Release(%600)\" data-throw-if-not-resolved=\"false\"></xref> after use.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.ObserverPattern-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.ObserverPattern-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.ObserverPattern<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.ObserverPattern-1.yml\" sourcestartlinenumber=\"1\">A lightweight, generic implementation of the <b>Observer</b> pattern.\nMaintains a list of subscriber callbacks and notifies them all when a value is published.\nPrefer this over C# events when you need runtime subscribe/unsubscribe with no delegate leak risk,\nor when you want to store the observer list as a field rather than as a static event.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.Player.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.Player.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.Player",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.Player.yml\" sourcestartlinenumber=\"1\">Example product class used to demonstrate the Builder pattern.\nRepresents a game player with a name, health, and movement speed.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.PlayerBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.PlayerBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.PlayerBuilder",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.PlayerBuilder.yml\" sourcestartlinenumber=\"1\">Concrete builder that constructs a <xref href=\"WitShells.DesignPatterns.Core.Player\" data-throw-if-not-resolved=\"false\"></xref> using a fluent API.\nCall the <code>Set*</code> methods in any order, then call <xref href=\"WitShells.DesignPatterns.Core.PlayerBuilder.Build\" data-throw-if-not-resolved=\"false\"></xref> to get the result.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.PrintCommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.PrintCommand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.PrintCommand",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.PrintCommand.yml\" sourcestartlinenumber=\"1\">Example <xref href=\"WitShells.DesignPatterns.Core.ICommand\" data-throw-if-not-resolved=\"false\"></xref> implementation that prints a message to the console.\n<xref href=\"WitShells.DesignPatterns.Core.PrintCommand.Undo\" data-throw-if-not-resolved=\"false\"></xref> logs an acknowledgement that the print was undone.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.SceneObjectCache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.SceneObjectCache.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.SceneObjectCache",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.SceneObjectCache.yml\" sourcestartlinenumber=\"1\">A lightweight, non-singleton cache for scene objects.</p>\n<ul sourcefile=\"api/WitShells.DesignPatterns.Core.SceneObjectCache.yml\" sourcestartlinenumber=\"2\">\n<li sourcefile=\"api/WitShells.DesignPatterns.Core.SceneObjectCache.yml\" sourcestartlinenumber=\"2\">Finds the first object of type <code class=\"typeparamref\">T</code> in the scene using Unity's FindFirstObjectByType.</li>\n<li sourcefile=\"api/WitShells.DesignPatterns.Core.SceneObjectCache.yml\" sourcestartlinenumber=\"3\">Caches the found instance per-type to avoid repeated scene searches.</li>\n<li sourcefile=\"api/WitShells.DesignPatterns.Core.SceneObjectCache.yml\" sourcestartlinenumber=\"4\">If the cached object gets destroyed or is missing, the cache re-finds it on the next access.</li>\n</ul>\n<p sourcefile=\"api/WitShells.DesignPatterns.Core.SceneObjectCache.yml\" sourcestartlinenumber=\"6\">Use this when multiple systems need access to a shared scene object without forcing a Singleton pattern.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.ServiceLocator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.ServiceLocator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.ServiceLocator",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.ServiceLocator.yml\" sourcestartlinenumber=\"1\">A global, type-keyed <b>Service Locator</b> that acts as a lightweight alternative to\ndependency injection. Systems register their implementations once and any other system\ncan retrieve them by interface/type without knowing the concrete class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.StateMachine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.StateMachine.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.StateMachine",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.StateMachine.yml\" sourcestartlinenumber=\"1\">A simple, non-MonoBehaviour <b>State Machine</b> that drives an <xref href=\"WitShells.DesignPatterns.Core.IState\" data-throw-if-not-resolved=\"false\"></xref>.\nCall <xref href=\"WitShells.DesignPatterns.Core.StateMachine.ChangeState(WitShells.DesignPatterns.Core.IState)\" data-throw-if-not-resolved=\"false\"></xref> to transition and <xref href=\"WitShells.DesignPatterns.Core.StateMachine.Update\" data-throw-if-not-resolved=\"false\"></xref> each frame to tick the active state.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.StrategyContext-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.StrategyContext-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.StrategyContext<TContext, TResult>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.StrategyContext-2.yml\" sourcestartlinenumber=\"1\">The <b>Context</b> class in the Strategy pattern.\nHolds a reference to the current strategy and delegates execution to it.\nThe active strategy can be swapped at runtime via <xref href=\"WitShells.DesignPatterns.Core.StrategyContext%602.SetStrategy(WitShells.DesignPatterns.Core.IStrategy%7b%600%2c%601%7d)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.TemplateMethod-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.TemplateMethod-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.TemplateMethod<TInput, TResult>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.TemplateMethod-2.yml\" sourcestartlinenumber=\"1\">Abstract base class for the <b>Template Method</b> pattern.\nDefines the skeleton of an algorithm in <xref href=\"WitShells.DesignPatterns.Core.TemplateMethod%602.Execute(%600)\" data-throw-if-not-resolved=\"false\"></xref> (the <i>template method</i>)\nwhile delegating the concrete steps to subclasses via abstract methods.\nThis lets subclasses change specific parts of the algorithm without altering its overall structure.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.TreeFlyweight.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.TreeFlyweight.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.TreeFlyweight",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.TreeFlyweight.yml\" sourcestartlinenumber=\"1\">Example <xref href=\"WitShells.DesignPatterns.Core.IFlyweight\" data-throw-if-not-resolved=\"false\"></xref> that stores shared tree mesh and texture data.\nMany tree instances in the scene can reference a single <xref href=\"WitShells.DesignPatterns.Core.TreeFlyweight\" data-throw-if-not-resolved=\"false\"></xref>;\neach instance provides its own position via the extrinsic state argument.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.UniqueNodesManager-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.UniqueNodesManager-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.UniqueNodesManager<T, TKey>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.UniqueNodesManager-2.yml\" sourcestartlinenumber=\"1\">A dictionary-backed <xref href=\"WitShells.DesignPatterns.Core.INodeManager%601\" data-throw-if-not-resolved=\"false\"></xref> that groups nodes by a computed key\nof type <code class=\"typeparamref\">TKey</code>. Multiple nodes may share the same key.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.UserInputTemplate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.UserInputTemplate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core.UserInputTemplate",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Core.UserInputTemplate.yml\" sourcestartlinenumber=\"1\">Example template that parses a raw string into an integer, with logging at each step.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Core.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Core",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Draggable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Draggable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Draggable",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Draggable.yml\" sourcestartlinenumber=\"1\">Generic draggable component that works for UI (RectTransform) and world objects.\nAttach to any GameObject. For UI make sure Canvas has a GraphicRaycaster.\nFor world objects use a PhysicsRaycaster on the camera and a collider on the object.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.ISpiralNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.ISpiralNode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.ISpiralNode",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.ISpiralNode.yml\" sourcestartlinenumber=\"1\">Contract for a node in a doubly-linked spiral layout list.\nEach node knows its neighbours, its index in the spiral, and its 2D grid coordinate.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.Packet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.Packet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.Packet",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.Packet.yml\" sourcestartlinenumber=\"1\">A lightweight data transfer container used to send structured messages\nbetween systems (e.g. over WebSocket, local IPC, or within the same process).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.PacketCompressionUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.PacketCompressionUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.PacketCompressionUtils",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.PacketCompressionUtils.yml\" sourcestartlinenumber=\"1\">Utility class providing GZip compression and decompression helpers for <xref href=\"WitShells.DesignPatterns.Packet\" data-throw-if-not-resolved=\"false\"></xref> payloads.\nUse these methods to reduce the wire size of large JSON payloads before sending.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.SpiralDirection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.SpiralDirection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.SpiralDirection",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.SpiralDirection.yml\" sourcestartlinenumber=\"1\">Direction of spiral growth when generating a <xref href=\"WitShells.DesignPatterns.SpiralLayoutContainer\" data-throw-if-not-resolved=\"false\"></xref> layout.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.SpiralLayoutContainer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.SpiralLayoutContainer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.SpiralLayoutContainer",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.SpiralLayoutContainer.yml\" sourcestartlinenumber=\"1\">A MonoBehaviour that procedurally arranges <xref href=\"WitShells.DesignPatterns.ISpiralNode\" data-throw-if-not-resolved=\"false\"></xref> GameObjects in a\nspiral pattern using an <xref href=\"WitShells.DesignPatterns.Core.ObjectPool%601\" data-throw-if-not-resolved=\"false\"></xref> for efficient instantiation and reuse.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.SpiralNode-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.SpiralNode-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.SpiralNode<T>",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.SpiralNode-1.yml\" sourcestartlinenumber=\"1\">Abstract MonoBehaviour implementation of <xref href=\"WitShells.DesignPatterns.ISpiralNode\" data-throw-if-not-resolved=\"false\"></xref> that carries\ntyped data payload <code class=\"typeparamref\">T</code>.\nSubclass this to create spiral nodes that display game-specific content\n(e.g. inventory items, skill icons, quest entries).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.WitLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.WitLogger.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns.WitLogger",
+      "Summary": "<p sourcefile=\"api/WitShells.DesignPatterns.WitLogger.yml\" sourcestartlinenumber=\"1\">A thin wrapper around Unity's Debug logging API that supports a global\nenable/disable toggle via <xref href=\"WitShells.DesignPatterns.WitLogger.EnableLogging\" data-throw-if-not-resolved=\"false\"></xref>.\nUse this instead of <code>Debug.Log</code> directly so that all logging can be silenced\nin production builds from a single flag.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DesignPatterns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DesignPatterns.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DesignPatterns",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.Conversation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.Conversation.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.Conversation",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.Conversation.yml\" sourcestartlinenumber=\"1\">Represents a conversation containing a sequence of dialogs.\nCreate via Assets &gt; Create &gt; WitShells &gt; Dialogs Manager &gt; Conversation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.ConversationEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.ConversationEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.ConversationEvent",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.ConversationEvent.yml\" sourcestartlinenumber=\"1\">Unity event for conversation events.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.ConversationEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.ConversationEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.ConversationEventArgs",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.ConversationEventArgs.yml\" sourcestartlinenumber=\"1\">Event arguments for conversation-related events.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogEmotion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogEmotion.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogEmotion",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogEmotion.yml\" sourcestartlinenumber=\"1\">Emotion/mood indicators for dialogs.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogEvent",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogEvent.yml\" sourcestartlinenumber=\"1\">Unity event for dialog events.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogEventArgs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogEventArgs",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogEventArgs.yml\" sourcestartlinenumber=\"1\">Event arguments for dialog-related events.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogExtensions",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods and utilities for the DialogsManager system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogManager",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogManager.yml\" sourcestartlinenumber=\"1\">Manages dialog playback and conversation flow.\nSingleton pattern ensures only one DialogManager exists in the scene.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogObject.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogObject",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogObject.yml\" sourcestartlinenumber=\"1\">Represents a single dialog entry with content, audio, and metadata.\nCreate via Assets &gt; Create &gt; WitShells &gt; Dialogs Manager &gt; Dialog Object.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogTrigger.TriggerType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogTrigger.TriggerType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogTrigger.TriggerType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogTrigger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogTrigger.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogTrigger",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogTrigger.yml\" sourcestartlinenumber=\"1\">A component that triggers conversations based on collision/trigger events.\nRequires a Collider component on the same GameObject.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogUIController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogUIController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogUIController",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogUIController.yml\" sourcestartlinenumber=\"1\">A base UI controller for displaying dialogs.\nExtend this class or use it directly for basic dialog UI.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogsSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogsSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogsSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.DialogsManager.DialogsSettings.yml\" sourcestartlinenumber=\"1\">Settings for the Dialogs Manager system.\nCreate via Assets &gt; Create &gt; WitShells &gt; Dialogs Manager &gt; Dialogs Settings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogueBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogueBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogueBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogueClip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogueClip.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogueClip",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.DialogueTrack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.DialogueTrack.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.DialogueTrack",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.IDialogActionRequire.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.IDialogActionRequire.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.IDialogActionRequire",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.ISubtitleTextUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.ISubtitleTextUI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager.ISubtitleTextUI",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.DialogsManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.DialogsManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.DialogsManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.LiveMic.LiveMicroPhone.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.LiveMic.LiveMicroPhone.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.LiveMic.LiveMicroPhone",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.LiveMic.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.LiveMic.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.LiveMic",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.ConcurrentLoggerBehaviour.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.ConcurrentLoggerBehaviour.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.ConcurrentLoggerBehaviour",
+      "Summary": "<p sourcefile=\"api/WitShells.MapView.ConcurrentLoggerBehaviour.yml\" sourcestartlinenumber=\"1\">ConcurrentLoggerBehaviour receives log messages from any thread via the static Enqueue method\nand flushes them to the Unity Console inside Update on the main thread. It is created\nautomatically on first use and marked DontDestroyOnLoad.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.Coordinates.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.Coordinates.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.Coordinates",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.DatabaseUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.DatabaseUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.DatabaseUtils",
+      "Summary": "<p sourcefile=\"api/WitShells.MapView.DatabaseUtils.yml\" sourcestartlinenumber=\"1\">Centralized utility for creating and ensuring proper database schema.\nAll code should use EnsureDatabaseWithSchema instead of ad-hoc CreateTable calls.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.DatabaseWriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.DatabaseWriter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.DatabaseWriter",
+      "Summary": "<p sourcefile=\"api/WitShells.MapView.DatabaseWriter.yml\" sourcestartlinenumber=\"1\">Thread-safe database writer that ensures serialized write operations to SQLite databases.\nManages one dedicated worker thread per database file to prevent write conflicts and ensure data integrity.\nUses the singleton pattern to maintain one worker instance per database path.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.DbQuery.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.DbQuery.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.DbQuery",
+      "Summary": "<p sourcefile=\"api/WitShells.MapView.DbQuery.yml\" sourcestartlinenumber=\"1\">Helper to run read-only database queries on ThreadManager and return results on the main thread.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.DownloaderTiles.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.DownloaderTiles.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.DownloaderTiles",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.FetchTileJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.FetchTileJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.FetchTileJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.IPlacable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.IPlacable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.IPlacable",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.IPlacableData-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.IPlacableData-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.IPlacableData<TData>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.MapFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.MapFile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.MapFile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.MapSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.MapSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.MapSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.MapTileManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.MapTileManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.MapTileManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.MapViewLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.MapViewLayout.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.MapViewLayout",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.Placable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.Placable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.Placable",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.PlacableBase-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.PlacableBase-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.PlacableBase<TData>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.PlacableData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.PlacableData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.PlacableData",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.PlacableItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.PlacableItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.PlacableItems",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.PlacablePrefabCatalog.PlacablePrefabEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.PlacablePrefabCatalog.PlacablePrefabEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.PlacablePrefabCatalog.PlacablePrefabEntry",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.PlacablePrefabCatalog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.PlacablePrefabCatalog.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.PlacablePrefabCatalog",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.PlacementType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.PlacementType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.PlacementType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.StreamTileFetcher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.StreamTileFetcher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.StreamTileFetcher",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.Tile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.Tile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.Tile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.TileView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.TileView.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.TileView",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.Utils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.Utils",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.WorldObjectMarkers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.WorldObjectMarkers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView.WorldObjectMarkers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MapView.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MapView.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MapView",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.Editor.McqSettingsEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.Editor.McqSettingsEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.Editor.McqSettingsEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.Editor.McqSettingsEditor.yml\" sourcestartlinenumber=\"1\">Custom editor for McqSettings to improve usability</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.McqData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.McqData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.McqData",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.McqData.yml\" sourcestartlinenumber=\"1\">Data structure containing a multiple choice question with correct and incorrect options</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.McqDataSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.McqDataSet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.McqDataSet",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.McqDataSet.yml\" sourcestartlinenumber=\"1\">ScriptableObject asset for storing MCQ data sets that can be created and edited in the Unity Editor</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.McqExample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.McqExample.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.McqExample",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.McqExample.yml\" sourcestartlinenumber=\"1\">Example script showing how to use the MCQ UI system</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.McqOptionItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.McqOptionItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.McqOptionItem",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.McqOptionItem.yml\" sourcestartlinenumber=\"1\">Individual option item for MCQ questions with selection feedback and animations</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.McqPage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.McqPage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.McqPage",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.McqPage.yml\" sourcestartlinenumber=\"1\">Main MCQ page component that manages question display and option interactions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.McqSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.McqSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.McqSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.McqSettings.yml\" sourcestartlinenumber=\"1\">Centralized settings for the MCQ UI system. Singleton ScriptableObject that can be accessed globally.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.McqUtilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.McqUtilities.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI.McqUtilities",
+      "Summary": "<p sourcefile=\"api/WitShells.McqUI.McqUtilities.yml\" sourcestartlinenumber=\"1\">Utility class for creating and managing MCQ data sets</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.McqUI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.McqUI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.McqUI",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.AreaBasedGridSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.AreaBasedGridSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.AreaBasedGridSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.DimensionBasedGridSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.DimensionBasedGridSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.DimensionBasedGridSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.FixedGridSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.FixedGridSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.FixedGridSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.GridDimensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.GridDimensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.GridDimensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.GridLabel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.GridLabel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.GridLabel",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.GridType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.GridType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.GridType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.LabelSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.LabelSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.LabelSettings",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.LabelType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.LabelType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout.LabelType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.SquareGridLayout.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem.SquareGridLayout",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.MilitaryGridSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.MilitaryGridSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.MilitaryGridSystem",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ParticlesPresets.DarkSmokePreset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ParticlesPresets.DarkSmokePreset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ParticlesPresets.DarkSmokePreset",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ParticlesPresets.FirePreset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ParticlesPresets.FirePreset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ParticlesPresets.FirePreset",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ParticlesPresets.ParticlePresetsMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ParticlesPresets.ParticlePresetsMenu.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ParticlesPresets.ParticlePresetsMenu",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ParticlesPresets.RainPreset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ParticlesPresets.RainPreset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ParticlesPresets.RainPreset",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ParticlesPresets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ParticlesPresets.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ParticlesPresets",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.Editor.WeaponSetupMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.Editor.WeaponSetupMenu.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.Editor.WeaponSetupMenu",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.Editor.WeaponSetupWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.Editor.WeaponSetupWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.Editor.WeaponSetupWindow",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.FireMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.FireMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.FireMode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.HitDetection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.HitDetection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.HitDetection",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.HitInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.HitInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.HitInfo",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.IDamageable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.IDamageable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.IDamageable",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.PooledProjectile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.PooledProjectile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.PooledProjectile",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.Trajectory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.Trajectory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.Trajectory",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.Weapon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.Weapon.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.Weapon",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.WeaponInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.WeaponInput.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.WeaponInput",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.WeaponPreset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.WeaponPreset.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.WeaponPreset",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.WeaponPresets.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.WeaponPresets.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem.WeaponPresets",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ShootingSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ShootingSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ShootingSystem",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SimpleCarControls.SimpleCarDriver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SimpleCarControls.SimpleCarDriver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SimpleCarControls.SimpleCarDriver",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SimpleCarControls.SimpleCarDriverAI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SimpleCarControls.SimpleCarDriverAI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SimpleCarControls.SimpleCarDriverAI",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SimpleCarControls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SimpleCarControls.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SimpleCarControls",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.ASplineRuntime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.ASplineRuntime.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.ASplineRuntime",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.ElevatedRoadMeshSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.ElevatedRoadMeshSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.ElevatedRoadMeshSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.SplineRuntime.ElevatedRoadMeshSettings.yml\" sourcestartlinenumber=\"1\">Settings for elevated road mesh generation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.MeshCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.MeshCreator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.MeshCreator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.RibbonMeshSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.RibbonMeshSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.RibbonMeshSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.SplineRuntime.RibbonMeshSettings.yml\" sourcestartlinenumber=\"1\">Settings for ribbon mesh generation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.RoadMeshSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.RoadMeshSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.RoadMeshSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.SplineRuntime.RoadMeshSettings.yml\" sourcestartlinenumber=\"1\">Settings for basic road mesh generation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.SplineMeshBaseSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.SplineMeshBaseSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.SplineMeshBaseSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.SplineRuntime.SplineMeshBaseSettings.yml\" sourcestartlinenumber=\"1\">Base settings shared by all spline mesh types</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.SplineMeshExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.SplineMeshExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.SplineMeshExtensions",
+      "Summary": "<p sourcefile=\"api/WitShells.SplineRuntime.SplineMeshExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for easy spline mesh generation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.SplineMeshType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.SplineMeshType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.SplineMeshType",
+      "Summary": "<p sourcefile=\"api/WitShells.SplineRuntime.SplineMeshType.yml\" sourcestartlinenumber=\"1\">Defines the types of meshes that can be generated from splines</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.SplinePathCreator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.SplinePathCreator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.SplinePathCreator",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.SplineUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.SplineUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.SplineUtils",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.TunnelMeshSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.TunnelMeshSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime.TunnelMeshSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.SplineRuntime.TunnelMeshSettings.yml\" sourcestartlinenumber=\"1\">Settings for tunnel mesh generation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.SplineRuntime.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.SplineRuntime.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.SplineRuntime",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.Sqlite.SqliteUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.Sqlite.SqliteUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.Sqlite.SqliteUtils",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.Sqlite.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.Sqlite.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.Sqlite",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.TankControls.TankController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.TankControls.TankController.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.TankControls.TankController",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.TankControls.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.TankControls.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.TankControls",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.AnimationEventHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.AnimationEventHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl.AnimationEventHandler",
+      "Summary": "<p sourcefile=\"api/WitShells.ThirdPersonControl.AnimationEventHandler.yml\" sourcestartlinenumber=\"1\">Handles animation events for the third-person character.\nAttach to the GameObject with the Animator component.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.CinemachineCamLookInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.CinemachineCamLookInput.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl.CinemachineCamLookInput",
+      "Summary": "<p sourcefile=\"api/WitShells.ThirdPersonControl.CinemachineCamLookInput.yml\" sourcestartlinenumber=\"1\">Handles camera look input for Cinemachine third-person camera.\nCan use settings from ThirdPersonSettings ScriptableObject or local overrides.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.SetupThirdPerson.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.SetupThirdPerson.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl.SetupThirdPerson",
+      "Summary": "<p sourcefile=\"api/WitShells.ThirdPersonControl.SetupThirdPerson.yml\" sourcestartlinenumber=\"1\">Editor utility to set up a complete third-person character controller.\nCreates all necessary components, settings, and camera setup.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.SoundSfxObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.SoundSfxObject.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl.SoundSfxObject",
+      "Summary": "<p sourcefile=\"api/WitShells.ThirdPersonControl.SoundSfxObject.yml\" sourcestartlinenumber=\"1\">ScriptableObject containing sound effects for the third-person controller.\nCreate via: Create &gt; WitShells &gt; ThirdPersonControl &gt; Sound Effects</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.ThirdPersonControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.ThirdPersonControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl.ThirdPersonControl",
+      "Summary": "<p sourcefile=\"api/WitShells.ThirdPersonControl.ThirdPersonControl.yml\" sourcestartlinenumber=\"1\">Third-person character controller with customizable settings via ScriptableObject.\nCan receive input from ThirdPersonInput or be controlled directly via properties.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.ThirdPersonInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.ThirdPersonInput.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl.ThirdPersonInput",
+      "Summary": "<p sourcefile=\"api/WitShells.ThirdPersonControl.ThirdPersonInput.yml\" sourcestartlinenumber=\"1\">Handles player input using Unity's New Input System PlayerInput component.\nRequires PlayerInput component with &quot;Move&quot;, &quot;Look&quot;, &quot;Jump&quot;, &quot;Sprint&quot;, and &quot;Crouch&quot; actions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.ThirdPersonSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.ThirdPersonSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl.ThirdPersonSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.ThirdPersonControl.ThirdPersonSettings.yml\" sourcestartlinenumber=\"1\">ScriptableObject containing all third-person controller settings.\nCreate an instance via Create &gt; WitShells &gt; ThirdPersonControl &gt; Settings.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThirdPersonControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThirdPersonControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThirdPersonControl",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.JobThread.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.JobThread.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.JobThread",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.QuickThreadJobs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.QuickThreadJobs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.QuickThreadJobs",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.StreamingThreadJobItem-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.StreamingThreadJobItem-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.StreamingThreadJobItem<TResult>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.AsyncBatchDownloadJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.AsyncBatchDownloadJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests.AsyncBatchDownloadJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.AsyncWebRequestJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.AsyncWebRequestJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests.AsyncWebRequestJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.ComplexDataProcessingJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.ComplexDataProcessingJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests.ComplexDataProcessingJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.DownloadResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.DownloadResult.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests.DownloadResult",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.FileProcessingJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.FileProcessingJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests.FileProcessingJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.ProcessingUpdate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.ProcessingUpdate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests.ProcessingUpdate",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.SyncCalculationJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.SyncCalculationJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests.SyncCalculationJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.Tests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.Tests.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.Tests",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.ThreadJob-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.ThreadJob-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.ThreadJob<TResult>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.ThreadJobItem-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.ThreadJobItem-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.ThreadJobItem<TResult>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.ThreadJobItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.ThreadJobItem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.ThreadJobItem",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.ThreadManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.ThreadManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.ThreadManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.ThreadManagerStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.ThreadManagerStats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob.ThreadManagerStats",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.ThreadingJob.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.ThreadingJob.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.ThreadingJob",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.TurnBase.TurnMatch-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.TurnBase.TurnMatch-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.TurnBase.TurnMatch<TPlayer, TUnit>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.TurnBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.TurnBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.TurnBase",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebRTCWit.SignalMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebRTCWit.SignalMessage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebRTCWit.SignalMessage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebRTCWit.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebRTCWit.Utils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebRTCWit.Utils",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebRTCWit.WebRtcSample.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebRTCWit.WebRtcSample.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebRTCWit.WebRtcSample",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebRTCWit.WebRtcTransport.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebRTCWit.WebRtcTransport.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebRTCWit.WebRtcTransport",
+      "Summary": "<p sourcefile=\"api/WitShells.WebRTCWit.WebRtcTransport.yml\" sourcestartlinenumber=\"1\">Custom network transport implementation using WebRTC for Unity Netcode.\nThis class handles peer-to-peer connections, data channels, and message routing\nbetween clients and server using WebRTC technology.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebRTCWit.WebSocketSignalingClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebRTCWit.WebSocketSignalingClient.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebRTCWit.WebSocketSignalingClient",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebRTCWit.WitP2P.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebRTCWit.WitP2P.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebRTCWit.WitP2P",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebRTCWit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebRTCWit.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebRTCWit",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.ConnectionSettingsObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.ConnectionSettingsObject.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket.ConnectionSettingsObject",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.Editor.WebSocketTestWindow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.Editor.WebSocketTestWindow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket.Editor.WebSocketTestWindow",
+      "Summary": "<p sourcefile=\"api/WitShells.WebSocket.Editor.WebSocketTestWindow.yml\" sourcestartlinenumber=\"1\">Editor window for testing WebSocket connections and functionality.\nRequires a selected GameObject with a WebSocketHandler component.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.WebSocketBinaryEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.WebSocketBinaryEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket.WebSocketBinaryEvent",
+      "Summary": "<p sourcefile=\"api/WitShells.WebSocket.WebSocketBinaryEvent.yml\" sourcestartlinenumber=\"1\">UnityEvent for binary data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.WebSocketHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.WebSocketHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket.WebSocketHandler",
+      "Summary": "<p sourcefile=\"api/WitShells.WebSocket.WebSocketHandler.yml\" sourcestartlinenumber=\"1\">A Unity WebSocket client component that provides easy integration with Unity's event system.\nHandles connection management, message sending/receiving, and provides Unity Events for all operations.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.WebSocketState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.WebSocketState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket.WebSocketState",
+      "Summary": "<p sourcefile=\"api/WitShells.WebSocket.WebSocketState.yml\" sourcestartlinenumber=\"1\">Represents the current state of the WebSocket connection.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.WebSocketStringEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.WebSocketStringEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket.WebSocketStringEvent",
+      "Summary": "<p sourcefile=\"api/WitShells.WebSocket.WebSocketStringEvent.yml\" sourcestartlinenumber=\"1\">UnityEvent for string messages.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WebSocket.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WebSocket.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WebSocket",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.ABehaviorState-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.ABehaviorState-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.ABehaviorState<TState>",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.Actor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.Actor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.Actor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.ActorRigBody.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.ActorRigBody.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.ActorRigBody",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.FollowState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.FollowState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.FollowState",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.FollowStateBehavior.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.FollowStateBehavior.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.FollowStateBehavior",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.GroundCheck.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.GroundCheck.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.GroundCheck",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.IDestination.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.IDestination.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.IDestination",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.IKRigReferences.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.IKRigReferences.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.IKRigReferences",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.IState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.IState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.IState",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.LocoMotion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.LocoMotion.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.LocoMotion",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.OnLand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.OnLand.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.OnLand",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.RigSetupEditorLegacy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.RigSetupEditorLegacy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.RigSetupEditorLegacy",
+      "Summary": "<p sourcefile=\"api/WitShells.WitActor.RigSetupEditorLegacy.yml\" sourcestartlinenumber=\"1\">Legacy rig setup - redirects to the new WitAnimationRig package.\nThe Animation Rigging functionality has been moved to a separate package: WitAnimationRig</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.Settings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.Settings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.Settings",
+      "Summary": "<p sourcefile=\"api/WitShells.WitActor.Settings.yml\" sourcestartlinenumber=\"1\">Settings for the WitActor component.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.SoundSfx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.SoundSfx.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor.SoundSfx",
+      "Summary": "<p sourcefile=\"api/WitShells.WitActor.SoundSfx.yml\" sourcestartlinenumber=\"1\">Settings for the WitActor component.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitActor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitActor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitActor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.ApiClientManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.ApiClientManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.ApiClientManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.ApiConfig.EnvironmentOption.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.ApiConfig.EnvironmentOption.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.ApiConfig.EnvironmentOption",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.ApiConfig.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.ApiConfig.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.ApiConfig",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.ApiEnvelope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.ApiEnvelope.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.ApiEnvelope",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.AuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.AuthService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.AuthService",
+      "Summary": "<p sourcefile=\"api/WitShells.WitClientApi.AuthService.yml\" sourcestartlinenumber=\"1\">Handles authentication flows (sign-in, sign-out, refresh) separate from WitClientManager.\nMethods are virtual so a project can inherit and override behavior.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.DefaultHttpHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.DefaultHttpHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.DefaultHttpHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.EndpointDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.EndpointDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.EndpointDefinition",
+      "Summary": "<p sourcefile=\"api/WitShells.WitClientApi.EndpointDefinition.yml\" sourcestartlinenumber=\"1\">Lightweight representation of an endpoint defined in endpoints.json</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.HttpRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.HttpRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.HttpRequest",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.HttpRequestBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.HttpRequestBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.HttpRequestBuilder",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.HttpRequestExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.HttpRequestExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.HttpRequestExtensions",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.HttpResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.HttpResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.HttpResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.IAuthService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.IAuthService.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.IAuthService",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.IHttpHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.IHttpHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.IHttpHandler",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.ITokenStorage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.ITokenStorage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.ITokenStorage",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.Json.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.Json.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.Json",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.JsonEndpointReader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.JsonEndpointReader.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.JsonEndpointReader",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.PlayerPrefsTokenStorage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.PlayerPrefsTokenStorage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.PlayerPrefsTokenStorage",
+      "Summary": "<p sourcefile=\"api/WitShells.WitClientApi.PlayerPrefsTokenStorage.yml\" sourcestartlinenumber=\"1\">Thread-safe token storage that keeps tokens in-memory for background threads\nand queues PlayerPrefs writes to be flushed on the main thread.\nCall InitializeFromPlayerPrefs() on the main thread at startup (WitClientManager does this)\nand call FlushPendingWrites() periodically on the main thread (WitClientManager.Update does this).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.ResponseParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.ResponseParser.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.ResponseParser",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.TokenResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.TokenResponse.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi.TokenResponse",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitClientApi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitClientApi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitClientApi",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitMultiplayer.LobbyManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitMultiplayer.LobbyManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitMultiplayer.LobbyManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitMultiplayer.MatchType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitMultiplayer.MatchType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitMultiplayer.MatchType",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitMultiplayer.NetworkingUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitMultiplayer.NetworkingUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitMultiplayer.NetworkingUtils",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitMultiplayer.Tests.Editor.NetworkingUtilsTests.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitMultiplayer.Tests.Editor.NetworkingUtilsTests.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitMultiplayer.Tests.Editor.NetworkingUtilsTests",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitMultiplayer.Tests.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitMultiplayer.Tests.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitMultiplayer.Tests.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitMultiplayer.WitMultiplayerManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitMultiplayer.WitMultiplayerManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitMultiplayer.WitMultiplayerManager",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitMultiplayer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitMultiplayer.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitMultiplayer",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.AnimationToHumanoidConverter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.AnimationToHumanoidConverter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.AnimationToHumanoidConverter",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.AnimationToHumanoidConverter.yml\" sourcestartlinenumber=\"1\">Advanced Animation to Humanoid Converter\nConverts constraint-based animations to humanoid muscle-based animation clips</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.Core.BonePoseSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.Core.BonePoseSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.Core.BonePoseSystem",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.Core.BonePoseSystem.yml\" sourcestartlinenumber=\"1\">AUTHORITATIVE animation writer - the ONLY system allowed to write keyframes\nAll pose edits (FK, IK, Muscle) flow through this system</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.Core.MusclePoseSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.Core.MusclePoseSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.Core.MusclePoseSystem",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.Core.MusclePoseSystem.yml\" sourcestartlinenumber=\"1\">Muscle-based pose system - HELPER layer only\nNever writes to AnimationClip directly\nForwards all bone transforms to BonePoseSystem</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.Core.SkeletonCache.BoneData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.Core.SkeletonCache.BoneData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.Core.SkeletonCache.BoneData",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.Core.SkeletonCache.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.Core.SkeletonCache.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.Core.SkeletonCache",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.Core.SkeletonCache.yml\" sourcestartlinenumber=\"1\">Authoritative bone registry for humanoid skeletons\nCaches all bone data for fast lookup by gizmos, IK, and pose systems</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.Core.TwoBoneIKSolver",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml\" sourcestartlinenumber=\"1\">Two-Bone IK solver that mirrors Unity Animation Rigging behaviour.\nSolves entirely from first principles each frame — no incremental delta\naccumulation — so it never drifts or glitches.</p>\n<p sourcefile=\"api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml\" sourcestartlinenumber=\"5\">Algorithm:</p>\n<ol sourcefile=\"api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml\" sourcestartlinenumber=\"6\">\n<li sourcefile=\"api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml\" sourcestartlinenumber=\"6\">Compute desired mid-joint position via Law of Cosines.</li>\n<li sourcefile=\"api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml\" sourcestartlinenumber=\"7\">Use the hint (pole vector) to define the bend plane.</li>\n<li sourcefile=\"api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml\" sourcestartlinenumber=\"8\">RotateRootToward desiredMid, then RotateMidToward target.</li>\n<li sourcefile=\"api/WitShells.WitPose.Editor.Core.TwoBoneIKSolver.yml\" sourcestartlinenumber=\"9\">Blend by weight.</li>\n</ol>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.Core.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.Core",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.SceneGizmos.BoneGizmoSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.SceneGizmos.BoneGizmoSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.SceneGizmos.BoneGizmoSystem",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.SceneGizmos.BoneGizmoSystem.yml\" sourcestartlinenumber=\"1\">Interactive bone gizmos in Scene View\nPrimary UX for bone manipulation</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.SceneGizmos.IKGizmoSystem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.SceneGizmos.IKGizmoSystem.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.SceneGizmos.IKGizmoSystem",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.SceneGizmos.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.SceneGizmos.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.SceneGizmos",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.SkeletonProfileEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.SkeletonProfileEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.SkeletonProfileEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.SkeletonProfileEditor.yml\" sourcestartlinenumber=\"1\">Custom editor for SkeletonProfile ScriptableObject</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.WitPoseEditor.GizmoMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.WitPoseEditor.GizmoMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.WitPoseEditor.GizmoMode",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.WitPoseEditor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.WitPoseEditor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.WitPoseEditor",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.WitPoseEditor.yml\" sourcestartlinenumber=\"1\">Muscle Editor Logic for WitPoseEditor\nHandles muscle sliders, groups, quick poses, and copy/paste functionality.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.WitPoseUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.WitPoseUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor.WitPoseUtils",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.Editor.WitPoseUtils.yml\" sourcestartlinenumber=\"1\">Shared utilities for WitPose Editor.\nHandles string manipulation for bone names and muscle display.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Editor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Editor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Editor",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.Logger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.Logger.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.Logger",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.PoseData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.PoseData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.PoseData",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.PoseData.yml\" sourcestartlinenumber=\"1\">Data structure for storing and managing human poses.\nUses Unity's HumanPose muscle space for rig-agnostic storage.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.SkeletonProfile.AgeCategory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.SkeletonProfile.AgeCategory.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.SkeletonProfile.AgeCategory",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.SkeletonProfile.AgeCategory.yml\" sourcestartlinenumber=\"1\">Age categories for different constraint profiles</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.SkeletonProfile.BodyType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.SkeletonProfile.BodyType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.SkeletonProfile.BodyType",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.SkeletonProfile.BodyType.yml\" sourcestartlinenumber=\"1\">Body types for different constraint profiles</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.SkeletonProfile.BoneConstraint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.SkeletonProfile.BoneConstraint.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.SkeletonProfile.BoneConstraint",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.SkeletonProfile.BoneConstraint.yml\" sourcestartlinenumber=\"1\">Constraint data for a specific bone</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.SkeletonProfile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.SkeletonProfile.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.SkeletonProfile",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.SkeletonProfile.yml\" sourcestartlinenumber=\"1\">ScriptableObject database storing standard human anatomical limits.\nProvides default constraint values for different body types and age groups.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.WitPoseLibrary.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.WitPoseLibrary.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.WitPoseLibrary",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.WitPoseLibrary.yml\" sourcestartlinenumber=\"1\">Singleton ScriptableObject that stores and manages all saved poses\nAutomatically loads from Resources and persists between sessions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.WitPoseVisualSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.WitPoseVisualSettings.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose.WitPoseVisualSettings",
+      "Summary": "<p sourcefile=\"api/WitShells.WitPose.WitPoseVisualSettings.yml\" sourcestartlinenumber=\"1\">Singleton ScriptableObject that stores visual settings for WitPose editor\nAutomatically loads from Resources and persists between sessions</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.WitPose.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.WitPose.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "WitShells.WitPose",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/WitShells.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/WitShells.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": null,
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/design-patterns.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/design-patterns.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

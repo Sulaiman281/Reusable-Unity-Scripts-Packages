@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class FormationUtils | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class FormationUtils | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Static utility class that generates world-space Pose lists for common tactical/game unit formations. Each method returns a list of positions and rotations that can be assigned to agents, NPCs, or any Unity objects.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_DesignPatterns_Core_FormationUtils.md&amp;value=---%0Auid%3A%20WitShells.DesignPatterns.Core.FormationUtils%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.DesignPatterns.Core.FormationUtils">
+
+
+
+  <h1 id="WitShells_DesignPatterns_Core_FormationUtils" data-uid="WitShells.DesignPatterns.Core.FormationUtils" class="text-break">
+Class FormationUtils  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.DesignPatterns.html">DesignPatterns</a>.<a class="xref" href="WitShells.DesignPatterns.Core.html">Core</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Static utility class that generates world-space Pose lists for common
+tactical/game unit formations. Each method returns a list of positions and rotations
+that can be assigned to agents, NPCs, or any Unity objects.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class FormationUtils</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">FormationUtils</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="WitShells_DesignPatterns_Core_FormationUtils_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>All methods are allocation-friendly – they return a new <code>List&lt;Pose&gt;</code> that the
+caller owns. None of the methods move objects; callers apply the poses themselves.</p>
+</div>
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateBoxFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateBoxFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateBoxFormation_Transform_System_Int32_System_Single_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateBoxFormation(Transform,System.Int32,System.Single)">
+  GenerateBoxFormation(Transform, int, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a square/rectangular box formation.
+Entities are arranged in a grid as close to square as possible.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateBoxFormation(Transform transform, int numberOfEntities, float spacing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform providing position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of entities in the box.</p>
+</dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Gap between entities both horizontally and vertically.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateCircleFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateCircleFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateCircleFormation_Vector3_System_Single_System_Int32_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateCircleFormation(Vector3,System.Single,System.Int32)">
+  GenerateCircleFormation(Vector3, float, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a circular formation centred on <code class="paramref">center</code>.
+Each entity faces the centre of the circle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateCircleFormation(Vector3 center, float radius, int numberOfEntities)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>center</code> <span class="xref">Vector3</span></dt>
+    <dd><p>The world-space centre of the circle.</p>
+</dd>
+    <dt><code>radius</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Radius of the circle in world units.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>How many evenly-spaced poses to produce.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd><p>A list of Pose values arranged on the perimeter of the circle.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateColumnFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateColumnFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateColumnFormation_Transform_System_Int32_System_Single_System_Int32_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateColumnFormation(Transform,System.Int32,System.Single,System.Int32)">
+  GenerateColumnFormation(Transform, int, float, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L271"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a column formation where entities are arranged in multiple rows,
+each row holding <code class="paramref">elementsPerRow</code> entities side by side.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateColumnFormation(Transform transform, int numberOfEntities, float spacing, int elementsPerRow = 2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform providing position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of entities in the column.</p>
+</dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Gap between entities in all directions.</p>
+</dd>
+    <dt><code>elementsPerRow</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of entities per row (default 2).</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateDiamondFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateDiamondFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateDiamondFormation_Transform_System_Int32_System_Single_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateDiamondFormation(Transform,System.Int32,System.Single)">
+  GenerateDiamondFormation(Transform, int, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L299"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a diamond formation with a single leader at the tip and expanding
+diagonal lines of entities behind. Additional entities beyond the first four
+continue the diamond pattern at each successive depth level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateDiamondFormation(Transform transform, int numberOfEntities, float spacing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform providing position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of entities including the leader.</p>
+</dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Gap between adjacent entities in the diamond.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateEchelonFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateEchelonFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateEchelonFormation_Transform_System_Int32_System_Single_System_Single_System_Boolean_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateEchelonFormation(Transform,System.Int32,System.Single,System.Single,System.Boolean)">
+  GenerateEchelonFormation(Transform, int, float, float, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L246"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates an echelon (staircase) formation where each entity is offset diagonally
+to the right or left and behind the previous one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateEchelonFormation(Transform transform, int numberOfEntities, float spacingX, float spacingZ, bool rightEchelon = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform providing position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of entities in the echelon.</p>
+</dd>
+    <dt><code>spacingX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Horizontal offset per step.</p>
+</dd>
+    <dt><code>spacingZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Depth offset per step.</p>
+</dd>
+    <dt><code>rightEchelon</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <code>true</code>, the echelon trails to the right; otherwise to the left.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateLineFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateLineFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateLineFormation_Transform_System_Int32_System_Int32_System_Boolean_System_Boolean_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateLineFormation(Transform,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+  GenerateLineFormation(Transform, int, int, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a straight-line formation relative to a Transform.
+The line runs along the right axis (horizontal) or forward axis (vertical) of the transform.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateLineFormation(Transform transform, int numberOfEntities, int spacing, bool isCentered = false, bool isVertical = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform that defines position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of poses to place in the line.</p>
+</dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Gap between consecutive entities in world units.</p>
+</dd>
+    <dt><code>isCentered</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <code>true</code>, the line is centred on the transform's position.</p>
+</dd>
+    <dt><code>isVertical</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If <code>true</code>, the line runs along the forward axis; otherwise the right axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateLineFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateLineFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateLineFormation_Vector3_Vector3_System_Int32_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateLineFormation(Vector3,Vector3,System.Int32)">
+  GenerateLineFormation(Vector3, Vector3, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a straight-line formation between two explicit world positions.
+All entities face the direction from <code class="paramref">start</code> to <code class="paramref">end</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateLineFormation(Vector3 start, Vector3 end, int numberOfEntities)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <span class="xref">Vector3</span></dt>
+    <dd><p>World-space start point of the line.</p>
+</dd>
+    <dt><code>end</code> <span class="xref">Vector3</span></dt>
+    <dd><p>World-space end point of the line.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Number of evenly-spaced poses along the line.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateTriangleFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateTriangleFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateTriangleFormation_Transform_System_Int32_System_Single_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateTriangleFormation(Transform,System.Int32,System.Single)">
+  GenerateTriangleFormation(Transform, int, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L207"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a triangle formation where each successive row has one more entity
+than the previous, starting from a single entity at the front.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateTriangleFormation(Transform transform, int numberOfEntities, float spacing)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform providing position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of entities to place.</p>
+</dd>
+    <dt><code>spacing</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Gap between entities within a row and between rows.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateVFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateVFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateVFormation_Transform_System_Int32_System_Single_System_Single_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateVFormation(Transform,System.Int32,System.Single,System.Single)">
+  GenerateVFormation(Transform, int, float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a V-shaped formation (two diagonal lines diverging from the front).
+The first entity is placed at the tip; subsequent entities fan out on each side.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateVFormation(Transform transform, int numberOfEntities, float spacingX, float spacingZ)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform providing position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of entities in the V.</p>
+</dd>
+    <dt><code>spacingX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Horizontal spacing between consecutive entities on each arm.</p>
+</dd>
+    <dt><code>spacingZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Depth offset per step along the forward axis.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_FormationUtils_GenerateWedgeFormation_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateWedgeFormation*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_FormationUtils_GenerateWedgeFormation_Transform_System_Int32_System_Single_System_Single_" data-uid="WitShells.DesignPatterns.Core.FormationUtils.GenerateWedgeFormation(Transform,System.Int32,System.Single,System.Single)">
+  GenerateWedgeFormation(Transform, int, float, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/FormationUtils.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a wedge (arrowhead) formation with a single leader at the front
+and two diverging lines trailing behind.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static List&lt;Pose&gt; GenerateWedgeFormation(Transform transform, int numberOfEntities, float spacingX, float spacingZ)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>transform</code> <span class="xref">Transform</span></dt>
+    <dd><p>Reference transform providing position and orientation.</p>
+</dd>
+    <dt><code>numberOfEntities</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Total number of entities including the leader.</p>
+</dd>
+    <dt><code>spacingX</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Horizontal gap per step along each trailing arm.</p>
+</dd>
+    <dt><code>spacingZ</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd><p>Depth gap per step behind the leader.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<span class="xref">Pose</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

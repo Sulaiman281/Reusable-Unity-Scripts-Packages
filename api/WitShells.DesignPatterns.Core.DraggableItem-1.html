@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DraggableItem&lt;T&gt; | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DraggableItem&lt;T&gt; | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="Abstract MonoBehaviour base class for draggable UI items in the Drag-and-Drop system. Handles pointer events, canvas hierarchy management (render-on-top), transparency during drag, and optional snap-back to the original position.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_DesignPatterns_Core_DraggableItem_1.md&amp;value=---%0Auid%3A%20WitShells.DesignPatterns.Core.DraggableItem%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.DesignPatterns.Core.DraggableItem`1">
+
+
+
+  <h1 id="WitShells_DesignPatterns_Core_DraggableItem_1" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1" class="text-break">
+Class DraggableItem&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.DesignPatterns.html">DesignPatterns</a>.<a class="xref" href="WitShells.DesignPatterns.Core.html">Core</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>Abstract MonoBehaviour base class for draggable UI items in the <b>Drag-and-Drop</b> system.
+Handles pointer events, canvas hierarchy management (render-on-top), transparency during drag,
+and optional snap-back to the original position.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class DraggableItem&lt;T&gt; : MonoBehaviour, IDraggable&lt;T&gt;, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler where T : class</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The payload type associated with this draggable item. Must be a reference type.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DraggableItem&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="WitShells.DesignPatterns.Core.IDraggable-1.html">IDraggable</a>&lt;T&gt;</div>
+      <div><span class="xref">IBeginDragHandler</span></div>
+      <div><span class="xref">IDragHandler</span></div>
+      <div><span class="xref">IEndDragHandler</span></div>
+      <div><span class="xref">IDropHandler</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+  <h2 id="WitShells_DesignPatterns_Core_DraggableItem_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Requires a <code>Canvas</code> with a <code>GraphicRaycaster</code> on the UI canvas,
+a <code>CanvasGroup</code> component for the transparency effect,
+and a reference to the root <code>dragCanvas</code> for sibling-order management.</p>
+</div>
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDragEnd" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDragEnd">
+  OnDragEnd
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L74"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Invoked when a drag operation ends, passing the item's current data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityAction&lt;T&gt; OnDragEnd</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityAction</span>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDragStart" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDragStart">
+  OnDragStart
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Invoked when a drag operation starts, passing the item's current data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityAction&lt;T&gt; OnDragStart</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityAction</span>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDragging" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDragging">
+  OnDragging
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Invoked every frame during a drag, passing the data and current world position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public UnityAction&lt;T, Vector3&gt; OnDragging</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">UnityAction</span>&lt;T, <span class="xref">Vector3</span>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_allowSwapping" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.allowSwapping">
+  allowSwapping
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool allowSwapping</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_canvasGroup" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.canvasGroup">
+  canvasGroup
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected CanvasGroup canvasGroup</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">CanvasGroup</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_data" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.data">
+  data
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L63"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected T data</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_dragAlpha" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.dragAlpha">
+  dragAlpha
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float dragAlpha</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_dragCanvas" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.dragCanvas">
+  dragCanvas
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Canvas dragCanvas</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Canvas</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_isDragging" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.isDragging">
+  isDragging
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool isDragging</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_originalParent" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.originalParent">
+  originalParent
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Transform originalParent</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Transform</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_originalPosition" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.originalPosition">
+  originalPosition
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Vector3 originalPosition</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Vector3</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_originalSiblingIndex" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.originalSiblingIndex">
+  originalSiblingIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L68"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int originalSiblingIndex</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_returnToOriginalPosition" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.returnToOriginalPosition">
+  returnToOriginalPosition
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool returnToOriginalPosition</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_wasDropped" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.wasDropped">
+  wasDropped
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool wasDropped</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_CanReturnToOriginalPosition_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.CanReturnToOriginalPosition*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_CanReturnToOriginalPosition" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.CanReturnToOriginalPosition">
+  CanReturnToOriginalPosition()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L170"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns <code>true</code> if this item should snap back to its original position after an unsuccessful drop.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool CanReturnToOriginalPosition()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_CanStartDrag_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.CanStartDrag*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_CanStartDrag" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.CanStartDrag">
+  CanStartDrag()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L173"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool CanStartDrag()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_CanSwapWith_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.CanSwapWith*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_CanSwapWith_WitShells_DesignPatterns_Core_IDraggable__0__" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.CanSwapWith(WitShells.DesignPatterns.Core.IDraggable{`0})">
+  CanSwapWith(IDraggable&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns <code>true</code> if this item is allowed to swap data with <code class="paramref">other</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool CanSwapWith(IDraggable&lt;T&gt; other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="WitShells.DesignPatterns.Core.IDraggable-1.html">IDraggable</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_GetData_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.GetData*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_GetData" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.GetData">
+  GetData()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L163"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the data payload carried by this draggable item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual T GetData()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_GetTransform_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.GetTransform*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_GetTransform" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.GetTransform">
+  GetTransform()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L165"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns the Transform of the draggable GameObject.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual Transform GetTransform()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Transform</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_OnBeginDrag_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnBeginDrag*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnBeginDrag_PointerEventData_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnBeginDrag(PointerEventData)">
+  OnBeginDrag(PointerEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L79"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnBeginDrag(PointerEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">PointerEventData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDrag_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDrag*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDrag_PointerEventData_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDrag(PointerEventData)">
+  OnDrag(PointerEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnDrag(PointerEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">PointerEventData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDragEnded_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDragEnded*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDragEnded_System_Boolean_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDragEnded(System.Boolean)">
+  OnDragEnded(bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L167"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called by the drag system when a drag operation ends.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnDragEnded(bool wasDropped)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>wasDropped</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if the item was dropped onto a valid <a class="xref" href="WitShells.DesignPatterns.Core.DropZone-1.html">DropZone&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDragStarted_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDragStarted*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDragStarted" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDragStarted">
+  OnDragStarted()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L166"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Called by the drag system when a drag operation begins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnDragStarted()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDrop_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDrop*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnDrop_PointerEventData_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnDrop(PointerEventData)">
+  OnDrop(PointerEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnDrop(PointerEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">PointerEventData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_OnEndDrag_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnEndDrag*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_OnEndDrag_PointerEventData_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.OnEndDrag(PointerEventData)">
+  OnEndDrag(PointerEventData)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L113"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnEndDrag(PointerEventData eventData)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>eventData</code> <span class="xref">PointerEventData</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_ReturnToOriginalPosition_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.ReturnToOriginalPosition*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_ReturnToOriginalPosition" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.ReturnToOriginalPosition">
+  ReturnToOriginalPosition()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L155"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ReturnToOriginalPosition()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_SetData_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.SetData*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_SetData__0_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.SetData(`0)">
+  SetData(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L164"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Assigns a new data payload to this draggable item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SetData(T data)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <span class="xref">T</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DesignPatterns_Core_DraggableItem_1_SwapWith_" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.SwapWith*"></a>
+
+  <h3 id="WitShells_DesignPatterns_Core_DraggableItem_1_SwapWith_WitShells_DesignPatterns_Core_IDraggable__0__" data-uid="WitShells.DesignPatterns.Core.DraggableItem`1.SwapWith(WitShells.DesignPatterns.Core.IDraggable{`0})">
+  SwapWith(IDraggable&lt;T&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DesignPatterns/Runtime/Scripts/Core/Draggable/DraggableItem.cs/#L169"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Performs the data swap between this item and <code class="paramref">other</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void SwapWith(IDraggable&lt;T&gt; other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="WitShells.DesignPatterns.Core.IDraggable-1.html">IDraggable</a>&lt;T&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

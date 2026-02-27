@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DialogUIController | WitShells — Reusable Unity Scripts &amp; Packages </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DialogUIController | WitShells — Reusable Unity Scripts &amp; Packages ">
+      
+      <meta name="description" content="A base UI controller for displaying dialogs. Extend this class or use it directly for basic dialog UI.">
+      <link rel="icon" href="../images/favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/your-username/Reusable-Unity-Scripts-Packages/new/main/apiSpec/new?filename=WitShells_DialogsManager_DialogUIController.md&amp;value=---%0Auid%3A%20WitShells.DialogsManager.DialogUIController%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.png" alt="WitShells">
+            WitShells
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="WitShells.DialogsManager.DialogUIController">
+
+
+
+  <h1 id="WitShells_DialogsManager_DialogUIController" data-uid="WitShells.DialogsManager.DialogUIController" class="text-break">
+Class DialogUIController  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="WitShells.html">WitShells</a>.<a class="xref" href="WitShells.DialogsManager.html">DialogsManager</a></dd></dl>
+  
+  </div>
+
+  <div class="markdown summary"><p>A base UI controller for displaying dialogs.
+Extend this class or use it directly for basic dialog UI.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DialogUIController : MonoBehaviour</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">DialogUIController</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_advanceAction" data-uid="WitShells.DialogsManager.DialogUIController.advanceAction">
+  advanceAction
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected InputActionReference advanceAction</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionReference</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_clickAction" data-uid="WitShells.DialogsManager.DialogUIController.clickAction">
+  clickAction
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected InputActionReference clickAction</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionReference</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_clickToAdvance" data-uid="WitShells.DialogsManager.DialogUIController.clickToAdvance">
+  clickToAdvance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool clickToAdvance</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_contentText" data-uid="WitShells.DialogsManager.DialogUIController.contentText">
+  contentText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TMP_Text contentText</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TMP_Text</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_dialogPanel" data-uid="WitShells.DialogsManager.DialogUIController.dialogPanel">
+  dialogPanel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected GameObject dialogPanel</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">GameObject</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_fullContent" data-uid="WitShells.DialogsManager.DialogUIController.fullContent">
+  fullContent
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string fullContent</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_nextButton" data-uid="WitShells.DialogsManager.DialogUIController.nextButton">
+  nextButton
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Button nextButton</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Button</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_portraitImage" data-uid="WitShells.DialogsManager.DialogUIController.portraitImage">
+  portraitImage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Image portraitImage</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Image</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_progressSlider" data-uid="WitShells.DialogsManager.DialogUIController.progressSlider">
+  progressSlider
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Slider progressSlider</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Slider</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_progressText" data-uid="WitShells.DialogsManager.DialogUIController.progressText">
+  progressText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TMP_Text progressText</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TMP_Text</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_skipAction" data-uid="WitShells.DialogsManager.DialogUIController.skipAction">
+  skipAction
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected InputActionReference skipAction</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">InputActionReference</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_skipButton" data-uid="WitShells.DialogsManager.DialogUIController.skipButton">
+  skipButton
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Button skipButton</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Button</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_titleText" data-uid="WitShells.DialogsManager.DialogUIController.titleText">
+  titleText
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected TMP_Text titleText</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TMP_Text</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_typewriterAudioSource" data-uid="WitShells.DialogsManager.DialogUIController.typewriterAudioSource">
+  typewriterAudioSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected AudioSource typewriterAudioSource</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">AudioSource</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_typewriterCoroutine" data-uid="WitShells.DialogsManager.DialogUIController.typewriterCoroutine">
+  typewriterCoroutine
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Coroutine typewriterCoroutine</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Coroutine</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_typewriterSound" data-uid="WitShells.DialogsManager.DialogUIController.typewriterSound">
+  typewriterSound
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected AudioClip typewriterSound</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">AudioClip</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_typewriterSpeed" data-uid="WitShells.DialogsManager.DialogUIController.typewriterSpeed">
+  typewriterSpeed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float typewriterSpeed</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_useTypewriterEffect" data-uid="WitShells.DialogsManager.DialogUIController.useTypewriterEffect">
+  useTypewriterEffect
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool useTypewriterEffect</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_CurrentDialog_" data-uid="WitShells.DialogsManager.DialogUIController.CurrentDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_CurrentDialog" data-uid="WitShells.DialogsManager.DialogUIController.CurrentDialog">
+  CurrentDialog
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The currently displayed dialog.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DialogObject CurrentDialog { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="WitShells.DialogsManager.DialogObject.html">DialogObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_IsTyping_" data-uid="WitShells.DialogsManager.DialogUIController.IsTyping*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_IsTyping" data-uid="WitShells.DialogsManager.DialogUIController.IsTyping">
+  IsTyping
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether the typewriter effect is currently running.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsTyping { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_TypeSpeed_" data-uid="WitShells.DialogsManager.DialogUIController.TypeSpeed*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_TypeSpeed" data-uid="WitShells.DialogsManager.DialogUIController.TypeSpeed">
+  TypeSpeed
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L78"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float TypeSpeed { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_AdvanceDialog_" data-uid="WitShells.DialogsManager.DialogUIController.AdvanceDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_AdvanceDialog" data-uid="WitShells.DialogsManager.DialogUIController.AdvanceDialog">
+  AdvanceDialog()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L290"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Advances to the next dialog.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void AdvanceDialog()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_Awake_" data-uid="WitShells.DialogsManager.DialogUIController.Awake*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_Awake" data-uid="WitShells.DialogsManager.DialogUIController.Awake">
+  Awake()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Awake()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_CompleteTypewriter_" data-uid="WitShells.DialogsManager.DialogUIController.CompleteTypewriter*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_CompleteTypewriter" data-uid="WitShells.DialogsManager.DialogUIController.CompleteTypewriter">
+  CompleteTypewriter()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L390"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void CompleteTypewriter()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_DisableInputActions_" data-uid="WitShells.DialogsManager.DialogUIController.DisableInputActions*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_DisableInputActions" data-uid="WitShells.DialogsManager.DialogUIController.DisableInputActions">
+  DisableInputActions()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L142"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void DisableInputActions()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_DisplayDialog_" data-uid="WitShells.DialogsManager.DialogUIController.DisplayDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_DisplayDialog_WitShells_DialogsManager_DialogObject_System_Int32_WitShells_DialogsManager_Conversation_" data-uid="WitShells.DialogsManager.DialogUIController.DisplayDialog(WitShells.DialogsManager.DialogObject,System.Int32,WitShells.DialogsManager.Conversation)">
+  DisplayDialog(DialogObject, int, Conversation)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L240"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Displays a dialog in the UI.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void DisplayDialog(DialogObject dialog, int index, Conversation conversation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>dialog</code> <a class="xref" href="WitShells.DialogsManager.DialogObject.html">DialogObject</a></dt>
+    <dd></dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>conversation</code> <a class="xref" href="WitShells.DialogsManager.Conversation.html">Conversation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_EnableInputActions_" data-uid="WitShells.DialogsManager.DialogUIController.EnableInputActions*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_EnableInputActions" data-uid="WitShells.DialogsManager.DialogUIController.EnableInputActions">
+  EnableInputActions()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L121"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void EnableInputActions()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_HideDialogPanel_" data-uid="WitShells.DialogsManager.DialogUIController.HideDialogPanel*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_HideDialogPanel" data-uid="WitShells.DialogsManager.DialogUIController.HideDialogPanel">
+  HideDialogPanel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L325"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Hides the dialog panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void HideDialogPanel()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnAdvancePerformed_" data-uid="WitShells.DialogsManager.DialogUIController.OnAdvancePerformed*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnAdvancePerformed_InputAction_CallbackContext_" data-uid="WitShells.DialogsManager.DialogUIController.OnAdvancePerformed(InputAction.CallbackContext)">
+  OnAdvancePerformed(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L160"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnAdvancePerformed(InputAction.CallbackContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <span class="xref">CallbackContext</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnClickPerformed_" data-uid="WitShells.DialogsManager.DialogUIController.OnClickPerformed*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnClickPerformed_InputAction_CallbackContext_" data-uid="WitShells.DialogsManager.DialogUIController.OnClickPerformed(InputAction.CallbackContext)">
+  OnClickPerformed(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L176"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnClickPerformed(InputAction.CallbackContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <span class="xref">CallbackContext</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnConversationEnded_" data-uid="WitShells.DialogsManager.DialogUIController.OnConversationEnded*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnConversationEnded_WitShells_DialogsManager_ConversationEventArgs_" data-uid="WitShells.DialogsManager.DialogUIController.OnConversationEnded(WitShells.DialogsManager.ConversationEventArgs)">
+  OnConversationEnded(ConversationEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L227"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnConversationEnded(ConversationEventArgs args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="WitShells.DialogsManager.ConversationEventArgs.html">ConversationEventArgs</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnConversationStarted_" data-uid="WitShells.DialogsManager.DialogUIController.OnConversationStarted*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnConversationStarted_WitShells_DialogsManager_ConversationEventArgs_" data-uid="WitShells.DialogsManager.DialogUIController.OnConversationStarted(WitShells.DialogsManager.ConversationEventArgs)">
+  OnConversationStarted(ConversationEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L221"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnConversationStarted(ConversationEventArgs args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="WitShells.DialogsManager.ConversationEventArgs.html">ConversationEventArgs</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnDialogFinished_" data-uid="WitShells.DialogsManager.DialogUIController.OnDialogFinished*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnDialogFinished_WitShells_DialogsManager_DialogEventArgs_" data-uid="WitShells.DialogsManager.DialogUIController.OnDialogFinished(WitShells.DialogsManager.DialogEventArgs)">
+  OnDialogFinished(DialogEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L216"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDialogFinished(DialogEventArgs args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="WitShells.DialogsManager.DialogEventArgs.html">DialogEventArgs</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnDialogStarted_" data-uid="WitShells.DialogsManager.DialogUIController.OnDialogStarted*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnDialogStarted_WitShells_DialogsManager_DialogEventArgs_" data-uid="WitShells.DialogsManager.DialogUIController.OnDialogStarted(WitShells.DialogsManager.DialogEventArgs)">
+  OnDialogStarted(DialogEventArgs)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L210"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDialogStarted(DialogEventArgs args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>args</code> <a class="xref" href="WitShells.DialogsManager.DialogEventArgs.html">DialogEventArgs</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnDisable_" data-uid="WitShells.DialogsManager.DialogUIController.OnDisable*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnDisable" data-uid="WitShells.DialogsManager.DialogUIController.OnDisable">
+  OnDisable()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnDisable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnEnable_" data-uid="WitShells.DialogsManager.DialogUIController.OnEnable*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnEnable" data-uid="WitShells.DialogsManager.DialogUIController.OnEnable">
+  OnEnable()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnEnable()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_OnSkipPerformed_" data-uid="WitShells.DialogsManager.DialogUIController.OnSkipPerformed*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_OnSkipPerformed_InputAction_CallbackContext_" data-uid="WitShells.DialogsManager.DialogUIController.OnSkipPerformed(InputAction.CallbackContext)">
+  OnSkipPerformed(CallbackContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L168"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnSkipPerformed(InputAction.CallbackContext context)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>context</code> <span class="xref">CallbackContext</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_SetupButtons_" data-uid="WitShells.DialogsManager.DialogUIController.SetupButtons*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_SetupButtons" data-uid="WitShells.DialogsManager.DialogUIController.SetupButtons">
+  SetupButtons()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L337"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void SetupButtons()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_ShowDialogPanel_" data-uid="WitShells.DialogsManager.DialogUIController.ShowDialogPanel*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_ShowDialogPanel" data-uid="WitShells.DialogsManager.DialogUIController.ShowDialogPanel">
+  ShowDialogPanel()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L314"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Shows the dialog panel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ShowDialogPanel()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_SkipDialog_" data-uid="WitShells.DialogsManager.DialogUIController.SkipDialog*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_SkipDialog" data-uid="WitShells.DialogsManager.DialogUIController.SkipDialog">
+  SkipDialog()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L305"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Skips the current dialog.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void SkipDialog()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_StartTypewriter_" data-uid="WitShells.DialogsManager.DialogUIController.StartTypewriter*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_StartTypewriter_System_String_System_Single_" data-uid="WitShells.DialogsManager.DialogUIController.StartTypewriter(System.String,System.Single)">
+  StartTypewriter(string, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L374"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void StartTypewriter(string text, float speed)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_StopTypewriter_" data-uid="WitShells.DialogsManager.DialogUIController.StopTypewriter*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_StopTypewriter" data-uid="WitShells.DialogsManager.DialogUIController.StopTypewriter">
+  StopTypewriter()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L380"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void StopTypewriter()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_SubscribeToEvents_" data-uid="WitShells.DialogsManager.DialogUIController.SubscribeToEvents*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_SubscribeToEvents" data-uid="WitShells.DialogsManager.DialogUIController.SubscribeToEvents">
+  SubscribeToEvents()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void SubscribeToEvents()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_TypewriterCoroutine_" data-uid="WitShells.DialogsManager.DialogUIController.TypewriterCoroutine*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_TypewriterCoroutine_System_String_System_Single_" data-uid="WitShells.DialogsManager.DialogUIController.TypewriterCoroutine(System.String,System.Single)">
+  TypewriterCoroutine(string, float)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L399"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual IEnumerator TypewriterCoroutine(string text, float speed)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>text</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>speed</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_UnsubscribeFromEvents_" data-uid="WitShells.DialogsManager.DialogUIController.UnsubscribeFromEvents*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_UnsubscribeFromEvents" data-uid="WitShells.DialogsManager.DialogUIController.UnsubscribeFromEvents">
+  UnsubscribeFromEvents()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L199"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void UnsubscribeFromEvents()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="WitShells_DialogsManager_DialogUIController_UpdateProgress_" data-uid="WitShells.DialogsManager.DialogUIController.UpdateProgress*"></a>
+
+  <h3 id="WitShells_DialogsManager_DialogUIController_UpdateProgress_WitShells_DialogsManager_Conversation_" data-uid="WitShells.DialogsManager.DialogUIController.UpdateProgress(WitShells.DialogsManager.Conversation)">
+  UpdateProgress(Conversation)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages/blob/main/Assets/WitShells/DialogsManager/Runtime/Scripts/Core/DialogUIController.cs/#L352"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void UpdateProgress(Conversation conversation)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversation</code> <a class="xref" href="WitShells.DialogsManager.Conversation.html">Conversation</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
