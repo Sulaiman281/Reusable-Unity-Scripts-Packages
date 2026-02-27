@@ -8,8 +8,24 @@ using UnityEngine;
 
 namespace WitShells.DesignPatterns.Core
 {
+    /// <summary>
+    /// A static async helper for persisting data to the local file system with
+    /// <b>AES-256 encryption</b> and <b>GZip compression</b>.
+    /// </summary>
+    /// <remarks>
+    /// Typical use-case: save-game data, player preferences, or any sensitive runtime data
+    /// that should not be readable as plain text on disk.<br/>
+    /// All read/write operations are <c>async</c> to avoid blocking the Unity main thread.
+    /// </remarks>
     public static class LocalFileSystem
     {
+        /// <summary>
+        /// Returns the file names (without extensions) of all files with the given extension
+        /// found under <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">Directory path to search.</param>
+        /// <param name="extension">File extension filter (default <c>".json"</c>).</param>
+        /// <returns>Enumerable of file names without extension.</returns>
         public static IEnumerable<string> LoadAllFileNames(string path, string extension = ".json")
         {
             if (!Directory.Exists(path)) yield break;
@@ -20,6 +36,16 @@ namespace WitShells.DesignPatterns.Core
             }
         }
 
+        /// <summary>
+        /// Asynchronously compresses (GZip) and encrypts (AES-256) <paramref name="jsonData"/>
+        /// then writes it to <c>&lt;savePath&gt;/&lt;fileName&gt;&lt;extension&gt;</c>.
+        /// The directory is created if it does not exist.
+        /// </summary>
+        /// <param name="savePath">Target directory path.</param>
+        /// <param name="fileName">File name without extension.</param>
+        /// <param name="password">Encryption password (SHA-256 derived key).</param>
+        /// <param name="jsonData">The raw content to persist.</param>
+        /// <param name="extension">File extension (default <c>".json"</c>).</param>
         public static async Task SaveFileAsync(string savePath, string fileName, string password, string jsonData, string extension = ".json")
         {
             // Compress the JSON data before encryption
@@ -36,6 +62,16 @@ namespace WitShells.DesignPatterns.Core
             await File.WriteAllTextAsync(fullPath, encryptedJson);
         }
 
+        /// <summary>
+        /// Asynchronously reads, decrypts (AES-256), and decompresses (GZip) a file saved by
+        /// <see cref="SaveFileAsync"/>.
+        /// </summary>
+        /// <param name="savePath">Directory containing the file.</param>
+        /// <param name="fileName">File name without extension.</param>
+        /// <param name="password">The password used when the file was saved.</param>
+        /// <param name="extension">File extension (default <c>".json"</c>).</param>
+        /// <returns>The original plain-text data, or <c>null</c> if the file does not exist.</returns>
+        /// <exception cref="LocalFileSystemException">Thrown when decryption fails (wrong password or corrupt file).</exception>
         public static async Task<string> LoadFileAsync(string savePath, string fileName, string password, string extension = ".json")
         {
             try
@@ -57,6 +93,15 @@ namespace WitShells.DesignPatterns.Core
             }
         }
 
+        /// <summary>
+        /// Asynchronously deletes a file after verifying the password via decryption.
+        /// </summary>
+        /// <param name="savePath">Directory containing the file.</param>
+        /// <param name="fileName">File name without extension.</param>
+        /// <param name="password">Password used to verify ownership before deletion.</param>
+        /// <param name="extension">File extension (default <c>".json"</c>).</param>
+        /// <returns><c>true</c> on successful deletion.</returns>
+        /// <exception cref="LocalFileSystemException">Thrown when the file is not found or decryption fails.</exception>
         public static async Task<bool> DeleteFileAsync(string savePath, string fileName, string password, string extension = ".json")
         {
             try
@@ -85,7 +130,11 @@ namespace WitShells.DesignPatterns.Core
             }
         }
 
-        // AES encryption with password
+        /// <summary>
+        /// Derives a 256-bit AES key from a plain-text password using SHA-256.
+        /// </summary>
+        /// <param name="password">The user-supplied password.</param>
+        /// <returns>A 32-byte key array.</returns>
         public static byte[] GetKey(string password)
         {
             // Use SHA256 to create a 256-bit key from the password
@@ -95,6 +144,9 @@ namespace WitShells.DesignPatterns.Core
             }
         }
 
+        /// <summary>
+        /// AES-256 encrypts <paramref name="plainText"/>, prepends the IV, and returns a Base64 string.
+        /// </summary>
         public static string Encrypt(string plainText, string password)
         {
             byte[] key = GetKey(password);
@@ -116,6 +168,9 @@ namespace WitShells.DesignPatterns.Core
             }
         }
 
+        /// <summary>
+        /// Decrypts a Base64 AES-256 cipher string produced by <see cref="Encrypt"/>.
+        /// </summary>
         public static string Decrypt(string cipherText, string password)
         {
             byte[] key = GetKey(password);
@@ -174,8 +229,13 @@ namespace WitShells.DesignPatterns.Core
         }
     }
 
+    /// <summary>
+    /// Exception thrown by <see cref="LocalFileSystem"/> when a file operation fails
+    /// (e.g. wrong password, missing file, or corrupt data).
+    /// </summary>
     public class LocalFileSystemException : Exception
     {
+        /// <summary>Creates a new <see cref="LocalFileSystemException"/> with the given message.</summary>
         public LocalFileSystemException(string message) : base(message) { }
     }
 }

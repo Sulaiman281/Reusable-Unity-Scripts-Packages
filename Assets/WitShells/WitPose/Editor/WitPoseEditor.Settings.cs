@@ -29,10 +29,52 @@ namespace WitShells.WitPose.Editor
         {
             EditorGUILayout.LabelField("🎨 Gizmo Settings", EditorStyles.boldLabel);
 
-            if (gizmoSystem != null)
+            // Gizmo Mode Toggle
+            if (isPoseModeActive)
             {
+                EditorGUILayout.BeginVertical("box");
+                EditorGUILayout.LabelField("🔄 Gizmo Mode", EditorStyles.boldLabel);
+                
+                EditorGUI.BeginChangeCheck();
+                GizmoMode newMode = (GizmoMode)EditorGUILayout.EnumPopup("Active Gizmos", currentGizmoMode);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    SwitchGizmoMode(newMode);
+                }
+
+                // Display current mode info
+                switch (currentGizmoMode)
+                {
+                    case GizmoMode.BoneGizmos:
+                        GUI.backgroundColor = new Color(0.8f, 1f, 0.8f);
+                        EditorGUILayout.LabelField("🦴 Bone Gizmos: Click bones to edit muscles", EditorStyles.helpBox);
+                        break;
+                    case GizmoMode.IKGizmos:
+                        GUI.backgroundColor = new Color(0.8f, 0.8f, 1f);
+                        EditorGUILayout.LabelField("🤖 IK Gizmos: Drag green cubes for IK poses", EditorStyles.helpBox);
+                        break;
+                }
+                GUI.backgroundColor = Color.white;
+                
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.Space(5);
+            }
+            else
+            {
+                EditorGUILayout.HelpBox("Enter Pose Mode to access gizmo controls", MessageType.Info);
+            }
+
+            if (gizmoSystem != null && currentGizmoMode == GizmoMode.BoneGizmos)
+            {
+                EditorGUILayout.LabelField("🦴 Bone Gizmo Options", EditorStyles.boldLabel);
                 gizmoSystem.ShowConnections = EditorGUILayout.Toggle("Show Connections", gizmoSystem.ShowConnections);
                 gizmoSystem.ShowRotationHandles = EditorGUILayout.Toggle("Show Rotation Handles", gizmoSystem.ShowRotationHandles);
+            }
+            else if (ikGizmoSystem != null && currentGizmoMode == GizmoMode.IKGizmos)
+            {
+                EditorGUILayout.LabelField("🤖 IK Gizmo Options", EditorStyles.boldLabel);
+                EditorGUILayout.LabelField("• Click green cubes to activate IK targets", EditorStyles.miniLabel);
+                EditorGUILayout.LabelField("• Drag position handles to pose limbs", EditorStyles.miniLabel);
             }
         }
 
@@ -40,6 +82,13 @@ namespace WitShells.WitPose.Editor
         {
             EditorGUILayout.BeginVertical("box");
             EditorGUILayout.LabelField("🦴 Bone Selection Integration", EditorStyles.boldLabel);
+            
+            if (currentGizmoMode != GizmoMode.BoneGizmos)
+            {
+                EditorGUILayout.HelpBox("Bone selection is only available in Bone Gizmos mode. Switch to Bone Gizmos above to use this feature.", MessageType.Info);
+                EditorGUILayout.EndVertical();
+                return;
+            }
             
             EditorGUILayout.HelpBox(
                 "Integration Instructions:\n\n" +

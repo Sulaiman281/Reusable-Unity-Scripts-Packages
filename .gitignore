@@ -87,3 +87,8 @@ crashlytics-build.properties
 /[Aa]ssets/Realistic Car Controller Pro
 /[Aa]ssets/TextMesh Pro
 /[Aa]ssets/Samples
+
+# DocFX generated output
+docs/_site/
+docs/api/
+docs/.manifest

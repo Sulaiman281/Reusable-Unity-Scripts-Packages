@@ -90,7 +90,7 @@ namespace WitShells.WebSocket
         /// <summary>
         /// Queue for thread-safe event marshaling from background WebSocket thread to Unity main thread.
         /// </summary>
-        private readonly ConcurrentQueue<System.Action> m_MainThreadActions = new ConcurrentQueue<System.Action>();
+        private readonly ConcurrentQueue<Action> m_MainThreadActions = new ConcurrentQueue<System.Action>();
         
         #endregion
         
@@ -240,17 +240,7 @@ namespace WitShells.WebSocket
             var data = Encoding.UTF8.GetBytes(message);
             return SendBinaryData(data);
         }
-        
-        /// <summary>
-        /// Legacy method for backward compatibility. Use SendBinaryData instead.
-        /// </summary>
-        /// <param name="data">Binary data to send</param>
-        [System.Obsolete("Use SendBinaryData instead for better clarity", false)]
-        public void Send(byte[] data)
-        {
-            SendBinaryData(data);
-        }
-        
+
         #endregion
         
         #region Private Methods

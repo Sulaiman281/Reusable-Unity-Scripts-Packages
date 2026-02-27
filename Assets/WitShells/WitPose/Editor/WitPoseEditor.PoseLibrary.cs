@@ -67,6 +67,45 @@ namespace WitShells.WitPose.Editor
             EditorGUILayout.LabelField("📚 Pose Library", EditorStyles.boldLabel);
             EditorGUILayout.EndVertical();
 
+            // Gizmo Mode Toggle (moved from tab bar)
+            if (isPoseModeActive)
+            {
+                EditorGUILayout.BeginVertical("box");
+                EditorGUILayout.LabelField("🔄 Gizmo Mode", EditorStyles.boldLabel);
+                
+                EditorGUI.BeginChangeCheck();
+                GizmoMode newMode = (GizmoMode)EditorGUILayout.EnumPopup("Active Gizmos", currentGizmoMode);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    SwitchGizmoMode(newMode);
+                }
+
+                // Display current mode info with quick toggle buttons
+                EditorGUILayout.BeginHorizontal();
+                GUI.backgroundColor = currentGizmoMode == GizmoMode.BoneGizmos ? successColor : Color.white;
+                if (GUILayout.Button("🦴 Bone Gizmos", GUILayout.Height(25)))
+                {
+                    if (currentGizmoMode != GizmoMode.BoneGizmos) SwitchGizmoMode(GizmoMode.BoneGizmos);
+                }
+                
+                GUI.backgroundColor = currentGizmoMode == GizmoMode.IKGizmos ? successColor : Color.white;
+                if (GUILayout.Button("🤖 IK Gizmos", GUILayout.Height(25)))
+                {
+                    if (currentGizmoMode != GizmoMode.IKGizmos) SwitchGizmoMode(GizmoMode.IKGizmos);
+                }
+                GUI.backgroundColor = Color.white;
+                EditorGUILayout.EndHorizontal();
+                
+                // Mode description
+                string modeDescription = currentGizmoMode == GizmoMode.BoneGizmos 
+                    ? "💡 Click bones in scene view to edit muscles" 
+                    : "💡 Click green cubes to activate IK, then drag to pose";
+                EditorGUILayout.LabelField(modeDescription, EditorStyles.miniLabel);
+                
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.Space(5);
+            }
+
             EditorGUILayout.Space(5);
             poseLibraryScrollPosition = EditorGUILayout.BeginScrollView(poseLibraryScrollPosition, GUILayout.ExpandWidth(true));
             DrawPoseLibrary();

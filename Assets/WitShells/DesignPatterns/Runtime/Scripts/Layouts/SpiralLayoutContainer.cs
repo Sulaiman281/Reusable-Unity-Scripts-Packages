@@ -4,12 +4,26 @@ using WitShells.DesignPatterns.Core;
 
 namespace WitShells.DesignPatterns
 {
+    /// <summary>Direction of spiral growth when generating a <see cref="SpiralLayoutContainer"/> layout.</summary>
     public enum SpiralDirection
     {
+        /// <summary>Nodes are placed in a clockwise spiral.</summary>
         Clockwise,
+        /// <summary>Nodes are placed in a counter-clockwise spiral.</summary>
         CounterClockwise
     }
 
+    /// <summary>
+    /// A MonoBehaviour that procedurally arranges <see cref="ISpiralNode"/> GameObjects in a
+    /// spiral pattern using an <see cref="ObjectPool{T}"/> for efficient instantiation and reuse.
+    /// </summary>
+    /// <remarks>
+    /// Attach this component to a parent GameObject in your UI or world space.
+    /// Assign a <c>spiralNodePrefab</c> that implements <see cref="ISpiralNode"/>.
+    /// Call <see cref="GenerateSpiralLayout"/> at runtime to build (or rebuild) the spiral.
+    /// The spiral can operate in either world space or canvas (<c>RectTransform</c>) space
+    /// depending on the <c>canvasSpace</c> setting.
+    /// </remarks>
     public class SpiralLayoutContainer : MonoBehaviour
     {
         [Header("Spiral Layout Settings")]
@@ -33,7 +47,10 @@ namespace WitShells.DesignPatterns
             return obj;
         });
 
+        /// <summary>The first node in the spiral chain (closest to the centre).</summary>
         public ISpiralNode Head => head;
+
+        /// <summary>The last node added to the spiral chain.</summary>
         public ISpiralNode Tail => tail;
 
         protected virtual void Awake()
@@ -42,6 +59,12 @@ namespace WitShells.DesignPatterns
             tail = null;
         }
 
+        /// <summary>
+        /// Clears any existing spiral and generates a new one with <paramref name="count"/> nodes.
+        /// Node GameObjects are obtained from <see cref="NodePool"/> and placed according to
+        /// a square spiral algorithm. Clamped to <c>maxCount</c>.
+        /// </summary>
+        /// <param name="count">Desired number of nodes. Clamped to <c>maxCount</c>.</param>
         public virtual void GenerateSpiralLayout(int count)
         {
             count = Mathf.Min(count, maxCount);
@@ -63,6 +86,11 @@ namespace WitShells.DesignPatterns
             ConnectNodes();
         }
 
+        /// <summary>
+        /// Moves the head node to <paramref name="coordinate"/> and propagates the offset
+        /// to all subsequent nodes in the chain.
+        /// </summary>
+        /// <param name="coordinate">New 2D grid coordinate for the head node.</param>
         public void SetHeadCoordinate(Vector2Int coordinate)
         {
             if (head != null)

@@ -70,6 +70,21 @@ namespace WitShells.WitPose
         }
 
         /// <summary>
+        /// Converts to HumanPose but keeps the target's current world position and rotation.
+        /// Useful to prevent the avatar from teleporting when applying a pose.
+        /// </summary>
+        public HumanPose ToHumanPoseMusclesOnly(ref HumanPose currentTargetPose)
+        {
+            HumanPose pose = new HumanPose();
+            // Keep the target's current root position and rotation
+            pose.bodyPosition = currentTargetPose.bodyPosition;
+            pose.bodyRotation = currentTargetPose.bodyRotation;
+            // Apply only the saved muscles
+            pose.muscles = (float[])muscles.Clone();
+            return pose;
+        }
+
+        /// <summary>
         /// Update pose data from HumanPose
         /// </summary>
         public void UpdateFromHumanPose(HumanPose humanPose)
@@ -134,14 +149,33 @@ namespace WitShells.WitPose
             // Mirror muscle values based on left-right pairs
             for (int i = 0; i < muscles.Length; i++)
             {
-                int mirrorIndex = HumanTrait.GetMuscleDefaultMax(i) != 0 ? GetMirrorMuscleIndex(i) : i;
+                string muscleName = HumanTrait.MuscleName[i];
+                int mirrorIndex = GetMirrorMuscleIndex(i);
+
                 if (mirrorIndex != i && mirrorIndex < muscles.Length)
                 {
-                    float temp = mirrored.muscles[i];
-                    mirrored.muscles[i] = mirrored.muscles[mirrorIndex];
-                    mirrored.muscles[mirrorIndex] = temp;
+                    // Swap left and right
+                    mirrored.muscles[i] = muscles[mirrorIndex];
+                }
+                else
+                {
+                    // Center muscles: invert values for Left-Right, Twist, and Roll
+                    if (muscleName.Contains("Left-Right") || muscleName.Contains("Twist") || muscleName.Contains("Roll"))
+                    {
+                        mirrored.muscles[i] = -muscles[i];
+                    }
+                    else
+                    {
+                        mirrored.muscles[i] = muscles[i];
+                    }
                 }
             }
+
+            // Mirror body position (flip X)
+            mirrored.bodyPosition = new Vector3(-bodyPosition.x, bodyPosition.y, bodyPosition.z);
+            
+            // Mirror body rotation (flip Y and Z)
+            mirrored.bodyRotation = new Quaternion(bodyRotation.x, -bodyRotation.y, -bodyRotation.z, bodyRotation.w);
 
             return mirrored;
         }
@@ -151,9 +185,19 @@ namespace WitShells.WitPose
         /// </summary>
         private int GetMirrorMuscleIndex(int muscleIndex)
         {
-            // This would need a lookup table for muscle mirroring
-            // For now, return the same index (no mirroring)
-            // TODO: Implement proper muscle mirroring lookup
+            string muscleName = HumanTrait.MuscleName[muscleIndex];
+            
+            if (muscleName.StartsWith("Left"))
+            {
+                string rightName = "Right" + muscleName.Substring(4);
+                return Array.IndexOf(HumanTrait.MuscleName, rightName);
+            }
+            else if (muscleName.StartsWith("Right"))
+            {
+                string leftName = "Left" + muscleName.Substring(5);
+                return Array.IndexOf(HumanTrait.MuscleName, leftName);
+            }
+            
             return muscleIndex;
         }
 

@@ -199,7 +199,7 @@ namespace WitShells.WitPose.Editor
             Logger.Log($"🎯 Recorded keyframe: {muscleName} = {value:F3} at {keyframeTime:F3}s");
         }
 
-        private void RecordAllMusclesAtCurrentTime()
+        public void RecordAllMusclesAtCurrentTime()
         {
             if (targetAnimationClip == null || musclePoseSystem == null)
             {

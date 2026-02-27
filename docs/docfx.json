@@ -1,0 +1,59 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": ["Assets/WitShells/**/*.cs"],
+          "src": "../",
+          "exclude": ["**/obj/**", "**/bin/**", "**/*.g.cs"]
+        }
+      ],
+      "dest": "api",
+      "allowCompilationErrors": true,
+      "namespaceLayout": "nested",
+      "memberLayout": "samePage",
+      "globalMetadata": {
+        "_disableContribution": true
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": ["api/*.yml", "api/.manifest"]
+      },
+      {
+        "files": ["articles/**.md", "articles/**/toc.yml"],
+        "src": ".",
+        "dest": "."
+      },
+      {
+        "files": ["toc.yml", "*.md"]
+      }
+    ],
+    "resource": [
+      {
+        "files": ["images/**"]
+      }
+    ],
+    "output": "_site",
+    "template": ["default", "modern"],
+    "globalMetadata": {
+      "_appName": "WitShells",
+      "_appTitle": "WitShells — Reusable Unity Scripts & Packages",
+      "_appLogoPath": "images/logo.png",
+      "_appFaviconPath": "images/favicon.ico",
+      "_enableSearch": true,
+      "_noindex": false,
+      "_disableContribution": true,
+      "_gitContribute": {
+        "repo": "https://github.com/your-username/Reusable-Unity-Scripts-Packages",
+        "branch": "main"
+      }
+    },
+    "fileMetadata": {},
+    "markdownEngineProperties": {
+      "markdigExtensions": ["abbreviations", "definitionLists"]
+    }
+  }
+}

@@ -32,6 +32,7 @@ namespace WitShells.WitPose.Editor
         private BonePoseSystem bonePoseSystem;
         private MusclePoseSystem musclePoseSystem;
         private BoneGizmoSystem gizmoSystem;
+        private IKGizmoSystem ikGizmoSystem;
 
         // ===== UI STATE =====
         private Vector2 scrollPosition;
@@ -58,6 +59,7 @@ namespace WitShells.WitPose.Editor
 
         // ===== ANIMATION TRACKING =====
         private bool enableMuscleTracking = false;
+        public bool EnableMuscleTracking => enableMuscleTracking;
         private AnimationClip targetAnimationClip;
         private float manualKeyframeTime = 0f;
         private bool useAnimationWindowTime = true;
@@ -70,6 +72,14 @@ namespace WitShells.WitPose.Editor
         private Vector3 lastRootPosition = Vector3.zero;
         private Quaternion lastRootRotation = Quaternion.identity;
         private bool rootPositionFoldout = true;
+
+        // ===== GIZMO SYSTEM TOGGLE =====
+        public enum GizmoMode
+        {
+            BoneGizmos,
+            IKGizmos
+        }
+        private GizmoMode currentGizmoMode = GizmoMode.BoneGizmos;
 
         // ===== UI COLORS =====
         private Color accentColor = new Color(0.3f, 0.6f, 1f);
@@ -122,12 +132,24 @@ namespace WitShells.WitPose.Editor
                 // If recording mode is active but animation preview got enabled again, disable it
                 AnimationMode.StopAnimationMode();
             }
+
+            // Handle hotkey for gizmo mode switching (G key)
+            if (isPoseModeActive && Event.current != null && Event.current.type == EventType.KeyDown)
+            {
+                if (Event.current.keyCode == KeyCode.G && !Event.current.control && !Event.current.shift && !Event.current.alt)
+                {
+                    // Toggle between gizmo modes
+                    GizmoMode newMode = currentGizmoMode == GizmoMode.BoneGizmos ? GizmoMode.IKGizmos : GizmoMode.BoneGizmos;
+                    SwitchGizmoMode(newMode);
+                    Event.current.Use();
+                }
+            }
         }
 
         private void OnSceneGUI(SceneView sceneView)
         {
-            // Draw mini bone muscle HUD in scene view
-            if (showBoneMuscleHUD && selectedBone != HumanBodyBones.LastBone && isPoseModeActive)
+            // Draw mini bone muscle HUD in scene view (only in bone gizmo mode)
+            if (showBoneMuscleHUD && selectedBone != HumanBodyBones.LastBone && isPoseModeActive && currentGizmoMode == GizmoMode.BoneGizmos)
             {
                 DrawSceneViewBoneMuscleHUD();
             }
@@ -274,9 +296,10 @@ namespace WitShells.WitPose.Editor
             bonePoseSystem = new BonePoseSystem(skeleton);
             musclePoseSystem = new MusclePoseSystem(targetAnimator, skeleton, bonePoseSystem);
             gizmoSystem = new BoneGizmoSystem(skeleton, bonePoseSystem, this);
+            ikGizmoSystem = new IKGizmoSystem(targetAnimator, bonePoseSystem, musclePoseSystem, this);
 
-            // Activate gizmos
-            gizmoSystem.Activate();
+            // Activate gizmos based on current mode
+            ActivateGizmosForCurrentMode();
 
             // Initialize muscle group foldouts
             muscleGroupFoldouts.Clear();
@@ -304,10 +327,12 @@ namespace WitShells.WitPose.Editor
 
             // Cleanup
             gizmoSystem?.Deactivate();
+            ikGizmoSystem?.Deactivate();
             skeleton = null;
             bonePoseSystem = null;
             musclePoseSystem = null;
             gizmoSystem = null;
+            ikGizmoSystem = null;
 
             // Reset bone selection
             selectedBone = HumanBodyBones.LastBone;
@@ -395,7 +420,7 @@ namespace WitShells.WitPose.Editor
         /// </summary>
         public void SelectBone(HumanBodyBones bone)
         {
-            if (!isPoseModeActive || musclePoseSystem == null)
+            if (!isPoseModeActive || musclePoseSystem == null || currentGizmoMode != GizmoMode.BoneGizmos)
                 return;
 
             if (bone == selectedBone)
@@ -653,7 +678,43 @@ namespace WitShells.WitPose.Editor
 
             Logger.Log($"🎲 Randomized muscles for {GetBoneDisplayName(selectedBone)}");
         }
+        // ===== GIZMO MODE MANAGEMENT =====
 
+        private void ActivateGizmosForCurrentMode()
+        {
+            if (gizmoSystem == null || ikGizmoSystem == null) return;
+
+            // Deactivate all first
+            gizmoSystem.Deactivate();
+            ikGizmoSystem.Deactivate();
+
+            // Activate based on current mode
+            switch (currentGizmoMode)
+            {
+                case GizmoMode.BoneGizmos:
+                    gizmoSystem.Activate();
+                    Logger.Log("🦴 Bone Gizmos Activated");
+                    break;
+                case GizmoMode.IKGizmos:
+                    ikGizmoSystem.Activate();
+                    Logger.Log("🤖 IK Gizmos Activated");
+                    break;
+            }
+        }
+
+        public void SwitchGizmoMode(GizmoMode newMode)
+        {
+            if (!isPoseModeActive || newMode == currentGizmoMode) return;
+
+            currentGizmoMode = newMode;
+            ActivateGizmosForCurrentMode();
+
+            // Clear bone selection when switching modes
+            selectedBone = HumanBodyBones.LastBone;
+            showBoneMuscleHUD = false;
+
+            Repaint();
+        }
         private string GetBoneDisplayName(HumanBodyBones bone)
         {
             string boneName = bone.ToString();

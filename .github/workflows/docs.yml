@@ -1,0 +1,80 @@
+# Build and deploy DocFX documentation to GitHub Pages.
+#
+# To enable:
+#   1. Push this file to your repository.
+#   2. Go to Settings → Pages → Source → GitHub Actions.
+#   3. The workflow runs automatically on every push to `main`.
+#
+# Live URL:  https://<your-username>.github.io/<repo-name>/
+
+name: Deploy Docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Re-build whenever docs config or source files change
+      - "docs/**"
+      - "Assets/WitShells/**/*.cs"
+      - ".github/workflows/docs.yml"
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+# Grant the GITHUB_TOKEN the minimum permissions needed for Pages deployment
+permissions:
+  actions: read
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deployment at a time; do NOT cancel an in-progress run
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Source code ──────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history so git-metadata works correctly
+
+      # ── 2. .NET runtime (DocFX requires .NET 8+) ────────────────────────────
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.x"
+
+      # ── 3. Install DocFX as a global .NET tool ───────────────────────────────
+      - name: Install DocFX
+        run: dotnet tool update -g docfx
+
+      # ── 4. Build the documentation site ─────────────────────────────────────
+      #   `docs/docfx.json` drives metadata extraction from C# source files
+      #   and outputs static HTML to `docs/_site`.
+      - name: Build documentation
+        run: docfx docs/docfx.json
+        env:
+          # Silence "missing reference" warnings for Unity-specific assemblies
+          # that are not present in the CI environment.
+          DOCFX_SOURCE_BRANCH_NAME: main
+
+      # ── 5. Upload the built site as a Pages artifact ─────────────────────────
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/_site
+
+      # ── 6. Deploy to GitHub Pages ─────────────────────────────────────────────
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
