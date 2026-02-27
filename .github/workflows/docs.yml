@@ -10,16 +10,10 @@
 
 name: Deploy Docs to GitHub Pages
 
+# This workflow is superseded by jekyll-gh-pages.yml which handles
+# DocFX builds and deployment using the native GitHub Pages approach.
+# Disabled – only runs when manually triggered.
 on:
-  push:
-    branches:
-      - main
-    paths:
-      # Re-build whenever docs config or source files change
-      - "docs/**"
-      - "Assets/WitShells/**/*.cs"
-      - ".github/workflows/docs.yml"
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
 permissions:
