@@ -27,6 +27,7 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/W
 ```
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/DesignPatterns
 ```
+📖 [View Documentation](https://Sulaiman281.github.io/Reusable-Unity-Scripts-Packages/articles/design-patterns.html)
 
 ### Third Person Control
 ```
@@ -202,6 +203,9 @@ public class PoseController : MonoBehaviour
 ---
 
 ### 2. Design Patterns
+
+> 📖 **[Full Documentation →](https://Sulaiman281.github.io/Reusable-Unity-Scripts-Packages/articles/design-patterns.html)** — Comprehensive guide with examples for every pattern
+> 🔬 **[API Reference →](https://Sulaiman281.github.io/Reusable-Unity-Scripts-Packages/api/WitShells.DesignPatterns.Core.html)** — Auto-generated class & method reference
 
 Production-ready design pattern implementations optimized for Unity.
 
