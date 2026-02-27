@@ -1,11 +1,12 @@
 # Build and deploy DocFX documentation to GitHub Pages.
 #
-# To enable:
+# Setup (one-time):
 #   1. Push this file to your repository.
-#   2. Go to Settings → Pages → Source → GitHub Actions.
+#   2. Go to Settings → Pages → Source → "Deploy from a branch"
+#      Branch: gh-pages  /  Folder: / (root)
 #   3. The workflow runs automatically on every push to `main`.
 #
-# Live URL:  https://<your-username>.github.io/<repo-name>/
+# Live URL:  https://Sulaiman281.github.io/Reusable-Unity-Scripts-Packages/
 
 name: Deploy Docs to GitHub Pages
 
@@ -21,12 +22,8 @@ on:
   # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
-# Grant the GITHUB_TOKEN the minimum permissions needed for Pages deployment
 permissions:
-  actions: read
-  contents: read
-  pages: write
-  id-token: write
+  contents: write   # needed to push to the gh-pages branch
 
 # Only one deployment at a time; do NOT cancel an in-progress run
 concurrency:
@@ -35,10 +32,6 @@ concurrency:
 
 jobs:
   build-and-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
 
     steps:
@@ -64,17 +57,19 @@ jobs:
       - name: Build documentation
         run: docfx docs/docfx.json
         env:
-          # Silence "missing reference" warnings for Unity-specific assemblies
-          # that are not present in the CI environment.
           DOCFX_SOURCE_BRANCH_NAME: main
 
-      # ── 5. Upload the built site as a Pages artifact ─────────────────────────
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      # ── 5. Deploy _site to the gh-pages branch ───────────────────────────────
+      #   peaceiris/actions-gh-pages pushes the built output to `gh-pages`
+      #   branch so GitHub Pages can serve it directly from that branch.
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: docs/_site
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/_site
+          publish_branch: gh-pages
+          force_orphan: true          # keep gh-pages branch lean (no history)
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_message: "docs: deploy ${{ github.sha }}"
 
-      # ── 6. Deploy to GitHub Pages ─────────────────────────────────────────────
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
