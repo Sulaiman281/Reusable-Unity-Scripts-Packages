@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using WitShells.WitPose;
 using WitShells.WitPose.Editor.Core;
 
 namespace WitShells.WitPose.Editor
@@ -10,6 +11,9 @@ namespace WitShells.WitPose.Editor
     /// </summary>
     public partial class WitPoseEditor
     {
+        // ===== MIRROR POSE =====
+        private bool mirrorPose = false;
+
         /// <summary>
         /// Get muscle value directly from animation clip at current time
         /// </summary>
@@ -139,7 +143,7 @@ namespace WitShells.WitPose.Editor
             // Header with controls
             EditorGUILayout.BeginVertical("box");
             EditorGUILayout.LabelField("🏋️ Muscle Control System", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox("💡 Adjust muscle values to pose your character. Changes are automatically applied to bones and can be keyframed.", MessageType.Info);
+            EditorGUILayout.HelpBox("💡 Sliders follow realistic human joint limits. Arms: straight→bent, fist→open. Legs: straight→bent, feet anatomically correct.", MessageType.Info);
 
             EditorGUILayout.BeginHorizontal();
 
@@ -188,13 +192,519 @@ namespace WitShells.WitPose.Editor
 
             EditorGUILayout.Space(10);
 
-            // Muscle groups with proper emojis and organization
+            // ── Core & Spine ─────────────────────────────────────────────────
             DrawMuscleGroup("🦴 Core & Spine", "Body", 0, 8, new Color(1f, 0.9f, 0.8f));
+
+            // ── Head & Neck (kept as original) ────────────────────────────────
             DrawMuscleGroup("🗣️ Head & Neck", "Head", 9, 14, new Color(1f, 0.8f, 0.9f));
-            DrawMuscleGroup("🤲 Left Arm", "Left Arm", 15, 38, new Color(0.8f, 1f, 0.9f));
-            DrawMuscleGroup("🫱 Right Arm", "Right Arm", 39, 62, new Color(0.8f, 0.9f, 1f));
-            DrawMuscleGroup("🦵 Left Leg", "Left Leg", 63, 78, new Color(0.9f, 0.8f, 1f));
-            DrawMuscleGroup("🦵 Right Leg", "Right Leg", 79, 94, new Color(1f, 1f, 0.8f));
+
+            // ── Mirror Pose Toggle ────────────────────────────────────────────
+            DrawMirrorToggle();
+
+            // ── Left Arm (anatomical sub-groups) ─────────────────────────────
+            DrawArmGroup("🤲 Left Arm", "LeftArm", isLeft: true);
+
+            // ── Right Arm (anatomical sub-groups) ────────────────────────────
+            DrawArmGroup("🫱 Right Arm", "RightArm", isLeft: false);
+
+            // ── Left Leg (anatomical sub-groups) ─────────────────────────────
+            DrawLegGroup("🦵 Left Leg", "LeftLeg", isLeft: true);
+
+            // ── Right Leg (anatomical sub-groups) ────────────────────────────
+            DrawLegGroup("🦵 Right Leg", "RightLeg", isLeft: false);
+        }
+
+        // ─────────────────────────────────────────────────────────────────────
+        // ARM GROUP — absolute indices sourced from InitializeBoneToMuscleMapping
+        //
+        // LEFT ARM:
+        //   Shoulder:   37=Down-Up  38=Front-Back
+        //   Upper Arm:  39=Down-Up  40=Front-Back  41=Twist In-Out
+        //   Forearm:    42=Stretch(Elbow Bend)  43=Twist(Pronation-Supination)
+        //   Hand/Wrist: 44=Down-Up  45=In-Out
+        //   Thumb:      55=1Stretched  56=Spread  57=2Stretched  58=3Stretched
+        //   Index:      59=1Stretched  60=Spread  61=2Stretched  62=3Stretched
+        //   Middle:     63=1Stretched  64=Spread  65=2Stretched  66=3Stretched
+        //   Ring:       67=1Stretched  68=Spread  69=2Stretched  70=3Stretched
+        //   Little:     71=1Stretched  72=Spread  73=2Stretched  74=3Stretched
+        //
+        // RIGHT ARM:
+        //   Shoulder:   46=Down-Up  47=Front-Back
+        //   Upper Arm:  48=Down-Up  49=Front-Back  50=Twist In-Out
+        //   Forearm:    51=Stretch(Elbow Bend)  52=Twist(Pronation-Supination)
+        //   Hand/Wrist: 53=Down-Up  54=In-Out
+        //   Thumb:      75=1Stretched  76=Spread  77=2Stretched  78=3Stretched
+        //   Index:      79=1Stretched  80=Spread  81=2Stretched  82=3Stretched
+        //   Middle:     83=1Stretched  84=Spread  85=2Stretched  86=3Stretched
+        //   Ring:       87=1Stretched  88=Spread  89=2Stretched  90=3Stretched
+        //   Little:     91=1Stretched  92=Spread  93=2Stretched  94=3Stretched
+        // ─────────────────────────────────────────────────────────────────────
+        private void DrawArmGroup(string displayName, string groupKey, bool isLeft)
+        {
+            // Absolute shoulder/arm/wrist base: left=37, right=46
+            int sh0 = isLeft ? 37 : 46; // Shoulder Down-Up
+            int sh1 = isLeft ? 38 : 47; // Shoulder Front-Back
+            int ua0 = isLeft ? 39 : 48; // Upper Arm Down-Up
+            int ua1 = isLeft ? 40 : 49; // Upper Arm Front-Back
+            int ua2 = isLeft ? 41 : 50; // Upper Arm Twist In-Out
+            int fa0 = isLeft ? 42 : 51; // Forearm Stretch (Elbow Bend)
+            int fa1 = isLeft ? 43 : 52; // Forearm Twist (Pronation-Supination)
+            int wr0 = isLeft ? 44 : 53; // Wrist Down-Up
+            int wr1 = isLeft ? 45 : 54; // Wrist In-Out
+
+            // Absolute finger base: left thumb=55, right thumb=75  (each finger = 4 muscles)
+            int tb = isLeft ? 55 : 75; // Thumb base
+            int ib = isLeft ? 59 : 79; // Index base
+            int mb = isLeft ? 63 : 83; // Middle base
+            int rb = isLeft ? 67 : 87; // Ring base
+            int lb = isLeft ? 71 : 91; // Little base
+
+            // All arm muscles (non-contiguous: 37-45 + 55-74  /  46-54 + 75-94)
+            int[] allArmMuscles = isLeft
+                ? new[] { 37,38,39,40,41,42,43,44,45, 55,56,57,58, 59,60,61,62, 63,64,65,66, 67,68,69,70, 71,72,73,74 }
+                : new[] { 46,47,48,49,50,51,52,53,54, 75,76,77,78, 79,80,81,82, 83,84,85,86, 87,88,89,90, 91,92,93,94 };
+
+            if (!muscleGroupFoldouts.ContainsKey(groupKey))
+                muscleGroupFoldouts[groupKey] = false;
+
+            EditorGUILayout.Space(5);
+            Color armColor = isLeft ? new Color(0.8f, 1f, 0.9f) : new Color(0.8f, 0.9f, 1f);
+            GUI.backgroundColor = armColor;
+            EditorGUILayout.BeginVertical("box");
+            GUI.backgroundColor = Color.white;
+
+            EditorGUILayout.BeginHorizontal();
+            muscleGroupFoldouts[groupKey] = EditorGUILayout.Foldout(muscleGroupFoldouts[groupKey], displayName, true, EditorStyles.foldoutHeader);
+            if (muscleGroupFoldouts[groupKey])
+            {
+                GUILayout.FlexibleSpace();
+                GUI.backgroundColor = new Color(1f, 0.8f, 0.8f);
+                if (GUILayout.Button("🔄", GUILayout.Width(25), GUILayout.Height(18)))
+                    ResetMuscleIndices(allArmMuscles);
+                GUI.backgroundColor = new Color(0.8f, 0.8f, 1f);
+                if (GUILayout.Button("🎲", GUILayout.Width(25), GUILayout.Height(18)))
+                    RandomizeMuscleIndices(allArmMuscles);
+                GUI.backgroundColor = Color.white;
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (!muscleGroupFoldouts[groupKey])
+            {
+                EditorGUILayout.EndVertical();
+                return;
+            }
+
+            EditorGUI.indentLevel++;
+
+            // ── Shoulder ──────────────────────────────────────────────────────
+            DrawMuscleSubGroup("💪 Shoulder", groupKey + "_shoulder",
+                new Color(0.95f, 1f, 0.9f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(sh0, "↕ Shoulder Down / Up  (-1=Down → 1=Up/Raised)");
+                    DrawLabeledMuscleSlider(sh1, "↔ Shoulder Front / Back  (-1=Back → 1=Forward)");
+                });
+
+            // ── Upper Arm & Elbow ─────────────────────────────────────────────
+            DrawMuscleSubGroup("🦾 Upper Arm & Elbow", groupKey + "_elbow",
+                new Color(0.9f, 1f, 0.9f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(ua0, "↕ Arm Down / Up  (-1=Lower → 1=Raise)");
+                    DrawLabeledMuscleSlider(ua1, "↔ Arm Front / Back  (-1=Back → 1=Forward)");
+                    DrawLabeledMuscleSlider(ua2, "🔄 Upper Arm Twist  (-1=Inward → 1=Outward)");
+                    DrawLabeledMuscleSlider(fa0, "📐 Elbow Bend  (-1=Straight → 1=Fully Bent)");
+                    DrawLabeledMuscleSlider(fa1, "🔄 Forearm Pronation / Supination  (-1=Pronate → 1=Supinate)");
+                });
+
+            // ── Wrist ─────────────────────────────────────────────────────────
+            DrawMuscleSubGroup("🤝 Wrist", groupKey + "_wrist",
+                new Color(0.85f, 1f, 0.85f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(wr0, "↕ Wrist Down / Up  (-1=Flex Down → 1=Extend Up)");
+                    DrawLabeledMuscleSlider(wr1, "↔ Wrist In / Out  (-1=Ulnar → 1=Radial Deviation)");
+                });
+
+            // ── All Fingers master slider ─────────────────────────────────────
+            DrawAllFingersSlider(tb, ib, mb, rb, lb);
+
+            // ── Thumb ─────────────────────────────────────────────────────────
+            DrawMuscleSubGroup("👍 Thumb", groupKey + "_thumb",
+                new Color(1f, 1f, 0.85f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(tb + 0, "📐 Thumb Proximal Stretch  (-1=Curl → 1=Extend)");
+                    DrawLabeledMuscleSlider(tb + 1, "↔ Thumb Spread  (-1=Adduct → 1=Abduct)");
+                    DrawLabeledMuscleSlider(tb + 2, "📐 Thumb Middle Stretch  (-1=Curl → 1=Extend)");
+                    DrawLabeledMuscleSlider(tb + 3, "📐 Thumb Distal Stretch  (-1=Curl → 1=Extend)");
+                });
+
+            // ── Index Finger ──────────────────────────────────────────────────
+            DrawMuscleSubGroup("☝️ Index Finger", groupKey + "_index",
+                new Color(1f, 0.95f, 0.85f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(ib + 0, "📐 Index Knuckle  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(ib + 1, "↔ Index Spread  (-1=Adduct → 1=Abduct)");
+                    DrawLabeledMuscleSlider(ib + 2, "📐 Index Middle Joint  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(ib + 3, "📐 Index Tip Joint  (-1=Fist → 1=Open)");
+                });
+
+            // ── Middle Finger ─────────────────────────────────────────────────
+            DrawMuscleSubGroup("🖕 Middle Finger", groupKey + "_middle",
+                new Color(1f, 0.9f, 0.85f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(mb + 0, "📐 Middle Knuckle  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(mb + 1, "↔ Middle Spread  (-1=Adduct → 1=Abduct)");
+                    DrawLabeledMuscleSlider(mb + 2, "📐 Middle Middle Joint  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(mb + 3, "📐 Middle Tip Joint  (-1=Fist → 1=Open)");
+                });
+
+            // ── Ring Finger ───────────────────────────────────────────────────
+            DrawMuscleSubGroup("💍 Ring Finger", groupKey + "_ring",
+                new Color(0.95f, 0.9f, 1f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(rb + 0, "📐 Ring Knuckle  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(rb + 1, "↔ Ring Spread  (-1=Adduct → 1=Abduct)");
+                    DrawLabeledMuscleSlider(rb + 2, "📐 Ring Middle Joint  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(rb + 3, "📐 Ring Tip Joint  (-1=Fist → 1=Open)");
+                });
+
+            // ── Little (Pinky) Finger ─────────────────────────────────────────
+            DrawMuscleSubGroup("🤙 Little Finger (Pinky)", groupKey + "_little",
+                new Color(0.9f, 0.9f, 1f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(lb + 0, "📐 Little Knuckle  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(lb + 1, "↔ Little Spread  (-1=Adduct → 1=Abduct)");
+                    DrawLabeledMuscleSlider(lb + 2, "📐 Little Middle Joint  (-1=Fist → 1=Open)");
+                    DrawLabeledMuscleSlider(lb + 3, "📐 Little Tip Joint  (-1=Fist → 1=Open)");
+                });
+
+            EditorGUI.indentLevel--;
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
+        /// Master slider that drives all finger curl/stretch muscles at once.
+        /// Spread muscles (index +1 in each finger) are excluded so fingers stay
+        /// naturally together. -1 = full fist, 1 = fully open / extended hand.
+        /// Respects mirror mode and recording mode just like individual sliders.
+        /// </summary>
+        private void DrawAllFingersSlider(int tb, int ib, int mb, int rb, int lb)
+        {
+            // Curl/stretch muscles only — spread muscles intentionally skipped
+            int[] stretchMuscles =
+            {
+                tb+0, tb+2, tb+3,
+                ib+0, ib+2, ib+3,
+                mb+0, mb+2, mb+3,
+                rb+0, rb+2, rb+3,
+                lb+0, lb+2, lb+3
+            };
+
+            // Compute average of all curl muscles for the current slider position
+            float avg = 0f;
+            foreach (int idx in stretchMuscles)
+                avg += (enableMuscleTracking && targetAnimationClip != null)
+                    ? GetMuscleValueFromClip(idx)
+                    : musclePoseSystem.MuscleValues[idx];
+            avg /= stretchMuscles.Length;
+
+            EditorGUILayout.Space(4);
+            GUI.backgroundColor = new Color(1f, 0.94f, 0.75f);
+            EditorGUILayout.BeginVertical("box");
+            GUI.backgroundColor = Color.white;
+
+            EditorGUILayout.BeginHorizontal();
+
+            GUIStyle boldLabel = new GUIStyle(EditorStyles.boldLabel) { fontSize = 11 };
+            EditorGUILayout.LabelField("🖐  All Fingers   👊 ←  Fist  |  Open  → ✋", boldLabel, GUILayout.MinWidth(220));
+
+            EditorGUILayout.LabelField($"{avg:F3}", EditorStyles.miniLabel, GUILayout.Width(40));
+
+            GUI.backgroundColor = GetMuscleValueColor(avg);
+            EditorGUI.BeginChangeCheck();
+            float newAvg = EditorGUILayout.Slider(avg, -1f, 1f);
+            GUI.backgroundColor = Color.white;
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                foreach (int idx in stretchMuscles)
+                    ApplyMuscleValue(idx, newAvg);
+            }
+
+            GUI.backgroundColor = new Color(1f, 0.9f, 0.9f);
+            if (GUILayout.Button("↺", GUILayout.Width(20), GUILayout.Height(16)))
+            {
+                foreach (int idx in stretchMuscles)
+                    ApplyMuscleValue(idx, 0f, useAutoKey: false);
+            }
+            GUI.backgroundColor = Color.white;
+
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.Space(4);
+        }
+
+        // ─────────────────────────────────────────────────────────────────────
+        // LEG GROUP — absolute indices sourced from InitializeBoneToMuscleMapping
+        //
+        // LEFT LEG:
+        //   Upper Leg:  21=Front-Back(Hip Flex)  22=In-Out(Abduction)  23=Twist
+        //   Lower Leg:  24=Stretch(Knee Bend)    25=Twist
+        //   Foot:       26=Up-Down(Ankle)         27=Twist(Inversion)
+        //   Toes:       28=Up-Down
+        //
+        // RIGHT LEG:
+        //   Upper Leg:  29=Front-Back(Hip Flex)  30=In-Out(Abduction)  31=Twist
+        //   Lower Leg:  32=Stretch(Knee Bend)    33=Twist
+        //   Foot:       34=Up-Down(Ankle)         35=Twist(Inversion)
+        //   Toes:       36=Up-Down
+        // ─────────────────────────────────────────────────────────────────────
+        private void DrawLegGroup(string displayName, string groupKey, bool isLeft)
+        {
+            // Absolute leg base: left=21, right=29 (8 consecutive muscles each)
+            int b = isLeft ? 21 : 29;
+
+            if (!muscleGroupFoldouts.ContainsKey(groupKey))
+                muscleGroupFoldouts[groupKey] = false;
+
+            EditorGUILayout.Space(5);
+            Color legColor = isLeft ? new Color(0.9f, 0.8f, 1f) : new Color(1f, 1f, 0.8f);
+            GUI.backgroundColor = legColor;
+            EditorGUILayout.BeginVertical("box");
+            GUI.backgroundColor = Color.white;
+
+            EditorGUILayout.BeginHorizontal();
+            muscleGroupFoldouts[groupKey] = EditorGUILayout.Foldout(muscleGroupFoldouts[groupKey], displayName, true, EditorStyles.foldoutHeader);
+            if (muscleGroupFoldouts[groupKey])
+            {
+                GUILayout.FlexibleSpace();
+                GUI.backgroundColor = new Color(1f, 0.8f, 0.8f);
+                if (GUILayout.Button("🔄", GUILayout.Width(25), GUILayout.Height(18)))
+                    ResetMuscleGroup(b, b + 7);
+                GUI.backgroundColor = new Color(0.8f, 0.8f, 1f);
+                if (GUILayout.Button("🎲", GUILayout.Width(25), GUILayout.Height(18)))
+                    RandomizeMuscleGroup(b, b + 7);
+                GUI.backgroundColor = Color.white;
+            }
+            EditorGUILayout.EndHorizontal();
+
+            if (!muscleGroupFoldouts[groupKey])
+            {
+                EditorGUILayout.EndVertical();
+                return;
+            }
+
+            EditorGUI.indentLevel++;
+
+            // ── Hip / Upper Leg ───────────────────────────────────────────────
+            DrawMuscleSubGroup("🦴 Hip", groupKey + "_hip",
+                new Color(0.95f, 0.9f, 1f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(b + 0, "↕ Hip Flex / Extend  (-1=Leg Back → 1=Leg Forward)");
+                    DrawLabeledMuscleSlider(b + 1, "↔ Hip Abduct / Adduct  (-1=Legs Together → 1=Spread)");
+                    DrawLabeledMuscleSlider(b + 2, "🔄 Hip Rotation  (-1=External → 1=Internal)");
+                });
+
+            // ── Knee / Lower Leg ──────────────────────────────────────────────
+            DrawMuscleSubGroup("🦵 Knee", groupKey + "_knee",
+                new Color(0.9f, 0.85f, 1f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(b + 3, "📐 Knee Bend  (-1=Fully Bent → 1=Straight)");
+                    DrawLabeledMuscleSlider(b + 4, "🔄 Shin Rotation  (-1=Inward → 1=Outward)");
+                });
+
+            // ── Ankle / Foot ──────────────────────────────────────────────────
+            DrawMuscleSubGroup("🦶 Ankle & Foot", groupKey + "_foot",
+                new Color(0.85f, 0.85f, 1f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(b + 5, "↕ Ankle Up / Down  (-1=Plantarflex(Toes Down) → 1=Dorsiflex(Toes Up))");
+                    DrawLabeledMuscleSlider(b + 6, "↔ Foot Twist  (-1=Inversion(Roll In) → 1=Eversion(Roll Out))");
+                });
+
+            // ── Toes ──────────────────────────────────────────────────────────
+            DrawMuscleSubGroup("👣 Toes", groupKey + "_toes",
+                new Color(0.8f, 0.8f, 1f),
+                () =>
+                {
+                    DrawLabeledMuscleSlider(b + 7, "↕ Toes Up / Down  (-1=Curl Down → 1=Extend Up)");
+                });
+
+            EditorGUI.indentLevel--;
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
+        /// Draws a collapsible sub-group within an arm or leg group.
+        /// </summary>
+        private void DrawMuscleSubGroup(string label, string key, Color bgColor, System.Action drawContent)
+        {
+            if (!muscleGroupFoldouts.ContainsKey(key))
+                muscleGroupFoldouts[key] = true; // sub-groups default open
+
+            EditorGUILayout.Space(3);
+            GUI.backgroundColor = bgColor;
+            EditorGUILayout.BeginVertical("box");
+            GUI.backgroundColor = Color.white;
+
+            muscleGroupFoldouts[key] = EditorGUILayout.Foldout(muscleGroupFoldouts[key], label, true);
+            if (muscleGroupFoldouts[key])
+            {
+                EditorGUI.indentLevel++;
+                drawContent?.Invoke();
+                EditorGUI.indentLevel--;
+            }
+
+            EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>
+        /// Draws the Mirror Pose toggle bar shown between Head/Neck and the arm groups.
+        /// </summary>
+        private void DrawMirrorToggle()
+        {
+            EditorGUILayout.Space(4);
+
+            Color onColor  = new Color(0.3f, 0.9f, 1f);   // cyan-ish when ON
+            Color offColor = new Color(0.75f, 0.75f, 0.75f); // grey when OFF
+
+            GUI.backgroundColor = mirrorPose ? onColor : offColor;
+            EditorGUILayout.BeginVertical("box");
+            GUI.backgroundColor = Color.white;
+
+            EditorGUILayout.BeginHorizontal();
+
+            // Big, clear toggle button
+            string icon  = mirrorPose ? "🔗" : "🔓";
+            string state = mirrorPose ? "ON" : "OFF";
+            GUIStyle btnStyle = new GUIStyle(GUI.skin.button)
+            {
+                fontStyle = FontStyle.Bold,
+                fontSize  = 12
+            };
+            GUI.backgroundColor = mirrorPose ? onColor : offColor;
+            if (GUILayout.Button($"{icon}  Mirror Pose  [{state}]", btnStyle, GUILayout.Height(30), GUILayout.ExpandWidth(true)))
+                mirrorPose = !mirrorPose;
+            GUI.backgroundColor = Color.white;
+
+            EditorGUILayout.EndHorizontal();
+
+            // Description line
+            string desc = mirrorPose
+                ? "✅ Moving any arm or leg slider will also move its opposite side automatically."
+                : "💡 Enable to sync both arms and both legs symmetrically when adjusting sliders.";
+            EditorGUILayout.LabelField(desc, EditorStyles.miniLabel);
+
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.Space(4);
+        }
+
+        /// <summary>
+        /// Returns the mirrored muscle index for arm/leg muscles, or -1 if none.
+        /// Mapping is sourced from InitializeBoneToMuscleMapping:
+        ///   Left arm  (37-45)  ↔  Right arm  (46-54)  : offset ±9
+        ///   Left fingers (55-74) ↔ Right fingers (75-94): offset ±20
+        ///   Left leg  (21-28)  ↔  Right leg  (29-36)  : offset ±8
+        /// </summary>
+        private int GetMirrorMuscleIndex(int muscleIndex)
+        {
+            if (muscleIndex >= 37 && muscleIndex <= 45) return muscleIndex + 9;  // Left arm → Right arm
+            if (muscleIndex >= 46 && muscleIndex <= 54) return muscleIndex - 9;  // Right arm → Left arm
+            if (muscleIndex >= 55 && muscleIndex <= 74) return muscleIndex + 20; // Left fingers → Right fingers
+            if (muscleIndex >= 75 && muscleIndex <= 94) return muscleIndex - 20; // Right fingers → Left fingers
+            if (muscleIndex >= 21 && muscleIndex <= 28) return muscleIndex + 8;  // Left leg → Right leg
+            if (muscleIndex >= 29 && muscleIndex <= 36) return muscleIndex - 8;  // Right leg → Left leg
+            return -1;
+        }
+
+        /// <summary>
+        /// Applies a muscle value (and its mirror when mirrorPose is enabled).
+        /// Handles both recording mode and normal pose mode.
+        /// </summary>
+        private void ApplyMuscleValue(int muscleIndex, float value, bool useAutoKey = true)
+        {
+            if (enableMuscleTracking && targetAnimationClip != null)
+            {
+                SetMuscleValueToClip(muscleIndex, value);
+                musclePoseSystem.SetMuscle(muscleIndex, value, autoKey: false);
+            }
+            else
+            {
+                musclePoseSystem.SetMuscle(muscleIndex, value, autoKey: useAutoKey && bonePoseSystem.AutoKey);
+            }
+
+            if (mirrorPose)
+            {
+                int mirror = GetMirrorMuscleIndex(muscleIndex);
+                if (mirror >= 0 && mirror < HumanTrait.MuscleCount)
+                {
+                    if (enableMuscleTracking && targetAnimationClip != null)
+                    {
+                        SetMuscleValueToClip(mirror, value);
+                        musclePoseSystem.SetMuscle(mirror, value, autoKey: false);
+                    }
+                    else
+                    {
+                        musclePoseSystem.SetMuscle(mirror, value, autoKey: false);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Draws a muscle slider with a custom semantic label instead of the raw muscle name.
+        /// Falls back gracefully if muscleIndex is out of range.
+        /// </summary>
+        private void DrawLabeledMuscleSlider(int muscleIndex, string semanticLabel)
+        {
+            if (muscleIndex < 0 || muscleIndex >= HumanTrait.MuscleCount) return;
+
+            float currentValue;
+            if (enableMuscleTracking && targetAnimationClip != null)
+                currentValue = GetMuscleValueFromClip(muscleIndex);
+            else
+                currentValue = musclePoseSystem.MuscleValues[muscleIndex];
+
+            // Show a mirror indicator badge when this slider has an active mirror counterpart
+            bool hasMirror = mirrorPose && GetMirrorMuscleIndex(muscleIndex) >= 0;
+
+            EditorGUILayout.BeginHorizontal();
+
+            // Index badge (with mirror icon when active)
+            string indexLabel = hasMirror ? $"🔗({muscleIndex})" : $"({muscleIndex})";
+            EditorGUILayout.LabelField(indexLabel, GUILayout.Width(hasMirror ? 55 : 35));
+
+            // Semantic label
+            EditorGUILayout.LabelField(semanticLabel, GUILayout.MinWidth(160));
+
+            // Numeric readout
+            EditorGUILayout.LabelField($"{currentValue:F3}", EditorStyles.miniLabel, GUILayout.Width(40));
+
+            // Colour-coded slider — range comes from anatomical joint limits
+            var limit = HumanMuscleJointLimits.Get(muscleIndex);
+            GUI.backgroundColor = GetMuscleValueColor(currentValue);
+            EditorGUI.BeginChangeCheck();
+            float newValue = EditorGUILayout.Slider(currentValue, limit.Min, limit.Max);
+            GUI.backgroundColor = Color.white;
+
+            if (EditorGUI.EndChangeCheck())
+                ApplyMuscleValue(muscleIndex, newValue);
+
+            // Reset button — resets to the anatomical neutral (almost always 0)
+            GUI.backgroundColor = new Color(1f, 0.9f, 0.9f);
+            if (GUILayout.Button("↺", GUILayout.Width(20), GUILayout.Height(16)))
+                ApplyMuscleValue(muscleIndex, limit.Neutral, useAutoKey: false);
+            GUI.backgroundColor = Color.white;
+
+            EditorGUILayout.EndHorizontal();
         }
 
         private void DrawMuscleGroup(string displayName, string groupKey, int startIndex, int endIndex, Color groupColor)
@@ -283,12 +793,13 @@ namespace WitShells.WitPose.Editor
             // Value display
             EditorGUILayout.LabelField($"{currentValue:F3}", EditorStyles.miniLabel, GUILayout.Width(40));
 
-            // Slider with color coding
+            // Slider with color coding — range comes from anatomical joint limits
+            var limit = HumanMuscleJointLimits.Get(muscleIndex);
             Color sliderColor = GetMuscleValueColor(currentValue);
             GUI.backgroundColor = sliderColor;
 
             EditorGUI.BeginChangeCheck();
-            float newValue = EditorGUILayout.Slider(currentValue, -1f, 1f);
+            float newValue = EditorGUILayout.Slider(currentValue, limit.Min, limit.Max);
             GUI.backgroundColor = Color.white;
 
             if (EditorGUI.EndChangeCheck())
@@ -305,20 +816,19 @@ namespace WitShells.WitPose.Editor
                 }
             }
 
-            // Reset individual muscle button
+            // Reset individual muscle — resets to the anatomical neutral (almost always 0)
             GUI.backgroundColor = new Color(1f, 0.9f, 0.9f);
             if (GUILayout.Button("↺", GUILayout.Width(20), GUILayout.Height(16)))
             {
-                // In recording mode, write to both animation clip AND apply directly to muscles
+                float neutral = limit.Neutral;
                 if (enableMuscleTracking && targetAnimationClip != null)
                 {
-                    SetMuscleValueToClip(muscleIndex, 0f); // Record keyframe
-                    musclePoseSystem.SetMuscle(muscleIndex, 0f, autoKey: false); // Apply directly for immediate feedback
+                    SetMuscleValueToClip(muscleIndex, neutral);
+                    musclePoseSystem.SetMuscle(muscleIndex, neutral, autoKey: false);
                 }
                 else
                 {
-                    // Normal mode - directly control avatar
-                    musclePoseSystem.SetMuscle(muscleIndex, 0f, autoKey: bonePoseSystem.AutoKey);
+                    musclePoseSystem.SetMuscle(muscleIndex, neutral, autoKey: bonePoseSystem.AutoKey);
                 }
             }
             GUI.backgroundColor = Color.white;
@@ -370,12 +880,13 @@ namespace WitShells.WitPose.Editor
             string displayName = $"({muscleIndex}) {muscleEmoji} {WitPoseUtils.CleanMuscleName(muscleName)}";
             GUI.Label(labelRect, displayName);
 
-            // Value slider with color coding - use GUI.HorizontalSlider for better drag handling
+            // Value slider with color coding — range from anatomical joint limits
+            var limit = HumanMuscleJointLimits.Get(muscleIndex);
             Color sliderColor = GetMuscleValueColor(currentValue);
             GUI.backgroundColor = sliderColor;
 
             EditorGUI.BeginChangeCheck();
-            float newValue = GUI.HorizontalSlider(sliderRect, currentValue, -1f, 1f);
+            float newValue = GUI.HorizontalSlider(sliderRect, currentValue, limit.Min, limit.Max);
             GUI.backgroundColor = Color.white;
 
             if (EditorGUI.EndChangeCheck())
@@ -471,6 +982,51 @@ namespace WitShells.WitPose.Editor
             }
 
             Logger.Log($"🎲 Randomized muscle group: indices {startIndex}-{endIndex}");
+        }
+
+        /// <summary>Reset a specific array of muscle indices (handles non-contiguous ranges such as arm+fingers).</summary>
+        private void ResetMuscleIndices(int[] indices)
+        {
+            if (musclePoseSystem == null) return;
+            Undo.RecordObject(targetAnimator, "Reset Muscles");
+            foreach (int i in indices)
+            {
+                if (i < 0 || i >= HumanTrait.MuscleCount) continue;
+                if (enableMuscleTracking && targetAnimationClip != null)
+                {
+                    SetMuscleValueToClip(i, 0f);
+                    musclePoseSystem.SetMuscle(i, 0f, autoKey: false);
+                }
+                else
+                {
+                    musclePoseSystem.SetMuscle(i, 0f, autoKey: false);
+                }
+            }
+            if (bonePoseSystem.AutoKey)
+                bonePoseSystem.CommitPose();
+        }
+
+        /// <summary>Randomize a specific array of muscle indices (handles non-contiguous ranges such as arm+fingers).</summary>
+        private void RandomizeMuscleIndices(int[] indices)
+        {
+            if (musclePoseSystem == null) return;
+            Undo.RecordObject(targetAnimator, "Randomize Muscles");
+            foreach (int i in indices)
+            {
+                if (i < 0 || i >= HumanTrait.MuscleCount) continue;
+                float v = UnityEngine.Random.Range(-0.3f, 0.3f);
+                if (enableMuscleTracking && targetAnimationClip != null)
+                {
+                    SetMuscleValueToClip(i, v);
+                    musclePoseSystem.SetMuscle(i, v, autoKey: false);
+                }
+                else
+                {
+                    musclePoseSystem.SetMuscle(i, v, autoKey: false);
+                }
+            }
+            if (bonePoseSystem.AutoKey)
+                bonePoseSystem.CommitPose();
         }
 
         private void DrawSelectedBoneSection()
