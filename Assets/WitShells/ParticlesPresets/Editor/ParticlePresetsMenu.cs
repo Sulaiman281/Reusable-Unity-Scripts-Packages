@@ -44,6 +44,66 @@ namespace WitShells.ParticlesPresets
             ApplyPresetToSelection(RainPreset.Configure, RainPreset.ConfigureRenderer, "Rain");
         }
 
+        [MenuItem(MenuRoot + "Apply Ashes", validate = true)]
+        private static bool ValidateApplyAshes()
+        {
+            return HasSelectedParticleSystem();
+        }
+
+        [MenuItem(MenuRoot + "Apply Ashes")]
+        private static void ApplyAshes()
+        {
+            ApplyPresetToSelection(AshesPreset.Configure, AshesPreset.ConfigureRenderer, "Ashes");
+        }
+
+        [MenuItem(MenuRoot + "Apply Pollen & Floating Micro-Flora", validate = true)]
+        private static bool ValidateApplyPollenMicroFlora()
+        {
+            return HasSelectedParticleSystem();
+        }
+
+        [MenuItem(MenuRoot + "Apply Pollen & Floating Micro-Flora")]
+        private static void ApplyPollenMicroFlora()
+        {
+            ApplyPresetToSelection(PollenMicroFloraPreset.Configure, PollenMicroFloraPreset.ConfigureRenderer, "Pollen & Floating Micro-Flora");
+        }
+
+        [MenuItem(MenuRoot + "Apply Magic Leaf Fall", validate = true)]
+        private static bool ValidateApplyMagicLeafFall()
+        {
+            return HasSelectedParticleSystem();
+        }
+
+        [MenuItem(MenuRoot + "Apply Magic Leaf Fall")]
+        private static void ApplyMagicLeafFall()
+        {
+            ApplyPresetToSelection(MagicLeafFallPreset.Configure, MagicLeafFallPreset.ConfigureRenderer, "Magic Leaf Fall");
+        }
+
+        [MenuItem(MenuRoot + "Apply Amber Dust Motes", validate = true)]
+        private static bool ValidateApplyAmberDustMotes()
+        {
+            return HasSelectedParticleSystem();
+        }
+
+        [MenuItem(MenuRoot + "Apply Amber Dust Motes")]
+        private static void ApplyAmberDustMotes()
+        {
+            ApplyPresetToSelection(AmberDustMotesPreset.Configure, AmberDustMotesPreset.ConfigureRenderer, "Amber Dust Motes");
+        }
+
+        [MenuItem(MenuRoot + "Apply Bioluminescent Spores (Deep Forest)", validate = true)]
+        private static bool ValidateApplyBioluminescentSpores()
+        {
+            return HasSelectedParticleSystem();
+        }
+
+        [MenuItem(MenuRoot + "Apply Bioluminescent Spores (Deep Forest)")]
+        private static void ApplyBioluminescentSpores()
+        {
+            ApplyPresetToSelection(BioluminescentSporesPreset.Configure, BioluminescentSporesPreset.ConfigureRenderer, "Bioluminescent Spores (Deep Forest)");
+        }
+
         private static bool HasSelectedParticleSystem()
         {
             var selected = Selection.gameObjects;
