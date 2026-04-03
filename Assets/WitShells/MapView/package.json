@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.mapview",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "displayName": "WitShells Map View",
     "description": "Map viewing capabilities using Google Maps API integration for Unity. Display maps, markers, and geographic data in your game.",
     "unity": "2021.3",

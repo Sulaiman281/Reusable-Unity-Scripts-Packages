@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: MapSettings
   m_EditorClassIdentifier: 
   mapFile:
-    MapName: hyderbad-test
+    MapName: rahwali
     TopLeft:
-      Latitude: 25.446409225463867
-      Longitude: 68.29647064208984
+      Latitude: 32.282291412353516
+      Longitude: 74.05953216552734
     BottomRight:
-      Latitude: 25.34669303894043
-      Longitude: 68.41869354248047
+      Latitude: 32.21490478515625
+      Longitude: 74.16866302490234
     MinZoom: 12
     MaxZoom: 20
-  useOnlineMap: 0
-  showLabels: 1
+  useOnlineMap: 1
+  showLabels: 0
+  canDragMarkers: 1
+  canSelectMarkers: 1

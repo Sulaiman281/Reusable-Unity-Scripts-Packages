@@ -36,6 +36,10 @@ namespace WitShells.MapView
 
         private List<Tile> _downloadedTiles = new List<Tile>();
 
+        public float Progress => _progress;
+        public int TotalTiles => _totalTiles;
+        public int TilesDownloaded => _tilesDownloaded;
+
         public SQLiteConnection DbConnection
         {
             get
