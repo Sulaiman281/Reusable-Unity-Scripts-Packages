@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8438c4f0f572d48b9ba17fec811932, type: 3}
+  m_Name: ChessUISettings
+  m_EditorClassIdentifier: WitChess.Runtime::WitChess.ChessUISettings
+  DefaultTemplateScheme:
+    WhiteColorScheme:
+      NormalTileColor: {r: 0.14509805, g: 0.6784314, b: 0.4392157, a: 1}
+      HighlightedTileColor: {r: 1, g: 1, b: 1, a: 0.34901962}
+      FromMoveHighlightColor: {r: 0.5019608, g: 0.83137256, b: 1, a: 0.4}
+      ToMoveHighlightColor: {r: 1, g: 0.78039217, b: 0.1764706, a: 0.4}
+    BlackColorScheme:
+      NormalTileColor: {r: 0.105882354, g: 0.10980392, b: 0.105882354, a: 1}
+      HighlightedTileColor: {r: 1, g: 1, b: 1, a: 0.34901962}
+      FromMoveHighlightColor: {r: 0.5019608, g: 0.8332548, b: 1, a: 0.4}
+      ToMoveHighlightColor: {r: 1, g: 0.78053933, b: 0.1745283, a: 0.4}
+    CheckHighlightColor: {r: 0.9339623, g: 0.23349057, b: 0.38648862, a: 0.4}
+  CurrentTemplateScheme:
+    WhiteColorScheme:
+      NormalTileColor: {r: 0.933, g: 0.933, b: 0.824, a: 1}
+      HighlightedTileColor: {r: 0.965, g: 0.953, b: 0.518, a: 1}
+      FromMoveHighlightColor: {r: 0.729, g: 0.792, b: 0.212, a: 1}
+      ToMoveHighlightColor: {r: 0.729, g: 0.792, b: 0.212, a: 1}
+    BlackColorScheme:
+      NormalTileColor: {r: 0.463, g: 0.588, b: 0.337, a: 1}
+      HighlightedTileColor: {r: 0.694, g: 0.769, b: 0.243, a: 1}
+      FromMoveHighlightColor: {r: 0.576, g: 0.698, b: 0.137, a: 1}
+      ToMoveHighlightColor: {r: 0.576, g: 0.698, b: 0.137, a: 1}
+    CheckHighlightColor: {r: 0.878, g: 0.196, b: 0.196, a: 1}
+  TemplateSchemes:
+  - WhiteColorScheme:
+      NormalTileColor: {r: 0.933, g: 0.933, b: 0.824, a: 1}
+      HighlightedTileColor: {r: 0.965, g: 0.953, b: 0.518, a: 1}
+      FromMoveHighlightColor: {r: 0.729, g: 0.792, b: 0.212, a: 1}
+      ToMoveHighlightColor: {r: 0.729, g: 0.792, b: 0.212, a: 1}
+    BlackColorScheme:
+      NormalTileColor: {r: 0.463, g: 0.588, b: 0.337, a: 1}
+      HighlightedTileColor: {r: 0.694, g: 0.769, b: 0.243, a: 1}
+      FromMoveHighlightColor: {r: 0.576, g: 0.698, b: 0.137, a: 1}
+      ToMoveHighlightColor: {r: 0.576, g: 0.698, b: 0.137, a: 1}
+    CheckHighlightColor: {r: 0.878, g: 0.196, b: 0.196, a: 1}
+  - WhiteColorScheme:
+      NormalTileColor: {r: 0.941, g: 0.851, b: 0.71, a: 1}
+      HighlightedTileColor: {r: 0.969, g: 0.902, b: 0.482, a: 1}
+      FromMoveHighlightColor: {r: 0.827, g: 0.847, b: 0.388, a: 1}
+      ToMoveHighlightColor: {r: 0.827, g: 0.847, b: 0.388, a: 1}
+    BlackColorScheme:
+      NormalTileColor: {r: 0.71, g: 0.533, b: 0.388, a: 1}
+      HighlightedTileColor: {r: 0.804, g: 0.647, b: 0.31, a: 1}
+      FromMoveHighlightColor: {r: 0.663, g: 0.741, b: 0.243, a: 1}
+      ToMoveHighlightColor: {r: 0.663, g: 0.741, b: 0.243, a: 1}
+    CheckHighlightColor: {r: 0.878, g: 0.196, b: 0.196, a: 1}
+  - WhiteColorScheme:
+      NormalTileColor: {r: 0.839, g: 0.906, b: 0.933, a: 1}
+      HighlightedTileColor: {r: 0.863, g: 0.929, b: 0.647, a: 1}
+      FromMoveHighlightColor: {r: 0.573, g: 0.816, b: 0.604, a: 1}
+      ToMoveHighlightColor: {r: 0.573, g: 0.816, b: 0.604, a: 1}
+    BlackColorScheme:
+      NormalTileColor: {r: 0.353, g: 0.557, b: 0.698, a: 1}
+      HighlightedTileColor: {r: 0.435, g: 0.694, b: 0.647, a: 1}
+      FromMoveHighlightColor: {r: 0.365, g: 0.678, b: 0.506, a: 1}
+      ToMoveHighlightColor: {r: 0.365, g: 0.678, b: 0.506, a: 1}
+    CheckHighlightColor: {r: 0.878, g: 0.196, b: 0.196, a: 1}
+  CurrentTemplateSchemeIndex: 0
+  DefaultSkin: {fileID: 11400000, guid: edcb94f8ec726fb49bd471522ecf8b59, type: 2}
+  CurrentSkin: {fileID: 11400000, guid: edcb94f8ec726fb49bd471522ecf8b59, type: 2}
+  Skins: []

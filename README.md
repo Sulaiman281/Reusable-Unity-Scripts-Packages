@@ -124,6 +124,11 @@ https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/W
 https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/SqLite
 ```
 
+### WitChess
+```
+https://github.com/Sulaiman281/Reusable-Unity-Scripts-Packages.git?path=Assets/WitShells/WitChess
+```
+
 ---
 
 ---
@@ -815,6 +820,71 @@ public class DatabaseManager : MonoBehaviour
     **Editor Workflow:**
     1. Select a GameObject with a ParticleSystem.
     2. Use `WitShells → Particles Presets → Apply Dark Smoke Up / Apply Fire / Apply Rain`.
+
+    ---
+
+### 16. WitChess
+
+Complete chess engine + AI opponent + Unity UI, all wired up and ready to drop into any project.
+
+**Features:**
+- Pure C# chess engine — no Unity dependencies in core logic
+- Full move rules: castling, en passant, pawn promotion, repetition/stalemate detection
+- Negamax AI with alpha-beta pruning (configurable depth)
+- AI evaluation: material, threats, king safety, opening development, mobility, MVV-LVA ordering
+- Background-threaded AI via `WitShells.ThreadingJob` — zero main-thread stutter
+- Move queuing — player can preview and queue their next move while AI is thinking
+- Skinnable UI via `Skin` and `ChessUISettings` ScriptableObjects
+- 3 soothing built-in color themes (Classic Green, Warm Walnut, Ocean Blue)
+- Board auto-rotates based on which color the human player controls
+
+**Dependencies:** `com.witshells.threadingjob`
+
+```csharp
+using WitChess;
+using UnityEngine;
+
+// Drop ChessUIController on a GameObject and assign in Inspector:
+// _boardParent  — parent Transform that holds the 8×8 tile grid
+// _tilePrefab   — TileUI prefab (Image + Button)
+// _uiSettings   — ChessUISettings ScriptableObject
+// _humanPlayer  — EPlayer.White or EPlayer.Black
+// _aiDepth      — search depth (3 = fast, 4 = default, 5 = stronger)
+
+// The controller wires everything automatically:
+//   BoardFactory.CreateStandard() builds the starting position
+//   MainPlayer feeds human clicks into ChessManager
+//   AIPlayer runs Negamax on a background thread and fires OnMoveChosen
+
+// Listen to game events directly on ChessManager:
+public class ChessHUD : MonoBehaviour
+{
+    [SerializeField] private ChessUIController ui;
+
+    // Access the ChessManager through the controller after Start()
+    void OnEnable()
+    {
+        // ChessManager events
+        // chess.OnTurnSwitched  += player => { ... };
+        // chess.OnCheck         += (player, kingSpot) => { ... };
+        // chess.OnGameOver      += result => { ... };
+        // chess.OnMoveMade      += move   => { ... };
+    }
+}
+
+// AI strength tuning guide:
+// Depth 3 — ~700–900 ELO, responds in < 1 s
+// Depth 4 — ~900–1100 ELO, responds in 2–4 s   ← default
+// Depth 5 — ~1100–1300 ELO, responds in 8–20 s
+```
+
+**Editor Workflow:**
+1. Create a `ChessUISettings` asset (right-click → Create → WitChess → ChessUISettings)
+2. Right-click the asset → **Generate Soothing Template Schemes** → assign `CurrentTemplateScheme`
+3. Create a `Skin` asset and assign piece sprites
+4. Build the board hierarchy: `Canvas → BoardRoot (ChessUIController) → TileParent`
+5. Assign `_boardParent`, `_tilePrefab`, `_uiSettings` in the Inspector
+6. Press Play — the board generates, pieces are placed, and the AI is ready
 
     ---
 

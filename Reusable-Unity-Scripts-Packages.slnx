@@ -2,6 +2,7 @@
   <Project Path="ThreadingJobEditor.csproj" />
   <Project Path="Unity.WebRTC.Samples.csproj" />
   <Project Path="SplineRuntime.csproj" />
+  <Project Path="WitChess.Runtime.csproj" />
   <Project Path="MapView.csproj" />
   <Project Path="WitAnimationRig.csproj" />
   <Project Path="WitShells.WitPose.Editor.csproj" />
