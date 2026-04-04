@@ -92,5 +92,10 @@ namespace WitShells.MapView
             OnDragSettingsChanged?.Invoke(canDrag);
         }
 
+        public void SetCurrentMapFile(MapFile newMapFile)
+        {
+            mapFile = newMapFile;
+        }
+
     }
 }
