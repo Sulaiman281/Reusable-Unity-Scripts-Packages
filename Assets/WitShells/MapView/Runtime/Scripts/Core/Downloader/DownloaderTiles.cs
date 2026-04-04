@@ -176,15 +176,13 @@ namespace WitShells.MapView
                         var totalPossible = result.Item2;
                         // _tilesDownloaded = downloadedCount;
 
-                        WitLogger.Log($"Initial state: {downloadedCount}/{totalPossible} tile data pieces already downloaded ({(downloadedCount * 100f / totalPossible):F1}% complete)");
                         onComplete(downloadedCount);
                     }
                     catch { }
-                }, (ex) => { WitLogger.LogWarning($"ComputeInitialDownloadedCountAsync failed: {ex.Message}"); onComplete?.Invoke(0); });
+                }, (ex) => { onComplete?.Invoke(0); });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                WitLogger.LogWarning($"Error queuing initial count job: {ex.Message}");
                 onComplete?.Invoke(0);
             }
         }
@@ -200,8 +198,6 @@ namespace WitShells.MapView
             var bottomRight = _mapFile.BottomRight;
             var minZoom = _mapFile.MinZoom;
             var maxZoom = _mapFile.MaxZoom;
-
-            WitLogger.Log($"Initializing placeholder tiles for zoom levels {minZoom}-{maxZoom}...");
 
             for (int z = minZoom; z <= maxZoom; z++)
             {
@@ -250,21 +246,15 @@ namespace WitShells.MapView
                         var totalNeeded = result.Item2;
                         var placeholders = result.Item3 ?? new List<Tile>();
 
-                        int missingCount = totalNeeded - beforeCount;
-                        WitLogger.Log($"Zoom {zoom}: {beforeCount}/{totalNeeded} tiles exist, {missingCount} missing, enqueueing {placeholders.Count} placeholders");
-
                         // Enqueue to DbWorker from main thread to avoid Unity API calls on worker threads.
                         try
                         {
                             DatabaseWriter.EnqueueTileBatch(dbPath, placeholders);
                         }
-                        catch (Exception ex)
-                        {
-                            WitLogger.LogWarning($"Failed to enqueue placeholders for zoom {zoom}: {ex.Message}");
-                        }
+                        catch (Exception) { }
                     }
                     catch { }
-                }, (ex) => { WitLogger.LogWarning($"InitializePlaceholderTiles job failed for zoom {zoom}: {ex.Message}"); });
+                }, (ex) => { });
             }
         }
 
@@ -279,10 +269,7 @@ namespace WitShells.MapView
             {
                 DatabaseWriter.EnqueueTileBatch(FilePath, new List<Tile>(tiles));
             }
-            catch (Exception ex)
-            {
-                WitLogger.LogError($"Error enqueuing tiles for DB persist: {ex.Message}");
-            }
+            catch (Exception) { }
             finally
             {
                 try { _progress = _totalTiles == 0 ? 0f : Mathf.Clamp01((float)_tilesDownloaded / (float)_totalTiles); } catch { _progress = 0f; }
@@ -328,19 +315,15 @@ namespace WitShells.MapView
                     // Check if we're missing placeholder rows
                     if (totalTiles < expectedTiles)
                     {
-                        WitLogger.LogWarning($"Zoom {zoomLevel}: Missing {expectedTiles - totalTiles} placeholder tiles! Only {totalTiles}/{expectedTiles} rows exist in DB.");
-                        WitLogger.LogWarning($"Run 'Store Empty Tiles In Database' or check InitializePlaceholderTilesAsync for this zoom level.");
                     }
 
                     if (toDownload == null || toDownload.Count == 0)
                     {
                         if (totalTiles == 0)
                         {
-                            WitLogger.LogError($"Zoom {zoomLevel} ({dataType}): No tiles exist in database! Missing placeholder initialization.");
                         }
                         else
                         {
-                            WitLogger.Log($"Zoom {zoomLevel} ({dataType}): All {totalTiles} tiles already have data, skipping download.");
                         }
 
                         // Continue to next zoom level even if no downloads needed
@@ -354,7 +337,6 @@ namespace WitShells.MapView
                             int completed = Interlocked.Increment(ref _completedFetchChains);
                             if (completed == 2)
                             {
-                                WitLogger.Log("All missing tiles have been checked/fetched.");
                                 if (_downloadedTiles.Count > 0)
                                 {
                                     StoreInDatabase(new List<Tile>(_downloadedTiles));
@@ -369,8 +351,6 @@ namespace WitShells.MapView
                     int existingCount = totalTiles - toDownload.Count;
                     _totalTiles += totalTiles;
                     _tilesDownloaded += existingCount;
-
-                    WitLogger.Log($"Zoom {zoomLevel} ({dataType}): {existingCount}/{totalTiles} tiles have data, downloading {toDownload.Count} missing tiles (expected: {expectedTiles})");
 
                     var fetcher = new StreamTileFetcher(dbPath, toDownload, zoomLevel, showLabels, true, false);
                     var jobIdHolder = new JobIdHolder();
@@ -402,8 +382,6 @@ namespace WitShells.MapView
                             }
 
                             // Enqueue next zoom level if any
-                            WitLogger.Log($"Completed {dataType} data fetch for zoom {zoomLevel}");
-
                             if (zoomLevel < _mapFile.MaxZoom)
                             {
                                 int nextZoom = zoomLevel + 1;
@@ -415,7 +393,6 @@ namespace WitShells.MapView
 
                                 if (completed == 2)
                                 {
-                                    WitLogger.Log("All missing tiles have been fetched.");
                                     if (_downloadedTiles.Count > 0)
                                     {
                                         StoreInDatabase(new List<Tile>(_downloadedTiles));
@@ -433,7 +410,6 @@ namespace WitShells.MapView
                                     _activeStreamingJobs.Remove(jobIdHolder.JobId);
                             }
                             if (_isCancelled) return;
-                            WitLogger.LogError($"Error fetching missing {dataType} tiles for zoom {zoomLevel}: {ex.Message}");
                         }
                     );
 
@@ -448,9 +424,8 @@ namespace WitShells.MapView
                     }
                 }, (ex) => { WitLogger.LogError($"Error preparing {dataType} downloads for zoom {zoomLevel}: {ex.Message}"); });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                WitLogger.LogError($"Error preparing downloads for zoom {zoomLevel}: {ex.Message}");
             }
         }
 

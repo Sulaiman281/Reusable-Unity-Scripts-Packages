@@ -81,41 +81,6 @@ namespace WitShells.MapView
             }
         }
 
-        // void Update()
-        // {
-        //     PollDownloadProgress();
-        // }
-
-        // private void PollDownloadProgress()
-        // {
-        //     if (_activeDownloader == null || _downloadFinishFired) return;
-
-        //     _onDownloadProgress?.Invoke(_activeDownloader.Progress);
-
-        //     if (_activeDownloader.IsCancelled)
-        //     {
-        //         _downloadFinishFired = true;
-        //         _onDownloadCancelled?.Invoke();
-        //         ClearDownloadState();
-        //         return;
-        //     }
-
-        //     if (_activeDownloader.TotalTiles > 0 && _activeDownloader.TilesDownloaded >= _activeDownloader.TotalTiles)
-        //     {
-        //         _downloadFinishFired = true;
-        //         _onDownloadComplete?.Invoke();
-        //         ClearDownloadState();
-        //     }
-        // }
-
-        // private void ClearDownloadState()
-        // {
-        //     _activeDownloader = null;
-        //     _onDownloadProgress = null;
-        //     _onDownloadComplete = null;
-        //     _onDownloadCancelled = null;
-        // }
-
         public bool HasCachedTile(Vector2Int coordinate, out Tile tile, bool withLabels)
         {
             bool result = _cachedTiles.TryGetValue(coordinate, out tile);
