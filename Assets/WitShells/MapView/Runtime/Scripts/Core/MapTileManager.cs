@@ -32,19 +32,8 @@ namespace WitShells.MapView
 
         // ── Active region download ──────────────────────────────────────────────
         private DownloaderTiles _activeDownloader;
-        // private Action<float>   _onDownloadProgress;
-        // private Action          _onDownloadComplete;
-        // private Action          _onDownloadCancelled;
-        // private bool            _downloadFinishFired;
-
-        /// <summary>True while a region download is running.</summary>
-        // public bool IsDownloading => _activeDownloader != null && !_activeDownloader.IsCancelled && !_downloadFinishFired;
-        // /// <summary>Progress of the active download, 0–1.</summary>
-        // public float DownloadProgress => _activeDownloader?.Progress ?? 0f;
-        // /// <summary>Total tile data pieces to download for the active region.</summary>
-        // public int DownloadTotalTiles => _activeDownloader?.TotalTiles ?? 0;
-        // /// <summary>Tile data pieces already saved for the active download.</summary>
-        // public int DownloadCompletedTiles => _activeDownloader?.TilesDownloaded ?? 0;
+        
+        public DownloaderTiles ActiveDownloader => _activeDownloader;
 
         public SQLiteConnection DbConnection
         {
