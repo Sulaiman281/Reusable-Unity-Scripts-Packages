@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using WitShells.DesignPatterns;
 using WitShells.DesignPatterns.Core;
@@ -189,6 +190,8 @@ namespace WitShells.MapView
         [SerializeField] private float inertiaDamping = 0.9f;
 
         [Header("Zoom Settings")]
+        [SerializeField] private bool useZoomInputAction = false;
+        [SerializeField] private InputActionReference zoomInputAction;
         [SerializeField] private int minZoomLevel = 12;
         [SerializeField] private int maxZoomLevel = 20;
         [SerializeField] private float zoomSensitivity = .1f;
@@ -257,6 +260,8 @@ namespace WitShells.MapView
         {
             InitializeMapSettings(MapSettings.Instance.MapFile);
             if (!EnhancedTouchSupport.enabled) EnhancedTouchSupport.Enable();
+            if (zoomInputAction?.action != null && !zoomInputAction.action.enabled)
+                zoomInputAction.action.Enable();
 
             currentZoomLevel = zoomLevel;
             GenerateLayout();
@@ -272,6 +277,9 @@ namespace WitShells.MapView
 
         void OnDestroy()
         {
+            if (zoomInputAction?.action != null && zoomInputAction.action.enabled)
+                zoomInputAction.action.Disable();
+
             if (MapTileManager.Instance != null)
             {
                 MapTileManager.Instance.OnTileFetched.RemoveListener(OnTileIsFetched);
@@ -283,6 +291,7 @@ namespace WitShells.MapView
         void Update()
         {
             HandleTouchInputes();
+            HandleZoomInputAction();
             ApplyVelocityMovement();
             if (_velocity.magnitude > 0.01f)
             {
@@ -408,6 +417,15 @@ namespace WitShells.MapView
             };
             downloaderTiles = new DownloaderTiles(mapFile);
             downloaderTiles.DownloadMapFile();
+        }
+
+        [ContextMenu("Cancel Download")]
+        public void CancelDownload()
+        {
+            if (downloaderTiles != null)
+            {
+                downloaderTiles.CancelDownload();
+            }
         }
 #endif
 

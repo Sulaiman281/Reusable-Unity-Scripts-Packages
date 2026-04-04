@@ -17,19 +17,34 @@ namespace WitShells.MapView
         public bool canFetchOnline => MapSettings.Instance.useOnlineMap;
         public bool canCacheTiles = true;
 
-        [Header("Offline Map Settings")]
-        private string fileName => MapSettings.Instance.MapFile.MapName ?? "OfflineMap";
-
         [Header("Cache Settings")]
         [SerializeField] private int maxCachedTiles = 100;
         private Dictionary<Vector2Int, Tile> _cachedTiles = new Dictionary<Vector2Int, Tile>();
 
         public string DirectoryPath => Path.Combine(Application.persistentDataPath, "OfflineMaps");
-        public string FilePath => Path.Combine(DirectoryPath, $"{fileName}.db");
+        // Single unified offline database — all regions share this one file.
+        private const string OfflineDbFileName = "maptiles.db";
+        public string FilePath => Path.Combine(DirectoryPath, OfflineDbFileName);
 
         public bool HasValidFile => File.Exists(FilePath) && new FileInfo(FilePath).Length > 0;
 
         private SQLiteConnection _dbConnection;
+
+        // ── Active region download ──────────────────────────────────────────────
+        private DownloaderTiles _activeDownloader;
+        // private Action<float>   _onDownloadProgress;
+        // private Action          _onDownloadComplete;
+        // private Action          _onDownloadCancelled;
+        // private bool            _downloadFinishFired;
+
+        /// <summary>True while a region download is running.</summary>
+        // public bool IsDownloading => _activeDownloader != null && !_activeDownloader.IsCancelled && !_downloadFinishFired;
+        // /// <summary>Progress of the active download, 0–1.</summary>
+        // public float DownloadProgress => _activeDownloader?.Progress ?? 0f;
+        // /// <summary>Total tile data pieces to download for the active region.</summary>
+        // public int DownloadTotalTiles => _activeDownloader?.TotalTiles ?? 0;
+        // /// <summary>Tile data pieces already saved for the active download.</summary>
+        // public int DownloadCompletedTiles => _activeDownloader?.TilesDownloaded ?? 0;
 
         public SQLiteConnection DbConnection
         {
@@ -77,6 +92,41 @@ namespace WitShells.MapView
             }
         }
 
+        // void Update()
+        // {
+        //     PollDownloadProgress();
+        // }
+
+        // private void PollDownloadProgress()
+        // {
+        //     if (_activeDownloader == null || _downloadFinishFired) return;
+
+        //     _onDownloadProgress?.Invoke(_activeDownloader.Progress);
+
+        //     if (_activeDownloader.IsCancelled)
+        //     {
+        //         _downloadFinishFired = true;
+        //         _onDownloadCancelled?.Invoke();
+        //         ClearDownloadState();
+        //         return;
+        //     }
+
+        //     if (_activeDownloader.TotalTiles > 0 && _activeDownloader.TilesDownloaded >= _activeDownloader.TotalTiles)
+        //     {
+        //         _downloadFinishFired = true;
+        //         _onDownloadComplete?.Invoke();
+        //         ClearDownloadState();
+        //     }
+        // }
+
+        // private void ClearDownloadState()
+        // {
+        //     _activeDownloader = null;
+        //     _onDownloadProgress = null;
+        //     _onDownloadComplete = null;
+        //     _onDownloadCancelled = null;
+        // }
+
         public bool HasCachedTile(Vector2Int coordinate, out Tile tile, bool withLabels)
         {
             bool result = _cachedTiles.TryGetValue(coordinate, out tile);
@@ -110,6 +160,99 @@ namespace WitShells.MapView
         public void CancelFetch(string threadId)
         {
             ThreadManager.Instance.CancelJob(threadId);
+        }
+
+        /// <summary>
+        /// Starts downloading all tiles for <paramref name="region"/> into the unified offline DB.
+        /// Only missing tiles are fetched — already-downloaded tiles are skipped automatically.
+        /// </summary>
+        /// <param name="region">Region bounds and zoom range to download.</param>
+        /// <param name="onProgress">Called every frame with 0–1 progress while downloading.</param>
+        /// <param name="onComplete">Called once when all tiles have been saved.</param>
+        /// <param name="onCancelled">Called if the download is cancelled via <see cref="CancelRegionDownload"/>.</param>
+        public void StartRegionDownload(MapFile region, Action<float> onProgress = null, Action onComplete = null, Action onCancelled = null)
+        {
+            if (_activeDownloader.Progress > 0f && _activeDownloader.Progress < 1f)
+            {
+                WitLogger.LogWarning("A region download is already in progress. Call CancelRegionDownload() first.");
+                return;
+            }
+
+            // Redirect DownloaderTiles to write into the unified DB by matching the constant filename.
+            var unifiedRegion = new MapFile
+            {
+                MapName = System.IO.Path.GetFileNameWithoutExtension(OfflineDbFileName), // "maptiles"
+                TopLeft = region.TopLeft,
+                BottomRight = region.BottomRight,
+                MinZoom = region.MinZoom,
+                MaxZoom = region.MaxZoom,
+            };
+
+            _activeDownloader = new DownloaderTiles(unifiedRegion);
+            _activeDownloader.DownloadMapFile();
+        }
+
+        /// <summary>Cancels the currently running region download, if any.</summary>
+        public void CancelRegionDownload()
+        {
+            _activeDownloader?.CancelDownload();
+        }
+
+        // ── Region coverage / availability API ─────────────────────────────────
+
+        /// <summary>
+        /// Asynchronously checks what fraction of <paramref name="region"/>'s tiles are already stored
+        /// in the offline DB. Returns 0.0 (nothing downloaded) to 1.0 (region fully available).
+        /// </summary>
+        public void GetRegionCoverage(MapFile region, UnityAction<float> onResult, UnityAction<Exception> onError = null)
+        {
+            var dbPath = FilePath;
+            var topLeft = region.TopLeft;
+            var bottomRight = region.BottomRight;
+            int minZoom = region.MinZoom;
+            int maxZoom = region.MaxZoom;
+
+            DbQuery.EnqueueQuery<float>(dbPath, conn =>
+            {
+                int total = 0, downloaded = 0;
+                for (int z = minZoom; z <= maxZoom; z++)
+                {
+                    var (xMin, xMax, yMin, yMax) = Utils.TileRangeForBounds(
+                        topLeft.Latitude, topLeft.Longitude,
+                        bottomRight.Latitude, bottomRight.Longitude, z);
+                    int tilesForZoom = (xMax - xMin + 1) * (yMax - yMin + 1);
+                    total += tilesForZoom * 2; // normal + geo per tile
+
+                    const string normalSql = "SELECT COUNT(1) FROM Tile WHERE Zoom=? AND TileX BETWEEN ? AND ? AND TileY BETWEEN ? AND ? AND NormalData IS NOT NULL AND length(NormalData)>0";
+                    const string geoSql = "SELECT COUNT(1) FROM Tile WHERE Zoom=? AND TileX BETWEEN ? AND ? AND TileY BETWEEN ? AND ? AND GeoData IS NOT NULL AND length(GeoData)>0";
+                    downloaded += conn.ExecuteScalar<int>(normalSql, z, xMin, xMax, yMin, yMax);
+                    downloaded += conn.ExecuteScalar<int>(geoSql, z, xMin, xMax, yMin, yMax);
+                }
+                return total == 0 ? 0f : Mathf.Clamp01((float)downloaded / total);
+            }, onResult, onError);
+        }
+
+        /// <summary>
+        /// Asynchronously checks whether <paramref name="region"/> is fully available offline.
+        /// Calls <paramref name="onResult"/> with true if coverage is 100%, false otherwise.
+        /// </summary>
+        public void IsRegionAvailable(MapFile region, Action<bool> onResult, UnityAction<Exception> onError = null)
+        {
+            GetRegionCoverage(region, coverage => onResult?.Invoke(coverage >= 1.0f), onError);
+        }
+
+        /// <summary>
+        /// Looks up <paramref name="regionName"/> in <see cref="MapSettings.Regions"/> then checks
+        /// availability. Calls <paramref name="onResult"/> with false if the name is not in the catalog.
+        /// </summary>
+        public void IsRegionAvailable(string regionName, Action<bool> onResult, UnityAction<Exception> onError = null)
+        {
+            if (!MapSettings.Instance.TryGetRegion(regionName, out var region))
+            {
+                onResult?.Invoke(false);
+                return;
+            }
+            IsRegionAvailable(region, onResult, onError);
         }
 
         public void FetchTile(Vector2Int coordinate, int zoomLevel, bool showLabels, UnityAction<Tile> onComplete, out string threadId)
@@ -271,7 +414,7 @@ namespace WitShells.MapView
             }
             catch (Exception ex)
             {
-            WitLogger.LogError($"Could not open file explorer: {ex}");
+                WitLogger.LogError($"Could not open file explorer: {ex}");
             }
 #else
             WitLogger.LogWarning("File explorer reveal not supported on Android platform");

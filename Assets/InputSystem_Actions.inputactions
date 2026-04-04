@@ -104,6 +104,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ZoomInOut",
+                    "type": "Value",
+                    "id": "cb3cf883-5e34-4212-93cd-fa8cfe359a90",
+                    "expectedControlType": "Double",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -568,6 +577,17 @@
                     "action": "TurretTilt",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ada6401c-97a0-4c6a-946b-c00992fcb719",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomInOut",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

@@ -2,11 +2,48 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using WitShells.DesignPatterns;
 
 namespace WitShells.MapView
 {
     public partial class MapViewLayout
     {
+        private void ApplyZoomInput(float delta)
+        {
+            float targetVelocity = delta * zoomSensitivity;
+            zoomVelocity = Mathf.Lerp(zoomVelocity, targetVelocity, Time.deltaTime * 10f);
+        }
+
+        private void HandleZoomInputAction()
+        {
+            if (!CanInput || !useZoomInputAction || zoomInputAction?.action == null) return;
+
+            if (!zoomInputAction.action.enabled)
+                zoomInputAction.action.Enable();
+
+            float zoomDelta = ReadZoomInputActionValue();
+            if (Mathf.Approximately(zoomDelta, 0f)) return;
+
+            ApplyZoomInput(zoomDelta);
+        }
+
+        private float ReadZoomInputActionValue()
+        {
+            var action = zoomInputAction.action;
+            var valueType = action.activeValueType;
+
+            if (valueType == typeof(Vector2))
+                return action.ReadValue<Vector2>().y;
+
+            if (valueType == typeof(float))
+                return action.ReadValue<float>();
+
+            if (string.Equals(action.expectedControlType, "Vector2", System.StringComparison.OrdinalIgnoreCase))
+                return action.ReadValue<Vector2>().y;
+
+            return action.ReadValue<float>();
+        }
+
         #region Touch Input
 
         private void HandleTouchInputes()
@@ -104,10 +141,8 @@ namespace WitShells.MapView
 
         public void OnScroll(PointerEventData eventData)
         {
-            if (!CanInput || useTouchInput) return;
-            float scrollDelta = eventData.scrollDelta.y;
-            float targetVelocity = scrollDelta * zoomSensitivity;
-            zoomVelocity = Mathf.Lerp(zoomVelocity, targetVelocity, Time.deltaTime * 10f);
+            if (!CanInput || useTouchInput || useZoomInputAction) return;
+            ApplyZoomInput(eventData.scrollDelta.y);
         }
 
         public void OnPointerClick(PointerEventData eventData)
@@ -136,7 +171,7 @@ namespace WitShells.MapView
 #if UNITY_EDITOR
                 GUIUtility.systemCopyBuffer = SelectedCoordinates.ToString();
 #endif
-                DesignPatterns.WitLogger.Log($"Selected Coordinates: {SelectedCoordinates} (copied) {normX}, {normY}");
+                WitLogger.Log($"Selected Coordinates: {SelectedCoordinates} (copied) {normX}, {normY}");
             }
         }
 

@@ -22,6 +22,11 @@ namespace WitShells.MapView
     [Serializable]
     public class DownloaderTiles
     {
+        private sealed class JobIdHolder
+        {
+            public string JobId;
+        }
+
         private SQLiteConnection _dbConnection;
         private MapFile _mapFile;
         [SerializeField] private int _totalTiles = 0;
@@ -30,6 +35,9 @@ namespace WitShells.MapView
         private float _progress = 0f;
 
         private int _completedFetchChains = 0;
+        private volatile bool _isCancelled = false;
+        private readonly HashSet<string> _activeStreamingJobs = new HashSet<string>();
+        private readonly object _jobsLock = new object();
 
         public string DirectoryPath => Path.Combine(Application.persistentDataPath, "OfflineMaps");
         public string FilePath => Path.Combine(DirectoryPath, $"{_mapFile.MapName}.db");
@@ -39,6 +47,7 @@ namespace WitShells.MapView
         public float Progress => _progress;
         public int TotalTiles => _totalTiles;
         public int TilesDownloaded => _tilesDownloaded;
+        public bool IsCancelled => _isCancelled;
 
         public SQLiteConnection DbConnection
         {
@@ -64,12 +73,21 @@ namespace WitShells.MapView
 
         public void DownloadMapFile()
         {
+            _isCancelled = false;
+            _completedFetchChains = 0;
+            _totalTiles = 0;
+            _tilesDownloaded = 0;
+            _downloadedTiles.Clear();
+            lock (_jobsLock) _activeStreamingJobs.Clear();
+
             // reset progress counter visible in inspector
             _progress = 0f;
 
             // Compute initial counts and initialize placeholders on background threads to avoid main-thread stalls.
             ComputeInitialDownloadedCountAsync((already) =>
             {
+                if (_isCancelled) return;
+
                 // _totalTiles = already;
                 _progress = _totalTiles == 0 ? 0f : Mathf.Clamp01((float)_tilesDownloaded / (float)_totalTiles);
 
@@ -83,6 +101,40 @@ namespace WitShells.MapView
                 // Then fetch missing geo tiles (labels)
                 FetchMissingForZoom(z, showLabels: true);
             });
+        }
+
+        public void CancelDownload()
+        {
+            if (_isCancelled) return;
+            _isCancelled = true;
+
+            List<string> ids;
+            lock (_jobsLock)
+            {
+                ids = new List<string>(_activeStreamingJobs);
+                _activeStreamingJobs.Clear();
+            }
+
+            foreach (var id in ids)
+            {
+                try { ThreadManager.Instance.CancelJob(id); } catch { }
+            }
+
+            if (_downloadedTiles.Count > 0)
+            {
+                try
+                {
+                    StoreInDatabase(new List<Tile>(_downloadedTiles));
+                }
+                catch { }
+                finally
+                {
+                    _downloadedTiles.Clear();
+                }
+            }
+
+            DisposeDatabase();
+            WitLogger.Log("Map download cancelled.");
         }
 
         private void ComputeInitialDownloadedCountAsync(Action<int> onComplete)
@@ -140,6 +192,7 @@ namespace WitShells.MapView
         private void InitializePlaceholderTilesAsync()
         {
             if (string.IsNullOrEmpty(FilePath)) return;
+            if (_isCancelled) return;
 
             // Capture values that must be accessed from the main thread before queuing the background work.
             var dbPath = FilePath;
@@ -160,6 +213,8 @@ namespace WitShells.MapView
                 // Unity APIs from worker threads.
                 DbQuery.EnqueueQuery<Tuple<int, int, List<Tile>>>(dbPath, (conn) =>
                 {
+                    if (_isCancelled) return new Tuple<int, int, List<Tile>>(0, 0, new List<Tile>());
+
                     int beforeCount = 0;
                     int totalNeeded = 0;
                     try
@@ -187,6 +242,8 @@ namespace WitShells.MapView
                     return new Tuple<int, int, List<Tile>>(beforeCount, totalNeeded, placeholders);
                 }, (result) =>
                 {
+                    if (_isCancelled) return;
+
                     try
                     {
                         var beforeCount = result.Item1;
@@ -234,6 +291,8 @@ namespace WitShells.MapView
 
         private void FetchMissingForZoom(int zoomLevel, bool showLabels)
         {
+            if (_isCancelled) return;
+
             // Use DbQuery to fetch the list of missing coordinates on a background thread to avoid blocking.
             try
             {
@@ -243,6 +302,8 @@ namespace WitShells.MapView
 
                 DbQuery.EnqueueQuery<Tuple<List<Vector2Int>, int, int>>(dbPath, (conn) =>
                 {
+                    if (_isCancelled) return new Tuple<List<Vector2Int>, int, int>(new List<Vector2Int>(), 0, 0);
+
                     // Calculate expected tiles for this zoom level
                     var (xMin, xMax, yMin, yMax) = Utils.TileRangeForBounds(_mapFile.TopLeft.Latitude, _mapFile.TopLeft.Longitude, _mapFile.BottomRight.Latitude, _mapFile.BottomRight.Longitude, zoomLevel);
                     int expectedTiles = (xMax - xMin + 1) * (yMax - yMin + 1);
@@ -258,6 +319,8 @@ namespace WitShells.MapView
                     return new Tuple<List<Vector2Int>, int, int>(toDownload, totalTiles, expectedTiles);
                 }, (result) =>
                 {
+                    if (_isCancelled) return;
+
                     var toDownload = result.Item1;
                     var totalTiles = result.Item2;
                     var expectedTiles = result.Item3;
@@ -310,10 +373,12 @@ namespace WitShells.MapView
                     WitLogger.Log($"Zoom {zoomLevel} ({dataType}): {existingCount}/{totalTiles} tiles have data, downloading {toDownload.Count} missing tiles (expected: {expectedTiles})");
 
                     var fetcher = new StreamTileFetcher(dbPath, toDownload, zoomLevel, showLabels, true, false);
-                    ThreadManager.Instance.EnqueueStreamingJob(
+                    var jobIdHolder = new JobIdHolder();
+                    var startedJobId = ThreadManager.Instance.EnqueueStreamingJob(
                         fetcher,
                         onProgress: (tiles) =>
                         {
+                            if (_isCancelled) return;
                             if (tiles == null || tiles.Count == 0) return;
                             // Update DB with provided tile data (only fields present)
                             _downloadedTiles.AddRange(tiles);
@@ -328,6 +393,14 @@ namespace WitShells.MapView
                         },
                         onComplete: () =>
                         {
+                            if (_isCancelled) return;
+
+                            lock (_jobsLock)
+                            {
+                                if (!string.IsNullOrEmpty(jobIdHolder.JobId))
+                                    _activeStreamingJobs.Remove(jobIdHolder.JobId);
+                            }
+
                             // Enqueue next zoom level if any
                             WitLogger.Log($"Completed {dataType} data fetch for zoom {zoomLevel}");
 
@@ -352,8 +425,27 @@ namespace WitShells.MapView
                                 }
                             }
                         },
-                        onError: (ex) => { WitLogger.LogError($"Error fetching missing {dataType} tiles for zoom {zoomLevel}: {ex.Message}"); }
+                        onError: (ex) =>
+                        {
+                            lock (_jobsLock)
+                            {
+                                if (!string.IsNullOrEmpty(jobIdHolder.JobId))
+                                    _activeStreamingJobs.Remove(jobIdHolder.JobId);
+                            }
+                            if (_isCancelled) return;
+                            WitLogger.LogError($"Error fetching missing {dataType} tiles for zoom {zoomLevel}: {ex.Message}");
+                        }
                     );
+
+                    jobIdHolder.JobId = startedJobId;
+
+                    if (!string.IsNullOrEmpty(startedJobId))
+                    {
+                        lock (_jobsLock)
+                        {
+                            _activeStreamingJobs.Add(startedJobId);
+                        }
+                    }
                 }, (ex) => { WitLogger.LogError($"Error preparing {dataType} downloads for zoom {zoomLevel}: {ex.Message}"); });
             }
             catch (Exception ex)
