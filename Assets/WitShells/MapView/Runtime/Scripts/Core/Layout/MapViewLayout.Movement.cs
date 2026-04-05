@@ -23,7 +23,10 @@ namespace WitShells.MapView
             }
 
             if (movement.sqrMagnitude > 0.000001f)
+            {
                 MoveTileToDirection.Invoke(movement);
+                NotifyMapUpdated();
+            }
 
             float decay = Mathf.Pow(inertiaDamping, Time.unscaledDeltaTime * 60f);
             _velocity *= decay;
@@ -41,6 +44,7 @@ namespace WitShells.MapView
                 {
                     MoveLeftColumnToRight();
                     UpdateCorners();
+                    NotifyMapUpdated();
                 }
                 else _velocity.x = 0f;
                 return;
@@ -52,6 +56,7 @@ namespace WitShells.MapView
                 {
                     MoveRightColumnToLeft();
                     UpdateCorners();
+                    NotifyMapUpdated();
                 }
                 else _velocity.x = 0f;
                 return;
@@ -63,6 +68,7 @@ namespace WitShells.MapView
                 {
                     MoveTopRowToBottom();
                     UpdateCorners();
+                    NotifyMapUpdated();
                 }
                 else _velocity.y = 0f;
                 return;
@@ -74,6 +80,7 @@ namespace WitShells.MapView
                 {
                     MoveBottomRowToTop();
                     UpdateCorners();
+                    NotifyMapUpdated();
                 }
                 else _velocity.y = 0f;
                 return;

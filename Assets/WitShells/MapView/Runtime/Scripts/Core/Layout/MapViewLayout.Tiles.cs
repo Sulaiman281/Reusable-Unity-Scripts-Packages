@@ -56,6 +56,8 @@ namespace WitShells.MapView
                     GenerateScreenFillingTiles();
                     isFixedLayout = false;
                 }
+
+                NotifyMapUpdated();
             }
             catch (Exception ex)
             {

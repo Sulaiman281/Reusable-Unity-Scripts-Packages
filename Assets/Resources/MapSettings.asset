@@ -23,6 +23,23 @@ MonoBehaviour:
     MinZoom: 12
     MaxZoom: 20
   useOnlineMap: 1
-  showLabels: 0
+  showLabels: 1
+  enableGrid: 1
+  totalHorizontalGridLines: 8
+  totalVerticalGridLines: 10
+  gridSpacing: 124
+  gridLineThickness: 2
+  gridLineColor: {r: 1, g: 1, b: 1, a: 1}
+  perfectSquareGrid: 1
+  enableGridLabels: 1
+  gridLabelOffsetIndex: 5
+  zoomLabelOffset: 1
+  zoomLabelOffsetMinIndex: 0
+  zoomLabelOffsetMaxIndex: 5
+  verticalGridLabelOffset: {x: 20, y: 0}
+  horizontalGridLabelOffset: {x: 0, y: -20}
+  gridLabelFontSize: 18
+  gridLabelColor: {r: 1, g: 0, b: 0, a: 1}
   canDragMarkers: 1
   canSelectMarkers: 1
+  regions: []

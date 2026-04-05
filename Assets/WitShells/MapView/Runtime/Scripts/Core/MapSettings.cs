@@ -22,12 +22,48 @@ namespace WitShells.MapView
         public bool useOnlineMap = true;
         public bool showLabels = false;
 
+        [Header("Grid Settings")]
+        [SerializeField] private bool enableGrid = false;
+        [SerializeField] private int totalHorizontalGridLines = 8;
+        [SerializeField] private int totalVerticalGridLines = 4;
+        [SerializeField] private float gridSpacing = 64f;
+        [SerializeField] private float gridLineThickness = 1f;
+        [SerializeField] private Color gridLineColor = Color.white;
+        [SerializeField] private bool perfectSquareGrid = false;
+
+        [Header("Grid Label Settings")]
+        [SerializeField] private bool enableGridLabels = false;
+        [SerializeField] private int gridLabelOffsetIndex = 1;
+        [SerializeField] private bool zoomLabelOffset = false;
+        [SerializeField] private int zoomLabelOffsetMinIndex = 1;
+        [SerializeField] private int zoomLabelOffsetMaxIndex = 3;
+        [SerializeField] private Vector2 verticalGridLabelOffset = Vector2.zero;
+        [SerializeField] private Vector2 horizontalGridLabelOffset = Vector2.zero;
+        [SerializeField] private int gridLabelFontSize = 18;
+        [SerializeField] private Color gridLabelColor = Color.white;
+
         [Header("Marker Settings")]
         [SerializeField] private bool canDragMarkers = true;
         [SerializeField] private bool canSelectMarkers = true;
 
         public bool CanDragMarkers => canDragMarkers;
         public bool CanSelectMarkers => canSelectMarkers;
+        public bool EnableGrid => enableGrid;
+        public int TotalHorizontalGridLines => Mathf.Max(1, totalHorizontalGridLines);
+        public int TotalVerticalGridLines => Mathf.Max(1, totalVerticalGridLines);
+        public float GridSpacing => Mathf.Max(1f, gridSpacing);
+        public float GridLineThickness => Mathf.Max(0.1f, gridLineThickness);
+        public Color GridLineColor => gridLineColor;
+        public bool PerfectSquareGrid => perfectSquareGrid;
+        public bool EnableGridLabels => enableGridLabels;
+        public int GridLabelOffsetIndex => Mathf.Max(1, gridLabelOffsetIndex);
+        public bool ZoomLabelOffset => zoomLabelOffset;
+        public int ZoomLabelOffsetMinIndex => Mathf.Max(1, zoomLabelOffsetMinIndex);
+        public int ZoomLabelOffsetMaxIndex => Mathf.Max(ZoomLabelOffsetMinIndex, zoomLabelOffsetMaxIndex);
+        public Vector2 VerticalGridLabelOffset => verticalGridLabelOffset;
+        public Vector2 HorizontalGridLabelOffset => horizontalGridLabelOffset;
+        public int GridLabelFontSize => Mathf.Max(1, gridLabelFontSize);
+        public Color GridLabelColor => gridLabelColor;
 
         public MapFile MapFile => mapFile;
 

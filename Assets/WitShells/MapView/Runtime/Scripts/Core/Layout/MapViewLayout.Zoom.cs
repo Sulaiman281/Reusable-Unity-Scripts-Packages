@@ -18,6 +18,9 @@ namespace WitShells.MapView
 
             var zoomDelta = currentZoomLevel - zoomLevel;
             ZoomLayer().localScale = Vector3.one * (1 + zoomDelta);
+
+            if (Mathf.Abs(zoomVelocity) > 0.0001f)
+                NotifyMapUpdated();
         }
 
         private void SetZoomUpdate(int value)
@@ -54,6 +57,9 @@ namespace WitShells.MapView
                 GenerateScreenFillingTiles();
                 isFixedLayout = false;
             }
+
+            HandleMarkerUpdate();
+            NotifyMapUpdated();
         }
 
         #endregion

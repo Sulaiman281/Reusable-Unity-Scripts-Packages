@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -208,6 +209,7 @@ namespace WitShells.MapView
         [Header("Events")]
         public UnityEvent<Coordinates> OnLocationSelected;
         public UnityEvent<Vector3> OnPositionSelected;
+        public UnityEvent OnMapUpdated = new();
 
         #endregion
 
@@ -226,6 +228,8 @@ namespace WitShells.MapView
         public PlacableItems PlacableItems => placableItems;
 
         public int ZoomLevel => Mathf.RoundToInt(currentZoomLevel);
+        public float CurrentZoomLevel => currentZoomLevel;
+        public RectTransform RectTransform => transform as RectTransform;
 
         private ObjectPool<TileView> tilePool;
         private TileView[,] tiles;
@@ -254,6 +258,23 @@ namespace WitShells.MapView
 
         #endregion
 
+        public IEnumerable<TileView> GetAllTiles()
+        {
+            if (tiles == null)
+                yield break;
+
+            foreach (var tile in tiles)
+            {
+                if (tile != null)
+                    yield return tile;
+            }
+        }
+
+        public void NotifyMapUpdated()
+        {
+            OnMapUpdated?.Invoke();
+        }
+
         #region Lifecycle
 
         void Start()
@@ -273,6 +294,7 @@ namespace WitShells.MapView
             placableItems ??= new PlacableItems();
 
             HandleMarkerUpdate();
+            NotifyMapUpdated();
         }
 
         void OnDestroy()
@@ -371,6 +393,7 @@ namespace WitShells.MapView
 
                 // Update markers to reflect new tile positions
                 HandleMarkerUpdate();
+                NotifyMapUpdated();
             }
             catch (Exception ex)
             {

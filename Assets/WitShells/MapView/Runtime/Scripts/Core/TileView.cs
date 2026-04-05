@@ -14,8 +14,10 @@ namespace WitShells.MapView
         public Vector2Int Coordinate;
 
         private Tile _tileData;
+        [SerializeField] private RectTransform gridLineContainer;
 
         public RectTransform RectTransform => transform as RectTransform;
+        public RectTransform GridLineContainer => gridLineContainer;
 
         private bool _showLabels = false;
 
