@@ -121,6 +121,110 @@ namespace WitShells.MapView
         [Header("Events")]
         public static Action<bool> OnDragSettingsChanged;
 
+        public void SetUseOnlineMap(bool value)
+        {
+            useOnlineMap = value;
+        }
+
+        public void SetShowLabels(bool value)
+        {
+            showLabels = value;
+        }
+
+        public void SetEnableGrid(bool value)
+        {
+            enableGrid = value;
+        }
+
+        public void SetTotalHorizontalGridLines(int value)
+        {
+            totalHorizontalGridLines = Mathf.Max(1, value);
+        }
+
+        public void SetTotalVerticalGridLines(int value)
+        {
+            totalVerticalGridLines = Mathf.Max(1, value);
+        }
+
+        public void SetGridSpacing(float value)
+        {
+            gridSpacing = Mathf.Max(1f, value);
+        }
+
+        public void SetGridLineThickness(float value)
+        {
+            gridLineThickness = Mathf.Max(0.1f, value);
+        }
+
+        public void SetGridLineColor(Color value)
+        {
+            gridLineColor = value;
+        }
+
+        public void SetPerfectSquareGrid(bool value)
+        {
+            perfectSquareGrid = value;
+        }
+
+        public void SetEnableGridLabels(bool value)
+        {
+            enableGridLabels = value;
+        }
+
+        public void SetGridLabelOffsetIndex(int value)
+        {
+            gridLabelOffsetIndex = Mathf.Max(1, value);
+        }
+
+        public void SetZoomLabelOffset(bool value)
+        {
+            zoomLabelOffset = value;
+        }
+
+        public void SetZoomLabelOffsetMinIndex(int value)
+        {
+            zoomLabelOffsetMinIndex = Mathf.Max(1, value);
+            if (zoomLabelOffsetMaxIndex < zoomLabelOffsetMinIndex)
+                zoomLabelOffsetMaxIndex = zoomLabelOffsetMinIndex;
+        }
+
+        public void SetZoomLabelOffsetMaxIndex(int value)
+        {
+            zoomLabelOffsetMaxIndex = Mathf.Max(1, value);
+            if (zoomLabelOffsetMaxIndex < zoomLabelOffsetMinIndex)
+                zoomLabelOffsetMaxIndex = zoomLabelOffsetMinIndex;
+        }
+
+        public void SetVerticalGridLabelOffset(Vector2 value)
+        {
+            verticalGridLabelOffset = value;
+        }
+
+        public void SetHorizontalGridLabelOffset(Vector2 value)
+        {
+            horizontalGridLabelOffset = value;
+        }
+
+        public void SetGridLabelFontSize(int value)
+        {
+            gridLabelFontSize = Mathf.Max(1, value);
+        }
+
+        public void SetGridLabelColor(Color value)
+        {
+            gridLabelColor = value;
+        }
+
+        public void SetCanSelectMarkers(bool canSelect)
+        {
+            canSelectMarkers = canSelect;
+        }
+
+        public void SetRegions(List<MapFile> value)
+        {
+            regions = value ?? new List<MapFile>();
+        }
+
 
         public void SetCanDragMarkers(bool canDrag)
         {
