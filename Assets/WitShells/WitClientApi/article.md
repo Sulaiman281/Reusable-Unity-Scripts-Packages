@@ -119,6 +119,8 @@ WitClientApi centralizes this flow into three concepts:
 
 Out of the box, `AuthService` understands both direct token responses and wrapped envelopes, `PlayerPrefsTokenStorage` keeps an in-memory cache for fast, thread-safe reads on worker threads and flushes writes on the Unity main thread, and `ApiClientManager` automatically attaches `Authorization: Bearer <token>` headers when tokens exist.
 
+When an endpoint needs extra headers beyond authorization, `ApiClientManager.CallEndpoint(...)` also provides overloads that accept a `Dictionary<string, string>` of per-request custom headers. That keeps header requirements explicit at the call site without forcing you to fork the HTTP layer or create one-off managers for endpoints that need API keys, tenant IDs, locale hints, feature flags, or even a request-specific `Authorization` header.
+
 That means your API layer is **thread-aware** by design: you can schedule work on background threads (for example via the WitShells ThreadingJob package) without worrying about unsafe `PlayerPrefs` calls or inconsistent token state.
 
 On a 401, the manager triggers `AuthService.RefreshTokenAsync` once, retries the original request, and only then surfaces an error if refresh fails. Your gameplay code doesn’t have to know any of this – it simply calls endpoints.
@@ -269,7 +271,8 @@ Use this short checklist to integrate WitClientApi into a new or existing Unity 
 
 5. **Introduce typed DTOs where needed**
    - For critical flows (tokens, currency, user profile), define simple request/response classes.
-   - Switch those calls to `CallEndpoint<TReq, TRes>()` and leverage `ResponseParser` for safety.
+	- Switch those calls to `CallEndpoint<TReq, TRes>()` and leverage `ResponseParser` for safety.
+	- If specific endpoints require extra headers, use the overload that accepts `Dictionary<string, string> customHeaders`.
 
 6. **Harden authentication**
    - Verify that sign-in, sign-out, and refresh behavior match your backend.

@@ -18,6 +18,18 @@ client.CallEndpoint("auth/login", new { email = "me@domain.com", password = "p" 
 (result) => Debug.Log(Json.Serialize(result)),
 (error) => Debug.LogError(error));
 
+Basic usage with custom headers:
+
+var customHeaders = new Dictionary<string, string>
+{
+    { "x-api-key", "my-key" },
+    { "x-tenant-id", "tenant-01" }
+};
+
+client.CallEndpoint("content/page", new { slug = "home" }, customHeaders,
+    (result) => Debug.Log(Json.Serialize(result)),
+    (error) => Debug.LogError(error));
+
 Typed DTO usage:
 
 client.CallEndpoint<LoginRequest, TokenResponse>("auth/login", new LoginRequest { Email = "a@b.com", Password = "p" },
@@ -28,6 +40,7 @@ What the package provides
 
 - Dynamic endpoint invocation via a JSON manifest (no DTOs required).
 - Optional typed calls using generics (CallEndpoint<TReq, TRes>).
+- Optional per-request custom headers via CallEndpoint overloads.
 - `ApiClientManager` (MonoSingleton) that manages endpoints, the HTTP handler, token storage and auth flows.
 - `AuthService` (overrideable) with SignIn/SignOut/Refresh implementations and envelope-aware parsing.
 - `PlayerPrefsTokenStorage` (thread-safe): keeps an in-memory cache for background threads and flushes writes on the main thread.
@@ -84,6 +97,24 @@ The package provides an `AuthService` and `PlayerPrefsTokenStorage` out of the b
 }
 
 Access tokens are attached to outgoing requests automatically (Authorization: Bearer <token>) by `ApiClientManager` when available. On 401 responses, the manager will trigger `AuthService.RefreshTokenAsync` once and retry the original request with the new token when refresh succeeds.
+
+Per-request headers
+
+If an endpoint needs extra headers such as `x-api-key`, `x-tenant-id`, or feature flags, use the `CallEndpoint` overloads that accept `Dictionary<string, string> customHeaders`.
+
+Example:
+
+client.CallEndpoint<LoginRequest, TokenResponse>("auth/login",
+    new LoginRequest { Email = "a@b.com", Password = "p" },
+    new Dictionary<string, string>
+    {
+        { "x-client-version", Application.version },
+        { "x-platform", Application.platform.ToString() }
+    },
+    (resp) => Debug.Log(resp.AccessToken),
+    (err) => Debug.LogError(err));
+
+These headers are applied only to that request. Existing automatic auth behavior still applies, and an explicit `Authorization` header in `customHeaders` takes precedence over the stored bearer token for that request.
 
 Thread-safety
 

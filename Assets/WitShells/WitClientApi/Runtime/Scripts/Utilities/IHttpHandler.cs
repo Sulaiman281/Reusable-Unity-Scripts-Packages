@@ -64,7 +64,7 @@ namespace WitShells.WitClientApi
         {
             var allHeaders = new Dictionary<string, string>(Headers);
 
-            if (!string.IsNullOrEmpty(AuthToken))
+            if (!string.IsNullOrEmpty(AuthToken) && !allHeaders.ContainsKey("Authorization"))
             {
                 allHeaders["Authorization"] = $"Bearer {AuthToken}";
             }

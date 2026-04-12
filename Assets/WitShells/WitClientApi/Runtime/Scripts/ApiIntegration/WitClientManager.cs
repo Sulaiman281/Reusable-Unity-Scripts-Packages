@@ -138,24 +138,44 @@ namespace WitShells.WitClientApi
         public void CallEndpoint(string key, object parameters, UnityAction<object> onSuccess, UnityAction<string> onFail)
         {
             // run the endpoint execution on a background thread, callbacks will be dispatched back to main thread by QuickThreadJobs
-            QuickThreadJobs.RunFunctionAsync(async () => await ExecuteEndpointAsync<object, object>(key, parameters, CancellationToken.None),
+            QuickThreadJobs.RunFunctionAsync(async () => await ExecuteEndpointAsync<object, object>(key, parameters, null, CancellationToken.None),
+                (result) => onSuccess?.Invoke(result),
+                (ex) => onFail?.Invoke(ex.Message));
+        }
+
+        public void CallEndpoint(string key, object parameters, Dictionary<string, string> customHeaders, UnityAction<object> onSuccess, UnityAction<string> onFail)
+        {
+            QuickThreadJobs.RunFunctionAsync(async () => await ExecuteEndpointAsync<object, object>(key, parameters, customHeaders, CancellationToken.None),
                 (result) => onSuccess?.Invoke(result),
                 (ex) => onFail?.Invoke(ex.Message));
         }
 
         public void CallEndpoint<TRequest, TResponse>(string key, TRequest dto, UnityAction<TResponse> onSuccess, UnityAction<string> onFail)
         {
-            QuickThreadJobs.RunFunctionAsync(async () => await ExecuteEndpointAsync<TRequest, TResponse>(key, dto, CancellationToken.None),
+            QuickThreadJobs.RunFunctionAsync(async () => await ExecuteEndpointAsync<TRequest, TResponse>(key, dto, null, CancellationToken.None),
                 (result) => onSuccess?.Invoke(result is TResponse tr ? tr : (TResponse)result),
                 (ex) => onFail?.Invoke(ex.Message));
         }
-        private async Task<object> ExecuteEndpointAsync<TRequest, TResponse>(string key, object parameters, CancellationToken ct)
+
+        public void CallEndpoint<TRequest, TResponse>(string key, TRequest dto, Dictionary<string, string> customHeaders, UnityAction<TResponse> onSuccess, UnityAction<string> onFail)
+        {
+            QuickThreadJobs.RunFunctionAsync(async () => await ExecuteEndpointAsync<TRequest, TResponse>(key, dto, customHeaders, CancellationToken.None),
+                (result) => onSuccess?.Invoke(result is TResponse tr ? tr : (TResponse)result),
+                (ex) => onFail?.Invoke(ex.Message));
+        }
+
+        private async Task<object> ExecuteEndpointAsync<TRequest, TResponse>(string key, object parameters, Dictionary<string, string> customHeaders, CancellationToken ct)
         {
             var def = _reader.GetEndpoint(key);
             if (def == null) throw new Exception($"Endpoint '{key}' not found.");
 
             var baseUrl = GetBaseUrl();
             var req = HttpRequestBuilder.Create(baseUrl).WithMethod(def.Method).WithPath(def.Path ?? def.Key);
+
+            if (customHeaders != null && customHeaders.Count > 0)
+            {
+                req = req.WithHeaders(customHeaders);
+            }
 
             // attach auth token if available
             var accessToken = await _tokenStorage.GetAccessTokenAsync().ConfigureAwait(false);
