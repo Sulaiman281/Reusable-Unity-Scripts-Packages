@@ -67,11 +67,14 @@ namespace WitShells.DesignPatterns.Core
             }
 
             UnhighlightDropZone();
+
         }
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
             if (eventData.pointerDrag == null) return;
+
+            Debug.Log("On PointerEnter: " + eventData.pointerDrag.name);
 
             if (!IsDraggableObject(eventData.pointerDrag, out var draggable)) return;
 
@@ -86,6 +89,8 @@ namespace WitShells.DesignPatterns.Core
         public virtual void OnPointerExit(PointerEventData eventData)
         {
             if (eventData.pointerDrag == null) return;
+
+            Debug.Log("On PointerExit: " + eventData.pointerDrag.name);
 
             if (!IsDraggableObject(eventData.pointerDrag, out var draggable)) return;
 

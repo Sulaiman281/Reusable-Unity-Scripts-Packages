@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace WitShells.DesignPatterns.Core
 {
@@ -58,6 +59,7 @@ namespace WitShells.DesignPatterns.Core
         [SerializeField] protected bool allowSwapping = true;
         [SerializeField] protected CanvasGroup canvasGroup;
         [SerializeField] protected Canvas dragCanvas;
+        [SerializeField] protected Image itemImage;
         [SerializeField] protected float dragAlpha = 0.6f;
 
         protected T data;
@@ -98,6 +100,11 @@ namespace WitShells.DesignPatterns.Core
                 canvasGroup.blocksRaycasts = false;
             }
 
+            if(itemImage != null)
+            {
+                itemImage.raycastTarget = false;
+            }
+
             OnDragStarted();
             OnDragStart?.Invoke(data);
         }
@@ -121,6 +128,11 @@ namespace WitShells.DesignPatterns.Core
             {
                 canvasGroup.alpha = 1f;
                 canvasGroup.blocksRaycasts = true;
+            }
+
+            if (itemImage != null)
+            {
+                itemImage.raycastTarget = true;
             }
 
             // Handle return to original position
