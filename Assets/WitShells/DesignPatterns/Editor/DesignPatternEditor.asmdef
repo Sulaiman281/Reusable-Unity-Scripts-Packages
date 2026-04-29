@@ -1,7 +1,10 @@
 {
     "name": "DesignPatternEditor",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:ec8dcffcd0a03ff4fa9b67aecf8c0e87",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
     "includePlatforms": [
         "Editor"
     ],

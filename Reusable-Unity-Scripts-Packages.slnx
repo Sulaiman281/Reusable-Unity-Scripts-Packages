@@ -15,6 +15,7 @@
   <Project Path="ParticlesPresets.csproj" />
   <Project Path="UMotionSourceEditor.csproj" />
   <Project Path="WitShells.WebRTCWit.csproj" />
+  <Project Path="DesignPatternEditor.csproj" />
   <Project Path="MilitaryGridSystem.Editor.csproj" />
   <Project Path="WitShells.CanvasDrawTool.csproj" />
   <Project Path="WitAnimationRig.Editor.csproj" />
@@ -35,6 +36,5 @@
   <Project Path="WitWebSocket.csproj" />
   <Project Path="UMotionSourceApplication.csproj" />
   <Project Path="Unity.WebRTC.Samples.Editror.csproj" />
-  <Project Path="DesignPatternEditor.csproj" />
   <Project Path="WitShells.TankControls.csproj" />
 </Solution>
