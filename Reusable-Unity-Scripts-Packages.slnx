@@ -35,5 +35,6 @@
   <Project Path="WitWebSocket.csproj" />
   <Project Path="UMotionSourceApplication.csproj" />
   <Project Path="Unity.WebRTC.Samples.Editror.csproj" />
+  <Project Path="DesignPatternEditor.csproj" />
   <Project Path="WitShells.TankControls.csproj" />
 </Solution>
