@@ -1,6 +1,6 @@
 {
     "name": "com.witshells.designpatterns",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "displayName": "WitShells Design Patterns",
     "description": "Production-ready design pattern implementations for Unity: Singleton, Factory, Observer, Command, State Machine, Object Pooling, and more.",
     "unity": "2021.3",

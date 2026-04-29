@@ -100,7 +100,7 @@ namespace WitShells.DesignPatterns.Core
                 canvasGroup.blocksRaycasts = false;
             }
 
-            if(itemImage != null)
+            if (itemImage != null)
             {
                 itemImage.raycastTarget = false;
             }
@@ -113,7 +113,17 @@ namespace WitShells.DesignPatterns.Core
         {
             if (!isDragging) return;
 
-            transform.position = eventData.position;
+            if (dragCanvas.renderMode == RenderMode.ScreenSpaceOverlay)
+            {
+                transform.position = eventData.position;
+            }
+            else
+            {
+                // Convert screen point to world point for non-overlay canvases
+                RectTransformUtility.ScreenPointToWorldPointInRectangle(dragCanvas.transform as RectTransform, eventData.position, dragCanvas.worldCamera, out Vector3 worldPos);
+                transform.position = worldPos;
+            }
+
             OnDragging?.Invoke(data, transform.position);
         }
 
